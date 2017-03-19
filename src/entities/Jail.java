@@ -1,4 +1,4 @@
-package fields;
+package entities;
 
 public class Jail {
 

@@ -1,4 +1,4 @@
-package matador;
+package entities;
 
 public class Player {
 
