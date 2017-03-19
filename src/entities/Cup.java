@@ -1,5 +1,7 @@
-package matador;
+package entities;
 
 public class Cup {
+	
+
 
 }
