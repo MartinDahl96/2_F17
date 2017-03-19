@@ -1,6 +1,5 @@
 package entities;
 
-
-public class Field {
+public interface Field {
 
 }
