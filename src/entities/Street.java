@@ -2,6 +2,8 @@ package entities;
 
 public class Street extends Ownable{
 
+
+	
 	//Attributes
 	private int colourNum;
 	private int houseRent_1;
@@ -11,8 +13,13 @@ public class Street extends Ownable{
 	private int hotelRent;
 	private int mortgage;
 	
-	
-	
+	/*
+	 * Konstruktør til at lave et Street, felt.
+	 */
+	public Street(String name, String info, int price, Player player) {
+		super(name, info, price, player);
+		// TODO Auto-generated constructor stub
+	}
 	/*
 	 * gets the colour of the street field
 	 */

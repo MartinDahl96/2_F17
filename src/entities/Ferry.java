@@ -2,6 +2,14 @@ package entities;
 
 public class Ferry extends Ownable{
 
+	/*
+	 * Constructor created for a Ferry field.
+	 */
+	public Ferry(String name, String info, int price, Player player) {
+		super(name, info, price, player);
+		// TODO Auto-generated constructor stub
+	}
+
 	//Attributes
 	private int rent_1 = 500;
 	private int rent_2 = 1000;

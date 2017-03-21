@@ -3,19 +3,32 @@ package entities;
 import entities.Field;
 import entities.Player;
 
-public class Ownable implements Field{
+public abstract class Ownable implements Field{
 
 	//Attributes
 	private int value;
 	private int rent;
 	private Player owner;
+	private String fieldName;
+	private String fieldInfo;
+	
 	
 	
 	/*
 	 * gets the value of the ownable field
 	 */
-	public int getValue() {
+	public int getValue(){
 		return value;
+	}
+	
+	/*
+	 * Constructor for a ownable field.
+	 */
+	public Ownable(String name, String info, int price, Player player){
+		fieldName = name;
+		fieldInfo = info;
+		value = price;
+		owner = player;
 	}
 	
 	/*
@@ -72,5 +85,24 @@ public class Ownable implements Field{
 	public String getFieldInfo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/*
+	 * Metode til at købe et felt. Denne skal have nogle parametre som vi skal have snakket om.
+	 */
+	public void buyProperty(){
+		
+	}
+	/*
+	 * Metode til at betale rent. Denne skal have nogle parametre som vi skal have snakket om.
+	 */
+	public void payRent(){
+		
+	}
+	/*
+	 * Metode til at modtage rent. Denne skal have nogle parametre som vi skal have snakket om.
+	 */
+	public void receiveRent(){
+		
 	}
 }
