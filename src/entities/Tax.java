@@ -1,9 +1,15 @@
 package entities;
 
-public class Tax {
+public class Tax extends Field {
 	
 	private int revenueTax;
 	private int fixedTax;
+	
+	public Tax(String fieldName, String fieldInfo, int fixedTax, int revenueTax){
+		super(fieldName, fieldInfo);
+		this.fixedTax = fixedTax;
+		this.revenueTax = revenueTax;
+	}
 	
 	public void setrevenueTax(int tax){
 		this.revenueTax = tax;
@@ -21,7 +27,11 @@ public class Tax {
 		return fixedTax;
 	}
 	
-	public void landOnField(){
+
+	@Override
+	public void landOnField(Player player) {
+		
+		
 		
 	}
 }
