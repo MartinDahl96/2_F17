@@ -1,12 +1,11 @@
 package entities;
 
-/**
- * @Author Martin
- * This class will be responsible for the individual dice.
- */
+
 public class Die {
 
+	private int sides;
 	private int faceValue;
+	
 	
 	/**
 	 * @Param Die Constructor. Used to create a Die object.
@@ -14,16 +13,15 @@ public class Die {
 	 */
 	
 	public Die(){
-		faceValue = 0;
+		this.sides = 6;
 	}
-	
 	
 	/**
 	 * Sets the faceValue to a random number between 1 and 6.
 	 */
 	
-	public void setRoll(){
-		faceValue = (int)(Math.random()*6);
+	public void roll(){
+		this.faceValue = (int)(Math.random()*sides) + 1;
 	}
 	
 	/**

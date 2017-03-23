@@ -8,13 +8,25 @@ public class Player {
 	private int jailRounds;
 	private int ownedFerries;
 	private int currentPosition;
+	public boolean immunity;
 	private int fortune;
+	
 
 	// Constructor for a player-object.
 	public Player(String name) {
-		playerName = name;
+		this.playerName = name;
 		this.account = new Account(26000);
+		this.immunity = false;
 		fortune = this.account.getBalance();
+
+	}
+
+	public boolean isImmunity() {
+		return immunity;
+	}
+
+	public void setImmunity(boolean immunity) {
+		this.immunity = immunity;
 	}
 
 	// Returns the name of the player.
@@ -32,8 +44,8 @@ public class Player {
 		return this.fortune;
 	}
 
-	public void setFortune(int newFortune) {
-		this.fortune += newFortune;
+	public void setFortune(int add) {
+		this.fortune += add;
 	}
 
 	// gets the player's ID.
@@ -67,16 +79,16 @@ public class Player {
 		if (currentPosition > 40) {
 			currentPosition -= 40;
 			if (currentPosition > 0) {
-				setFortune(4000); //startBonues
+				setFortune(4000); // startBonues
 			}
 		}
 	}
-	public void setOwnedFerries(int ferriesOwned)
-	{
+
+	public void setOwnedFerries(int ferriesOwned) {
 		ownedFerries = ownedFerries + ferriesOwned;
 	}
-	
-	public int getOwnedFerries(){
+
+	public int getOwnedFerries() {
 		return ownedFerries;
 	}
 }
