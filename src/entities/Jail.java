@@ -1,32 +1,29 @@
 package entities;
 
-public class Jail implements Field {
+public class Jail extends Field {
 
-	@Override
-	public void setFieldName(String text) {
-		// TODO Auto-generated method stub
+	public Jail(String fieldName, String fieldInfo) {
+		super(fieldName, fieldInfo);
 		
 	}
 
 	@Override
-	public String getFieldName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setFieldInfo(String text) {
-		// TODO Auto-generated method stub
+	public void landOnField(Player player) {
+		
+		Cup cup = new Cup();
+		
+		if(player.getJailRounds() > 0){		
+		}
+			
+		if(player.getCurrentPosition() == 31){
+			player.setCurrentPosition(-20);
+			player.setJailRounds(3);
+		}
+		
 		
 	}
-
-	@Override
-	public String getFieldInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void landOnField(){
-		
-	}
+	
+	
+	
+	
 }

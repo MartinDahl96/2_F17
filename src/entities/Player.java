@@ -1,76 +1,94 @@
 package entities;
 
 public class Player {
-	//Attributes
-	private String name;
-	private Account balance;
-	private boolean inJail;
+	// Attributes
+	private String playerName;
+	private Account account;
 	private int ID;
 	private int jailRounds;
+	private int ownedFerries;
 	private int currentPosition;
+	public boolean immunity;
+	private int fortune;
 	
-	//Constructor for a player-object.
-	public Player(){
-		
-	}
-	
-	//Returns the name of the player.
-	public String getName() {
-		return name;
-	}
-	
-	//Sets the name of a player.
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	//Returns the player's balance.
-	public Account getBalance() {
-		return balance;
-	}
-	
-	//sets the player's balance.
-	public void setBalance(Account balance) {
-		this.balance = balance;
+
+	// Constructor for a player-object.
+	public Player(String name) {
+		this.playerName = name;
+		this.account = new Account(26000);
+		this.immunity = false;
+		fortune = this.account.getBalance();
+
 	}
 
-	//gets the player's jail-status.
-	public boolean isInJail() {
-		return inJail;
+	public boolean isImmunity() {
+		return immunity;
 	}
 
-	//sets the player's jail-status.
-	public void setInJail(boolean inJail) {
-		this.inJail = inJail;
+	public void setImmunity(boolean immunity) {
+		this.immunity = immunity;
 	}
 
-	//gets the player's ID.
-	public int getID() {
+	// Returns the name of the player.
+	public String getplayerName() {
+		return playerName;
+	}
+
+	// Sets the name of a player.
+	public void setplayerName(String name) {
+		playerName = name;
+	}
+
+	// Returns the player's balance.
+	public int getFortune() {
+		return this.fortune;
+	}
+
+	public void setFortune(int add) {
+		this.fortune += add;
+	}
+
+	// gets the player's ID.
+	public int getPlayerNumber() {
 		return ID;
 	}
 
-	//sets the player's ID.
-	public void setID(int iD) {
-		ID = iD;
+	// sets the player's ID.
+	public void setPlayerNumber(int playerNumber) {
+		ID = playerNumber;
 	}
 
-	//gets the amount of rounds left of a player's jail-time.
+	// gets the amount of rounds left of a player's jail-time.
 	public int getJailRounds() {
 		return jailRounds;
 	}
 
-	//sets the amount of rounds left of a player's jail-time.
+	// sets the amount of rounds left of a player's jail-time.
 	public void setJailRounds(int jailRounds) {
 		this.jailRounds = jailRounds;
 	}
 
-	//gets the player's current position.
+	// gets the player's current position.
 	public int getCurrentPosition() {
 		return currentPosition;
 	}
 
-	//sets the player's current position.
-	public void setCurrentPosition(int currentPosition) {
-		this.currentPosition = currentPosition;
+	// sets the player's current position.
+	public void setCurrentPosition(int newPosition) {
+		currentPosition = newPosition + currentPosition;
+		if (currentPosition > 40) {
+			currentPosition -= 40;
+			if (currentPosition > 0) {
+				setFortune(4000); // startBonues
+			}
+		}
+	}
+
+	public void setOwnedFerries(int ferriesOwned) {
+		ownedFerries = ownedFerries + ferriesOwned;
+	}
+
+	public int getOwnedFerries() {
+		return ownedFerries;
 	}
 }

@@ -1,33 +1,45 @@
 package entities;
 
-public class Start implements Field {
+public class Start extends Field {
+
+	private String fieldName;
+	private String fieldInfo;
+	private int startBonus;
+
+	public Start(String fieldName, String fieldInfo, int startBonus) {
+		super(fieldName, fieldInfo);
+		this.startBonus = startBonus;
+
+	}
 
 	@Override
-	public void setFieldName(String text) {
-		// TODO Auto-generated method stub
-		
+	public void setFieldName(String fieldName) {
+
 	}
 
 	@Override
 	public String getFieldName() {
-		// TODO Auto-generated method stub
-		return null;
+		return fieldName;
 	}
 
 	@Override
-	public void setFieldInfo(String text) {
-		// TODO Auto-generated method stub
-		
+	public void setFieldInfo(String fieldInfo) {
+
 	}
 
 	@Override
 	public String getFieldInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.fieldInfo;
 	}
-	
-	public void landOnField(){
-		
+
+	public void landOnField(Player player) {
+		player.setFortune(this.startBonus);
+
+	}
+
+	@Override
+	public String toString() {
+		return fieldName;
 	}
 
 }

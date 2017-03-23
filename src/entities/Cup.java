@@ -20,22 +20,16 @@ public class Cup {
 	 */
 	
 	public Cup(){
-		cupValue = 0;
+		Die1.roll();
+		Die2.roll();
 	}
 	
-	/**
-	 * Rolls the dice, but doesn't return the value of them.
-	 */
-	public void setCup(){
-		Die1.setRoll();
-		Die2.setRoll();
-	}
 	
 	/**
 	 * Returns the value of the rolled dice.
 	 */
 	
-	public int getCup(){
+	public int getCupValue(){
 		cupValue = Die1.getRoll()+Die2.getRoll();
 		return cupValue;
 	}

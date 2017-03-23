@@ -12,7 +12,7 @@ public class Account {
 	 * The first int is used to desribe the player's balance.
 	 * The other int is used to put a limit to the player's balance so that it can never drop below 0.
 	 */
-	private int Balance;
+	private int balance;
 	private int MIN = 0;
 	
 	/**
@@ -20,8 +20,8 @@ public class Account {
 	 * Used to create an Account object with the initial value of 26000.
 	 * This is because the starting field rewards a player with 4000 crowns.
 	 */
-	public Account(){
-		Balance = 26000;
+	public Account(int balance){
+		this.balance = balance;
 	}
 
 	/**
@@ -31,9 +31,9 @@ public class Account {
 	 * @return Balance
 	 */
 	public int addBalance(int point){
-		Balance = Balance + point;
+		balance = balance + point;
 		minBalance();
-		return Balance;
+		return balance;
 		
 	}
 	
@@ -41,8 +41,8 @@ public class Account {
 	 * Used to sets the player's balance.
 	 * @param Balance.
 	 */
-	public void setBalance(int balance){
-		Balance = balance;
+	public void setBalance(int newBalance){
+		balance = newBalance;
 	}
 	
 	/**
@@ -50,7 +50,7 @@ public class Account {
 	 * @return Balance.
 	 */
 	public int getBalance(){
-		return Balance;
+		return balance;
 	}
 	
 	/**
@@ -58,16 +58,16 @@ public class Account {
 	 * @return
 	 */
 	private int minBalance(){
-		if (Balance <= MIN){
-			Balance=0;
+		if (balance <= MIN){
+			balance=0;
 		}
-		return Balance;
+		return balance;
 	}
 	
 	/**
 	 * Converts the Balance int to a string.
 	 */
 	public String toString(){
-		return Integer.toString(Balance);
+		return Integer.toString(balance);
 	}
 }
