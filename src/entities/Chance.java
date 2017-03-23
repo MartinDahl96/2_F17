@@ -1,32 +1,15 @@
 package entities;
 
-public class Chance implements Field {
+public class Chance extends Field {
 
-	@Override
-	public void setFieldName(String text) {
-		// TODO Auto-generated method stub
-		
+	public Chance(String fieldName, String fieldInfo) {
+		super(fieldName, fieldInfo);
+
 	}
 
 	@Override
-	public String getFieldName() {
+	public void landOnField(Player player) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setFieldInfo(String text) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getFieldInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public void landOnField(){
 		
 	}
 

@@ -1,19 +1,20 @@
 package entities;
 
-public class Start implements Field {
-	
-	String fieldName;
-	
-	
-	public Start(String fieldName, String fieldInfo, int startBonus ){
-		this.fieldName = fieldName;
-		
-	}
+public class Start extends Field {
 
+	private String fieldName;
+	private String fieldInfo;
+	private int startBonus;
+
+	public Start(String fieldName, String fieldInfo, int startBonus) {
+		super(fieldName, fieldInfo);
+		this.startBonus = startBonus;
+
+	}
 
 	@Override
 	public void setFieldName(String fieldName) {
-		
+
 	}
 
 	@Override
@@ -23,20 +24,19 @@ public class Start implements Field {
 
 	@Override
 	public void setFieldInfo(String fieldInfo) {
-		
+
 	}
 
 	@Override
 	public String getFieldInfo() {
-		return null;
+		return this.fieldInfo;
 	}
-	
-	public void landOnField(Player player){
-		
-		
-		
+
+	public void landOnField(Player player) {
+		player.setFortune(this.startBonus);
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return fieldName;

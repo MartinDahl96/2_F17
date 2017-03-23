@@ -1,27 +1,44 @@
 package entities;
 
-public interface Field {
+public abstract class Field {
+
+	protected String fieldName;
+	protected String fieldInfo;
+
+	public Field(String fieldName, String fieldInfo) {
+		this.fieldName = fieldName;
+		this.fieldName = fieldInfo;
+	}
 
 	/*
 	 * sets the name of the field
 	 */
-	void setFieldName(String text);
-	
+	public void setFieldName(String newFieldName) {
+		this.fieldName = newFieldName;
+	}
+
 	/*
 	 * gets the name of the field
 	 */
-	String getFieldName();
-	
+	public String getFieldName() {
+		return this.fieldName;
+	}
+
 	/*
 	 * sets the information about the field
 	 */
-	void setFieldInfo(String text);
-	
+	public void setFieldInfo(String newFieldInfo) {
+		this.fieldInfo = newFieldInfo;
+
+	}
+
 	/*
 	 * gets the information about the field
 	 */
-	String getFieldInfo();
-	
-	
-	
+	String getFieldInfo() {
+		return this.fieldInfo;
+	}
+
+	public abstract void landOnField(Player player);
+
 }
