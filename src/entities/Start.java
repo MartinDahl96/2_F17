@@ -5,7 +5,7 @@ public class Start implements Field {
 	String fieldName;
 	
 	
-	public Start(String fieldName, String fieldInfo, int startBonus) {
+	public Start(String fieldName, String fieldInfo, int startBonus){
 		this.fieldName = fieldName;
 		
 	}
