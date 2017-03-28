@@ -1,7 +1,5 @@
 package entities;
 
-import desktop_codebehind.Player;
-
 public class Street extends Ownable {
 
 	// Attributes
@@ -13,10 +11,11 @@ public class Street extends Ownable {
 	private int hotelRent;
 	private int mortgage;
 	private int numOfBuildings;
+	private int buildPrice;
 	private String color;
 
 	public Street(String fieldName, String fieldInfo, int price, int baseRent, int houseRent_1, int houseRent_2,
-			int houseRent_3, int houseRent_4, int hotelRent, int mortgage, String color) {
+			int houseRent_3, int houseRent_4, int hotelRent, int mortgage, int buildPrice, String color) {
 		super(fieldName, fieldInfo, price);
 		this.baseRent = baseRent;
 		this.houseRent_1 = houseRent_1;
@@ -26,6 +25,7 @@ public class Street extends Ownable {
 		this.hotelRent = hotelRent;
 		this.mortgage = mortgage;
 		this.numOfBuildings = 0;
+		this.buildPrice = buildPrice;
 		this.color = color;
 
 	}
@@ -66,10 +66,9 @@ public class Street extends Ownable {
 			
 		}
 		return rent;
-		
-		
-
-		
 	}
 
+	public void landOnField(Player player){
+		
+	}
 }
