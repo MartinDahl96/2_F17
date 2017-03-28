@@ -20,8 +20,7 @@ public class Cup {
 	 */
 	
 	public Cup(){
-		Die1.roll();
-		Die2.roll();
+		
 	}
 	
 	
@@ -65,6 +64,11 @@ public class Cup {
 	 */
 	public String toString(){
 		return Integer.toString(cupValue);
+	}
+	
+	public void useCup() {
+		Die1.roll();
+		Die2.roll();
 	}
 	
 }
