@@ -10,6 +10,8 @@ public class Player {
 	private int currentPosition;
 	public boolean immunity;
 	private int fortune;
+	private int totalAssets;
+	private int jailToken;
 	
 
 	// Constructor for a player-object.
@@ -17,8 +19,19 @@ public class Player {
 		this.playerName = name;
 		this.account = new Account(26000);
 		this.immunity = false;
+		this.totalAssets = 0;
+		this.jailToken = 0;
 		fortune = this.account.getBalance();
 
+
+	}
+
+	public int getJailToken() {
+		return jailToken;
+	}
+
+	public void setJailToken(int jailToken) {
+		this.jailToken = jailToken;
 	}
 
 	public boolean isImmunity() {
@@ -74,14 +87,18 @@ public class Player {
 	}
 
 	// sets the player's current position.
-	public void setCurrentPosition(int newPosition) {
-		currentPosition = newPosition + currentPosition;
+	public void setCurrentPosition(int addToPosition) {
+		currentPosition = addToPosition + currentPosition;
 		if (currentPosition > 40) {
-			currentPosition -= 40;
+			currentPosition -= 40; 
 			if (currentPosition > 0) {
-				setFortune(4000); // startBonues
+				setFortune(4000); // startBonus //genovervej skal denne være i playerklassen?
 			}
 		}
+	}
+	
+	public void changePosition (int newPosition){
+		this.currentPosition = newPosition;
 	}
 
 	public void setOwnedFerries(int ferriesOwned) {
