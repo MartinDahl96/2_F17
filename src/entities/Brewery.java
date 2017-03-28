@@ -24,9 +24,9 @@ public class Brewery extends Ownable {
 	@Override
 	public int getRent() {
 		switch (super.getOwner().getOwnedBreweries()) {
-		case 1: this.multiplier = 1;
+		case 1: this.multiplier = 100;
 				break;
-		case 2: this.multiplier = 2;
+		case 2: this.multiplier = 200;
 				break;
 		}
 		Cup cup = new Cup();
