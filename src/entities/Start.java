@@ -8,7 +8,7 @@ public class Start extends Field {
 
 	public Start(String fieldName, String fieldInfo, int startBonus) {
 		super(fieldName, fieldInfo);
-		this.startBonus = startBonus;
+		this.startBonus = 4000;
 
 	}
 

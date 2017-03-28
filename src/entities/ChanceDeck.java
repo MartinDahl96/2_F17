@@ -18,11 +18,14 @@ public class ChanceDeck {
 
 		try {
 			Scanner s = new Scanner(new File("chanceCards"));
+
+			int tempID = 0;
+
 			while (s.hasNext()) {
 
 				String tempText = s.nextLine();
 				int tempValue = Integer.parseInt(s.nextLine());
-				deck.push(new ChanceCard(tempValue, tempText));
+				deck.push(new ChanceCard(++tempID, tempValue, tempText));
 
 			}
 			s.close();
@@ -41,17 +44,6 @@ public class ChanceDeck {
 
 	public Stack<ChanceCard> getDeck() {
 		return deck;
-	}	
-
-
-public static void main (String[] args){
-	
-	ChanceDeck cd = new ChanceDeck();
-	
-	System.out.println(cd.getDeck());
-
-	
-	
-}
+	}
 
 }
