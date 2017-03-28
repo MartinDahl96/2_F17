@@ -34,6 +34,7 @@ public class Street extends Ownable{
 		this.colourNum = colourNum;
 	}
 	
+	
 	/*
 	 * gets the mortgage of the street field
 	 */

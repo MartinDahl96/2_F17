@@ -33,9 +33,9 @@ public class ChanceCard {
 	}
 
 
-	@Override
+	
 	public String toString() {
-		return "ChanceCard [cardText =" + cardText + "]";
+		return ("("+ cardText + " , "+cardValue+")");
 	}
 
 
