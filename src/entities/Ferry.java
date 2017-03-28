@@ -15,16 +15,20 @@ public class Ferry extends Ownable {
 		super(fieldName, fieldInfo, price);
 	}
 
+	/**
+	 * getRent method for ferry-fields. 
+	 * returns the rent which depends on the amount of ferries owned by the player.
+	 */
 	public int getRent() {
 		switch (super.getOwner().getOwnedFerries()) {
 		case 1:
 			return this.rent_1;
 		case 2:
-			return this.rent_1;
+			return this.rent_2;
 		case 3:
-			return this.rent_1;
+			return this.rent_3;
 		case 4:
-			return this.rent_1;
+			return this.rent_4;
 		default:
 			return 0;
 

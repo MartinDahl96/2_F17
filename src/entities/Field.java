@@ -5,6 +5,9 @@ public abstract class Field {
 	protected String fieldName;
 	protected String fieldInfo;
 
+	/**
+	 * Constructor for any field in the game.
+	 */
 	public Field(String fieldName, String fieldInfo) {
 		this.fieldName = fieldName;
 		this.fieldName = fieldInfo;
@@ -39,6 +42,10 @@ public abstract class Field {
 		return this.fieldInfo;
 	}
 
+	/**
+	 * An abstract method for landing on a field. This will be different depending on the type of field.
+	 * @param player
+	 */
 	public abstract void landOnField(Player player);
 
 }
