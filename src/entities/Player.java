@@ -15,10 +15,11 @@ public class Player {
 	
 
 	// Constructor for a player-object.
-	public Player(String name) {
+	public Player(String name, int ID) {
 		this.playerName = name;
+		this.ID = ID;
 		this.account = new Account(26000);
-		this.immunity = false;
+		this.immunity = false;	
 		this.totalAssets = 0;
 		this.jailToken = 0;
 		fortune = this.account.getBalance();
