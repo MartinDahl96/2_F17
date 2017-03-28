@@ -1,5 +1,6 @@
 package entities;
 
+import desktop_resources.GUI;
 import entities.Field;
 import entities.Player;
 
@@ -35,14 +36,23 @@ public abstract class Ownable extends Field {
 		this.owner = newOwner;
 	}
 	
+	public void buyProperty(Player buyer){
+		boolean property = GUI.getUserLeftButtonPressed("Do you want to buy this property?", "Yes", "No");
+		if (property){
+			buyer.setFortune(-getPrice());
+			setOwner(buyer);
+			//GUI.setOwner(null, null);		
+		}
+	}
+		
+	
+	
 	public abstract int getRent();
 	
 	public void landOnField(Player player){
-		
-		
-		
-		
-		
+		if (getOwner() == null){
+			
+		}
 	}
 
 }
