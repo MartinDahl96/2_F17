@@ -13,8 +13,8 @@ public class Start extends Field {
 	 * @param fieldInfo Describes the field
 	 * @param startBonus Adds 4000 to the players account when landing or passing this field
 	 */
-	public Start(String fieldName, String fieldInfo, int startBonus) {
-		super(fieldName, fieldInfo);
+	public Start(int fieldID, String fieldName, String fieldInfo, int startBonus) {
+		super(fieldID,fieldName, fieldInfo);
 		this.startBonus = 4000;
 
 	}
@@ -57,9 +57,8 @@ public class Start extends Field {
 	/**
 	 * toString method
 	 */
-	@Override
-	public String toString() {
-		return fieldName;
+	public String toString(){
+return super.
 	}
 
 }

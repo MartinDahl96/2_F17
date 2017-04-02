@@ -10,8 +10,8 @@ public class Brewery extends Ownable {
 	/*
 	 * Constructor for a Brewery field.
 	 */
-	public Brewery(String fieldName, String fieldInfo, int price, int multiplier) {
-		super(fieldName, fieldInfo, price);
+	public Brewery(int fieldID,String fieldName, String fieldInfo, int price, int multiplier) {
+		super(fieldID,fieldName, fieldInfo, price);
 		
 	}
 

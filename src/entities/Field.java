@@ -4,13 +4,15 @@ public abstract class Field {
 
 	protected String fieldName;
 	protected String fieldInfo;
+	protected int fieldID;
 
 	/**
 	 * Constructor for any field in the game.
 	 */
-	public Field(String fieldName, String fieldInfo) {
+	public Field(int fieldID, String fieldName, String fieldInfo) {
 		this.fieldName = fieldName;
 		this.fieldName = fieldInfo;
+		this.fieldID = fieldID;
 	}
 
 	/*
@@ -47,5 +49,9 @@ public abstract class Field {
 	 * @param player
 	 */
 	public abstract void landOnField(Player player);
+	
+	public String toString(){
+		return this.fieldName+this.fieldInfo;
+	}
 
 }

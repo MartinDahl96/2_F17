@@ -17,8 +17,8 @@ public class Tax extends Field {
 	 * @param fixedTax Determines the fixed tax
 	 * @param revenueTax Determines a percentage of the players account as tax
 	 */
-	public Tax(String fieldName, String fieldInfo, int fixedTax, int revenueTax){
-		super(fieldName, fieldInfo);
+	public Tax(int fieldID,String fieldName, String fieldInfo, int fixedTax, int revenueTax){
+		super(fieldID,fieldName, fieldInfo);
 		this.fixedTax = fixedTax;
 		this.revenueTax = revenueTax;
 	}

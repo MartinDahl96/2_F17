@@ -9,15 +9,16 @@ public abstract class Ownable extends Field {
 	// Attributes
 	private int price;
 	private Player owner;
-	boolean isOwned;
+	private boolean isPawned; //mortgage
+	
 
 	/*
 	 * Constructor for an ownable field.
 	 */
-	public Ownable(String fieldName, String fieldInfo, int price) {
-		super(fieldName, fieldInfo);
+	public Ownable(int fieldID, String fieldName, String fieldInfo, int price) {
+		super(fieldID, fieldName, fieldInfo);
 		this.price = price;
-		this.isOwned = false;
+		this.isPawned = false;
 	}
 
 	/**
@@ -84,6 +85,17 @@ public abstract class Ownable extends Field {
 		if (getOwner() == null){
 			
 		}
+	}
+	
+	public void pawnField(Player player){
+		player.setFortune(this.price/2);
+		this.isPawned = true;
+		
+	}
+	
+	public void buyBackField(Player player){
+		player.setFortune(-this.price/2);
+		this.isPawned = false;
 	}
 
 }
