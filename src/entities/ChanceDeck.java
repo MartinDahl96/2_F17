@@ -1,46 +1,66 @@
 package entities;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Stack;
-
+import java.util.*;
+import java.io.FileNotFoundException;
+import java.io.File;
 
 public class ChanceDeck {
-	
-	private Stack <ChanceCard> cardDeck;
 
+	/**
+	 * Creates a stack of ChanceCards called deck.
+	 */
+	private Stack<ChanceCard> deck;
+
+	/**
+	 * Constructor used to create a stack pf ChanceCards.
+	 */
 	public ChanceDeck() {
-		
-		this.cardDeck = new Stack <ChanceCard> ();
+		this.deck = new Stack<ChanceCard>();
 		createDeck();
-		
+		shuffleDeck();
 	}
-	
-	
-	public void createDeck(){
-		
-		
-		ChanceCard c1 = new ChanceCard(1,"lol");
-		cardDeck.push(c1);
-		
-		ChanceCard c2 = new ChanceCard(2,"lol2");
-		cardDeck.push(c2);
-		
-		ChanceCard c3 = new ChanceCard(3,"lol3");
-		cardDeck.push(c3);
-		
-		
-	
-		
-		
-		
-		
-		
-		
-		
+
+	/**
+	 * Method used for creating a deck of ChanceCards.
+	 * Also throws an exception if the file "chanceCards" cannot be found.
+	 */
+	public void createDeck() {
+
+		try {
+			Scanner s = new Scanner(new File("chanceCards"));
+
+			int tempID = 0;
+
+			while (s.hasNext()) {
+
+				String tempText = s.nextLine();
+				int tempValue = Integer.parseInt(s.nextLine());
+				deck.push(new ChanceCard(++tempID, tempValue, tempText));
+
+			}
+			s.close();
+		}
+
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
-	
-	
-	
+
+	/**
+	 * Shuffles the created deck in order to randomize it.
+	 */
+	public void shuffleDeck() {
+		Collections.shuffle(this.deck);
+
+	}
+
+	/**
+	 * Used to display the deck.
+	 * @return deck.
+	 */
+	public Stack<ChanceCard> getDeck() {
+		return deck;
+	}
 
 }
