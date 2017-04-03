@@ -4,10 +4,25 @@ import desktop_resources.GUI;
 
 public class Jail extends Field {
 
-	public Jail(String fieldName, String fieldInfo) {
-		super(fieldName, fieldInfo);
+	/**
+	 * Constructor for a Jail-field.
+	 * @param fieldName is used as a name for the field.
+	 * @param fieldInfo is used to give info about the field.
+	 */
+	public Jail(int fieldID, String fieldName, String fieldInfo) {
+		super(fieldID, fieldName, fieldInfo);
 
 	}
+	
+	/**
+	 * The landOnField-method for the Jail field.
+	 * The method will first check if the player is in prison, by checking if the amount of rounds the player has left in prison is > 0.
+	 * It will then give the player 3 options in order to get out:
+	 * roll the dice in order to hit two equal dice,
+	 * pay 1000 and roll the dice to move out,
+	 * use a jailToken to get out of jail.
+	 * If the player tries to use a jailToken without having one, the player will be declined to get out of jail, and will therefore have to pick another option.
+	 */
 	
 	@Override
 	public void landOnField(Player player) {
@@ -60,11 +75,14 @@ public class Jail extends Field {
 					playerChoice = false;
 				}
 				else if (choice.equals(jailToken) && player.getJailToken() < 1){
-						GUI.showMessage("Du har ingen benådning");
+						GUI.showMessage("Du har ingen benï¿½dning");
 					}
 				}
 
 			}
+		/**
+		 * If the player lands on the go-to-jail-field (field number 31), he will be moved to jail (field number 11) and become imprisoned for 3 rounds.
+		 */
 	if(player.getCurrentPosition() == 31){
 		player.changePosition(11);
 		player.setJailRounds(3);

@@ -1,5 +1,6 @@
 package entities;
 import java.io.*;
+import java.util.Scanner;
 
 public class Text {
 
@@ -57,4 +58,12 @@ public class Text {
 		
 		return textList;
 	}
+	
+	
+	
+			
+	
+
+	
 }
+

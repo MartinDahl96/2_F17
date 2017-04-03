@@ -1,40 +1,40 @@
-1	Start		0	0	0	0	0	0	0	0	
-2	R�dovrevej	1200	50	250	750	2250	4000	6000	1000		
-3	Pr�v lykken										
-4	Hvidovrevej	1200	50	250	750	2250	4000	6000	1000		
-5	Betal indkomstskat 10% eller 4000 kr.										
-6	LB F�rgerne	4000		500	2	rederier:	1000	03:00	2000	04:00	4000
-7	Roskildevej	2000	100	600	1800	5400	8000	11000	1000		
-8	Pr�v lykken										
-9	Valby Langgade	2000	100	600	1800	5400	8000	11000	1000		
-10	All�gade	2400	150	800	2000	6000	9000	12000	1000		
-11	F�ngsel										
-12	Frederiksberg All�	2800	200	1000	3000	9000	12500	15000	2000		
-13	Carlsberg	3000	Ejes	en	virksomhed,	betales	100	gange	�jnene.		
-14	B�lowsvej	2800	200	1000	3000	9000	12500	15000	2000		
-15	Gl. Kongevej	3200	250	1250	3750	10000	14000	18000	2000		
-16	Danmark	4000									
-17	Bernstorfsvej	3600	300	1400	4000	11000	15000	19000	2000		
-18	Pr�v lykken										
-19	Hellerupvej	3600	300	1400	4000	11000	15000	19000	2000		
-20	Strandvej	4000	350	1600	4400	12000	16000	20000	2000		
-21	Parkering										
-22	Trianglen	4400	350	1800	5000	14000	17500	21000	3000		
-23	Pr�v lykken										
-24	؝sterbrogade	4400	350	1800	5000	14000	17500	21000	3000		
-25	Gr�nningen	4800	400	2000	6000	15000	18500	22000	3000		
-26	Mols-Linien A/S	4000									
-27	Bredgade	5200	450	2200	6600	16000	19500	23000	3000		
-28	Kgs. Nytorv	5200	450	2200	6600	16000	19500	23000	3000		
-29	Coca-Cola	3000	Ejes	begge,	betales	200	gange	�jnene.			
-30	؝stergade	5600	500	2400	7200	17000	20500	24000	3000		
-31	De F�ngsles										
-32	Amagertorv	6000	550	2600	7800	18000	22000	25000	4000		
-33	Vimmelskaftet	6000	550	2600	7800	18000	22000	25000	4000		
-34	Pr�v lykken										
-35	Nygade	6400	600	3000	9000	20000	24000	28000	4000		
-36	Skandinavisk Linietrafik A/S	4000									
-37	Pr�v lykken										
-38	Frederiksberggade	7000	700	3500	10000	22000	26000	30000	4000		
-39	Ekstraordin�r statsskat betal kr. 2000										
-40	R�dhuspladsen	8000	1000	4000	12000	28000	34000	40000	4000		
+Start,Start,4000,
+Rødovrevej,Rødovrevej,1200,50,250,750,2250,4000,6000,1000,
+Prøv lykken,Træk et chancekort,			
+Hvidovrevej,Hvidovre,1200,50,250,750,2250,4000,6000,1000,
+Skat,Betal indkomstskat 10% eller 4000 kr,4000,0.90,						
+LB Færgerne,LB Færgerne,4000,500,1000,2000,4000,
+Roskildevej,Roskildevej,2000,100,600,1800,5400‚8000,11000,1000,
+Prøv lykken,Træk et chancekort,
+Valby Langgade,Valby Langgade,2000,100,600,1800,5400,8000,11000,1000,		
+Allégade,2400,150,800,2000,6000,9000,12000,1000,
+Fængsel, De er på besøg i fængslet,
+Frederiksberg Allé,2800,200,1000,3000,9000,12500,15000,2000,
+Carlsberg,Carlsberg,3000,100,
+Bülowsvej,2800,200,1000,3000,9000,12500,15000,2000,
+Gl. Kongevej,3200,250,1250,3750,10000,14000,18000,2000,
+Danmark,4000,500,1000,2000,4000,
+Bernstorfsvej,3600,300,1400,4000,11000,15000,19000,2000,
+Prøv lykken,Træk et chancekort,
+Hellerupvej,3600,300,1400,4000,11000,15000,19000,2000,
+Strandvej,4000,350,1600,4400,12000,16000,20000,2000,
+Parkering,Du er immun på dette felt, modtager kr. 2000,
+Trianglen,4400,350,1800,5000,14000,17500,21000,3000,		
+Prøv lykken,Træk et chancekort,
+Østerbrogade,Østerbrogade,4400,350,1800,5000,14000,17500,21000,3000,
+Grønningen,Østerbrogade,4800,400,2000,6000,15000,18500,22000,3000,
+Mols-Linien A/S,Mols-Linien A/S,4000,500,1000,2000,4000,
+Bredgade,Bredgade,5200,450,2200,6600,16000,19500,23000,3000,
+Kgs. Nytorv,Kgs. Nytorv,5200,450,2200,6600,16000,19500,23000,3000,
+Coca-Cola,Coca-Cola,3000,10,
+Østergade,Østergade,5600,500,2400,7200,17000,20500,24000,3000,
+Gå til fængsel,De Fængsles,
+Amagertorv,Amagertorv,6000,550,2600,7800,18000,22000,25000,4000,
+Vimmelskaftet,Vimmelskaftet,6000,550,2600,7800,18000,22000,25000,4000,
+Prøv lykken,Træk et chancekort,
+Nygade,Nygade,6400,600,3000,9000,20000,24000,28000,4000,
+Skandinavisk Linietrafik A/S,Skandinavisk Linietrafik A/S,4000,500,1000,2000,4000,
+Prøv lykken,Træk et chancekort,
+Frederiksberggade,Frederiksberggade,7000,700,3500,10000,22000,26000,30000,4000,
+Skat,Ekstraordinær statsskat betal kr. 2000,2000,0,
+Rødhuspladsen,Rødhuspladsen,8000,1000,4000,12000,28000,34000,40000,4000,

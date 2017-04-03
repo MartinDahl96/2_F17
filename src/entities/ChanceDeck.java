@@ -6,14 +6,24 @@ import java.io.File;
 
 public class ChanceDeck {
 
+	/**
+	 * Creates a stack of ChanceCards called deck.
+	 */
 	private Stack<ChanceCard> deck;
 
+	/**
+	 * Constructor used to create a stack pf ChanceCards.
+	 */
 	public ChanceDeck() {
 		this.deck = new Stack<ChanceCard>();
 		createDeck();
 		shuffleDeck();
 	}
 
+	/**
+	 * Method used for creating a deck of ChanceCards.
+	 * Also throws an exception if the file "chanceCards" cannot be found.
+	 */
 	public void createDeck() {
 
 		try {
@@ -37,13 +47,27 @@ public class ChanceDeck {
 
 	}
 
+	/**
+	 * Shuffles the created deck in order to randomize it.
+	 */
 	public void shuffleDeck() {
 		Collections.shuffle(this.deck);
 
 	}
 
+	/**
+	 * Used to display the deck.
+	 * @return deck.
+	 */
 	public Stack<ChanceCard> getDeck() {
 		return deck;
+	}
+	
+	
+	public static void main(String[] args){
+		ChanceDeck c = new ChanceDeck();
+		
+		System.out.println(c.getDeck());
 	}
 
 }
