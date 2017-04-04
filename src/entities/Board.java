@@ -1,4 +1,5 @@
 package entities;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -9,27 +10,47 @@ public class Board {
 	
 	
 	
+	
+	
+	
 	public void createBoard(){
 		
-		try{
 		
-			Scanner s = new Scanner(new File("fieldValues.txt"));
-			s.useDelimiter(",");
+		
+		try{
 			
-			int tempID = 0;
 			
-			while(s.hasNext()){
+		
+			Scanner s = new Scanner(new File("fieldValues.txt")).useDelimiter(",");
+	
+		
+			
+			while(s.hasNextLine()){
 				
-				boardFields.add(new Start(++tempID,s.next(),s.next(),Integer.parseInt(s.next())));
+			
+				
+				boardFields.add(new Start(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next())));
+				s.nextLine();
+				boardFields.add(new Start(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next())));
+
 				
 				
+	
+	
+	
+	
+	
+	
+	
 				
-			}}
+			}s.close();}
 			
 			
 			catch(FileNotFoundException e){
 				e.printStackTrace();
+				
 			}
+		
 				
 				
 		
@@ -49,6 +70,7 @@ public class Board {
 		
 		Board b = new Board();
 		b.createBoard();
+		
 		
 		System.out.println(b.getFieldsArray());
 		
