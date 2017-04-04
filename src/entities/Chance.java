@@ -5,8 +5,8 @@ public class Chance extends Field {
 	/*
 	 * The chancefield constructor.
 	 */
-	public Chance(String fieldName, String fieldInfo) {
-		super(fieldName, fieldInfo);
+	public Chance(int fieldID,String fieldName, String fieldInfo) {
+		super(fieldID,fieldName, fieldInfo);
 
 	}
 
