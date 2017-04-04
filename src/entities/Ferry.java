@@ -11,8 +11,8 @@ public class Ferry extends Ownable {
 	/*
 	 * Constructor created for a Ferry field.
 	 */
-	public Ferry(String fieldName, String fieldInfo, int price, int rent_1, int rent_2, int rent_3, int rent_4 ) {
-		super(price, fieldName, fieldInfo, price);
+	public Ferry(int fieldID, String fieldName, String fieldInfo, int price, int rent_1, int rent_2, int rent_3, int rent_4 ) {
+		super(fieldID, fieldName, fieldInfo, price);
 		this.rent_1 = rent_1;
 		this.rent_2 = rent_2;
 		this.rent_3 = rent_3;
