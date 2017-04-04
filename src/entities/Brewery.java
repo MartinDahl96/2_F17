@@ -10,8 +10,8 @@ public class Brewery extends Ownable {
 	/*
 	 * Constructor for a Brewery field.
 	 */
-	public Brewery(String fieldName, String fieldInfo, int price, int multiplier) {
-		super(fieldName, fieldInfo, price);
+	public Brewery(int fieldID,String fieldName, String fieldInfo, int price, int multiplier) {
+		super(fieldID,fieldName, fieldInfo, price);
 		
 	}
 
@@ -24,9 +24,9 @@ public class Brewery extends Ownable {
 	@Override
 	public int getRent() {
 		switch (super.getOwner().getOwnedBreweries()) {
-		case 1: this.multiplier = 1;
+		case 1: this.multiplier = 100;
 				break;
-		case 2: this.multiplier = 2;
+		case 2: this.multiplier = 200;
 				break;
 		}
 		Cup cup = new Cup();

@@ -9,8 +9,8 @@ public class Jail extends Field {
 	 * @param fieldName is used as a name for the field.
 	 * @param fieldInfo is used to give info about the field.
 	 */
-	public Jail(String fieldName, String fieldInfo) {
-		super(fieldName, fieldInfo);
+	public Jail(int fieldID, String fieldName, String fieldInfo) {
+		super(fieldID, fieldName, fieldInfo);
 
 	}
 	
@@ -75,7 +75,7 @@ public class Jail extends Field {
 					playerChoice = false;
 				}
 				else if (choice.equals(jailToken) && player.getJailToken() < 1){
-						GUI.showMessage("Du har ingen benådning");
+						GUI.showMessage("Du har ingen benï¿½dning");
 					}
 				}
 
