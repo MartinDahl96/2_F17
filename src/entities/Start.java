@@ -56,7 +56,7 @@ public class Start extends Field {
 	}
 	@Override
 	public String toString() {
-		return "("+super.toString()+", value=" +this.startBonus+")";
+		return super.toString()+", value=" +this.startBonus;
 	}
 	/**
 	 * toString method
