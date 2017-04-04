@@ -12,7 +12,7 @@ public abstract class Field {
 	 */
 	public Field(int fieldID, String fieldName, String fieldInfo) {
 		this.fieldName = fieldName;
-		this.fieldName = fieldInfo;
+		this.fieldInfo = fieldInfo;
 		this.fieldID = fieldID;
 	}
 
