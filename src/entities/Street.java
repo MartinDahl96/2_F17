@@ -16,7 +16,7 @@ public class Street extends Ownable {
 	private int mortgage;
 	private int numOfBuildings;
 	private int buildPrice;
-	private Color color;
+	private String color;
 	private boolean buildable;
 	private String[] test = {"Do you want to buy this property?", "Yes", "No", "You bought this property: ","for the price of: ", "You dont have enough money to buy this field"," has paid rent to "};
 
@@ -37,7 +37,7 @@ public class Street extends Ownable {
 	 * @param color Determines the color of the field to categorize the streets
 	 */
 	public Street(int fieldID, String fieldName, String fieldInfo, int price, int baseRent, int houseRent_1, int houseRent_2,
-			int houseRent_3, int houseRent_4, int hotelRent, int buildPrice, Color color) {
+			int houseRent_3, int houseRent_4, int hotelRent, int buildPrice, String color) {
 		super(fieldID, fieldName, fieldInfo, price);
 		this.baseRent = baseRent;
 		this.houseRent_1 = houseRent_1;
@@ -59,14 +59,28 @@ public class Street extends Ownable {
 		return mortgage;
 	}
 	
-	/*public void buildProperty(Player player){
-	if(super.getOwner() == player){
-		if(this.color)
-		
-	}
-		
-	}*/
 	
+	
+	/**
+	 * Sets the color-category of the field
+	 */
+	public String getColor(){
+		return color;
+	}
+	
+	public void buildProperty(Player player){
+		int r = 0;
+		int b = 0;
+		int g = 0;
+		if(super.getOwner() == player){
+			if(this.getColor() == "blue"){
+				b++;
+				
+			}
+		}	
+		
+			
+		}
 	
 	/**
 	 * Gets and returns the rent for the player to pay the owner of the street field

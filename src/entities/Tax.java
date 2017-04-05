@@ -7,7 +7,7 @@ public class Tax extends Field {
 	 * The integer revenueTax is the tax which withdraws a percentage of the players account.
 	 * The integer fixedTax is used to withdraw a predetermined amount of the players account.
 	 */
-	private int revenueTax;
+	private double revenueTax;
 	private int fixedTax;
 	
 	/**
@@ -17,7 +17,7 @@ public class Tax extends Field {
 	 * @param fixedTax Determines the fixed tax
 	 * @param revenueTax Determines a percentage of the players account as tax
 	 */
-	public Tax(int fieldID,String fieldName, String fieldInfo, int fixedTax, int revenueTax){
+	public Tax(int fieldID,String fieldName, String fieldInfo, int fixedTax, double revenueTax){
 		super(fieldID,fieldName, fieldInfo);
 		this.fixedTax = fixedTax;
 		this.revenueTax = revenueTax;
@@ -33,7 +33,7 @@ public class Tax extends Field {
 	 * Gets and returns the revenue tax
 	 * @return 10 % of the players account
 	 */
-	public int getrevenueTax(){
+	public double getrevenueTax(){
 		return revenueTax;
 	}
 	/**

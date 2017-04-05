@@ -2,16 +2,17 @@ package entities;
 
 public abstract class Field {
 
+	protected int fieldID;
 	protected String fieldName;
 	protected String fieldInfo;
-	protected int fieldID;
+	
 
 	/**
 	 * Constructor for any field in the game.
 	 */
 	public Field(int fieldID, String fieldName, String fieldInfo) {
 		this.fieldName = fieldName;
-		this.fieldName = fieldInfo;
+		this.fieldInfo = fieldInfo;
 		this.fieldID = fieldID;
 	}
 
@@ -49,9 +50,11 @@ public abstract class Field {
 	 * @param player
 	 */
 	public abstract void landOnField(Player player);
-	
-	public String toString(){
-		return this.fieldName+this.fieldInfo;
+
+	@Override
+	public String toString() {
+		return "fieldID="+fieldID+", fieldName=" + fieldName + ", fieldInfo="+fieldInfo;
 	}
+	
 
 }
