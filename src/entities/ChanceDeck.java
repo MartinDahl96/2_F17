@@ -62,5 +62,12 @@ public class ChanceDeck {
 	public Stack<ChanceCard> getDeck() {
 		return deck;
 	}
+	
+	
+	public static void main(String[] args){
+		ChanceDeck c = new ChanceDeck();
+		
+		System.out.println(c.getDeck());
+	}
 
 }

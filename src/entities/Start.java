@@ -3,9 +3,9 @@ package entities;
 public class Start extends Field {
 	
 	//Attributes
-	private String fieldName;
-	private String fieldInfo;
+	
 	private int startBonus;
+	
 
 	/**
 	 * A constructor for the Start field, used to create a Tax object
@@ -13,9 +13,9 @@ public class Start extends Field {
 	 * @param fieldInfo Describes the field
 	 * @param startBonus Adds 4000 to the players account when landing or passing this field
 	 */
-	public Start(String fieldName, String fieldInfo, int startBonus) {
-		super(fieldName, fieldInfo);
-		this.startBonus = 4000;
+	public Start(int fieldID, String fieldName, String fieldInfo, int startBonus) {
+		super(fieldID, fieldName, fieldInfo);
+		this.startBonus = startBonus;
 
 	}
 	/**
@@ -54,12 +54,15 @@ public class Start extends Field {
 		player.setFortune(this.startBonus);
 
 	}
+	@Override
+	public String toString() {
+		return super.toString()+", value=" +this.startBonus;
+	}
 	/**
 	 * toString method
 	 */
-	@Override
-	public String toString() {
-		return fieldName;
-	}
+	
+	
+	
 
 }

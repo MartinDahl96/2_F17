@@ -1,5 +1,9 @@
 package entities;
 
+import java.awt.Color;
+
+import controllers.MUI;
+
 public class Street extends Ownable {
 
 	//Attributes
@@ -13,6 +17,8 @@ public class Street extends Ownable {
 	private int numOfBuildings;
 	private int buildPrice;
 	private String color;
+	private boolean buildable;
+	private String[] test = {"Do you want to buy this property?", "Yes", "No", "You bought this property: ","for the price of: ", "You dont have enough money to buy this field"," has paid rent to "};
 
 	/**
 	 * Street constructor.
@@ -30,16 +36,16 @@ public class Street extends Ownable {
 	 * @param buildPrice Determines the price of expanding the Street field with extra houses/ a hotel
 	 * @param color Determines the color of the field to categorize the streets
 	 */
-	public Street(String fieldName, String fieldInfo, int price, int baseRent, int houseRent_1, int houseRent_2,
-			int houseRent_3, int houseRent_4, int hotelRent, int mortgage, int buildPrice, String color) {
-		super(fieldName, fieldInfo, price);
+	public Street(int fieldID, String fieldName, String fieldInfo, int price, int baseRent, int houseRent_1, int houseRent_2,
+			int houseRent_3, int houseRent_4, int hotelRent, int buildPrice, String color) {
+		super(fieldID, fieldName, fieldInfo, price);
 		this.baseRent = baseRent;
 		this.houseRent_1 = houseRent_1;
 		this.houseRent_2 = houseRent_2;
 		this.houseRent_3 = houseRent_3;
 		this.houseRent_4 = houseRent_4;
 		this.hotelRent = hotelRent;
-		this.mortgage = mortgage;
+		this.mortgage = this.getPrice()/2;
 		this.numOfBuildings = 0;
 		this.buildPrice = buildPrice;
 		this.color = color;
@@ -52,6 +58,30 @@ public class Street extends Ownable {
 	public int getMortgage() {
 		return mortgage;
 	}
+	
+	
+	
+	/**
+	 * Sets the color-category of the field
+	 */
+	public String getColor(){
+		return color;
+	}
+	
+	public void buildProperty(Player player){
+		int r = 0;
+		int b = 0;
+		int g = 0;
+		if(super.getOwner() == player){
+			if(this.getColor() == "blue"){
+				b++;
+				
+			}
+		}	
+		
+			
+		}
+	
 	/**
 	 * Gets and returns the rent for the player to pay the owner of the street field
 	 */
@@ -91,7 +121,37 @@ public class Street extends Ownable {
 	/**
 	 * Run through of landing on a street field
 	 */
+	
 	public void landOnField(Player player){
 		
+		if(super.getOwner() == null){
+			
+			if(player.getFortune() < this.getPrice()){
+				MUI.showMessage(test[5]);
+			}
+			
+			boolean choice = MUI.getTwoButtons(test[0], test[1], test[2]);
+			if(choice == true){
+				MUI.showMessage(test[3]+this.getFieldName()+test[4]+this.getPrice());
+				player.setFortune(-this.getPrice());
+				super.setOwner(player);
+				MUI.setOwner(this.fieldID, player.getplayerName());
+			}
+			
+			else if(choice == false){
+				//temp: Kan denne holdes tomt?
+			}
+			
+		}
+		
+		if(super.getOwner() != null){
+			player.setFortune(-getRent());
+			super.getOwner().setFortune(getRent());
+			MUI.showMessage(player.getplayerName()+test[6]+super.getOwner().getplayerName());
+		}
+		
+		
 	}
+	
+	
 }

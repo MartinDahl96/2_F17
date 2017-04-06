@@ -1,40 +1,40 @@
-1	Start		0	0	0	0	0	0	0	0	
-2	Rødovrevej	1200	50	250	750	2250	4000	6000	1000		
-3	Prøv lykken										
-4	Hvidovrevej	1200	50	250	750	2250	4000	6000	1000		
-5	Betal indkomstskat 10% eller 4000 kr.										
-6	LB Færgerne	4000		500	2	rederier:	1000	03:00	2000	04:00	4000
-7	Roskildevej	2000	100	600	1800	5400	8000	11000	1000		
-8	Prøv lykken										
-9	Valby Langgade	2000	100	600	1800	5400	8000	11000	1000		
-10	Allégade	2400	150	800	2000	6000	9000	12000	1000		
-11	Fængsel										
-12	Frederiksberg Allé	2800	200	1000	3000	9000	12500	15000	2000		
-13	Carlsberg	3000	Ejes	en	virksomhed,	betales	100	gange	øjnene.		
-14	Blowsvej	2800	200	1000	3000	9000	12500	15000	2000		
-15	Gl. Kongevej	3200	250	1250	3750	10000	14000	18000	2000		
-16	Danmark	4000									
-17	Bernstorfsvej	3600	300	1400	4000	11000	15000	19000	2000		
-18	Prøv lykken										
-19	Hellerupvej	3600	300	1400	4000	11000	15000	19000	2000		
-20	Strandvej	4000	350	1600	4400	12000	16000	20000	2000		
-21	Parkering										
-22	Trianglen	4400	350	1800	5000	14000	17500	21000	3000		
-23	Prøv lykken										
-24	Østerbrogade	4400	350	1800	5000	14000	17500	21000	3000		
-25	Grønningen	4800	400	2000	6000	15000	18500	22000	3000		
-26	Mols-Linien A/S	4000									
-27	Bredgade	5200	450	2200	6600	16000	19500	23000	3000		
-28	Kgs. Nytorv	5200	450	2200	6600	16000	19500	23000	3000		
-29	Coca-Cola	3000	Ejes	begge,	betales	200	gange	øjnene.			
-30	Østergade	5600	500	2400	7200	17000	20500	24000	3000		
-31	De Fængsles										
-32	Amagertorv	6000	550	2600	7800	18000	22000	25000	4000		
-33	Vimmelskaftet	6000	550	2600	7800	18000	22000	25000	4000		
-34	Prøv lykken										
-35	Nygade	6400	600	3000	9000	20000	24000	28000	4000		
-36	Skandinavisk Linietrafik A/S	4000									
-37	Prøv lykken										
-38	Frederiksberggade	7000	700	3500	10000	22000	26000	30000	4000		
-39	Ekstraordinær statsskat betal kr. 2000										
-40	Rådhuspladsen	8000	1000	4000	12000	28000	34000	40000	4000		
+1,Start,Start-feltet,4000,
+2,Rødovrevej,Rødovrevej,1200,50,250,750,2250,4000,6000,1000,blue,
+3,Prøv lykken,Træk et chancekort,
+4,Hvidovrevej,Hvidovre,1200,50,250,750,2250,4000,6000,1000,blue,
+5,Skat,Betal indkomstskat 10% eller 4000 kr,4000,0.90,				
+6,LB Færgerne,LB Færgerne,4000,500,1000,2000,4000,
+7,Roskildevej,Roskildevej,2000,100,600,1800,5400,8000,11000,1000,orange,
+8,Prøv lykken,Træk et chancekort,
+9,Valby Langgade,Valby Langgade,2000,100,600,1800,5400,8000,11000,1000,orange,
+10,Allégade, Allégade,2400,150,800,2000,6000,9000,12000,1000,orange,
+11,Fængsel, De er på besøg i fængslet,
+12,Frederiksberg Allé, Frederiksberg Allé,2800,200,1000,3000,9000,12500,15000,2000,green,
+13,Carlsberg,Carlsberg,3000,100,
+14,Bülowsvej, Bülowsvej,2800,200,1000,3000,9000,12500,15000,2000,green,
+15,Gl. Kongevej,Gl. Kongevej,3200,250,1250,3750,10000,14000,18000,2000,green,
+16,Danmark,Danmark,4000,500,1000,2000,4000,
+17,Bernstorfsvej,Bernstorfsvej,3600,300,1400,4000,11000,15000,19000,2000,grey,
+18,Prøv lykken,Træk et chancekort,
+19,Hellerupvej,Hellerupvej,3600,300,1400,4000,11000,15000,19000,2000,grey,
+20,Strandvej,Strandvej,4000,350,1600,4400,12000,16000,20000,2000,grey,
+21,Parkering,De er immun på dette felt. De modtager kr. 2000,
+22,Trianglen,Trianglen,4400,350,1800,5000,14000,17500,21000,3000,red,	
+23,Prøv lykken,Træk et chancekort,
+24,Østerbrogade,Østerbrogade,4400,350,1800,5000,14000,17500,21000,3000,red,
+25,Grønningen,Grønningen,4800,400,2000,6000,15000,18500,22000,3000,red,
+26,Mols-Linien A/S,Mols-Linien A/S,4000,500,1000,2000,4000,
+27,Bredgade,Bredgade,5200,450,2200,6600,16000,19500,23000,3000,white,
+28,Kgs. Nytorv,Kgs. Nytorv,5200,450,2200,6600,16000,19500,23000,3000,white,
+29,Coca-Cola,Coca-Cola,3000,10,
+30,Østergade,Østergade,5600,500,2400,7200,17000,20500,24000,3000,white,
+31,Gå til fængsel,De Fængsles,
+32,Amagertorv,Amagertorv,6000,550,2600,7800,18000,22000,25000,4000,yellow,
+33,Vimmelskaftet,Vimmelskaftet,6000,550,2600,7800,18000,22000,25000,4000,yellow,
+34,Prøv lykken,Træk et chancekort,
+35,Nygade,Nygade,6400,600,3000,9000,20000,24000,28000,4000,yellow,
+36,Skandinavisk Linietrafik A/S,Skandinavisk Linietrafik A/S,4000,500,1000,2000,4000,
+37,Prøv lykken,Træk et chancekort,
+38,Frederiksberggade,Frederiksberggade,7000,700,3500,10000,22000,26000,30000,4000,purple,
+39,Skat,Ekstraordinær statsskat betal kr. 2000,2000,0,
+40,Rådhuspladsen,Rådhuspladsen,8000,1000,4000,1200,28000,34000,40000,4000,purple,
