@@ -1,6 +1,7 @@
 package entities;
 
 import controllers.MUI;
+import desktop_resources.GUI;
 
 public class Tax extends Field {
 
@@ -75,7 +76,7 @@ public class Tax extends Field {
 	 */
 	@Override
 	public void landOnField(Player player) {
-
+		
 		if (player.getCurrentPosition() == 5) {
 			boolean choice = MUI.getTwoButtons("4000kr eller 10% af dit lort", "4000", "10% af mit lort");
 			if (choice == true) {

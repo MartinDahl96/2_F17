@@ -16,6 +16,7 @@ public class Board {
 	
 	public void createBoard(){
 		
+				boardFields.add(null);
 				
 				//Start-field
 				boardFields.add(new Start(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll())));
@@ -142,6 +143,12 @@ public class Board {
 	
 	public static ArrayList<Field> getFieldsArray(){
 		return boardFields;
+	}
+	
+	public void landOnField(Player player, int i){
+		
+		getFieldsArray().get(i).landOnField(player);
+		
 	}
 }
 

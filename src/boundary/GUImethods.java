@@ -1,204 +1,197 @@
 package boundary;
 
 import desktop_resources.GUI;
+
+import java.awt.Color;
 import java.util.ArrayList;
 
 import entities.Board;
 import entities.Field;
 import entities.Ownable;
 
-
-
 public class GUImethods {
 
 	public void createGUIFields(ArrayList<Field> fields) {
 
+		desktop_fields.Field[] GUIfields = new desktop_fields.Field[40];
 
-		// Start-field
-		GUI.setTitleText(fields.get(0).getFieldID(), fields.get(0).getFieldName());
-		GUI.setSubText(fields.get(0).getFieldID(), fields.get(0).getFieldInfo());
-		GUI.setDescriptionText(1, fields.get(0).getFieldInfo());
+		GUIfields[0] = new desktop_fields.Start.Builder().setTitle(fields.get(1).getFieldName())
+				.setSubText(fields.get(1).getFieldInfo()).setDescription(fields.get(1).getFieldInfo())
+				.setBgColor(Color.RED).build();
 
-		// Street - Rødovrevej
-		GUI.setTitleText(fields.get(1).getFieldID(), fields.get(1).getFieldName());
-		GUI.setSubText(fields.get(1).getFieldID(), "Pris: " + ((Ownable) fields.get(1)).getPrice());
+		GUIfields[1] = new desktop_fields.Street.Builder().setTitle(fields.get(2).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(2)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(2)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(2)).getRent()).setBgColor(Color.CYAN).build();
 
-		// Chancefield
-		GUI.setTitleText(fields.get(2).getFieldID(), fields.get(2).getFieldName());
-		GUI.setSubText(fields.get(2).getFieldID(), fields.get(2).getFieldInfo());
-		GUI.setDescriptionText(fields.get(2).getFieldID(), fields.get(2).getFieldInfo());
+		GUIfields[2] = new desktop_fields.Chance.Builder().build();
 
-		// Street - Hvidovrevej
-		GUI.setTitleText(fields.get(3).getFieldID(), fields.get(3).getFieldName());
-		GUI.setSubText(fields.get(3).getFieldID(), "Pris: " + ((Ownable) fields.get(3)).getPrice());
+		GUIfields[3] = new desktop_fields.Street.Builder().setTitle(fields.get(4).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(4)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(4)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(4)).getRent()).setBgColor(Color.CYAN).build();
 
-		// Tax field
-		GUI.setTitleText(fields.get(4).getFieldID(), fields.get(4).getFieldName());
-		GUI.setSubText(fields.get(4).getFieldID(), fields.get(4).getFieldInfo());
-		GUI.setDescriptionText(fields.get(4).getFieldID(), fields.get(4).getFieldInfo());
+		GUIfields[4] = new desktop_fields.Tax.Builder().setTitle(fields.get(5).getFieldInfo())
+				.setSubText(fields.get(5).getFieldInfo()).setDescription(fields.get(5).getFieldName())
+				.setBgColor(Color.LIGHT_GRAY).build();
 
-		// Ferry field - LB Færgerne
-		GUI.setTitleText(fields.get(5).getFieldID(), fields.get(5).getFieldName());
-		GUI.setSubText(fields.get(5).getFieldID(), "Pris: " + ((Ownable) fields.get(5)).getPrice());
-		GUI.setDescriptionText(fields.get(5).getFieldID(), fields.get(5).getFieldInfo());
+		GUIfields[5] = new desktop_fields.Shipping.Builder().setTitle(fields.get(6).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(6)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(6)).getFieldInfo()).setPicture("pictures/Ferry.png")
+				.build();
 
-		// Street - roskildevej
-		GUI.setTitleText(fields.get(6).getFieldID(), fields.get(6).getFieldName());
-		GUI.setSubText(fields.get(6).getFieldID(), "Pris: " + ((Ownable) fields.get(6)).getPrice());
+		GUIfields[6] = new desktop_fields.Street.Builder().setTitle(fields.get(7).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(7)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(7)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(7)).getRent()).setBgColor(Color.pink).build();
 
-		// Chance field
-		GUI.setTitleText(fields.get(7).getFieldID(), fields.get(7).getFieldName());
-		GUI.setSubText(fields.get(7).getFieldID(), fields.get(7).getFieldInfo());
-		GUI.setDescriptionText(fields.get(7).getFieldID(), fields.get(7).getFieldInfo());
+		GUIfields[7] = new desktop_fields.Chance.Builder().build();
 
-		// Street - valbylanggade
-		GUI.setTitleText(fields.get(8).getFieldID(), fields.get(8).getFieldName());
-		GUI.setSubText(fields.get(8).getFieldID(), "Pris: " + ((Ownable) fields.get(8)).getPrice());
+		GUIfields[8] = new desktop_fields.Street.Builder().setTitle(fields.get(9).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(9)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(9)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(9)).getRent()).setBgColor(Color.pink).build();
 
-		// Street - Allegade
-		GUI.setTitleText(fields.get(9).getFieldID(), fields.get(9).getFieldName());
-		GUI.setSubText(fields.get(9).getFieldID(), "Pris: " + ((Ownable) fields.get(9)).getPrice());
+		GUIfields[9] = new desktop_fields.Street.Builder().setTitle(fields.get(10).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(10)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(10)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(10)).getRent()).setBgColor(Color.pink).build();
 
-		// Jail
-		GUI.setSubText(fields.get(10).getFieldID(), fields.get(10).getFieldName());
-		GUI.setDescriptionText(fields.get(10).getFieldID(), fields.get(10).getFieldInfo());
+		GUIfields[10] = new desktop_fields.Jail.Builder().setSubText(fields.get(11).getFieldName())
+				.setDescription(fields.get(11).getFieldInfo()).build();
 
-		// Street - frederiksberg
-		GUI.setTitleText(fields.get(11).getFieldID(), fields.get(11).getFieldName());
-		GUI.setSubText(fields.get(11).getFieldID(), "Pris: " + ((Ownable) fields.get(11)).getPrice());
+		GUIfields[11] = new desktop_fields.Street.Builder().setTitle(fields.get(12).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(12)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(12)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(12)).getRent()).setBgColor(Color.GREEN).build();
 
-		// Brewery - tuborg
-		GUI.setTitleText(fields.get(12).getFieldID(), fields.get(12).getFieldName());
-		GUI.setSubText(fields.get(12).getFieldID(), "Pris: " + ((Ownable) fields.get(12)).getPrice());
-		GUI.setDescriptionText(fields.get(12).getFieldID(), fields.get(12).getFieldInfo());
+		GUIfields[12] = new desktop_fields.Brewery.Builder().setTitle(fields.get(13).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(13)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(13)).getFieldInfo()).setPicture("pictures/Carlsberg2.png")
+				.build();
 
-		// Street - bulowsvej
-		GUI.setTitleText(fields.get(13).getFieldID(), fields.get(13).getFieldName());
-		GUI.setSubText(fields.get(13).getFieldID(), "Pris: " + ((Ownable) fields.get(13)).getPrice());
+		GUIfields[13] = new desktop_fields.Street.Builder().setTitle(fields.get(14).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(14)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(14)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(14)).getRent()).setBgColor(Color.GREEN).build();
 
-		// Street - gl. kongevej
-		GUI.setTitleText(fields.get(14).getFieldID(), fields.get(14).getFieldName());
-		GUI.setSubText(fields.get(14).getFieldID(), "Pris: " + ((Ownable) fields.get(14)).getPrice());
+		GUIfields[14] = new desktop_fields.Street.Builder().setTitle(fields.get(15).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(15)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(15)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(15)).getRent()).setBgColor(Color.GREEN).build();
 
-		// Ferry - Danmark
-		GUI.setTitleText(fields.get(15).getFieldID(), fields.get(15).getFieldName());
-		GUI.setSubText(fields.get(15).getFieldID(), "Pris: " + ((Ownable) fields.get(15)).getPrice());
-		GUI.setDescriptionText(fields.get(15).getFieldID(), fields.get(15).getFieldInfo());
+		GUIfields[15] = new desktop_fields.Shipping.Builder().setTitle(fields.get(16).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(16)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(16)).getFieldInfo()).setPicture("pictures/Ferry.png")
+				.build();
 
-		// Street - bernstoffsvej
-		GUI.setTitleText(fields.get(16).getFieldID(), fields.get(16).getFieldName());
-		GUI.setSubText(fields.get(16).getFieldID(), "Pris: " + ((Ownable) fields.get(16)).getPrice());
+		GUIfields[16] = new desktop_fields.Street.Builder().setTitle(fields.get(17).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(17)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(17)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(17)).getRent()).setBgColor(Color.GRAY).build();
 
-		// Chance
-		GUI.setTitleText(fields.get(17).getFieldID(), fields.get(17).getFieldName());
-		GUI.setSubText(fields.get(17).getFieldID(), fields.get(17).getFieldInfo());
-		GUI.setDescriptionText(fields.get(17).getFieldID(), fields.get(17).getFieldInfo());
+		GUIfields[17] = new desktop_fields.Chance.Builder().build();
 
-		// Street - Hellerupvej
-		GUI.setTitleText(fields.get(18).getFieldID(), fields.get(18).getFieldName());
-		GUI.setSubText(fields.get(18).getFieldID(), "Pris: " + ((Ownable) fields.get(18)).getPrice());
+		GUIfields[18] = new desktop_fields.Street.Builder().setTitle(fields.get(19).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(19)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(19)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(19)).getRent()).setBgColor(Color.GRAY).build();
 
-		// Street - Strandvejen
-		GUI.setTitleText(fields.get(19).getFieldID(), fields.get(19).getFieldName());
-		GUI.setSubText(fields.get(19).getFieldID(), "Pris: " + ((Ownable) fields.get(19)).getPrice());
+		GUIfields[19] = new desktop_fields.Street.Builder().setTitle(fields.get(20).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(20)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(20)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(20)).getRent()).setBgColor(Color.GRAY).build();
 
-		// Parking
-		GUI.setSubText(fields.get(20).getFieldID(), fields.get(20).getFieldName());
-		GUI.setDescriptionText(fields.get(20).getFieldID(), fields.get(20).getFieldInfo());
+		GUIfields[20] = new desktop_fields.Refuge.Builder().setTitle(fields.get(21).getFieldName())
+				.setSubText(fields.get(21).getFieldName()).setDescription(fields.get(21).getFieldInfo())
+				.setPicture("pictures/Parking.png").build();
 
-		// Street - trianglen
-		GUI.setTitleText(fields.get(21).getFieldID(), fields.get(21).getFieldName());
-		GUI.setSubText(fields.get(21).getFieldID(), "Pris: " + ((Ownable) fields.get(21)).getPrice());
+		GUIfields[21] = new desktop_fields.Street.Builder().setTitle(fields.get(22).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(22)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(22)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(22)).getRent()).setBgColor(Color.RED).build();
 
-		// Chance
-		GUI.setTitleText(fields.get(22).getFieldID(), fields.get(22).getFieldName());
-		GUI.setSubText(fields.get(22).getFieldID(), fields.get(22).getFieldInfo());
-		GUI.setDescriptionText(fields.get(22).getFieldID(), fields.get(22).getFieldInfo());
+		GUIfields[22] = new desktop_fields.Chance.Builder().build();
 
-		// Street - østerbrogade
-		GUI.setTitleText(fields.get(23).getFieldID(), fields.get(23).getFieldName());
-		GUI.setSubText(fields.get(23).getFieldID(), "Pris: " + ((Ownable) fields.get(23)).getPrice());
+		GUIfields[23] = new desktop_fields.Street.Builder().setTitle(fields.get(24).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(24)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(24)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(24)).getRent()).setBgColor(Color.RED).build();
 
-		// Street - grønningen
-		GUI.setTitleText(fields.get(24).getFieldID(), fields.get(24).getFieldName());
-		GUI.setSubText(fields.get(24).getFieldID(), "Pris: " + ((Ownable) fields.get(24)).getPrice());
+		GUIfields[24] = new desktop_fields.Street.Builder().setTitle(fields.get(25).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(25)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(25)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(25)).getRent()).setBgColor(Color.RED).build();
 
-		// Ferry - Mols-linjen
-		GUI.setTitleText(fields.get(25).getFieldID(), fields.get(25).getFieldName());
-		GUI.setSubText(fields.get(25).getFieldID(), "Pris: " + ((Ownable) fields.get(25)).getPrice());
-		GUI.setDescriptionText(fields.get(25).getFieldID(), fields.get(25).getFieldInfo());
+		GUIfields[25] = new desktop_fields.Shipping.Builder().setTitle(fields.get(26).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(26)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(26)).getFieldInfo()).setPicture("pictures/Ferry.png")
+				.build();
 
-		// Street - bredgade
-		GUI.setTitleText(fields.get(26).getFieldID(), fields.get(26).getFieldName());
-		GUI.setSubText(fields.get(26).getFieldID(), "Pris: " + ((Ownable) fields.get(26)).getPrice());
+		GUIfields[26] = new desktop_fields.Street.Builder().setTitle(fields.get(27).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(27)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(27)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(27)).getRent()).setBgColor(Color.WHITE).build();
 
-		// Street - kgs. nytorv
-		GUI.setTitleText(fields.get(27).getFieldID(), fields.get(27).getFieldName());
-		GUI.setSubText(fields.get(27).getFieldID(), "Pris: " + ((Ownable) fields.get(27)).getPrice());
+		GUIfields[27] = new desktop_fields.Street.Builder().setTitle(fields.get(28).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(28)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(28)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(28)).getRent()).setBgColor(Color.WHITE).build();
 
-		// Brewery - Carlsberg
-		GUI.setTitleText(fields.get(28).getFieldID(), fields.get(28).getFieldName());
-		GUI.setSubText(fields.get(28).getFieldID(), "Pris: " + ((Ownable) fields.get(28)).getPrice());
-		GUI.setDescriptionText(fields.get(28).getFieldID(), fields.get(28).getFieldInfo());
+		GUIfields[28] = new desktop_fields.Brewery.Builder().setTitle(fields.get(29).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(29)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(29)).getFieldInfo()).setPicture("pictures/Coca-cola.jpg")
+				.build();
 
-		// Street - østergade
-		GUI.setTitleText(fields.get(29).getFieldID(), fields.get(29).getFieldName());
-		GUI.setSubText(fields.get(29).getFieldID(), "Pris: " + ((Ownable) fields.get(29)).getPrice());
+		GUIfields[29] = new desktop_fields.Street.Builder().setTitle(fields.get(30).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(30)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(30)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(30)).getRent()).setBgColor(Color.WHITE).build();
 
-		// Jail - go to jail
-		GUI.setSubText(fields.get(30).getFieldID(), fields.get(30).getFieldName());
-		GUI.setDescriptionText(fields.get(30).getFieldID(), fields.get(30).getFieldInfo());
+		GUIfields[30] = new desktop_fields.Jail.Builder().setSubText(fields.get(31).getFieldName())
+				.setDescription(fields.get(31).getFieldInfo()).setPicture("pictures/goToJail.png").build();
 
-		// Street - amagertorv
-		GUI.setTitleText(fields.get(31).getFieldID(), fields.get(31).getFieldName());
-		GUI.setSubText(fields.get(31).getFieldID(), "Pris: " + ((Ownable) fields.get(31)).getPrice());
+		GUIfields[31] = new desktop_fields.Street.Builder().setTitle(fields.get(32).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(32)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(32)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(32)).getRent()).setBgColor(Color.YELLOW).build();
 
-		// Street - Vimmelskaftet
-		GUI.setTitleText(fields.get(32).getFieldID(), fields.get(32).getFieldName());
-		GUI.setSubText(fields.get(32).getFieldID(), "Pris: " + ((Ownable) fields.get(32)).getPrice());
+		GUIfields[32] = new desktop_fields.Street.Builder().setTitle(fields.get(33).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(33)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(33)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(33)).getRent()).setBgColor(Color.YELLOW).build();
 
-		// Chance
-		GUI.setTitleText(fields.get(33).getFieldID(), fields.get(33).getFieldName());
-		GUI.setSubText(fields.get(33).getFieldID(), fields.get(33).getFieldInfo());
-		GUI.setDescriptionText(fields.get(33).getFieldID(), fields.get(33).getFieldInfo());
+		GUIfields[33] = new desktop_fields.Chance.Builder().build();
 
-		// Street - nygade
-		GUI.setTitleText(fields.get(34).getFieldID(), fields.get(34).getFieldName());
-		GUI.setSubText(fields.get(34).getFieldID(), "Pris: " + ((Ownable) fields.get(34)).getPrice());
+		GUIfields[34] = new desktop_fields.Street.Builder().setTitle(fields.get(35).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(35)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(35)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(35)).getRent()).setBgColor(Color.YELLOW).build();
 
-		// Ferry - Skandinavisk linjetrafik
-		GUI.setTitleText(fields.get(35).getFieldID(), fields.get(35).getFieldName());
-		GUI.setSubText(fields.get(35).getFieldID(), "Pris: " + ((Ownable) fields.get(35)).getPrice());
-		GUI.setDescriptionText(fields.get(35).getFieldID(), fields.get(35).getFieldInfo());
+		GUIfields[35] = new desktop_fields.Shipping.Builder().setTitle(fields.get(35).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(35)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(35)).getFieldInfo()).setPicture("pictures/Ferry.png")
+				.build();
 
-		// Chance
-		GUI.setTitleText(fields.get(36).getFieldID(), fields.get(36).getFieldName());
-		GUI.setSubText(fields.get(36).getFieldID(), fields.get(36).getFieldInfo());
-		GUI.setDescriptionText(fields.get(36).getFieldID(), fields.get(36).getFieldInfo());
+		GUIfields[36] = new desktop_fields.Chance.Builder().build();
 
-		// Street - frederiksberggade
-		GUI.setTitleText(fields.get(37).getFieldID(), fields.get(37).getFieldName());
-		GUI.setSubText(fields.get(37).getFieldID(), "Pris: " + ((Ownable) fields.get(37)).getPrice());
+		GUIfields[37] = new desktop_fields.Street.Builder().setTitle(fields.get(38).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(38)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(38)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(38)).getRent()).setBgColor(Color.MAGENTA).build();
 
-		// Tax field
-		GUI.setTitleText(fields.get(38).getFieldID(), fields.get(38).getFieldName());
-		GUI.setSubText(fields.get(38).getFieldID(), fields.get(38).getFieldInfo());
-		GUI.setDescriptionText(fields.get(38).getFieldID(), fields.get(38).getFieldInfo());
+		GUIfields[38] = new desktop_fields.Tax.Builder().setTitle(fields.get(39).getFieldInfo())
+				.setSubText(fields.get(39).getFieldInfo()).setDescription(fields.get(39).getFieldName())
+				.setBgColor(Color.LIGHT_GRAY).build();
 
-		// Street - rådhuspladsen
-		GUI.setTitleText(fields.get(39).getFieldID(), fields.get(39).getFieldName());
-		GUI.setSubText(fields.get(39).getFieldID(), "Pris: " + ((Ownable) fields.get(39)).getPrice());
+		GUIfields[39] = new desktop_fields.Street.Builder().setTitle(fields.get(40).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(40)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(40)).getFieldInfo())
+				.setRent("Leje: " + ((Ownable) fields.get(40)).getRent()).setBgColor(Color.MAGENTA).build();
 
-		
+		GUI.create(GUIfields);
 
 	}
+
 	
-	
-	public static void main(String[] args){
-		
-		GUImethods g = new GUImethods();
-		Board b = new Board();
-		
-		g.createGUIFields(b.getFieldsArray());
-	}
 }
