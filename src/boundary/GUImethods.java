@@ -2,6 +2,8 @@ package boundary;
 
 import desktop_resources.GUI;
 import java.util.ArrayList;
+
+import entities.Board;
 import entities.Field;
 import entities.Ownable;
 
@@ -9,7 +11,7 @@ import entities.Ownable;
 
 public class GUImethods {
 
-	public static void createGUIFields(ArrayList<Field> fields) {
+	public void createGUIFields(ArrayList<Field> fields) {
 
 
 		// Start-field
@@ -190,6 +192,13 @@ public class GUImethods {
 		
 
 	}
-
-
+	
+	
+	public static void main(String[] args){
+		
+		GUImethods g = new GUImethods();
+		Board b = new Board();
+		
+		g.createGUIFields(b.getFieldsArray());
+	}
 }

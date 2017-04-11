@@ -15,6 +15,10 @@ public abstract class Field {
 		this.fieldInfo = fieldInfo;
 		this.fieldID = fieldID;
 	}
+	
+	public int getFieldID(){
+		return this.fieldID;
+	}
 
 	/*
 	 * sets the name of the field
@@ -41,7 +45,7 @@ public abstract class Field {
 	/*
 	 * gets the information about the field
 	 */
-	String getFieldInfo() {
+	public String getFieldInfo() {
 		return this.fieldInfo;
 	}
 

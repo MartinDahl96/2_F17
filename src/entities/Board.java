@@ -3,14 +3,14 @@ import java.io.*;
 import java.util.*;
 
 public class Board {
-	private ArrayList<Field> boardFields;
+	private static ArrayList<Field> boardFields;
 	FileScannerQueue s;
 	
 	public Board(){
 		
 		this.boardFields = new ArrayList<Field>();
 		this.s = new FileScannerQueue("fieldValues.txt");
-		
+		this.createBoard();
 	}
 
 	
@@ -140,7 +140,7 @@ public class Board {
 			
 			}
 	
-	public ArrayList<Field> getFieldsArray(){
+	public static ArrayList<Field> getFieldsArray(){
 		return boardFields;
 	}
 }
