@@ -25,17 +25,16 @@ public class GameController {
 
 	public void startGame() {
 		createPlayers();
-playerTurn();
+		playerTurn();
+		
 	}
 
 	public void playerTurn() {
-		for(int i = 0; i<players.size();i++){
-			MUI.showMessage(players.get(i).getplayerName()+" din tur! Tryk OK for at kaste med terningerne)");
+		for (int i = 0; i < players.size(); i++) {
+			MUI.showMessage(players.get(i).getplayerName() + " din tur! Tryk OK for at kaste med terningerne)");
 			useCup();
-			
+
 		}
-		
-		
 
 	}
 
