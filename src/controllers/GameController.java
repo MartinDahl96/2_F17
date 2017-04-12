@@ -2,11 +2,11 @@ package controllers;
 
 import java.util.ArrayList;
 
-import boundary.GUImethods;
 import desktop_codebehind.Car;
 import desktop_codebehind.Car.Builder;
 import desktop_resources.GUI;
 import entities.Board;
+import entities.Chance;
 import entities.Cup;
 import entities.Player;
 
@@ -69,7 +69,7 @@ public class GameController {
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 
-		players.get(i).setCurrentPosition(3);
+		players.get(i).setCurrentPosition(cup.getCupValue());
 		MUI.moveCar(players.get(i).getCurrentPosition(), players.get(i).getplayerName());
 		
 		board.landOnField(players.get(i), players.get(i).getCurrentPosition());
@@ -91,8 +91,7 @@ public class GameController {
 	}
 
 	public void setPlayers(int i) {
-		players.add(new Player(i, MUI.nameValidation("INDTAST NAVN PÅ SPILLER " + (i + 1)
-				+ " \n(Skal indeholde bogstaver, og være mellem 2-10 karaktere lang)")));
+		players.add(new Player(i, MUI.nameValidation("INDTAST NAVN PÅ SPILLER " + (i + 1)	+ " \n(Skal indeholde bogstaver, og være mellem 2-10 karaktere lang)")));
 		MUI.showMessage(players.get(i).getplayerName() + "! Din formue består af kr. " + players.get(i).getFortune());
 	}
 
@@ -103,7 +102,7 @@ public class GameController {
 	}
 
 	public static void main(String[] args) {
-		GUImethods g = new GUImethods();
+		GUIcontroller g = new GUIcontroller();
 		Board b = new Board();
 		GameController gc = new GameController();
 

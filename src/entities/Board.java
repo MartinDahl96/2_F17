@@ -24,7 +24,7 @@ public class Board {
 				//Rřdovrevej
 				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
 				 
-				//Chance-field1
+				//3Chance-field1
 				boardFields.add(new Chance(s.parseInt(s.poll()),s.poll(),s.poll()));
 				 
 				//Hvidovrevej

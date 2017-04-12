@@ -231,32 +231,13 @@ public class Street extends Ownable {
 				 }
 
 		if (super.getOwner() == null) {
-
-			if (player.getFortune() < this.getPrice()) {
-				MUI.showMessage(test[5]);
-			}
-
-			boolean choice = MUI.getTwoButtons(test[0], test[1], test[2]);
-			if (choice == true) {
-				MUI.showMessage(test[3] + this.getFieldName() + test[4] + this.getPrice());
-				player.setFortune(-this.getPrice());
-				MUI.setFortune(player.getplayerName(), player.getFortune());
-
-				super.setOwner(player);
-				MUI.setOwner(this.fieldID, player.getplayerName());
-			}
-
+			super.buyProperty(player);
 		}
 
 		if (super.getOwner() != null && player != super.getOwner()) {
-			MUI.showMessage(player.getplayerName() + test[6] + super.getOwner().getplayerName());
-			player.setFortune(-getRent());
-			MUI.setFortune(player.getplayerName(), player.getFortune());
-
-			super.getOwner().setFortune(getRent());
-			MUI.setFortune(super.getOwner().getplayerName(), super.getOwner().getFortune());
-
+			super.payRent(player);
 		}
+			
 
 		
 	}

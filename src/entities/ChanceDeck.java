@@ -1,6 +1,9 @@
 package entities;
 
 import java.util.*;
+
+import controllers.MUI;
+
 import java.io.FileNotFoundException;
 import java.io.File;
 
@@ -67,20 +70,26 @@ public class ChanceDeck {
 	public void drawCard(Player player){
 		
 		ChanceCard c = getDeck().pop();
+		MUI.displayCard(c.getCardText());
 		
 		switch(c.getCardID()){
 		
 		case 1:
-			player.setFortune(c.getCardValue());
+			player.setFortune(c.getCardValue()); 
 			break;
 		case 2:
 			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
 			break;
 		case 3:
 			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+
 			break;
 		case 4:
 			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+
 			break;
 		case 5:
 			player.setFortune(c.getCardValue());
@@ -111,6 +120,7 @@ public class ChanceDeck {
 			break;
 		case 14:
 			player.changePosition(25);
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
 			break;
 		case 15:
 			//Mangler
@@ -120,13 +130,14 @@ public class ChanceDeck {
 			break;
 		case 17:
 			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
 			break;
 		case 18:
-			player.setJailToken();
+			player.setJailToken(1);
 			player.setTotalAssets(c.getCardValue());
 			break;
 		case 19:
-			player.setJailToken();
+			player.setJailToken(1);
 			player.setTotalAssets(c.getCardValue());
 			break;
 		case 20:
@@ -134,15 +145,20 @@ public class ChanceDeck {
 			break;
 		case 21:
 			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
 			break;
 		case 22:
 			player.setFortune(c.getCardValue());
 			break;
 		case 23:
 			player.changePosition(40);
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+
 			break;
 		case 24:
 			player.setCurrentPosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+
 			break;
 		case 25:
 			//Mangler
@@ -177,13 +193,6 @@ public class ChanceDeck {
 		
 		}
 		
-	}
-	
-	
-	public static void main(String[] args){
-		ChanceDeck c = new ChanceDeck();
-		
-		System.out.println(c.getDeck());
 	}
 
 }

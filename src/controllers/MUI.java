@@ -18,12 +18,12 @@ public class MUI {
 		return GUI.getUserLeftButtonPressed(msg, trueButton, falseButton);
 
 	}
-	
-	public static void setFortune(String name, int addToFortune){
-		GUI.setBalance(name, addToFortune);
+
+	public static void setFortune(String name, int fortune) {
+		GUI.setBalance(name, fortune);
 	}
-	
-	public static void displayCard(String cardInfo){
+
+	public static void displayCard(String cardInfo) {
 		GUI.displayChanceCard(cardInfo);
 	}
 
@@ -33,7 +33,7 @@ public class MUI {
 
 	public static void setOwner(int position, String playerName) {
 		GUI.setOwner(position, playerName);
-		
+
 	}
 
 	public static String setSixButtons(String msg, String B1, String B2, String B3, String B4, String B5) {
@@ -61,30 +61,34 @@ public class MUI {
 			return Color.WHITE;
 		}
 	}
-	
-	public static void setCarOnStart(Player player, String Name){
+
+	public static void setCarOnStart(Player player, String Name) {
 		player.setCurrentPosition(1);
 		GUI.setCar(1, Name);
 		System.out.println(player.getCurrentPosition());
 	}
-	
-	public static void removeCar(String name){
+
+	public static void removeCar(String name) {
 		GUI.removeAllCars(name);
 	}
-	
-	public static void moveCar(int position,String name){
+
+	public static void moveCar(int position, String name) {
 		removeCar(name);
 		GUI.setCar(position, name);
 	}
 	
+	public static void updateGUIPlayer(String name,int fortune, int position){
+		setFortune(name, fortune);
+		moveCar(position, name);
+	}
 
 	public static String nameValidation(String msg) {
 
 		String s;
 
 		do {
-			s = GUI.getUserString(msg); 
-			
+			s = GUI.getUserString(msg);
+
 		} while (!s.matches("([a-zA-Z0-9]){2,10}") || s.matches("[0-9]+"));
 
 		// The first RegEx above matches any String containing Latin
@@ -96,19 +100,5 @@ public class MUI {
 
 		return s;
 	}
-	
-	public void passedStart(Player player){
-		if(player.getCurrentPosition() < player.getPrevPosition()){
-			player.setFortune(4000); //startBonus
-			GUI.setBalance(player.getplayerName(), 4000);
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

@@ -1,4 +1,4 @@
-package boundary;
+package controllers;
 
 import desktop_resources.GUI;
 
@@ -9,7 +9,7 @@ import entities.Board;
 import entities.Field;
 import entities.Ownable;
 
-public class GUImethods {
+public class GUIcontroller {
 
 	public void createGUIFields(ArrayList<Field> fields) {
 
@@ -38,8 +38,9 @@ public class GUImethods {
 
 		GUIfields[5] = new desktop_fields.Shipping.Builder().setTitle(fields.get(6).getFieldName())
 				.setSubText("Pris: " + ((Ownable) fields.get(6)).getPrice())
-				.setDescription("\n" + ((Ownable) fields.get(6)).getFieldInfo()).setPicture("pictures/Ferry.png")
-				.build();
+				.setDescription("\n" + ((Ownable) fields.get(6)).getFieldInfo())
+				.setPicture("pictures/Ferry.png").build();
+				
 
 		GUIfields[6] = new desktop_fields.Street.Builder().setTitle(fields.get(7).getFieldName())
 				.setSubText("Pris: " + ((Ownable) fields.get(7)).getPrice())
@@ -184,6 +185,7 @@ public class GUImethods {
 		GUIfields[38] = new desktop_fields.Tax.Builder().setTitle(fields.get(39).getFieldInfo())
 				.setSubText(fields.get(39).getFieldInfo()).setDescription(fields.get(39).getFieldName())
 				.setBgColor(Color.LIGHT_GRAY).build();
+	
 
 		GUIfields[39] = new desktop_fields.Street.Builder().setTitle(fields.get(40).getFieldName())
 				.setSubText("Pris: " + ((Ownable) fields.get(40)).getPrice())
@@ -191,12 +193,12 @@ public class GUImethods {
 				.setRent("Leje: " + ((Ownable) fields.get(40)).getRent()).setBgColor(Color.MAGENTA).build();
 
 		GUI.create(GUIfields);
-		GUI.showMessage("ll");
+		
 		
 	}
 	
 	public static void main(String[] args){
-		GUImethods g = new GUImethods();
+		GUIcontroller g = new GUIcontroller();
 		Board b = new Board();
 		g.createGUIFields(Board.getFieldsArray());
 	}

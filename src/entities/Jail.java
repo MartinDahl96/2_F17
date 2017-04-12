@@ -27,6 +27,12 @@ public class Jail extends Field {
 	@Override
 	public void landOnField(Player player) {
 		
+		if(player.getCurrentPosition() == 31){
+			player.changePosition(11);
+			player.setJailRounds(3);
+			}
+		
+		
 		if (player.getJailRounds() > 0) {
 
 			Cup cup = new Cup();
@@ -42,7 +48,7 @@ public class Jail extends Field {
 				if (choice.equals(useDie)) {
 					cup.useCup();
 
-					if (cup.getDie1() == cup.getDie2()) {
+					if (cup.getFaceValue1() == cup.getFaceValue2()) {
 						player.setJailRounds(0);
 						player.setCurrentPosition(cup.getCupValue());
 						playerChoice = false;
@@ -83,10 +89,7 @@ public class Jail extends Field {
 		/**
 		 * If the player lands on the go-to-jail-field (field number 31), he will be moved to jail (field number 11) and become imprisoned for 3 rounds.
 		 */
-	if(player.getCurrentPosition() == 31){
-		player.changePosition(11);
-		player.setJailRounds(3);
-		}
+	
 		
 
 	}

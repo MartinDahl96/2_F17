@@ -76,24 +76,28 @@ public class Tax extends Field {
 	 */
 	@Override
 	public void landOnField(Player player) {
-		
+
 		if (player.getCurrentPosition() == 5) {
 			boolean choice = MUI.getTwoButtons("4000kr eller 10% af dit lort", "4000", "10% af mit lort");
 			if (choice == true) {
 				player.setFortune(-this.getFixedTax());
+				MUI.setFortune(player.getplayerName(), player.getFortune());
 
 			}
 
 			else if (choice == false) {
 
-				player.setFortune(-(int) this.getRevenueTax() * player.getFortune());
+				player.setFortune((int) (-revenueTax * player.getFortune()));
+				System.out.println(player.getFortune());
+				MUI.setFortune(player.getplayerName(), player.getFortune());
 			}
 
 		}
 
-		else {
-			player.setFortune(-this.getFixedTax());
-
+		else if (player.getCurrentPosition() == 39) {
+			MUI.showMessage("Betal skat: kr. 2000");
+			player.setFortune(-fixedTax);
+			MUI.setFortune(player.getplayerName(), player.getFortune());
 		}
 
 	}

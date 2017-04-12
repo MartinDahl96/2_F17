@@ -1,7 +1,9 @@
 package entities;
 
+import controllers.MUI;
+
 public class Chance extends Field {
-	
+	private ChanceDeck c = new ChanceDeck();
 	/*
 	 * The chancefield constructor.
 	 */
@@ -17,8 +19,8 @@ public class Chance extends Field {
 	 */
 	@Override
 	public void landOnField(Player player) {
-		
-		
+
+		c.drawCard(player);
 		
 	}
 
