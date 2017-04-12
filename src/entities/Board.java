@@ -9,7 +9,7 @@ public class Board {
 	public Board(){
 		
 		this.boardFields = new ArrayList<Field>();
-		this.s = new FileScannerQueue("fieldValues.txt");
+		this.s = new FileScannerQueue("txtfiles/fieldValues.txt");
 		this.createBoard();
 	}
 

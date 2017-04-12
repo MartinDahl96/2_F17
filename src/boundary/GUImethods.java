@@ -15,7 +15,8 @@ public class GUImethods {
 
 		desktop_fields.Field[] GUIfields = new desktop_fields.Field[40];
 
-		GUIfields[0] = new desktop_fields.Start.Builder().setTitle(fields.get(1).getFieldName())
+		GUIfields[0] = new desktop_fields.Start.Builder()
+				.setTitle(fields.get(1).getFieldName())
 				.setSubText(fields.get(1).getFieldInfo()).setDescription(fields.get(1).getFieldInfo())
 				.setBgColor(Color.RED).build();
 
@@ -168,9 +169,9 @@ public class GUImethods {
 				.setDescription("\n" + ((Ownable) fields.get(35)).getFieldInfo())
 				.setRent("Leje: " + ((Ownable) fields.get(35)).getRent()).setBgColor(Color.YELLOW).build();
 
-		GUIfields[35] = new desktop_fields.Shipping.Builder().setTitle(fields.get(35).getFieldName())
-				.setSubText("Pris: " + ((Ownable) fields.get(35)).getPrice())
-				.setDescription("\n" + ((Ownable) fields.get(35)).getFieldInfo()).setPicture("pictures/Ferry.png")
+		GUIfields[35] = new desktop_fields.Shipping.Builder().setTitle(fields.get(36).getFieldName())
+				.setSubText("Pris: " + ((Ownable) fields.get(36)).getPrice())
+				.setDescription("\n" + ((Ownable) fields.get(36)).getFieldInfo()).setPicture("pictures/Ferry.png")
 				.build();
 
 		GUIfields[36] = new desktop_fields.Chance.Builder().build();
@@ -190,7 +191,14 @@ public class GUImethods {
 				.setRent("Leje: " + ((Ownable) fields.get(40)).getRent()).setBgColor(Color.MAGENTA).build();
 
 		GUI.create(GUIfields);
-
+		GUI.showMessage("ll");
+		
+	}
+	
+	public static void main(String[] args){
+		GUImethods g = new GUImethods();
+		Board b = new Board();
+		g.createGUIFields(Board.getFieldsArray());
 	}
 
 	

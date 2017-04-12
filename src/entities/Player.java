@@ -34,8 +34,16 @@ public class Player {
 		}
 
 		//used to set the amount of jailTokens held by a player.
-		public void setJailToken(int jailToken) {
-			this.jailToken = jailToken;
+		public void setJailToken() {
+			this.jailToken++; 
+		}
+		
+		public int getTotalAssets(){
+			return this.totalAssets;
+		}
+		
+		public void setTotalAssets(int add){
+			totalAssets += add;
 		}
 		
 		//used to see if a player is immune or not.

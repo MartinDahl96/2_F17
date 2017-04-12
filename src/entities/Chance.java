@@ -18,8 +18,7 @@ public class Chance extends Field {
 	@Override
 	public void landOnField(Player player) {
 		
-		player.setCurrentPosition(20);
-		// TODO Auto-generated method stub
+		
 		
 	}
 
