@@ -20,7 +20,8 @@ public class Cup {
 	 */
 	
 	public Cup(){
-		
+		this.Die1 = new Die();
+		this.Die2 = new Die();
 	}
 	
 	
@@ -37,16 +38,16 @@ public class Cup {
 	 * Returns the value of Die1.
 	 * @return Die1.
 	 */
-	public Die getDie1(){
-		return Die1;
+	public int getFaceValue1(){
+		return Die1.getRoll();
 	}
 	
 	/**
 	 * Returns the value of Die2.
 	 * @return Die2.
 	 */
-	public Die getDie2(){
-		return Die2;
+	public int getFaceValue2(){
+		return Die2.getRoll();
 	}
 	
 	/**
