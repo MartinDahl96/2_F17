@@ -1,5 +1,6 @@
 package entities;
 
+
 /**
  * @Author Martin
  * This class will be responsible for the individual player's money.
