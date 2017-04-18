@@ -13,16 +13,17 @@ public class Player {
 	private int fortune;
 	private int totalAssets;
 	private int jailToken;
-	
+	private int prevPosition;
 
 	// Constructor for a player-object.
-	public Player(int playerID,String playerName) {
+	public Player(int playerID , String playerName) {
 		this.playerName = playerName;
 		this.playerID = playerID;
 		this.account = new Account(30000);
 		this.immunity = false;	
-		this.totalAssets = 0;
+		this.totalAssets = this.account.getBalance();
 		this.jailToken = 0;
+		this.prevPosition = 0;
 		fortune = this.account.getBalance();
 
 
@@ -45,9 +46,10 @@ public class Player {
 		public void setTotalAssets(int add){
 			totalAssets += add;
 		}
+	
 		
 		//used to see if a player is immune or not.
-		public boolean isImmunity() {
+		public boolean getImmunity() {
 			return immunity;
 		}
 
@@ -73,6 +75,7 @@ public class Player {
 
 		public void setFortune(int add) {
 			this.fortune += add;
+			this.totalAssets = fortune;
 		}
 
 		// gets the player's ID.
@@ -94,6 +97,10 @@ public class Player {
 		public void setJailRounds(int jailRounds) {
 			this.jailRounds = jailRounds;
 		}
+		
+		public int getPrevPosition(){
+			return prevPosition;
+		}
 
 		// gets the player's current position.
 		public int getCurrentPosition() {
@@ -102,17 +109,17 @@ public class Player {
 
 		// sets the player's current position. ny adding an int to his current position.
 		public void setCurrentPosition(int addToPosition) {
+			prevPosition = currentPosition;
 			currentPosition = addToPosition + currentPosition;
 			if (currentPosition > 40) {
 				currentPosition -= 40; 
-				if (currentPosition > 0) {
-					setFortune(4000); // startBonus //genovervej skal denne vÃ¦re i playerklassen?
-				}
+				
 			}
 		}
 		
 		//used to set a player to a specific field.
 		public void changePosition (int newPosition){
+			prevPosition = currentPosition;
 			this.currentPosition = newPosition;
 		}
 
@@ -131,5 +138,9 @@ public class Player {
 
 	public int getOwnedBreweries() {
 		return ownedBreweries;
+	}
+	
+	public String toString(){
+		return playerName;
 	}
 }
