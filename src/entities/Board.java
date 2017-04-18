@@ -2,8 +2,19 @@ package entities;
 import java.io.*;
 import java.util.*;
 
+import fieldEntities.Brewery;
+import fieldEntities.Chance;
+import fieldEntities.Ferry;
+import fieldEntities.Field;
+import fieldEntities.Jail;
+import fieldEntities.Parking;
+import fieldEntities.Start;
+import fieldEntities.Street;
+import fieldEntities.Tax;
+import inputHandlers.FileScannerQueue;
+
 public class Board {
-	private static ArrayList<Field> boardFields;
+	private ArrayList<Field> boardFields;
 	FileScannerQueue s;
 	
 	public Board(){
@@ -141,14 +152,10 @@ public class Board {
 			
 			}
 	
-	public static ArrayList<Field> getFieldsArray(){
+	public ArrayList<Field> getFields(){
 		return boardFields;
 	}
 	
-	public void landOnField(Player player, int i){
-		
-		getFieldsArray().get(i).landOnField(player);
-		
-	}
+
 }
 
