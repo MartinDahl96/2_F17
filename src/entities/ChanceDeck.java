@@ -1,6 +1,9 @@
 package entities;
 
 import java.util.*;
+
+import controllers.MUI;
+
 import java.io.FileNotFoundException;
 import java.io.File;
 
@@ -27,7 +30,7 @@ public class ChanceDeck {
 	public void createDeck() {
 
 		try {
-			Scanner s = new Scanner(new File("chanceCards"));
+			Scanner s = new Scanner(new File("txtfiles/chanceCards.txt"));
 
 			int tempID = 0;
 
@@ -63,11 +66,133 @@ public class ChanceDeck {
 		return deck;
 	}
 	
-	
-	public static void main(String[] args){
-		ChanceDeck c = new ChanceDeck();
+
+	public void drawCard(Player player){
 		
-		System.out.println(c.getDeck());
+		ChanceCard c = getDeck().pop();
+		MUI.displayCard(c.getCardText());
+		
+		switch(c.getCardID()){
+		
+		case 1:
+			player.setFortune(c.getCardValue()); 
+			break;
+		case 2:
+			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+			break;
+		case 3:
+			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+
+			break;
+		case 4:
+			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+
+			break;
+		case 5:
+			player.setFortune(c.getCardValue());
+			break;
+		case 6:
+			player.setFortune(c.getCardValue());
+			break;
+		case 7:
+			player.setFortune(c.getCardValue());
+			break;
+		case 8:
+			player.setFortune(c.getCardValue());
+			break;
+		case 9:
+			player.setFortune(c.getCardValue());
+			break;
+		case 10:
+			//Mangler
+			break;
+		case 11:
+			player.setFortune(c.getCardValue());
+			break;
+		case 12:
+			player.setFortune(c.getCardValue());
+			break;
+		case 13:
+			//Mangler
+			break;
+		case 14:
+			player.changePosition(25);
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+			break;
+		case 15:
+			//Mangler
+			break;
+		case 16:
+			//Mangler
+			break;
+		case 17:
+			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+			break;
+		case 18:
+			player.setJailToken(1);
+			player.setTotalAssets(c.getCardValue());
+			break;
+		case 19:
+			player.setJailToken(1);
+			player.setTotalAssets(c.getCardValue());
+			break;
+		case 20:
+			player.setFortune(c.getCardValue());
+			break;
+		case 21:
+			player.changePosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+			break;
+		case 22:
+			player.setFortune(c.getCardValue());
+			break;
+		case 23:
+			player.changePosition(40);
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+
+			break;
+		case 24:
+			player.setCurrentPosition(c.getCardValue());
+			MUI.moveCar(player.getCurrentPosition(), player.getplayerName());
+
+			break;
+		case 25:
+			//Mangler
+			break;
+		case 26:
+			player.setFortune(c.getCardValue());
+			break;
+		case 27:
+			player.setFortune(c.getCardValue());
+			break;
+		case 28:
+			if(player.getTotalAssets() <= 15000){
+				player.setFortune(c.getCardValue());
+			}
+			break;
+		case 29:
+			player.setFortune(c.getCardValue());
+			break;
+		case 30:
+			player.setFortune(c.getCardValue());
+			break;
+		case 31:
+			player.setFortune(c.getCardValue());
+			break;
+		case 32:
+			player.setFortune(c.getCardValue());
+			break;
+		case 33:
+			player.setFortune(c.getCardValue());
+			break;
+		
+		
+		}
+		
 	}
 
 }

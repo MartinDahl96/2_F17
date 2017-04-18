@@ -51,7 +51,11 @@ public class Start extends Field {
 	 * The player will receive a start bonus which will be deposited in his account
 	 */
 	public void landOnField(Player player) {
-		player.setFortune(this.startBonus);
+		
+		
+//		if (player.getCurrentPosition() > 0) {
+//			setFortune(4000); // startBonus //genovervej skal denne vÃ¦re i playerklassen?
+//		}
 
 	}
 	@Override

@@ -4,7 +4,7 @@ public class Player {
 	// Attributes
 	private String playerName;
 	private Account account;
-	private int ID;
+	private int playerID;
 	private int jailRounds;
 	private int ownedFerries;
 	private int ownedBreweries;
@@ -16,10 +16,10 @@ public class Player {
 	
 
 	// Constructor for a player-object.
-	public Player(String name, int ID) {
-		this.playerName = name;
-		this.ID = ID;
-		this.account = new Account(26000);
+	public Player(int playerID,String playerName) {
+		this.playerName = playerName;
+		this.playerID = playerID;
+		this.account = new Account(30000);
 		this.immunity = false;	
 		this.totalAssets = 0;
 		this.jailToken = 0;
@@ -34,8 +34,16 @@ public class Player {
 		}
 
 		//used to set the amount of jailTokens held by a player.
-		public void setJailToken(int jailToken) {
-			this.jailToken = jailToken;
+		public void setJailToken(int add) {
+			jailToken += add;
+		}
+		
+		public int getTotalAssets(){
+			return this.totalAssets;
+		}
+		
+		public void setTotalAssets(int add){
+			totalAssets += add;
 		}
 		
 		//used to see if a player is immune or not.
@@ -68,13 +76,13 @@ public class Player {
 		}
 
 		// gets the player's ID.
-		public int getPlayerNumber() {
-			return ID;
+		public int getPlayerID() {
+			return this.playerID;
 		}
 
 		// sets the player's ID.
-		public void setPlayerNumber(int playerNumber) {
-			ID = playerNumber;
+		public void setPlayerID(int ID) {
+			this.playerID = ID;
 		}
 
 		// gets the amount of rounds left of a player's jail-time.

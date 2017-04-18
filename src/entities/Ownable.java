@@ -1,5 +1,6 @@
 package entities;
 
+import controllers.MUI;
 import desktop_resources.GUI;
 import entities.Field;
 import entities.Player;
@@ -61,13 +62,40 @@ public abstract class Ownable extends Field {
 	 * @param buyer
 	 */
 	public void buyProperty(Player buyer){
-		boolean property = GUI.getUserLeftButtonPressed("Do you want to buy this property?", "Yes", "No");
-		if (property){
-			buyer.setFortune(-getPrice());
-			setOwner(buyer);
-			//GUI.setOwner(null, null);		
+
+
+		if (buyer.getFortune() < this.getPrice()) {
+			MUI.showMessage("Du har ikke penge nok, til at købe dette uejede felt!");
 		}
+
+		boolean choice = MUI.getTwoButtons("Vil du købe denne grund?", "Ja", "Nej");
+		if (choice == true) {
+			MUI.showMessage("Du har købt denne grund: " + this.getFieldName() + " for kr. " + this.getPrice());
+			buyer.setFortune(-this.getPrice());
+			MUI.setFortune(buyer.getplayerName(), buyer.getFortune());
+			setOwner(buyer);
+			MUI.setOwner(this.fieldID, buyer.getplayerName());
+			
+		}
+
+	
+		}
+	
+	public void payRent(Player payer){
+System.out.println("her til");
+		MUI.showMessage(payer.getplayerName() + " har betalt leje til " + getOwner().getplayerName());
+		payer.setFortune(-getRent());
+		MUI.setFortune(payer.getplayerName(), payer.getFortune());
+
+		getOwner().setFortune(getRent());
+		MUI.setFortune(getOwner().getplayerName(), getOwner().getFortune());
+
+		System.out.println(payer.getFortune());
+	
 	}
+	
+	
+	
 		
 	
 	/**
@@ -82,8 +110,12 @@ public abstract class Ownable extends Field {
 	 * This will be different depending on the field, but they will all perform the check to see if the field is owned by someone or not.
 	 */
 	public void landOnField(Player player){
-		if (getOwner() == null){
-			
+		if (getOwner() == null) {
+			buyProperty(player);
+		}
+
+		if (getOwner() != null && player != getOwner()) {
+			payRent(player);
 		}
 	}
 	
