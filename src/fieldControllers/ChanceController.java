@@ -28,7 +28,7 @@ public class ChanceController {
 	}
 	
 public void drawCard(Player player){
-	 
+	
 		ChanceCard c = deck.getDeck().pop();
 		MUI.displayCard(c.getCardText());
 		MUI.showMessage(player.getplayerName()+", Læs kortet:");
@@ -201,7 +201,6 @@ public void drawCard(Player player){
 		
 		
 		}
-		
 		
 	}
 

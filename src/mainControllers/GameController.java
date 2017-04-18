@@ -43,9 +43,7 @@ public class GameController {
 		while (noWinner == false) {
 			
 			for (int i = 0; i < players.size(); i++) {
-				playerOptions(i);
-				MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
-				
+				playerOptions(i);	
 			}
 
 		}
@@ -84,12 +82,13 @@ public class GameController {
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 
-		players.get(i).setCurrentPosition(cup.getCupValue());
+		players.get(i).setCurrentPosition(2);
 		landOnField(i);
 		MUI.moveCar(players.get(i).getCurrentPosition(), players.get(i).getplayerName());
 	}
 
 	public void landOnField(int i) {
+		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
 		
 		/* LOGIC OF THE FOLLOWING IF-STATEMENTES: If the current field, is and instance of X, then excecute landOnx */
 		
