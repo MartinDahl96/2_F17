@@ -1,166 +1,161 @@
 package entities;
 import java.io.*;
 import java.util.*;
-public class Board {
 
-	public ArrayList<Field> boardFields = new ArrayList<Field>();
+import fieldEntities.Brewery;
+import fieldEntities.Chance;
+import fieldEntities.Ferry;
+import fieldEntities.Field;
+import fieldEntities.Jail;
+import fieldEntities.Parking;
+import fieldEntities.Start;
+import fieldEntities.Street;
+import fieldEntities.Tax;
+import inputHandlers.FileScannerQueue;
+
+public class Board {
+	private ArrayList<Field> boardFields;
+	FileScannerQueue s;
+	
+	public Board(){
+		
+		this.boardFields = new ArrayList<Field>();
+		this.s = new FileScannerQueue("txtfiles/fieldValues.txt");
+		this.createBoard();
+	}
+
+	
 	public void createBoard(){
 		
-		
-		
-		try{
-			Scanner s = new Scanner(new File("fieldValues.txt")).useDelimiter(",");
-			while(s.hasNextLine()){	
-				//Start-field
-				boardFields.add(new Start(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next())));
-				s.nextLine();
-				//Rødovrevej
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Chance-field1
-				boardFields.add(new Chance(Integer.parseInt(s.next()),s.next(),s.next()));
-				s.nextLine();
-				//Hvidovrevej
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Tax-field1
-				boardFields.add(new Tax(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Double.parseDouble(s.next())));
-				s.nextLine();
-				//LB Færgerne
-				boardFields.add(new Ferry(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next())));
-				s.nextLine();
-				//Roskildevej
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Chance-field2
-				boardFields.add(new Chance(Integer.parseInt(s.next()),s.next(),s.next()));
-				s.nextLine();
-				//Valby langgade
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Allégade
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Jail-field
-				boardFields.add(new Jail(Integer.parseInt(s.next()),s.next(),s.next()));
-				s.nextLine();
-				//Frederiksberg Allé
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Carlsberg
-				boardFields.add(new Brewery(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next())));
-				s.nextLine();
-				//Bülowsvej
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Gl. Kongevej
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Danmark
-				boardFields.add(new Ferry(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next())));
-				s.nextLine();
-				//Bernstorfsvej
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Chance-field3
-				boardFields.add(new Chance(Integer.parseInt(s.next()),s.next(),s.next()));
-				s.nextLine();
-				//Hellerupvej
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Strandvej
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Parking
-				boardFields.add(new Parking(Integer.parseInt(s.next()),s.next(),s.next()));
-				s.nextLine();
-				//Trianglen
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Chance-field4
-				boardFields.add(new Chance(Integer.parseInt(s.next()),s.next(),s.next()));
-				s.nextLine();
-				//Østerbrogade
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Grønningen
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Mols-Linien
-				boardFields.add(new Ferry(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next())));
-				s.nextLine();
-				//Bredgade
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Kgs. Nytorv
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Coca-cola
-				boardFields.add(new Brewery(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next())));
-				s.nextLine();
-				//Østergade
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Go to jail
-				boardFields.add(new Jail(Integer.parseInt(s.next()),s.next(),s.next()));
-				s.nextLine();
-				//Amagertorv
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Vimmelskaftet
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Chance-field5
-				boardFields.add(new Chance(Integer.parseInt(s.next()),s.next(),s.next()));
-				s.nextLine();
-				//Nygade
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Skandinavisk Linietrafik A/S
-				boardFields.add(new Ferry(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next())));
-				s.nextLine();
-				//Chance-field6
-				boardFields.add(new Chance(Integer.parseInt(s.next()),s.next(),s.next()));
-				s.nextLine();
-				//Frederiksberggade
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-				//Tax-field2
-				boardFields.add(new Tax(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next())));
-				s.nextLine();
-				//Rådhuspladsen
-				boardFields.add(new Street(Integer.parseInt(s.next()),s.next(),s.next(),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()),Integer.parseInt(s.next()), s.next()));
-				s.nextLine();
-			
-			}s.close();
-			
-		} 
-			
-			
-			catch(FileNotFoundException e){
-				e.printStackTrace();
+				boardFields.add(null);
 				
-			}	
-		
-	}
+				//Start-field
+				boardFields.add(new Start(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll())));
+				 
+				//RÅ™dovrevej
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//3Chance-field1
+				boardFields.add(new Chance(s.parseInt(s.poll()),s.poll(),s.poll()));
+				 
+				//Hvidovrevej
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Tax-field1
+				boardFields.add(new Tax(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),Double.parseDouble(s.poll())));
+				 
+				//LB FÄ‡rgerne
+				boardFields.add(new Ferry(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll())));
+				 
+				//Roskildevej
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Chance-field2
+				boardFields.add(new Chance(s.parseInt(s.poll()),s.poll(),s.poll()));
+				 
+				//Valby langgade
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//AllÃ©gade
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Jail-field
+				boardFields.add(new Jail(s.parseInt(s.poll()),s.poll(),s.poll()));
+				 
+				//Frederiksberg AllÃ©
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Carlsberg
+				boardFields.add(new Brewery(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll())));
+				 
+				//BÃ¼lowsvej
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Gl. Kongevej
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Danmark
+				boardFields.add(new Ferry(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll())));
+				 
+				//Bernstorfsvej
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Chance-field3
+				boardFields.add(new Chance(s.parseInt(s.poll()),s.poll(),s.poll()));
+				 
+				//Hellerupvej
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Strandvej
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Parking
+				boardFields.add(new Parking(s.parseInt(s.poll()),s.poll(),s.poll()));
+				 
+				//Trianglen
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Chance-field4
+				boardFields.add(new Chance(s.parseInt(s.poll()),s.poll(),s.poll()));
+				 
+				//Å˜sterbrogade
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//GrÅ™nningen
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Mols-Linien
+				boardFields.add(new Ferry(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll())));
+				 
+				//Bredgade
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Kgs. Nytorv
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Coca-cola
+				boardFields.add(new Brewery(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll())));
+				 
+				//Å˜stergade
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Go to jail
+				boardFields.add(new Jail(s.parseInt(s.poll()),s.poll(),s.poll()));
+				 
+				//Amagertorv
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Vimmelskaftet
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Chance-field5
+				boardFields.add(new Chance(s.parseInt(s.poll()),s.poll(),s.poll()));
+				 
+				//Nygade
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Skandinavisk Linietrafik A/S
+				boardFields.add(new Ferry(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll())));
+				 
+				//Chance-field6
+				boardFields.add(new Chance(s.parseInt(s.poll()),s.poll(),s.poll()));
+				 
+				//Frederiksberggade
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+				//Tax-field2
+				boardFields.add(new Tax(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll())));
+				 
+				//RÄºdhuspladsen
+				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
+				 
+			
+			}
 	
-	public ArrayList<Field> getFieldsArray(){
+	public ArrayList<Field> getFields(){
 		return boardFields;
 	}
 	
-	
-	public static void main (String[] args){
-		
-		Board b = new Board();
-		b.createBoard();
-		
-		for (Field field : b.boardFields){
-			System.out.println(field);
-		}
-		
-	}
-	
+
 }
-
-
 

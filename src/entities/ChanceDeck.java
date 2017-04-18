@@ -1,6 +1,9 @@
 package entities;
 
 import java.util.*;
+
+import mainControllers.MUI;
+
 import java.io.FileNotFoundException;
 import java.io.File;
 
@@ -17,7 +20,7 @@ public class ChanceDeck {
 	public ChanceDeck() {
 		this.deck = new Stack<ChanceCard>();
 		createDeck();
-		shuffleDeck();
+		//shuffleDeck();
 	}
 
 	/**
@@ -27,7 +30,7 @@ public class ChanceDeck {
 	public void createDeck() {
 
 		try {
-			Scanner s = new Scanner(new File("chanceCards"));
+			Scanner s = new Scanner(new File("txtfiles/chanceCards.txt"));
 
 			int tempID = 0;
 
@@ -63,11 +66,7 @@ public class ChanceDeck {
 		return deck;
 	}
 	
+
 	
-	public static void main(String[] args){
-		ChanceDeck c = new ChanceDeck();
-		
-		System.out.println(c.getDeck());
-	}
 
 }

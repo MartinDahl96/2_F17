@@ -1,7 +1,6 @@
+/.DS_Store
 /entities/
-/fieldcontrollers/
-/guicontroller/
-/boundary/
-/test/
-/database/
-/controllers/
+/fieldControllers/
+/fieldEntities/
+/inputHandlers/
+/mainControllers/

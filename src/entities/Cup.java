@@ -11,8 +11,8 @@ public class Cup {
 	 * Creates the value of the cup and two instances of the Die class.
 	 */
 	private int cupValue;
-	private Die Die1;
-	private Die Die2;
+	private Die Die1 = new Die();
+	private Die Die2 = new Die();
 	
 	/**
 	 * Creates the cup constructor.
@@ -20,7 +20,8 @@ public class Cup {
 	 */
 	
 	public Cup(){
-		
+		this.Die1 = new Die();
+		this.Die2 = new Die();
 	}
 	
 	
@@ -37,16 +38,16 @@ public class Cup {
 	 * Returns the value of Die1.
 	 * @return Die1.
 	 */
-	public Die getDie1(){
-		return Die1;
+	public int getFaceValue1(){
+		return Die1.getRoll();
 	}
 	
 	/**
 	 * Returns the value of Die2.
 	 * @return Die2.
 	 */
-	public Die getDie2(){
-		return Die2;
+	public int getFaceValue2(){
+		return Die2.getRoll();
 	}
 	
 	/**
