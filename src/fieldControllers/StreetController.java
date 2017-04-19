@@ -9,17 +9,13 @@ import mainControllers.MUI;
 
 public class StreetController {
 
-	
-
-	
-
 	public void sellProperty() {
 		// MANGLER
 	}
 
 	public void buildProperty(Player player, Street s) {
 
-		checkIfBuildable(player,);
+		checkIfBuildable(player,s);
 
 		if (s.isBuildable() == true && player.getFortune() > s.getBuildPrice()) {
 			boolean choice = MUI.getTwoButtons("Vil du bygge et hus eller hvad?", "Ja", "Nej");
@@ -30,7 +26,7 @@ public class StreetController {
 			int buildHouse3 = 0;
 			int buildHouse4 = 0;
 
-			for (Field field : b.getFields()) {
+			for (Field field : Board.getFields()) {
 
 				if (((Street) field).getColor() == s.getColor()) {
 
@@ -89,8 +85,8 @@ public class StreetController {
 
 	public boolean checkIfBuildable(Player player, Street s){
 
-		int tempCounter3 = 0;
-		int tempCounter2 = 0;
+		int count3colors = 0;
+		int count2colors = 0;
 
 		for (Field field : Board.getFields()) {
 
@@ -98,18 +94,18 @@ public class StreetController {
 			if (((Street) field).getOwner() == player) {
 
 				if (((Street) field).getColor().equals("purple") || ((Street) field).getColor().equals("blue")) {
-					tempCounter2++;
+					count2colors++;
 
 				}
 
 				else if (((Street) field).getColor().equals(s.getColor())) {
-					tempCounter3++;
+					count3colors++;
 
 				}
 
 			}
 			}
-			if (tempCounter3 == 3 || tempCounter2 == 2) {
+			if (count3colors == 3 || count2colors == 2) {
 				s.setBuildablel(true);
 			}
 
