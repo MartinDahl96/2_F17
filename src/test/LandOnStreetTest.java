@@ -34,13 +34,13 @@ public class LandOnStreetTest {
 		 ((Ownable) Board.getFields().get(10)).setOwner(p);
 			
 		 assertEquals(((Ownable) Board.getFields().get(10)).getOwner(), p);
-		 assertTrue(sc.checkIfBuildable(p,((Street) Board.getFields().get(10))));
+		 assertTrue(sc.checkIfBuildable(p,((Street) Board.getFields().get(2))));
 			
 		 
 		 
 	}
 	
-s
+
 	
 	
 
