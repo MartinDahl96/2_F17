@@ -75,6 +75,12 @@ public class MUI {
 		removeCar(name);
 		GUI.setCar(position, name);
 	}
+	public static void setHotel(int fieldNumber, boolean hasHotel){
+		GUI.setHotel(fieldNumber, hasHotel);
+	}
+	public static void SetHouses(int fieldNumber, int houseCount){
+		GUI.setHouses(fieldNumber, houseCount);
+	}
 	
 	public static void updateGUIPlayer(String name,int fortune, int position){
 		setFortune(name, fortune);
