@@ -16,6 +16,7 @@ public class Die {
 	
 	public Die(){
 		this.sides = 6;
+		this.faceValue = 0;
 	}
 	
 	/**
@@ -23,7 +24,7 @@ public class Die {
 	 */
 	
 	public void roll(){
-		this.faceValue = (int)(Math.random()*sides) + 1;
+		faceValue = (int)(Math.random()*sides) + 1;
 	}
 	
 	/**

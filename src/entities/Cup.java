@@ -13,8 +13,8 @@ public class Cup {
 	 * Creates the value of the cup and two instances of the Die class.
 	 */
 	private int cupValue;
-	private Die Die1;
-	private Die Die2;
+	private Die Die1 = new Die();
+	private Die Die2 = new Die();
 	
 	/**
 	 * Creates the cup constructor.
