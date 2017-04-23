@@ -1,5 +1,7 @@
 package fieldControllers;
 
+//ChanceController class
+
 import entities.Board;
 import desktop_resources.GUI;
 import entities.ChanceCard;

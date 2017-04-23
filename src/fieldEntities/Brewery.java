@@ -24,15 +24,24 @@ public class Brewery extends Ownable {
 	 */
 	@Override
 	public int getRent() {
+		
+		if(super.isPawned == true){
+			return 0;
+		}
+		
+		else{
+			
+		
 		switch (super.getOwner().getOwnedBreweries()) {
 		case 1: this.multiplier = 100;
 				break;
 		case 2: this.multiplier = 200;
 				break;
 		}
-		Cup cup = new Cup();
-		int rent = cup.getCupValue() * this.multiplier;
-		return rent;
+
+		}
+		
+		return this.multiplier;
 	}
 	
 }

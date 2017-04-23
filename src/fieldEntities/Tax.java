@@ -1,5 +1,7 @@
 package fieldEntities;
 
+//Tax class
+
 import desktop_resources.GUI;
 import entities.Player;
 import mainControllers.MUI;
