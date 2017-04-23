@@ -29,6 +29,7 @@ public class GameController {
 	private TaxController taxControle = new TaxController();
 	private JailController jailControle = new JailController();
 	private StartController startControle = new StartController();
+	private PropertyController propertyControle = new PropertyController();
 	/*------------------------- Subcontrollers -------------------------*/
 
 
@@ -53,24 +54,26 @@ public class GameController {
 	public void playerOptions(int i) {
 
 		String options = GUI.getUserSelection(players.get(i).getplayerName()+" vælg dit næste træk:", "1. Kast med terningerne", "2. Sælg hus/hotel",
-				"3. Pantsæt", "4. Køb pantsat tilbage", "5. Afslut spil");
+				"3. Sælg grund","4. Pantsæt", "5. Køb pantsat tilbage", "6. Afslut spil");
 		int choice = Integer.parseInt(options.substring(0, 1));
 
 		switch (choice) {
 		case 1:
 			throwDice(i);
-
 			break;
 		case 2:
-			MUI.showMessage("endnu ikke implementeret");
+			
 			break;
 		case 3:
-			MUI.showMessage("endnu ikke implementeret");
+			propertyControle.sellProperty(players.get(i));
 			break;
 		case 4:
-			MUI.showMessage("endnu ikke implementeret");
+			propertyControle.pawnProperty(players.get(i));
 			break;
 		case 5:
+			propertyControle.unPawnProperty(players.get(i));
+			break;
+		case 6:
 			System.exit(0);
 			//Save with database on this line
 
@@ -81,54 +84,57 @@ public class GameController {
 	public void throwDice(int i) {
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-
-		players.get(i).setCurrentPosition(2);
+		players.get(i).setCurrentPosition(8);
+	
+		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
 		landOnField(i);
-		MUI.moveCar(players.get(i).getCurrentPosition(), players.get(i).getplayerName());
+		startControle.grantStartBonus(players.get(i)); //grants the player startBonus if he has landed on/passed the start field
+		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
 	}
 
 	public void landOnField(int i) {
-		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
+		
+		MUI.moveCar(players.get(i).getCurrentPosition(), players.get(i).getplayerName());
 		
 		/* LOGIC OF THE FOLLOWING IF-STATEMENTES: If the current field, is and instance of X, then excecute landOnx */
 		
 		int currentField = players.get(i).getCurrentPosition();
 		
-		if (board.getFields().get(currentField) instanceof Chance) {
-			chanceControle.landOnChance(players.get(i), (Chance) board.getFields().get(currentField)); 
+		if (Board.getFields().get(currentField) instanceof Chance) {
+			chanceControle.landOnChance(players.get(i), (Chance) Board.getFields().get(currentField)); 
 			/*The following if-statement ensures, that if the player's position is changed by a chanceCard, then then landOnField (new field), is executed again.*/
 			if(players.get(i).getCurrentPosition() != currentField){
 				landOnField(i);
 			}
 		}
 		
-		if (board.getFields().get(currentField) instanceof Ownable) {
-			ownControle.landOnOwnable(players.get(i), (Ownable) board.getFields().get(currentField));
+		if (Board.getFields().get(currentField) instanceof Ownable) {
+			ownControle.landOnOwnable(players.get(i), (Ownable) Board.getFields().get(currentField));
 		
 		}
 		
-		if((board.getFields().get(currentField) instanceof Parking)) {
+		if((Board.getFields().get(currentField) instanceof Parking)) {
 			parkControle.landOnParking(players.get(i));
 		}
 		
-		if (board.getFields().get(currentField) instanceof Tax) {
-			taxControle.landOnTax(players.get(i) , (Tax) board.getFields().get(currentField));
+		if (Board.getFields().get(currentField) instanceof Tax) {
+			taxControle.landOnTax(players.get(i) , (Tax) Board.getFields().get(currentField));
 
 		}
 
-		if (board.getFields().get(currentField) instanceof Jail) {
-			jailControle.landOnJail(players.get(i) , (Jail) board.getFields().get(currentField));
+		if (Board.getFields().get(currentField) instanceof Jail) {
+			jailControle.landOnJail(players.get(i) , (Jail) Board.getFields().get(currentField));
 
 		}
 		
 		/* The following if statement ensures that if a player no longer is on the Parking field, then he loses his immunity */
-		if(!(board.getFields().get(currentField) instanceof Parking)) {
+		if(!(Board.getFields().get(currentField) instanceof Parking)) {
 			parkControle.deactivateImmunity(players.get(i));
 			}
 		
-		startControle.grantStartBonus(players.get(i)); //grants the player startBonus if he has landed on/passed the start field
-			
-		}
+	
+		
+	}
 		
 	
 
@@ -164,8 +170,7 @@ public class GameController {
 		Board board = new Board();
 		GameController gc = new GameController();
 
-		g.createGUIFields(board.getFields());
-
+		g.createGUIFields(Board.getFields());
 		gc.startGame();
 	}
 }

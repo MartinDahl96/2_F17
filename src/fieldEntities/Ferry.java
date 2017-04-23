@@ -8,7 +8,7 @@ public class Ferry extends Ownable {
 	private int rent_3;
 	private int rent_4;
 	private boolean doubleRent; //used when player picks a specific ChanceCard
-
+	
 	/*
 	 * Constructor created for a Ferry field.
 	 */
@@ -31,6 +31,11 @@ public class Ferry extends Ownable {
 	
 	public int getRent() {
 		
+		if(super.isPawned == true){
+			return 0;
+		}
+	
+		else{
 
 			switch (super.getOwner().getOwnedFerries()) {
 			case 1:
@@ -44,6 +49,7 @@ public class Ferry extends Ownable {
 			default:
 				return 0;
 
+				}
 			}
 		}
 	

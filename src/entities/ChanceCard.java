@@ -1,5 +1,7 @@
 package entities;
 
+//ChanceCard class
+
 public class ChanceCard {
 
 	private int cardValue;

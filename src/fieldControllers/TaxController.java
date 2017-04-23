@@ -1,5 +1,7 @@
 package fieldControllers;
 
+//TaxController class
+
 import entities.Player;
 import fieldEntities.Tax;
 import mainControllers.MUI;
