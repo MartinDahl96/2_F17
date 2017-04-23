@@ -123,75 +123,6 @@ public class Street extends Ownable {
 
 	}
 
-	public void buildProperty(Player player) {
-
-		buildable(player);
-
-		if (buildable == true && player.getFortune() > this.buildPrice) {
-			boolean choice = MUI.getTwoButtons("Vil du bygge et hus eller hvad?", "Ja", "Nej");
-
-			int buildHouse0 = 0;
-			int buildHouse1 = 0;
-			int buildHouse2 = 0;
-			int buildHouse3 = 0;
-			int buildHouse4 = 0;
-
-			for (Field field : Board.getFields()) {
-
-				if (((Street) field).getColor() == this.color) {
-
-					if (this.numOfBuildings == 0) {
-						buildHouse0++;
-
-						if (this.numOfBuildings == 1) {
-							buildHouse1++;
-
-						}
-						if (this.numOfBuildings == 2) {
-							buildHouse2++;
-						}
-						if (this.numOfBuildings == 3) {
-							buildHouse3++;
-						}
-						if (this.numOfBuildings == 4) {
-							buildHouse4++;
-
-						}
-					}
-				}
-
-				if (buildHouse0 == 3) {
-					if (choice == true) {
-						this.numOfBuildings++;
-					}
-
-				}
-				if (buildHouse1 == 3) {
-					if (choice == true) {
-						this.numOfBuildings++;
-					}
-				}
-				if (buildHouse2 == 3) {
-					if (choice == true) {
-						this.numOfBuildings++;
-					}
-				}
-				if (buildHouse3 == 3) {
-					if (choice == true) {
-						this.numOfBuildings++;
-					}
-				}
-				if (buildHouse4 == 3) {
-					if (choice == true) {
-						this.numOfBuildings++;
-					}
-				}
-
-			}
-
-		}
-
-	}
 
 	/**
 	 * Gets and returns the rent for the player to pay the owner of the street
@@ -231,4 +162,12 @@ public class Street extends Ownable {
 		return rent;
 	}
 
+	public void setBuildable(boolean b){
+		buildable = b;
+	}
+	
+	public boolean isBuildable(){
+		return buildable;
+	}
+	
 }
