@@ -5,6 +5,8 @@ import java.awt.Color;
 import desktop_resources.GUI;
 import entities.Player;
 
+//Methods
+
 /**
  * 
  * This class stores (gui)methods, that will be used frequently in other classes

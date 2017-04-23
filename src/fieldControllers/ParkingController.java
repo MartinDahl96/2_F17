@@ -5,13 +5,10 @@ import entities.Player;
 public class ParkingController {
 
 	public  void landOnParking(Player player) {
-
 		
 			activateImmunity(player);
 			player.setFortune(2000);
-
-		
-
+			
 	}
 	
 	public void activateImmunity(Player player){

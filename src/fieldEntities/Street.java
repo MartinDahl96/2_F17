@@ -15,13 +15,10 @@ public class Street extends Ownable {
 	private int houseRent_3;
 	private int houseRent_4;
 	private int hotelRent;
-	private int mortgage;
 	private int numOfBuildings;
 	private int buildPrice;
 	private String color;
 	private boolean buildable;
-	private String[] test = { "Vil du købe denne grund?", "Ja", "Nej", "Du har købt denne grund: ", ", for kr. ",
-			"You dont have enough money to buy this field", " har betalt leje til " };
 
 	/**
 	 * Street constructor. Used to create a Street object.
@@ -61,10 +58,10 @@ public class Street extends Ownable {
 		this.houseRent_3 = houseRent_3;
 		this.houseRent_4 = houseRent_4;
 		this.hotelRent = hotelRent;
-		this.mortgage = this.getPrice() / 2;
 		this.numOfBuildings = 0;
 		this.buildPrice = buildPrice;
 		this.color = color;
+		this.buildable = false;
 
 	}
 
@@ -73,9 +70,7 @@ public class Street extends Ownable {
 	 * 
 	 * @return mortgage price, which the player receives
 	 */
-	public int getMortgage() {
-		return mortgage;
-	}
+	
 
 	/**
 	 * Sets the color-category of the field
@@ -191,35 +186,62 @@ public class Street extends Ownable {
 	@Override
 	public int getRent() {
 
-		int rent;
-
-		switch (numOfBuildings) {
-
-		case 1:
-			rent = houseRent_1;
-			break;
-
-		case 2:
-			rent = houseRent_2;
-			break;
-
-		case 3:
-			rent = houseRent_3;
-			break;
-
-		case 4:
-			rent = houseRent_4;
-			break;
-
-		case 5:
-			rent = hotelRent;
-			break;
-
-		default:
-			rent = baseRent;
-
+		if (super.isPawned == true) {
+			return 0;
 		}
-		return rent;
+
+		else {
+
+			int rent;
+
+			switch (numOfBuildings) {
+
+			case 1:
+				rent = houseRent_1;
+				break;
+
+			case 2:
+				rent = houseRent_2;
+				break;
+
+			case 3:
+				rent = houseRent_3;
+				break;
+
+			case 4:
+				rent = houseRent_4;
+				break;
+
+			case 5:
+				rent = hotelRent;
+				break;
+
+			default:
+				rent = baseRent;
+
+			}
+			return rent;
+		}
+	}
+
+	public int getNumOfBuildings() {
+		return numOfBuildings;
+	}
+
+	public void setNumOfBuildings() {
+		numOfBuildings++;
+	}
+
+	public boolean isBuildable() {
+		return buildable;
+	}
+
+	public void setBuildablel(boolean b) {
+		buildable = b;
+	}
+
+	public int getBuildPrice() {
+		return buildPrice;
 	}
 
 }
