@@ -8,6 +8,40 @@ import fieldEntities.Street;
 import mainControllers.MUI;
 
 public class StreetController {
+	
+	
+	public void sellProperty(Player player, Street s) {
+
+		String input = MUI.getUserString("Indtast feltnummer for at s�lge et hus");
+		int fieldNumber = Integer.parseInt(input);
+
+		for (Field field : Board.getFields()) {
+
+			if (field instanceof Street) {
+
+				if (fieldNumber == field.getFieldID()) {
+					if (((Street) field).getOwner() == player) {
+						if (field instanceof Street && ((Street) field).getNumOfBuildings() > 0) {
+							if (((Street) field).getNumOfBuildings() == 5) {
+								// Fjerner hotel fra GUI hvis der er et:
+								MUI.setHotel(fieldNumber, false);
+								MUI.SetHouses(fieldNumber, 4);
+							} else {
+								// Fjerner et hus fra gameboard, i GUI'en
+								MUI.SetHouses(fieldNumber, ((Street) field).getNumOfBuildings() - 1);
+							}
+							// Efter hus/hotel grafisk er fjernet, f�r spilleren
+							// halvdelen af k�bsprisen tilbage
+							((Street) field).setNumOfBuildings(((Street) field).getNumOfBuildings() - 1);
+							player.setFortune(((Street) field).getBuildPrice() / 2);
+						}
+					}
+
+				}
+			}
+		}
+
+	}
 
 	
 
