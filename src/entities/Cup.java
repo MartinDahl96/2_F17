@@ -1,5 +1,7 @@
 package entities;
 
+//Cup class
+
 /**
  * @Author Martin
  * This class will be responsible for the cup holding the dice, and also rolling them.

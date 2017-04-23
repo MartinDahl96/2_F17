@@ -1,5 +1,7 @@
 package fieldEntities;
 
+//Start class
+
 import entities.Player;
 
 public class Start extends Field {

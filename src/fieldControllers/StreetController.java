@@ -9,9 +9,7 @@ import mainControllers.MUI;
 
 public class StreetController {
 
-	public void sellProperty() {
-		// MANGLER
-	}
+	
 
 	public void buildProperty(Player player, Street s) {
 

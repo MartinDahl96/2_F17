@@ -20,7 +20,7 @@ public class ChanceDeck {
 	public ChanceDeck() {
 		this.deck = new Stack<ChanceCard>();
 		createDeck();
-		//shuffleDeck();
+		shuffleDeck();
 	}
 
 	/**

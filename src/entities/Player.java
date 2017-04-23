@@ -125,7 +125,7 @@ public class Player {
 
 		//used to set the amount of ferries owned by a player.
 		public void setOwnedFerries(int ferriesOwned) {
-			ownedFerries = ownedFerries + ferriesOwned;
+			ownedFerries = ferriesOwned;
 		}
 		
 		//used to get the amount of ferries owned by a player.
