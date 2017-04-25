@@ -10,8 +10,12 @@ import mainControllers.MUI;
 
 //The idea of this class is, it being responsible for buying/selling property (houses), and maybe also pawning
 
-public class PropertyController {
 
+
+
+public class PropertyController {
+	
+	
 	public void sellProperty (Player player) {
 		boolean check = false;
 		String input = MUI.getUserString("Indtast feltnummer som De ønsker at sælge");

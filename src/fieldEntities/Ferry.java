@@ -1,5 +1,7 @@
 package fieldEntities;
 
+import entities.Player;
+
 public class Ferry extends Ownable {
 
 	// Attributes
@@ -52,13 +54,4 @@ public class Ferry extends Ownable {
 				}
 			}
 		}
-	
-//	public void setDoublePayment(boolean b){
-//		this.doubleRent = b;
-//		if(doublePayment == true){
-//			getRent()*2;
-//		}
-//		
-//		
-//	}
 	}
