@@ -1,12 +1,13 @@
 package entities;
 import java.io.*;
-import java.util.*;
 
+import java.util.*;
 import fieldEntities.Brewery;
 import fieldEntities.Chance;
 import fieldEntities.Ferry;
 import fieldEntities.Field;
 import fieldEntities.Jail;
+import fieldEntities.Ownable;
 import fieldEntities.Parking;
 import fieldEntities.Start;
 import fieldEntities.Street;
@@ -26,6 +27,8 @@ public class Board {
 
 	
 	public void createBoard(){
+		
+		
 		
 				boardFields.add(null);
 				
@@ -156,6 +159,9 @@ public class Board {
 		return boardFields;
 	}
 	
+	public void landOnField(Player player) {
+		boardFields.get(player.getCurrentPosition()).landOnField(player);
+	}
 
 }
 

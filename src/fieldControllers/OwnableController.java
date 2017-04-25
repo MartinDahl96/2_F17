@@ -10,11 +10,17 @@ import fieldEntities.Street;
 import mainControllers.MUI;
 
 
-public class OwnableController {
+public class OwnableController{
 	
-	StreetController sc = new StreetController();
+	Ownable o;
+	StreetController sc;
+	public OwnableController(Ownable o){
+		this.o = o;
+		this.sc = new StreetController((Street) o);
+		
+	}
 	
-	public void landOnOwnable(Player player, Ownable o) {
+	public void landOnOwnable(Player player) {
 		
 		if(o.getOwner() == player && o instanceof Street){
 			sc.checkIfBuildable(player, (Street) o);
@@ -23,16 +29,16 @@ public class OwnableController {
 		
 		
 		if (o.getOwner() != null && o.getOwner() != player) {
-			payRent(player,o);
+			payRent(player);
 		}
 
 		else if (o.getOwner() == null) {
-			buyProperty(player,o);
+			buyProperty(player);
 		}
 		
 	}
 
-	public void payRent(Player payer, Ownable o) {
+	public void payRent(Player payer) {
 		
 		if(o instanceof Brewery){
 			MUI.showMessage("Slå med terninger for at beregne lejen");
@@ -62,7 +68,7 @@ public class OwnableController {
 
 	}
 
-	public void buyProperty(Player buyer, Ownable o) {
+	public void buyProperty(Player buyer) {
 
 		if (buyer.getFortune() < o.getPrice()) {
 			MUI.showMessage("Du har ikke penge nok, til at købe dette uejede felt!");
@@ -76,13 +82,13 @@ public class OwnableController {
 			
 			o.setOwner(buyer);
 			MUI.setOwner(o.getFieldID(), buyer.getplayerName());
-			setOwnedFields(buyer, o);
+			setOwnedFields(buyer);
 			
 		}
 
 	}
 	
-	public void setOwnedFields(Player player, Ownable o){
+	public void setOwnedFields(Player player){
 		if(o instanceof Ferry){
 			player.setOwnedFerries(player.getOwnedFerries()+1);
 		}

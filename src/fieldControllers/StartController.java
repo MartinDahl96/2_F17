@@ -1,9 +1,17 @@
 package fieldControllers;
 
 import entities.Player;
+import fieldEntities.Start;
 
 
 public class StartController {
+	
+	Start s;
+	
+	public StartController(Start s){
+		this.s = s;
+		
+	}
 	
 	
 	

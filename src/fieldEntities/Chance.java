@@ -4,6 +4,7 @@ package fieldEntities;
 
 import entities.ChanceDeck;
 import entities.Player;
+import fieldControllers.ChanceController;
 import mainControllers.MUI;
 
 public class Chance extends Field {
@@ -11,15 +12,17 @@ public class Chance extends Field {
 	/*
 	 * The chancefield constructor.
 	 */
+	
+	ChanceController c;
 	public Chance(int fieldID, String fieldName, String fieldInfo) {
 		super(fieldID, fieldName, fieldInfo);
-
+		this.c = new ChanceController(this);
 	}
 
-	/*
-	 * The landOnField method for a chancefield. When a player lands on this
-	 * field the player will draw a chancecard from the cardstack, The player
-	 * will then be affected by the card.
-	 */
+	@Override
+	public void landOnField(Player player) {
+		
+		c.landOnChance(player);
+	}
 
 }
