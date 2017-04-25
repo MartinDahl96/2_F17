@@ -1,5 +1,7 @@
 package entities;
 
+//Die class
+
 
 public class Die {
 

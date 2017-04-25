@@ -1,5 +1,7 @@
 package fieldEntities;
 
+//Jail Class
+
 public class Jail extends Field {
 
 	/**

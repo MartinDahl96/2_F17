@@ -14,12 +14,12 @@ import fieldEntities.Tax;
 import inputHandlers.FileScannerQueue;
 
 public class Board {
-	private ArrayList<Field> boardFields;
+	private static ArrayList<Field> boardFields;
 	FileScannerQueue s;
 	
 	public Board(){
 		
-		this.boardFields = new ArrayList<Field>();
+		boardFields = new ArrayList<Field>();
 		this.s = new FileScannerQueue("txtfiles/fieldValues.txt");
 		this.createBoard();
 	}
@@ -152,7 +152,7 @@ public class Board {
 			
 			}
 	
-	public ArrayList<Field> getFields(){
+	public static ArrayList<Field> getFields(){
 		return boardFields;
 	}
 	

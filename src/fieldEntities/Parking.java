@@ -1,5 +1,7 @@
 package fieldEntities;
 
+//Parking Class
+
 import entities.Player;
 
 public class Parking extends Field {

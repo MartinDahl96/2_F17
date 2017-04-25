@@ -1,5 +1,7 @@
 package mainControllers;
 
+//GUIboard in this class
+
 import desktop_resources.GUI;
 
 import java.awt.Color;

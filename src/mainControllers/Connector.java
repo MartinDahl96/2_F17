@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/** @author Ronnie Dalsgaard */
+
 public class Connector {
     private final String HOST     = "https://drive.google.com/open?id=0B7cFpIbbaUWhX010SDFRTmlpZms"; //var Localhost
     private final int    PORT     = 3306;

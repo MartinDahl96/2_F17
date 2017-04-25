@@ -1,5 +1,5 @@
 package entities;
-
+//Account class
 
 /**
  * @Author Martin

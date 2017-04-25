@@ -1,5 +1,8 @@
 package inputHandlers;
 import java.io.*;
+
+//Text reader
+
 import java.util.Scanner;
 
 public class Text {

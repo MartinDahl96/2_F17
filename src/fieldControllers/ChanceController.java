@@ -1,5 +1,7 @@
 package fieldControllers;
 
+//ChanceController class
+
 import entities.Board;
 import desktop_resources.GUI;
 import entities.ChanceCard;
@@ -13,21 +15,20 @@ import mainControllers.MUI;
 
 public class ChanceController {
 	
-	
 		
 	private ChanceDeck deck = new ChanceDeck();
-	
 	
 	
 	public void landOnChance(Player player, Chance c){
 		
 		drawCard(player);
 		
-		
-		
 	}
 	
-public void drawCard(Player player){
+	
+	public void drawCard(Player player){
+	
+		recreateIfEmpty();
 	
 		ChanceCard c = deck.getDeck().pop();
 		MUI.displayCard(c.getCardText());
@@ -44,25 +45,12 @@ public void drawCard(Player player){
 			break;
 			
 		case 3:
-			System.out.println("Før:" +player.getFortune());
-//			int jailField = 11;
-//			if(player.getCurrentPosition() > jailField){
-//				int lostStartBonus = -4000;
-//				player.setFortune(lostStartBonus);
-//			}
-			
 			player.changePosition(c.getCardValue());
-			System.out.println("Efter:" +player.getFortune());
+			StartController.cancelStartBonus(player);
 			break;
-			
 		case 4:
-			int jailFieldd = 11;
-			if(player.getCurrentPosition() > jailFieldd){
-				int lostStartBonuss = -4000;
-				player.setFortune(lostStartBonuss);
-			}
-			
 			player.changePosition(c.getCardValue());
+			StartController.cancelStartBonus(player);
 			break;
 		case 5:
 			player.setFortune(c.getCardValue());
@@ -198,10 +186,22 @@ public void drawCard(Player player){
 		case 33:
 			player.setFortune(c.getCardValue());
 			break;
-		
+			
 		
 		}
 		
 	}
 
+
+	public void recreateIfEmpty(){
+		
+		if(deck.getDeck().isEmpty()){
+			deck.createDeck();
+			deck.getDeck().remove(17);
+			deck.getDeck().remove(17);
+			deck.shuffleDeck();
+		}
+		
+	}
+	
 }

@@ -17,7 +17,7 @@ public abstract class Field {
 	}
 
 	public int getFieldID() {
-		return this.fieldID;
+		return fieldID;
 	}
 
 	/*

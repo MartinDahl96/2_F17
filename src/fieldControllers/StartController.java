@@ -13,5 +13,12 @@ public class StartController {
 			player.setFortune(4000);
 		}
 	}
+	
+	public static void cancelStartBonus(Player player){
+		
+		if(player.getCurrentPosition() < player.getPrevPosition()){
+			player.setFortune(-4000);
+		}
+	}
 
 }

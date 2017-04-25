@@ -1,5 +1,7 @@
 package fieldEntities;
 
+//Chance class
+
 import entities.ChanceDeck;
 import entities.Player;
 import mainControllers.MUI;

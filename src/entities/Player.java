@@ -14,6 +14,7 @@ public class Player {
 	private int totalAssets;
 	private int jailToken;
 	private int prevPosition;
+	private boolean isBankRupt;
 
 	// Constructor for a player-object.
 	public Player(int playerID , String playerName) {
@@ -118,29 +119,38 @@ public class Player {
 		}
 		
 		//used to set a player to a specific field.
-		public void changePosition (int newPosition){
+		public void changePosition (int newPosition) {
 			prevPosition = currentPosition;
 			this.currentPosition = newPosition;
 		}
 
 		//used to set the amount of ferries owned by a player.
 		public void setOwnedFerries(int ferriesOwned) {
-			ownedFerries = ownedFerries + ferriesOwned;
+			ownedFerries = ferriesOwned;
 		}
 		
 		//used to get the amount of ferries owned by a player.
 		public int getOwnedFerries() {
 			return ownedFerries;
-	}
-	public void setOwnedBreweries(int breweriesOwned) {
-		ownedBreweries = ownedBreweries + breweriesOwned;
-	}
+		}
+		public void setOwnedBreweries(int breweriesOwned) {
+			ownedBreweries = ownedBreweries + breweriesOwned;
+		}
 
-	public int getOwnedBreweries() {
-		return ownedBreweries;
-	}
+		public int getOwnedBreweries() {
+			return ownedBreweries;
+		}
 	
-	public String toString(){
-		return playerName;
+		public boolean isBankRupt() {
+			if (totalAssets <= 0)
+				return true;
+			else
+				return false;
+			
+			}
+		
+	
+		public String toString(){
+			return playerName;
 	}
 }
