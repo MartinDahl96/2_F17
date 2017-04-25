@@ -4,6 +4,8 @@ import entities.Player;
 import mainControllers.MUI;
 
 public class ParkingController {
+	
+	
 
 	public  void landOnParking(Player player) {
 		
