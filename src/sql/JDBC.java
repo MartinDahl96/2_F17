@@ -293,16 +293,41 @@ public void jailTokenCounter() throws SQLException{
 
 	@Override
 	public void updatePlayer(int playerID) throws SQLException {
+		Player p = null;
 		String updatePlayer = "INSERT INTO $DBname.Player (playerID,playerName, fortune, immunity, totalAssets, ownedFerries, ownedBreweries, jailRounds, jailToken, currentPosition)"
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?)\n" +
-				"ON DUPLICATE KEY UPDATE playerID = VALUES(playerID)";
+				"ON DUPLICATE KEY UPDATE playerID = VALUES(playerID), playerName = VALUES(playerName), fortune = VALUES(fortune), immunity = VALUES(immunity), totalAssets = VALUES(totalAssets)," +
+				"ownedFerries = VALUES(ownedFerries), ownedBreweries = VALUES(ownedBreweries), jailRounds = VALUES(jailRounds), jalToken = VALUES(jailToken), currentPosition = VALUES(currentPosition)";
+		try{
+		updatePlayer.replace("$DBname", DBname);
+		prepstmt = con.prepareStatement(updatePlayer);
+		prepstmt.setInt(1, p.getPlayerID());
+		prepstmt.setString(2, p.getplayerName());
+		prepstmt.setInt(3, p.getFortune());
+		prepstmt.setBoolean(4, p.getImmunity());
+		prepstmt.setInt(5, p.getTotalAssets());
+		prepstmt.setInt(6, p.getOwnedFerries());
+		prepstmt.setInt(7, p.getOwnedBreweries());
+		prepstmt.setInt(8, p.getJailRounds());
+		prepstmt.setInt(9, p.getJailToken());
+		prepstmt.setInt(10, p.getCurrentPosition());
+		
+		prepstmt.executeUpdate();
+		
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally{
+			prepstmt.close();
+		}
+		
+		
 		
 	}
 
 
 	@Override
 	public void updateField(int playerID) throws SQLException {
-		// TODO Auto-generated method stub
+		String updateField = "INSERT INTO $DBname.Field";
 		
 	}
 
