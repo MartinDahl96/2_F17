@@ -88,6 +88,11 @@ public class MUI {
 		setFortune(name, fortune);
 		moveCar(position, name);
 	}
+	
+	public static void exitGame(){
+		MUI.showMessage("Tryk OK for at afslutte");
+		System.exit(0);
+	}
 
 	public static String nameValidation(String msg) {
 
@@ -107,5 +112,7 @@ public class MUI {
 
 		return s;
 	}
+	
+	
 
 }

@@ -1,11 +1,15 @@
 package fieldControllers;
 
 import entities.Player;
+import mainControllers.MUI;
 
 public class ParkingController {
+	
+	
 
 	public  void landOnParking(Player player) {
 		
+			MUI.showMessage("De er immun på dette felt (Deres formue kan ikke skades af andre spillere), og De modtager kr. 2000");
 			activateImmunity(player);
 			player.setFortune(2000);
 			

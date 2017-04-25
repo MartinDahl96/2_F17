@@ -78,14 +78,9 @@ public class Street extends Ownable {
 	public String getColor() {
 		return color;
 	}
-	public int getNumOfBuildings() {
-		return numOfBuildings;
-	}
-	public int getBuildPrice() {
-		return buildPrice;
-	}
+
 	public void setNumOfBuildings(int num) {
-		this.numOfBuildings = num;
+		this.numOfBuildings += num;
 	}
 
 	public boolean buildable(Player player) {
@@ -168,13 +163,6 @@ public class Street extends Ownable {
 		return numOfBuildings;
 	}
 
-	public void setNumOfBuildings() {
-		numOfBuildings++;
-	}
-
-	public boolean isBuildable() {
-		return buildable;
-	}
 
 	public void setBuildablel(boolean b) {
 		buildable = b;

@@ -6,19 +6,24 @@ import entities.Player;
 import fieldEntities.Brewery;
 import fieldEntities.Ferry;
 import fieldEntities.Ownable;
+import fieldEntities.Street;
 import mainControllers.MUI;
 
 
 public class OwnableController {
 	
+	StreetController sc = new StreetController();
 	
 	public void landOnOwnable(Player player, Ownable o) {
 		
-		System.out.println("Ejeren: "+o.getOwner());
+		if(o.getOwner() == player && o instanceof Street){
+			sc.checkIfBuildable(player, (Street) o);
+			
+		}
+		
 		
 		if (o.getOwner() != null && o.getOwner() != player) {
 			payRent(player,o);
-			
 		}
 
 		else if (o.getOwner() == null) {
@@ -34,6 +39,7 @@ public class OwnableController {
 			Cup cup = new Cup();
 			cup.useCup();
 			GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
+			MUI.showMessage("Betal leje kr. "+o.getRent()*cup.getCupValue());
 			
 			payer.setFortune(-o.getRent()*cup.getCupValue());
 			MUI.setFortune(payer.getplayerName(), payer.getFortune());
