@@ -171,7 +171,7 @@ public void jailTokenCounter() throws SQLException{
 
 	@Override
 	public Player getPlayer(int playerID) throws SQLException {
-		String query = "SELECT * FROM $DBname.Player WHERE playerID = ?";
+		String query = "SELECT * FROM $DBname.Player WHERE playerID = ?;";
 		Player player = null;
 		ResultSet rs;
 		
@@ -205,7 +205,7 @@ public void jailTokenCounter() throws SQLException{
 
 	@Override
 	public void getOwnable(int playerID) throws SQLException {
-		String query = "SELECT * FROM $DBname.Field WHERE playerID = ?";
+		String query = "SELECT * FROM $DBname.Field WHERE playerID = ?;";
 		ResultSet rs;
 		
 		
@@ -245,7 +245,7 @@ public void jailTokenCounter() throws SQLException{
 
 	@Override
 	public void getChanceDeck(int cardID) throws SQLException {
-		String query = "SELECT * FROM $DBname.Field WHERE cardID = ?";
+		String query = "SELECT * FROM $DBname.ChanceDeck WHERE cardID = ?;";
 		ResultSet rs;
 		
 		try{
@@ -268,14 +268,34 @@ public void jailTokenCounter() throws SQLException{
 
 	@Override
 	public void removePlayer(int playerID) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		String updateField = "DELETE * FROM $DBname.Field WHERE Owner = ?;";
+		String updatePlayer = "DELETE * FROM $DBname.Player WHERE playerID = ?;";
+				
+		try{
+			updateField.replace("$DBname", DBname);
+			prepstmt = con.prepareStatement(updateField);
+			prepstmt.setInt(1, playerID);
+			prepstmt.executeUpdate();
+			
+			updatePlayer = updatePlayer.replace("$DBname", DBname);
+			prepstmt = con.prepareStatement(updatePlayer);
+			prepstmt.setInt(1, playerID);
+			prepstmt.executeUpdate();
+			
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		finally {
+			prepstmt.close();
+		}
 	}
 
 
 	@Override
 	public void updatePlayer(int playerID) throws SQLException {
-		// TODO Auto-generated method stub
+		String updatePlayer = "INSERT INTO $DBname.Player (playerID,playerName, fortune, immunity, totalAssets, ownedFerries, ownedBreweries, jailRounds, jailToken, currentPosition)"
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?)\n" +
+				"ON DUPLICATE KEY UPDATE playerID = VALUES(playerID)";
 		
 	}
 
