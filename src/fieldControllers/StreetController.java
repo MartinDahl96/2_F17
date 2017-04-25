@@ -1,5 +1,6 @@
 package fieldControllers;
 
+import desktop_resources.GUI;
 import entities.Board;
 import entities.Player;
 import fieldEntities.Field;
@@ -9,101 +10,37 @@ import mainControllers.MUI;
 
 public class StreetController {
 	
-	
-	public void sellProperty(Player player, Street s) {
+	public void sellBuilding(Player player) {
 
-		String input = MUI.getUserString("Indtast feltnummer for at s�lge et hus");
+		String input = MUI.getUserString("Indtast feltnummer, hvor De ønsker at sælge en bygning");
 		int fieldNumber = Integer.parseInt(input);
 
-		for (Field field : Board.getFields()) {
+		for (Field f : Board.getFields()) {
+			if (f instanceof Street) {
+				if (fieldNumber == f.getFieldID()) {
+					if (((Street) f).getOwner() == player) {
 
-			if (field instanceof Street) {
-
-				if (fieldNumber == field.getFieldID()) {
-					if (((Street) field).getOwner() == player) {
-						if (field instanceof Street && ((Street) field).getNumOfBuildings() > 0) {
-							if (((Street) field).getNumOfBuildings() == 5) {
-								// Fjerner hotel fra GUI hvis der er et:
+						if (f instanceof Street && ((Street) f).getNumOfBuildings() > 0) {
+							if (((Street) f).getNumOfBuildings() == 5) {
+								((Street) f).setNumOfBuildings(-1);
 								MUI.setHotel(fieldNumber, false);
-								MUI.SetHouses(fieldNumber, 4);
-							} else {
-								// Fjerner et hus fra gameboard, i GUI'en
-								MUI.SetHouses(fieldNumber, ((Street) field).getNumOfBuildings() - 1);
+								player.setFortune(((Street) f).getBuildPrice() / 2);
+								MUI.showMessage("Deres hotel er solgt, De står tilbage med 4 huse");
 							}
-							// Efter hus/hotel grafisk er fjernet, f�r spilleren
-							// halvdelen af k�bsprisen tilbage
-							((Street) field).setNumOfBuildings(((Street) field).getNumOfBuildings() - 1);
-							player.setFortune(((Street) field).getBuildPrice() / 2);
+							else {
+								((Street) f).setNumOfBuildings(-1);
+								MUI.SetHouses(fieldNumber, ((Street) f).getNumOfBuildings());
+								player.setFortune(((Street) f).getBuildPrice() / 2);
+								MUI.showMessage("Et hus på denne grund er solgt");
+							}
 						}
-					}
-
-				}
-			}
-		}
-	
-
-	public void buildProperty(Player player, Street s) {
-
-		checkIfBuildable(player, s);
-
-		if (s.isBuildable() == true && player.getFortune() > s.getBuildPrice()) {
-			boolean choice = MUI.getTwoButtons("Vil du bygge et hus eller hvad?", "Ja", "Nej");
-
-			int buildHouse0 = 0;
-			int buildHouse1 = 0;
-			int buildHouse2 = 0;
-			int buildHouse3 = 0;
-			int buildHouse4 = 0;
-
-			for (Field field : Board.getFields()) {
-
-				if (((Street) field).getColor() == s.getColor()) {
-
-					if (s.getNumOfBuildings() == 0) {
-						buildHouse0++;
-
-						if (s.getNumOfBuildings() == 1) {
-							buildHouse1++;
-
+						
+						else {
+							MUI.showMessage("De har ingen bygninger på dette felt!");
 						}
-						if (s.getNumOfBuildings() == 2) {
-							buildHouse2++;
-						}
-						if (s.getNumOfBuildings() == 3) {
-							buildHouse3++;
-						}
-						if (s.getNumOfBuildings() == 4) {
-							buildHouse4++;
 
-						}
-					}
-				}
-
-				if (buildHouse0 == 3) {
-					if (choice == true) {
-						s.setNumOfBuildings(s.getNumOfBuildings() + 1);
 					}
 
-				}
-				if (buildHouse1 == 3) {
-					if (choice == true) {
-						s.setNumOfBuildings(s.getNumOfBuildings() + 1);
-					}
-				}
-				if (buildHouse2 == 3) {
-					if (choice == true) {
-						s.setNumOfBuildings(s.getNumOfBuildings() + 1);
-					}
-				}
-				if (buildHouse3 == 3) {
-					if (choice == true) {
-						s.setNumOfBuildings(s.getNumOfBuildings() + 1);
-					}
-				}
-				if (buildHouse4 == 3) {
-					if (choice == true) {
-						s.setNumOfBuildings(s.getNumOfBuildings() + 1);
-					}
 				}
 
 			}
@@ -111,34 +48,57 @@ public class StreetController {
 		}
 
 	}
+	
+
+	public void buildProperty(Player player, Street s) {
+
+		if (s.isBuildable() == true && player.getFortune() > s.getBuildPrice()) {
+			boolean choice = MUI.getTwoButtons(
+					player.getplayerName() + ", vil De bygge på dette felt for kr. " + s.getBuildPrice() + "?", "Ja",
+					"Nej");
+
+			if (choice == true) {
+				player.setFortune(-s.getBuildPrice());
+				s.setNumOfBuildings(1);
+
+				if (s.getNumOfBuildings() == 5) {
+					MUI.setHotel(player.getCurrentPosition(), true);
+					MUI.showMessage("De har bygget et hotel, dermed er lejen steget markant");
+				}
+
+				else {
+					MUI.SetHouses(player.getCurrentPosition(), s.getNumOfBuildings());
+					MUI.showMessage("De har bygget hus, dermed er lejen steget");
+				}
+			}
+		}
+	}
 
 	public boolean checkIfBuildable(Player player, Street s) {
-
-		int count3colors = 0;
+		int count3colors = 0; 
 		int count2colors = 0;
 
 		for (Field field : Board.getFields()) {
-
 			if (field instanceof Street) {
 				if (((Street) field).getOwner() == player) {
 
 					if (((Street) field).getColor().equals("purple") || ((Street) field).getColor().equals("blue")) {
 						count2colors++;
-
 					}
-
+					
 					else if (((Street) field).getColor().equals(s.getColor())) {
 						count3colors++;
 
 					}
-
 				}
 			}
+		}
+		
 			if (count3colors == 3 || count2colors == 2) {
 				s.setBuildable(true);
-			}
-
-		}
+				buildProperty(player, s);	
+				}
+		
 		return s.isBuildable();
 
 	}
