@@ -194,11 +194,14 @@ public class ChanceController {
 
 
 	public void recreateIfEmpty(){
+		
 		if(deck.getDeck().isEmpty()){
 			deck.createDeck();
-			System.out.println("Recreated");
+			deck.getDeck().remove(17);
+			deck.getDeck().remove(17);
+			deck.shuffleDeck();
 		}
 		
 	}
-
+	
 }
