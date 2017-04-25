@@ -29,6 +29,19 @@ public class Player {
 
 
 	}
+	//Constructor for a player object loaded from the database.
+	public Player(int playerID, String playerName, int fortune, boolean immunity, int totalAssets, int ownedFerries, int ownedBreweries, int jailRounds, int jailToken, int currentPosition){
+		this.playerID = playerID;
+		this.playerName = playerName;
+		this.fortune = fortune;
+		this.immunity = immunity;
+		this.totalAssets = totalAssets;
+		this.ownedFerries = ownedFerries;
+		this.ownedBreweries = ownedBreweries;
+		this.jailRounds = jailRounds;
+		this.jailToken = jailToken;
+		this.currentPosition = currentPosition;
+	}
 
 	// used to get the amount of jailTokens held by a player.
 		public int getJailToken() {

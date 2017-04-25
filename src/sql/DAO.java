@@ -7,7 +7,7 @@ public interface DAO {
 
 	Player getPlayer (int playerID) throws SQLException;
 	
-	void getField(int playerID) throws SQLException;
+	void getOwnable(int playerID) throws SQLException;
 	
 	void getChanceDeck(int cardID) throws SQLException;	
 }
