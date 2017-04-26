@@ -13,20 +13,19 @@ import mainControllers.MUI;
 public class OwnableController{
 	
 	Ownable o;
-	StreetController sc;
+	
 	public OwnableController(Ownable o){
 		this.o = o;
-		this.sc = new StreetController((Street) o);
+		
 		
 	}
 	
 	public void landOnOwnable(Player player) {
 		
-		if(o.getOwner() == player && o instanceof Street){
-			sc.checkIfBuildable(player, (Street) o);
-			
-		}
-		
+//		if(o.getOwner() == player && o instanceof Street){
+//			sc.checkIfBuildable(player);
+//			
+//		}
 		
 		if (o.getOwner() != null && o.getOwner() != player) {
 			payRent(player);

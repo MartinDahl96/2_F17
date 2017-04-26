@@ -57,7 +57,7 @@ public class StreetController {
 	}
 	
 
-	public void buildProperty(Player player, Street s) {
+	public void buildProperty(Player player) {
 
 		if (s.isBuildable() == true && player.getFortune() > s.getBuildPrice()) {
 			boolean choice = MUI.getTwoButtons(
@@ -81,7 +81,9 @@ public class StreetController {
 		}
 	}
 
-	public boolean checkIfBuildable(Player player, Street s) {
+	public boolean checkIfBuildable(Player player) {
+		
+		if(s.getOwner() == player){
 		int count3colors = 0; 
 		int count2colors = 0;
 
@@ -103,10 +105,12 @@ public class StreetController {
 		
 			if (count3colors == 3 || count2colors == 2) {
 				s.setBuildable(true);
-				buildProperty(player, s);	
+				buildProperty(player);	
 				}
 		
-		return s.isBuildable();
+		
 
 	}
+		return s.isBuildable();
+}
 }

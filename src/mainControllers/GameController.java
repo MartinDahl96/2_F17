@@ -1,5 +1,6 @@
 package mainControllers;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
@@ -21,7 +22,10 @@ public class GameController {
 	private Board board = new Board();
 	private boolean noWinner = false;
 	private int bankruptPlayers = 0;
-	private JailController jailControle = new JailController(null);
+	private JailController jailControle = new JailController();
+	private StreetController streetControle = new StreetController(null);	
+	private PropertyController propertyControle = new PropertyController();
+	private StartController startControle = new StartController(null);
 
 	public void startGame() {
 		createPlayers();
@@ -90,7 +94,7 @@ public class GameController {
 	public void throwDice(int i) {
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-		players.get(i).setCurrentPosition(cup.getCupValue());
+		players.get(i).setCurrentPosition(1);
 
 		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
 		board.landOnField(players.get(i));
@@ -161,7 +165,7 @@ public class GameController {
 
 	
 	public void setCars(int i) {
-		cars.add(new Car.Builder().typeCar().primaryColor(MUI.carColor(i + 1)).build());
+		cars.add(new Car.Builder().typeCar().primaryColor(MUI.carColor(i + 1)).secondaryColor(Color.white).build());
 		GUI.addPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), cars.get(i));
 		MUI.setCarOnStart(players.get(i), players.get(i).getplayerName());
 	}

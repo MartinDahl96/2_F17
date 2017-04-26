@@ -27,10 +27,7 @@ public class Ferry extends Ownable {
 	 * getRent method for ferry-fields. returns the rent which depends on the
 	 * amount of ferries owned by the player.
 	 */
-	@Override
-	
-	
-	
+
 	public int getRent() {
 		
 		if(super.isPawned == true){

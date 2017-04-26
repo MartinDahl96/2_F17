@@ -13,6 +13,10 @@ public class JailController {
 	
 	public JailController(Jail j){
 		this.j = j;
+		
+	}
+	
+	public JailController(){
 		this.cup = new Cup();
 		
 	}

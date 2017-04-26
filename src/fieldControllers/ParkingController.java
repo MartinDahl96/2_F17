@@ -33,7 +33,9 @@ public class ParkingController {
 	
 	public void deactivateImmunity(Player player){
 		
+		if(player.getCurrentPosition() != 21){
 		player.setImmunity(false);
+		
+		}
 	}
-
 }

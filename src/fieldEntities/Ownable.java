@@ -102,8 +102,7 @@ public abstract class Ownable extends Field {
 	
 	public void landOnField(Player player){
 		o.landOnOwnable(player);
-		
-		
+
 	}
 	
 	

@@ -14,6 +14,7 @@ public class Chance extends Field {
 	 */
 	
 	ChanceController c;
+	
 	public Chance(int fieldID, String fieldName, String fieldInfo) {
 		super(fieldID, fieldName, fieldInfo);
 		this.c = new ChanceController(this);

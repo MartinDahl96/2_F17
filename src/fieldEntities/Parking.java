@@ -21,7 +21,7 @@ public class Parking extends Field {
 
 	@Override
 	public void landOnField(Player player) {
-		// TODO Auto-generated method stub
+		p.activateImmunity(player);
 		
 	}
 
