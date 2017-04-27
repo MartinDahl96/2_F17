@@ -57,7 +57,7 @@ public class JailController {
 	public void rollDice(Player player) {
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-		if (cup.getFaceValue1() == cup.getFaceValue2()) {
+		if (cup.getFaceValue1() == cup.getFaceValue2() ) {
 			MUI.showMessage("De er en fri mand!");
 			player.setJailRounds(0);
 		}
@@ -67,14 +67,9 @@ public class JailController {
 			
 			MUI.showMessage("Desværre, De er fortsat i fængsel! - Turen går videre");
 			player.setJailRounds(player.getJailRounds()-1);
-			
-			
+	
 		}
-			
-			
-			
-			
-			}
+	}
 		
 
 	public void useJailToken(Player player) {

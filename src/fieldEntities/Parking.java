@@ -1,29 +1,32 @@
 package fieldEntities;
 
-//Parking Class
-
 import entities.Player;
 import fieldControllers.ParkingController;
 
 public class Parking extends Field {
 	
-	ParkingController p;
+	private ParkingController p;
+	private int parkingBonus;
 
 	/**
 	 * Constructor of the Parking-field.
 	 * @param fieldName used as the name of the field.
 	 * @param fieldInfo used to give information about the field.
 	 */
-	public Parking(int fieldID, String fieldName, String fieldInfo) {
+	public Parking(int fieldID, String fieldName, String fieldInfo, int parkingBonus) {
 		super(fieldID, fieldName, fieldInfo);
 		this.p = new ParkingController(this);
+		this.parkingBonus = parkingBonus;
+	}
+	
+	public int getParkingBonus() {
+		return this.parkingBonus;
 	}
 
 	@Override
 	public void landOnField(Player player) {
-		p.activateImmunity(player);
+		p.landOnParking(player);
 		
 	}
-
-
+	
 }

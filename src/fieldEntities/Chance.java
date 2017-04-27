@@ -22,8 +22,7 @@ public class Chance extends Field {
 
 	@Override
 	public void landOnField(Player player) {
-		
 		c.landOnChance(player);
+		
+		}
 	}
-
-}

@@ -14,7 +14,7 @@ public class StartController {
 		
 	}
 	
-	public void grantStartBonus(Player player){  
+	public static void grantStartBonus(Player player){  
 		
 		if(player.getCurrentPosition() < player.getPrevPosition()){
 			player.setFortune(s.getStartBonus());

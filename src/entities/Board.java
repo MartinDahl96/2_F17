@@ -93,7 +93,7 @@ public class Board {
 				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
 				 
 				//Parking
-				boardFields.add(new Parking(s.parseInt(s.poll()),s.poll(),s.poll()));
+				boardFields.add(new Parking(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll())));
 				 
 				//Trianglen
 				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
@@ -160,7 +160,14 @@ public class Board {
 	}
 	
 	public void landOnField(Player player) {
-		boardFields.get(player.getCurrentPosition()).landOnField(player);
+		int playerPosition = player.getCurrentPosition();
+		
+		boardFields.get(playerPosition).landOnField(player);
+		
+		if(player.getCurrentPosition() != playerPosition){
+			landOnField(player);
+		}
+	
 	}
 
 }
