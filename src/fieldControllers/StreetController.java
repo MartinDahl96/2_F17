@@ -10,6 +10,13 @@ import mainControllers.MUI;
 
 public class StreetController {
 	
+	Street s;
+	
+	public StreetController(Street s){
+		this.s = s;
+		
+	}
+	
 	public void sellBuilding(Player player) {
 
 		String input = MUI.getUserString("Indtast feltnummer, hvor De ønsker at sælge en bygning");
