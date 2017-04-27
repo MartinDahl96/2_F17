@@ -1,10 +1,17 @@
 package fieldControllers;
 
 import entities.Player;
+import fieldEntities.Parking;
 import mainControllers.MUI;
 
 public class ParkingController {
 	
+	Parking p;
+	
+	public ParkingController(Parking p){
+		this.p = p;
+		
+	}
 	
 
 	public  void landOnParking(Player player) {

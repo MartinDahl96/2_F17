@@ -7,8 +7,17 @@ import fieldEntities.Jail;
 import mainControllers.MUI;
 
 public class JailController {
+	
+	Jail j;
+	Cup cup;
+	
+	public JailController(Jail j){
+		this.j = j;
+		this.cup = new Cup();
+		
+	}
 
-	public void landOnJail(Player player, Jail j) {
+	public void landOnJail(Player player) {
 
 		if (player.getCurrentPosition() == 31) {
 			player.changePosition(11);
@@ -27,8 +36,8 @@ public class JailController {
 
 		switch (choice) {
 		case 1:
-			Cup cup = new Cup();
-			rollDice(player, cup);
+		
+			rollDice(player);
 			break;
 		case 2:
 			useJailToken(player);
@@ -41,7 +50,7 @@ public class JailController {
 
 	}
 
-	public void rollDice(Player player, Cup cup) {
+	public void rollDice(Player player) {
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 		if (cup.getFaceValue1() == cup.getFaceValue2()) {

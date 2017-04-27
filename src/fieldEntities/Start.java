@@ -3,12 +3,14 @@ package fieldEntities;
 //Start class
 
 import entities.Player;
+import fieldControllers.StartController;
 
 public class Start extends Field {
 
 	// Attributes
 
 	private int startBonus;
+	private StartController s;
 
 	/**
 	 * A constructor for the Start field, used to create a Tax object
@@ -24,6 +26,7 @@ public class Start extends Field {
 	public Start(int fieldID, String fieldName, String fieldInfo, int startBonus) {
 		super(fieldID, fieldName, fieldInfo);
 		this.startBonus = startBonus;
+		this.s = new StartController(this);
 
 	}
 
@@ -34,5 +37,11 @@ public class Start extends Field {
 	/**
 	 * toString method
 	 */
+
+	@Override
+	public void landOnField(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
