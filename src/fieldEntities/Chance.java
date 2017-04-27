@@ -14,6 +14,7 @@ public class Chance extends Field {
 	 */
 	
 	ChanceController c;
+	
 	public Chance(int fieldID, String fieldName, String fieldInfo) {
 		super(fieldID, fieldName, fieldInfo);
 		this.c = new ChanceController(this);
@@ -21,8 +22,7 @@ public class Chance extends Field {
 
 	@Override
 	public void landOnField(Player player) {
-		
 		c.landOnChance(player);
+		
+		}
 	}
-
-}

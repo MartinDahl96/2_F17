@@ -11,9 +11,7 @@ public abstract class Ownable extends Field {
 	protected boolean isPawned; // mortgage
 	private int mortgage;
 	private OwnableController o;
-
 	
-
 	/*
 	 * Constructor for an ownable field.
 	 */
@@ -99,11 +97,10 @@ public abstract class Ownable extends Field {
 		player.setFortune(-this.price / 2);
 		this.isPawned = false;
 	}
-	
+		
 	public void landOnField(Player player){
 		o.landOnOwnable(player);
-		
-		
+
 	}
 	
 	
