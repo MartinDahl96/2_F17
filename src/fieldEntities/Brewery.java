@@ -26,7 +26,7 @@ public class Brewery extends Ownable {
 	@Override
 	public int getRent() {
 		
-		if(super.isPawned == true){
+		if(super.isPawned){
 			return 0;
 		}
 		
@@ -43,9 +43,7 @@ public class Brewery extends Ownable {
 		}
 		
 		return this.multiplier;
-	}
-
-	
+	}	
 	
 }
 

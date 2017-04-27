@@ -1,5 +1,7 @@
 package fieldEntities;
 
+import java.util.Scanner;
+
 //Start class
 
 import entities.Player;
@@ -29,6 +31,10 @@ public class Start extends Field {
 		this.s = new StartController(this);
 
 	}
+	
+	public int getStartBonus(){
+		return this.startBonus;
+	}
 
 	@Override
 	public String toString() {
@@ -40,7 +46,7 @@ public class Start extends Field {
 
 	@Override
 	public void landOnField(Player player) {
-		// TODO Auto-generated method stub
+		s.landOnStart(player);
 		
 	}
 
