@@ -1,5 +1,6 @@
 package fieldEntities;
 
+import entities.Player;
 
 public abstract class Field {
 
@@ -48,6 +49,9 @@ public abstract class Field {
 	public String getFieldInfo() {
 		return this.fieldInfo;
 	}
+	
+	
+	public abstract void landOnField(Player player);
 
 	@Override
 	public String toString() {

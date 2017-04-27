@@ -1,6 +1,7 @@
 package fieldEntities;
 
 import entities.Cup;
+import entities.Player;
 
 public class Brewery extends Ownable {
 	//Attributes
@@ -43,6 +44,8 @@ public class Brewery extends Ownable {
 		
 		return this.multiplier;
 	}
+
+	
 	
 }
 

@@ -3,8 +3,11 @@ package fieldEntities;
 //Parking Class
 
 import entities.Player;
+import fieldControllers.ParkingController;
 
 public class Parking extends Field {
+	
+	ParkingController p;
 
 	/**
 	 * Constructor of the Parking-field.
@@ -13,7 +16,13 @@ public class Parking extends Field {
 	 */
 	public Parking(int fieldID, String fieldName, String fieldInfo) {
 		super(fieldID, fieldName, fieldInfo);
+		this.p = new ParkingController(this);
+	}
 
+	@Override
+	public void landOnField(Player player) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -1,25 +1,23 @@
 package fieldControllers;
 
-//ChanceController class
 
-import entities.Board;
-import desktop_resources.GUI;
 import entities.ChanceCard;
 import entities.ChanceDeck;
 import entities.Player;
 import fieldEntities.Chance;
-import fieldEntities.Ferry;
-import fieldEntities.Ownable;
 import mainControllers.GameController;
 import mainControllers.MUI;
 
 public class ChanceController {
 	
+	private ChanceDeck deck;
+	
+	public ChanceController(Chance c){
+		this.deck = new ChanceDeck();
 		
-	private ChanceDeck deck = new ChanceDeck();
+	}
 	
-	
-	public void landOnChance(Player player, Chance c){
+	public void landOnChance(Player player){
 		
 		drawCard(player);
 		
@@ -192,8 +190,9 @@ public class ChanceController {
 		
 	}
 
-
 	public void recreateIfEmpty(){
+		
+		
 		
 		if(deck.getDeck().isEmpty()){
 			deck.createDeck();
