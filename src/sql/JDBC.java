@@ -4,8 +4,10 @@ import java.sql.*;
 
 import entities.Board;
 import entities.Player;
+import fieldControllers.ChanceController;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
+import mainControllers.GameController;
 
 public class JDBC implements DTO, DAO{
 	
@@ -37,7 +39,6 @@ public class JDBC implements DTO, DAO{
 			                "  FOREIGN KEY (`PlayerID`) REFERENCES " + DBname + ".Player(PlayerID),\n" ;
 			String DBOwnable =
 					"CREATE TABLE $DBname.Ownable (\n" +
-							"  PlayerID INT(1) NOT NULL,\n" +
 							"  fieldID INT(2), \n" +
 							"  Owner INT(1),\n" +
 							"  FOREIGN KEY (`Owner`) REFERENCES " + DBname + ".Player(PlayerID),\n" +
@@ -52,14 +53,19 @@ public class JDBC implements DTO, DAO{
 							"  StackLoc INT(2), \n" +
 							"  PRIMARY KEY (`CardID`))";
 			
-		/**	         
+	
+			
+			
+			
+			
+			/**	         
 			
 			DBPlayer = DBPlayer.replace("$DBname", DBname);
 			DBField = DBField.replace("$DBname", DBname);
 			DBOwnable = DBOwnable.replace("$DBname", DBname);
 			
 		*/
-			stmt = con.createStatement();;
+			//stmt = con.createStatement();;
 			prepstmt = con.prepareStatement(DBPlayer);
 			prepstmt.execute();
 			prepstmt = con.prepareStatement(DBField);
@@ -71,8 +77,9 @@ public class JDBC implements DTO, DAO{
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
 		} finally {
-			stmt.close();
-			prepstmt.close();}
+			//stmt.close();
+			prepstmt.close();
+			}
 	}
 	
 	
@@ -141,34 +148,6 @@ public class JDBC implements DTO, DAO{
 			prepstmt.close();}
 		}
 	
-public void jailTokenCounter() throws SQLException{
-	
-};
-
-
-	public static void main(String[] args) throws Exception {
-		// connection data
-
-		Statement stmt = null;
-		String HOST = "localhost";
-		int PORT = 3306;
-		String DATABASE = "Matador";
-		String USERNAME = "root";
-		String PASSWORD = "1234";
-
-		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
-		Connection conn = DriverManager.getConnection(url, USERNAME, PASSWORD);
-		System.out.println(conn.getMetaData().getDatabaseProductName());
-
-		
-		
-	
-		
-		
-	}
-
-
 	@Override
 	public Player getPlayer(int playerID) throws SQLException {
 		String query = "SELECT * FROM $DBname.Player WHERE playerID = ?;";
@@ -268,7 +247,7 @@ public void jailTokenCounter() throws SQLException{
 
 	@Override
 	public void removePlayer(int playerID) throws SQLException {
-		String updateField = "DELETE * FROM $DBname.Field WHERE Owner = ?;";
+		String updateField = "DELETE * FROM $DBname.Ownable WHERE Owner = ?;";
 		String updatePlayer = "DELETE * FROM $DBname.Player WHERE playerID = ?;";
 				
 		try{
@@ -293,7 +272,7 @@ public void jailTokenCounter() throws SQLException{
 
 	@Override
 	public void updatePlayer(int playerID) throws SQLException {
-		Player p = null;
+		Player p = GameController.getPlayer(playerID);
 		String updatePlayer = "INSERT INTO $DBname.Player (playerID,playerName, fortune, immunity, totalAssets, ownedFerries, ownedBreweries, jailRounds, jailToken, currentPosition)"
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?)\n" +
 				"ON DUPLICATE KEY UPDATE playerID = VALUES(playerID), playerName = VALUES(playerName), fortune = VALUES(fortune), immunity = VALUES(immunity), totalAssets = VALUES(totalAssets)," +
@@ -326,15 +305,59 @@ public void jailTokenCounter() throws SQLException{
 
 
 	@Override
-	public void updateField(int playerID) throws SQLException {
-		String updateField = "INSERT INTO $DBname.Field";
+	public void updateOwnable(int playerID) throws SQLException {
+		String updateOwnable = "INSERT INTO $DBname.Ownable (fieldID, Owner, Pawned) VALUES (?,?,?,?) \n " +
+							"ON DUPLICATE KEY UPDATE fieldID = VALUES(fieldID), Owner = VALUES(Owner), Pawned = VALUES(Pawned)";
+		try{
+			updateOwnable = updateOwnable.replace("$DBname", DBname);
+			prepstmt = con.prepareStatement(updateOwnable);
+			for (int i = 0; i < 41; i++){
+				if (Board.getFields().get(i) instanceof Ownable){
+					if (((Ownable) Board.getFields().get(i)).getOwner() == GameController.getPlayer(playerID));
+						prepstmt.setInt(1, i);
+						prepstmt.setInt(2, playerID);
+						
+							if (Board.getFields().get(i) instanceof Street){
+								prepstmt.setInt(3, ((Street) Board.getFields().get(i)).getNumOfBuildings());
+							}
+							
+							else {
+								prepstmt.setInt(3, 0);
+							}
+							prepstmt.setBoolean(5, ((Street) Board.getFields().get(i)).isPawned());
+							prepstmt.executeUpdate();
+							
+					}
+				}
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		} finally{
+			prepstmt.close();
+		}
+		
+		
+		
 		
 	}
 
-
 	@Override
 	public void updateChanceDeck(int cardID) throws SQLException {
-		// TODO Auto-generated method stub
+		String updateChanceDeck = "INSERT INTO $DBname.ChanceDeck (cardID, stackLoc) VALUES (?,?) \n" +
+									"ON DUPLICATE KEY UPDATE cardID = VALUES(cardID), stackLoc = VALUES(stackLoc)";
+		
+//		try{
+//			prepstmt = con.prepareStatement(updateChanceDeck);
+//			
+//			for (int i)
+//				
+//			}
+//			
+//		} catch(SQLException e){
+//			e.printStackTrace();
+//		}finally {
+//			prepstmt.close();
+//		}
 		
 	}
 }

@@ -21,7 +21,7 @@ public class TaxController {
 		
 		
 		if (player.getCurrentPosition() == 5) {
-			boolean choice = MUI.getTwoButtons("4000kr eller 10% af dit lort", "4000", "10% af mit lort");
+			boolean choice = MUI.getTwoButtons("4000 kr eller 10 % af din beholdning", "4000", "10 % af din beholdning");
 			if (choice == true) {
 				player.setFortune(-t.getFixedTax());
 

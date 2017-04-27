@@ -8,7 +8,7 @@ public interface DTO {
 	
 	void updatePlayer(int playerID) throws SQLException;
 	
-	void updateField(int playerID) throws SQLException;
+	void updateOwnable(int playerID) throws SQLException;
 	
 	void updateChanceDeck(int cardID) throws SQLException;
 	
