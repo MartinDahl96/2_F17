@@ -21,17 +21,7 @@ public class GameController {
 	private Board board = new Board();
 	private boolean noWinner = false;
 	private int bankruptPlayers = 0;
-
-	/*------------------------- Subcontrollers -------------------------*/
-	private ChanceController chanceControle = new ChanceController();
-	private OwnableController ownControle = new OwnableController();
-	private ParkingController parkControle = new ParkingController();
-	private TaxController taxControle = new TaxController();
-	private JailController jailControle = new JailController();
-	private StartController startControle = new StartController();
-	private PropertyController propertyControle = new PropertyController();
-	private StreetController streetControle = new StreetController();
-	/*------------------------- Subcontrollers -------------------------*/
+	private JailController jailControle = new JailController(null);
 
 	public void startGame() {
 		createPlayers();
@@ -103,53 +93,53 @@ public class GameController {
 		players.get(i).setCurrentPosition(cup.getCupValue());
 
 		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
-		landOnField(i);
+		board.landOnField(players.get(i));
 		startControle.grantStartBonus(players.get(i)); // grants the player startBonus if he landed on/passed the start field
 		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
 	}
 
 	
-	public void landOnField(int i) {
-
-		MUI.moveCar(players.get(i).getCurrentPosition(), players.get(i).getplayerName());
-		/*LOGIC OF THE FOLLOWING IF-STATEMENTES: If the current field, is and instance of X, then excecute landOnx */
-
-		int currentField = players.get(i).getCurrentPosition();
-
-		if (Board.getFields().get(currentField) instanceof Chance) {
-			chanceControle.landOnChance(players.get(i), (Chance) Board.getFields().get(currentField));
-			/* The following if-statement ensures, that if the player's position is changed by a chanceCard, then then landOnField (new field), is executed again */
-			if (players.get(i).getCurrentPosition() != currentField) {
-				landOnField(i);
-			}
-		}
-
-		if (Board.getFields().get(currentField) instanceof Ownable) {
-			ownControle.landOnOwnable(players.get(i), (Ownable) Board.getFields().get(currentField));
-
-		}
-
-		if ((Board.getFields().get(currentField) instanceof Parking)) {
-			parkControle.landOnParking(players.get(i));
-		}
-
-		if (Board.getFields().get(currentField) instanceof Tax) {
-			
-			taxControle.landOnTax(players.get(i), (Tax) Board.getFields().get(currentField));
-
-		}
-
-		if (Board.getFields().get(currentField) instanceof Jail) {
-			jailControle.landOnJail(players.get(i), (Jail) Board.getFields().get(currentField));
-			
-		}
-
-		 /* The following if statement ensures that if a player no longer is on the Parking field, then he loses his immunity */
-		if (!(Board.getFields().get(currentField) instanceof Parking)) {
-			parkControle.deactivateImmunity(players.get(i));
-		}
-
-	}
+//	public void landOnField(int i) {
+//
+//		MUI.moveCar(players.get(i).getCurrentPosition(), players.get(i).getplayerName());
+//		/*LOGIC OF THE FOLLOWING IF-STATEMENTES: If the current field, is and instance of X, then excecute landOnx */
+//
+//		int currentField = players.get(i).getCurrentPosition();
+//
+//		if (Board.getFields().get(currentField) instanceof Chance) {
+//			chanceControle.landOnChance(players.get(i), (Chance) Board.getFields().get(currentField));
+//			/* The following if-statement ensures, that if the player's position is changed by a chanceCard, then then landOnField (new field), is executed again */
+//			if (players.get(i).getCurrentPosition() != currentField) {
+//				landOnField(i);
+//			}
+//		}
+//
+//		if (Board.getFields().get(currentField) instanceof Ownable) {
+//			ownControle.landOnOwnable(players.get(i), (Ownable) Board.getFields().get(currentField));
+//
+//		}
+//
+//		if ((Board.getFields().get(currentField) instanceof Parking)) {
+//			parkControle.landOnParking(players.get(i));
+//		}
+//
+//		if (Board.getFields().get(currentField) instanceof Tax) {
+//			
+//			taxControle.landOnTax(players.get(i), (Tax) Board.getFields().get(currentField));
+//
+//		}
+//
+//		if (Board.getFields().get(currentField) instanceof Jail) {
+//			jailControle.landOnJail(players.get(i), (Jail) Board.getFields().get(currentField));
+//			
+//		}
+//
+//		 /* The following if statement ensures that if a player no longer is on the Parking field, then he loses his immunity */
+//		if (!(Board.getFields().get(currentField) instanceof Parking)) {
+//			parkControle.deactivateImmunity(players.get(i));
+//		}
+//
+//	}
 
 	
 	public void createPlayers() {

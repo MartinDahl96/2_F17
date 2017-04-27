@@ -83,37 +83,7 @@ public class Street extends Ownable {
 		this.numOfBuildings += num;
 	}
 
-	public boolean buildable(Player player) {
-
-		int tempCounter3 = 0;
-		int tempCounter2 = 0;
-
-		for (Field field : Board.getFields()) {
-
-			if (((Ownable) field).getOwner() == player) {
-
-				if (((Street) field).getColor() == "purple" || ((Street) field).getColor() == "blue") {
-					tempCounter2++;
-
-				}
-
-				else if (((Street) field).getColor() == this.color) {
-					tempCounter3++;
-
-				}
-
-			}
-
-			if (tempCounter3 == 3 || tempCounter2 == 2) {
-				this.buildable = true;
-			}
-
-		}
-		return buildable;
-
-	}
-
-
+	
 	/**
 	 * Gets and returns the rent for the player to pay the owner of the street
 	 * field
@@ -179,5 +149,7 @@ public class Street extends Ownable {
 	public boolean isBuildable(){
 		return buildable;
 	}
+	
+	
 	
 }
