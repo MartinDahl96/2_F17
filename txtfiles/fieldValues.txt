@@ -18,7 +18,7 @@
 18,Prøv lykken,Træk et chancekort,
 19,Hellerupvej,Hellerupvej,3600,300,1400,4000,11000,15000,19000,2000,grey,
 20,Strandvej,Strandvej,4000,350,1600,4400,12000,16000,20000,2000,grey,
-21,Parkering,De er immun på dette felt. De modtager kr. 2000,
+21,Parkering,De er immun på dette felt. De modtager kr. 2000,2000,
 22,Trianglen,Trianglen,4400,350,1800,5000,14000,17500,21000,3000,red,	
 23,Prøv lykken,Træk et chancekort,
 24,Østerbrogade,Østerbrogade,4400,350,1800,5000,14000,17500,21000,3000,red,

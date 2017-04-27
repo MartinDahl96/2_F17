@@ -5,6 +5,7 @@ import entities.ChanceCard;
 import entities.ChanceDeck;
 import entities.Player;
 import fieldEntities.Chance;
+import fieldEntities.Ferry;
 import mainControllers.GameController;
 import mainControllers.MUI;
 
@@ -103,6 +104,8 @@ public class ChanceController {
 			if(player.getCurrentPosition() > ferryField3 && player.getCurrentPosition() < ferryField4){
 				player.changePosition(ferryField4);
 			}	
+			
+			Ferry.setDoubleRent(true);
 			break;
 			
 		case 16:
@@ -123,6 +126,8 @@ public class ChanceController {
 			if(player.getCurrentPosition() > ferryFieldd3 && player.getCurrentPosition() < ferryFieldd4){
 				player.changePosition(ferryFieldd4);
 			}	
+			
+			Ferry.setDoubleRent(true);
 			break;
 			
 		case 17:
@@ -188,6 +193,7 @@ public class ChanceController {
 		
 		}
 		
+		MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
 	}
 
 	public void recreateIfEmpty(){
