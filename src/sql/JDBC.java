@@ -346,18 +346,25 @@ public class JDBC implements DTO, DAO{
 		String updateChanceDeck = "INSERT INTO $DBname.ChanceDeck (cardID, stackLoc) VALUES (?,?) \n" +
 									"ON DUPLICATE KEY UPDATE cardID = VALUES(cardID), stackLoc = VALUES(stackLoc)";
 		
-//		try{
-//			prepstmt = con.prepareStatement(updateChanceDeck);
-//			
-//			for (int i)
-//				
-//			}
-//			
-//		} catch(SQLException e){
-//			e.printStackTrace();
-//		}finally {
-//			prepstmt.close();
-//		}
+		try{
+			prepstmt = con.prepareStatement(updateChanceDeck);
+			
+			
+			
+				
+			
+				
+			
+		
+				
+				
+			
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			prepstmt.close();
+		}
 		
 	}
 }
