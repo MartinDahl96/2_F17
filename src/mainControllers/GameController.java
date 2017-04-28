@@ -140,6 +140,10 @@ public class GameController {
 		return players;
 	}
 	
+	public static Player getPlayer(int playerID){
+		return players.get(playerID);
+	}
+	
 	public void checkForWinner(int i) {
 			if(bankruptPlayers == players.size()-1){
 				noWinner = true;
