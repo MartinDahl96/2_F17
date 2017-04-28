@@ -1,9 +1,11 @@
 package mainControllers;
 
 import java.awt.Color;
+import java.io.IOException;
 
 import desktop_resources.GUI;
 import entities.Player;
+import inputHandlers.Text;
 
 //Methods
 
@@ -14,7 +16,9 @@ import entities.Player;
  */
 
 public class MUI {
-
+	private Text file = new Text("txtfiles/mainControllerText.txt");
+	private String[] textList;
+	
 	public static boolean getTwoButtons(String msg, String trueButton, String falseButton) {
 
 		return GUI.getUserLeftButtonPressed(msg, trueButton, falseButton);
@@ -95,7 +99,6 @@ public class MUI {
 	}
 
 	public static String nameValidation(String msg) {
-
 		String s;
 
 		do {

@@ -1,24 +1,30 @@
 package fieldControllers;
 
+import java.io.IOException;
+
 import desktop_resources.GUI;
 import entities.Board;
 import entities.Player;
 import fieldEntities.Field;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
+import inputHandlers.Text;
 import mainControllers.MUI;
 
 //The idea of this class is, it being responsible for buying/selling property (houses), and maybe also pawning
 
-
-
-
 public class PropertyController {
-	
+	private Text file = new Text("txtfiles/fieldControllerText.txt");
+	private String[] textList;
 	
 	public void sellProperty (Player player) {
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		boolean check = false;
-		String input = MUI.getUserString("Indtast feltnummer som De ønsker at sælge");
+		String input = MUI.getUserString(textList[24]);
 		int fieldNumber = Integer.parseInt(input);
 
 		for (Field f : Board.getFields()) {
@@ -38,7 +44,7 @@ public class PropertyController {
 							MUI.SetHouses(fieldNumber, ((Street) f).getNumOfBuildings());
 							((Ownable) f).setOwner(null);
 							
-							MUI.showMessage("De har solgt felt " + fieldNumber+", og bygningerne herpå (for kr. 500 stykket) \n I ALT: "+soldFor);
+							MUI.showMessage(textList[25] + fieldNumber+textList[26]+soldFor);
 							check = true;
 							System.out.println(player.getFortune());
 
@@ -49,7 +55,7 @@ public class PropertyController {
 						else {
 							((Ownable) f).setOwner(null);
 							player.setFortune(((Ownable) f).getPrice());
-							MUI.showMessage("De har solgt felt " + fieldNumber+"\n I ALT: "+ ((Ownable) f).getPrice()*(3/4));
+							MUI.showMessage(textList[27] + fieldNumber+textList[28]+ ((Ownable) f).getPrice()*(3/4));
 							check = true;
 						}
 
@@ -69,8 +75,13 @@ public class PropertyController {
 	}
 	
 	public void pawnProperty(Player player){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		String input = MUI.getUserString("Indtast feltnummer som De ønsker at pantsætte");
+		String input = MUI.getUserString(textList[29]);
 		int fieldNumber = Integer.parseInt(input);
 
 		for (Field f : Board.getFields()) {
@@ -93,8 +104,8 @@ public class PropertyController {
 						if (((Ownable) f).isPawned() == true) {
 							
 							player.setFortune(((Ownable) f).getMortgage());
-							MUI.showMessage("De har pantsat felt " + fieldNumber);
-							GUI.setDescriptionText(fieldNumber, ((Ownable) f).getFieldInfo() + " (PANTSAT)");
+							MUI.showMessage(textList[30] + fieldNumber);
+							GUI.setDescriptionText(fieldNumber, ((Ownable) f).getFieldInfo() + textList[31]);
 						}
 						
 					}
@@ -108,8 +119,13 @@ public class PropertyController {
 	}
 	
 	public void unPawnProperty(Player player){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	
-		String input = MUI.getUserString("Indtast feltnummer som De ønsker at pantsætte");
+		String input = MUI.getUserString(textList[32]);
 		int fieldNumber = Integer.parseInt(input);
 
 		for (Field f : Board.getFields()) {
@@ -123,7 +139,7 @@ public class PropertyController {
 						if (((Ownable) f).isPawned() == true) {
 							((Ownable) f).setPawned(false);
 							player.setFortune(-((Ownable) f).getMortgage()*(11/10));
-							MUI.showMessage("De har købt den pantsatte grund " + fieldNumber);
+							MUI.showMessage(textList[33] + fieldNumber);
 							GUI.setDescriptionText(fieldNumber, ((Ownable) f).getFieldInfo());
 						}
 						
