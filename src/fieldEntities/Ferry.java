@@ -1,5 +1,7 @@
 package fieldEntities;
 
+import entities.Player;
+
 public class Ferry extends Ownable {
 
 	// Attributes
@@ -7,7 +9,7 @@ public class Ferry extends Ownable {
 	private int rent_2;
 	private int rent_3;
 	private int rent_4;
-	private boolean doubleRent; //used when player picks a specific ChanceCard
+	private static boolean doubleRent; //used when player picks a specific ChanceCard
 	
 	/*
 	 * Constructor created for a Ferry field.
@@ -19,22 +21,34 @@ public class Ferry extends Ownable {
 		this.rent_2 = rent_2;
 		this.rent_3 = rent_3;
 		this.rent_4 = rent_4;
+		Ferry.doubleRent = false;
 	}
 
 	/**
 	 * getRent method for ferry-fields. returns the rent which depends on the
 	 * amount of ferries owned by the player.
 	 */
-	@Override
-	
-	
-	
+
 	public int getRent() {
 		
-		if(super.isPawned == true){
-			return 0;
+		if(super.isPawned) return 0;
+		
+		else if(doubleRent){
+			
+			switch (super.getOwner().getOwnedFerries()) {
+			case 1:
+				return this.rent_1*2;
+			case 2:
+				return this.rent_2*2;
+			case 3:
+				return this.rent_3*2;
+			case 4:
+				return this.rent_4*2;
+			default:
+				return -1;
+			}
 		}
-	
+		
 		else{
 
 			switch (super.getOwner().getOwnedFerries()) {
@@ -47,18 +61,20 @@ public class Ferry extends Ownable {
 			case 4:
 				return this.rent_4;
 			default:
-				return 0;
+				return -1;
 
 				}
+		
 			}
+		
 		}
 	
-//	public void setDoublePayment(boolean b){
-//		this.doubleRent = b;
-//		if(doublePayment == true){
-//			getRent()*2;
-//		}
-//		
-//		
-//	}
-	}
+
+	public static void setDoubleRent(boolean b){
+		doubleRent = b;
+	
+		
+ 	}
+
+	
+}

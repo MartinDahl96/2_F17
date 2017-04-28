@@ -4,6 +4,7 @@ package fieldEntities;
 
 import desktop_resources.GUI;
 import entities.Player;
+import fieldControllers.TaxController;
 import mainControllers.MUI;
 
 public class Tax extends Field {
@@ -13,6 +14,7 @@ public class Tax extends Field {
 	 * which withdraws a percentage of the players account. The integer fixedTax
 	 * is used to withdraw a predetermined amount of the players account.
 	 */
+	private TaxController tc;
 	private double revenueTax;
 	private int fixedTax;
 
@@ -32,6 +34,7 @@ public class Tax extends Field {
 		super(fieldID, fieldName, fieldInfo);
 		this.fixedTax = fixedTax;
 		this.revenueTax = revenueTax;
+		this.tc = new TaxController(this);
 	}
 
 	/**
@@ -72,11 +75,9 @@ public class Tax extends Field {
 		return fixedTax;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see entities.Field#landOnField(entities.Player)
-	 */
+	public void landOnField(Player player){
+		tc.landOnTax(player);
+		
+	}
 	
-
 }

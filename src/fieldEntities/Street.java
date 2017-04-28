@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import entities.Board;
 import entities.Player;
+import fieldControllers.StreetController;
 import mainControllers.MUI;
 
 public class Street extends Ownable {
@@ -19,6 +20,7 @@ public class Street extends Ownable {
 	private int buildPrice;
 	private String color;
 	private boolean buildable;
+	private StreetController sc;
 
 	/**
 	 * Street constructor. Used to create a Street object.
@@ -62,6 +64,7 @@ public class Street extends Ownable {
 		this.buildPrice = buildPrice;
 		this.color = color;
 		this.buildable = false;
+		this.sc = new StreetController(this);
 
 	}
 
@@ -83,37 +86,7 @@ public class Street extends Ownable {
 		this.numOfBuildings += num;
 	}
 
-	public boolean buildable(Player player) {
-
-		int tempCounter3 = 0;
-		int tempCounter2 = 0;
-
-		for (Field field : Board.getFields()) {
-
-			if (((Ownable) field).getOwner() == player) {
-
-				if (((Street) field).getColor() == "purple" || ((Street) field).getColor() == "blue") {
-					tempCounter2++;
-
-				}
-
-				else if (((Street) field).getColor() == this.color) {
-					tempCounter3++;
-
-				}
-
-			}
-
-			if (tempCounter3 == 3 || tempCounter2 == 2) {
-				this.buildable = true;
-			}
-
-		}
-		return buildable;
-
-	}
-
-
+	
 	/**
 	 * Gets and returns the rent for the player to pay the owner of the street
 	 * field
@@ -178,6 +151,12 @@ public class Street extends Ownable {
 	
 	public boolean isBuildable(){
 		return buildable;
+	}
+	
+	public void landOnField(Player player){
+		sc.checkIfBuildable(player);
+		super.landOnField(player);
+		
 	}
 	
 }

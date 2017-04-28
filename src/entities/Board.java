@@ -1,12 +1,13 @@
 package entities;
 import java.io.*;
-import java.util.*;
 
+import java.util.*;
 import fieldEntities.Brewery;
 import fieldEntities.Chance;
 import fieldEntities.Ferry;
 import fieldEntities.Field;
 import fieldEntities.Jail;
+import fieldEntities.Ownable;
 import fieldEntities.Parking;
 import fieldEntities.Start;
 import fieldEntities.Street;
@@ -26,6 +27,8 @@ public class Board {
 
 	
 	public void createBoard(){
+		
+		
 		
 				boardFields.add(null);
 				
@@ -90,7 +93,7 @@ public class Board {
 				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
 				 
 				//Parking
-				boardFields.add(new Parking(s.parseInt(s.poll()),s.poll(),s.poll()));
+				boardFields.add(new Parking(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll())));
 				 
 				//Trianglen
 				boardFields.add(new Street(s.parseInt(s.poll()),s.poll(),s.poll(),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()),s.parseInt(s.poll()), s.poll()));
@@ -156,6 +159,16 @@ public class Board {
 		return boardFields;
 	}
 	
+	public void landOnField(Player player) {
+		int playerPosition = player.getCurrentPosition();
+		
+		boardFields.get(playerPosition).landOnField(player);
+		
+		if(player.getCurrentPosition() != playerPosition){
+			landOnField(player);
+		}
+	
+	}
 
 }
 

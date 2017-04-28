@@ -1,5 +1,6 @@
 package mainControllers;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
@@ -21,17 +22,9 @@ public class GameController {
 	private Board board = new Board();
 	private boolean noWinner = false;
 	private int bankruptPlayers = 0;
-
-	/*------------------------- Subcontrollers -------------------------*/
-	private ChanceController chanceControle = new ChanceController();
-	private OwnableController ownControle = new OwnableController();
-	private ParkingController parkControle = new ParkingController();
-	private TaxController taxControle = new TaxController();
 	private JailController jailControle = new JailController();
-	private StartController startControle = new StartController();
+	private StreetController streetControle = new StreetController(null);	
 	private PropertyController propertyControle = new PropertyController();
-	private StreetController streetControle = new StreetController();
-	/*------------------------- Subcontrollers -------------------------*/
 
 	public void startGame() {
 		createPlayers();
@@ -46,20 +39,18 @@ public class GameController {
 			for (int i = 0; i < players.size(); i++) {
 				checkForWinner(i);
 				
-				if (players.get(i).getJailRounds() > 0){
+				if(players.get(i).getJailRounds() == 0) {
+					playerOptions(i);
+					
+				}
+				
+				else if (players.get(i).getJailRounds() > 0) {
 					jailControle.jailMenu(players.get(i));
 				}
 				
-				if(players.get(i).getJailRounds() == 0) {
-					playerOptions(i);
-				}
-				
 				checkPlayerLost(i);
-				MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
 				
 			}
-			
-			
 		}
 	}
 
@@ -100,54 +91,22 @@ public class GameController {
 	public void throwDice(int i) {
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-		players.get(i).setCurrentPosition(cup.getCupValue());
+		players.get(i).setCurrentPosition(1);
+		playOnBoard(i);
 
-		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
-		landOnField(i);
-		startControle.grantStartBonus(players.get(i)); // grants the player startBonus if he landed on/passed the start field
-		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
+		
 	}
 
 	
-	public void landOnField(int i) {
-
-		MUI.moveCar(players.get(i).getCurrentPosition(), players.get(i).getplayerName());
-		/*LOGIC OF THE FOLLOWING IF-STATEMENTES: If the current field, is and instance of X, then excecute landOnx */
-
-		int currentField = players.get(i).getCurrentPosition();
-
-		if (Board.getFields().get(currentField) instanceof Chance) {
-			chanceControle.landOnChance(players.get(i), (Chance) Board.getFields().get(currentField));
-			/* The following if-statement ensures, that if the player's position is changed by a chanceCard, then then landOnField (new field), is executed again */
-			if (players.get(i).getCurrentPosition() != currentField) {
-				landOnField(i);
-			}
-		}
-
-		if (Board.getFields().get(currentField) instanceof Ownable) {
-			ownControle.landOnOwnable(players.get(i), (Ownable) Board.getFields().get(currentField));
-
-		}
-
-		if ((Board.getFields().get(currentField) instanceof Parking)) {
-			parkControle.landOnParking(players.get(i));
-		}
-
-		if (Board.getFields().get(currentField) instanceof Tax) {
-			
-			taxControle.landOnTax(players.get(i), (Tax) Board.getFields().get(currentField));
-
-		}
-
-		if (Board.getFields().get(currentField) instanceof Jail) {
-			jailControle.landOnJail(players.get(i), (Jail) Board.getFields().get(currentField));
-			
-		}
-
-		 /* The following if statement ensures that if a player no longer is on the Parking field, then he loses his immunity */
-		if (!(Board.getFields().get(currentField) instanceof Parking)) {
-			parkControle.deactivateImmunity(players.get(i));
-		}
+	public void playOnBoard(int i) {
+	
+		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
+		
+		board.landOnField(players.get(i));
+		StartController.grantStartBonus(players.get(i)); 		// grants the player startBonus if he landed on/passed the start field
+		ParkingController.deactivateImmunity(players.get(i));	// deactivates immunnity if the current field is not a parking field
+		
+		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
 
 	}
 
@@ -171,7 +130,7 @@ public class GameController {
 
 	
 	public void setCars(int i) {
-		cars.add(new Car.Builder().typeCar().primaryColor(MUI.carColor(i + 1)).build());
+		cars.add(new Car.Builder().typeCar().primaryColor(MUI.carColor(i + 1)).secondaryColor(Color.white).build());
 		GUI.addPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), cars.get(i));
 		MUI.setCarOnStart(players.get(i), players.get(i).getplayerName());
 	}

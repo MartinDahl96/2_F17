@@ -1,6 +1,7 @@
 package fieldEntities;
 
 import entities.Player;
+import fieldControllers.OwnableController;
 
 public abstract class Ownable extends Field {
 
@@ -9,9 +10,8 @@ public abstract class Ownable extends Field {
 	private Player owner;
 	protected boolean isPawned; // mortgage
 	private int mortgage;
-
+	private OwnableController o;
 	
-
 	/*
 	 * Constructor for an ownable field.
 	 */
@@ -20,6 +20,7 @@ public abstract class Ownable extends Field {
 		this.price = price;
 		this.isPawned = false;
 		this.mortgage = this.getPrice() / 2;
+		this.o = new OwnableController(this);
 	}
 
 	/**
@@ -96,6 +97,12 @@ public abstract class Ownable extends Field {
 		player.setFortune(-this.price / 2);
 		this.isPawned = false;
 	}
+		
+	public void landOnField(Player player){
+		o.landOnOwnable(player);
+
+	}
+	
 	
 	
 
