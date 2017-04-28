@@ -346,9 +346,11 @@ public class JDBC implements DTO, DAO{
 		String updateChanceDeck = "INSERT INTO $DBname.ChanceDeck (cardID, stackLoc) VALUES (?,?) \n" +
 									"ON DUPLICATE KEY UPDATE cardID = VALUES(cardID), stackLoc = VALUES(stackLoc)";
 		
+		ChanceController c = new ChanceController(null); //SE HER
+		c.getDeck().size();
+		
 		try{
 			prepstmt = con.prepareStatement(updateChanceDeck);
-			
 			
 			
 				

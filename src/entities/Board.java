@@ -155,7 +155,7 @@ public class Board {
 			
 			}
 	
-	public static ArrayList<Field> getFields(){
+	public static ArrayList<Field> getFields() {
 		return boardFields;
 	}
 	

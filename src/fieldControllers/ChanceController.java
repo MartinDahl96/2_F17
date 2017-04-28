@@ -1,6 +1,8 @@
 package fieldControllers;
 
 
+import java.util.Stack;
+
 import entities.ChanceCard;
 import entities.ChanceDeck;
 import entities.Player;
@@ -11,7 +13,7 @@ import mainControllers.MUI;
 
 public class ChanceController {
 	
-	public ChanceDeck deck;
+	private ChanceDeck deck;
 	
 	public ChanceController(Chance c){
 		this.deck = new ChanceDeck();
@@ -209,8 +211,10 @@ public class ChanceController {
 		
 	}
 	
-	public int sizeOfStack(){
-		return deck.getDeck().size();
+	public Stack<ChanceCard> getDeck(){
+		return this.deck.getDeck();
 	}
+	
+	
 	
 }
