@@ -11,7 +11,7 @@ import mainControllers.MUI;
 
 public class ChanceController {
 	
-	private ChanceDeck deck;
+	public ChanceDeck deck;
 	
 	public ChanceController(Chance c){
 		this.deck = new ChanceDeck();
@@ -207,6 +207,10 @@ public class ChanceController {
 			deck.shuffleDeck();
 		}
 		
+	}
+	
+	public int sizeOfStack(){
+		return deck.getDeck().size();
 	}
 	
 }
