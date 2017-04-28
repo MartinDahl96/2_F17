@@ -1,15 +1,20 @@
 package fieldControllers;
 
+import java.io.IOException;
+
 import desktop_resources.GUI;
 import entities.Cup;
 import entities.Player;
 import fieldEntities.Jail;
+import inputHandlers.Text;
 import mainControllers.MUI;
 
 public class JailController {
 	
 	Jail j;
 	Cup cup;
+	private Text file = new Text("txtfiles/fieldControllerText.txt");
+	private String[] textList;
 	
 	public JailController(Jail j){
 		this.j = j;
@@ -34,8 +39,13 @@ public class JailController {
 	}
 
 	public void jailMenu(Player player) {
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		String options = GUI.getUserSelection(player.getplayerName() + ", du er i fængsel, vælg ét af følgende: \t [Fængselsrunder tilbage: "+player.getJailRounds()+"]","1. Slå to ens", "2. Benyt benådningskort", "3. Betal kr. 1000");
+		String options = GUI.getUserSelection(player.getplayerName() + textList[1]+player.getJailRounds()+textList[2],textList[3], textList[4], textList[5]);
 		int choice = Integer.parseInt(options.substring(0, 1));
 
 		switch (choice) {
@@ -55,17 +65,22 @@ public class JailController {
 	}
 
 	public void rollDice(Player player) {
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 		if (cup.getFaceValue1() == cup.getFaceValue2() ) {
-			MUI.showMessage("De er en fri mand!");
+			MUI.showMessage(textList[6]);
 			player.setJailRounds(0);
 		}
 
 		else {
 			
 			
-			MUI.showMessage("Desværre, De er fortsat i fængsel! - Turen går videre");
+			MUI.showMessage(textList[7]);
 			player.setJailRounds(player.getJailRounds()-1);
 	
 		}
@@ -75,12 +90,12 @@ public class JailController {
 	public void useJailToken(Player player) {
 		if (player.getJailToken() > 0) {
 			player.setJailToken(-1);
-			MUI.showMessage("De er en fri mand!");
+			MUI.showMessage(textList[6]);
 			player.setJailRounds(0);
 		}
 
 		else {
-			MUI.showMessage("Desværre, De har ingen benådningskort - prøv noget andet");
+			MUI.showMessage(textList[8]);
 			jailMenu(player);
 		}
 
@@ -90,12 +105,12 @@ public class JailController {
 		int bail = 1000;
 		if (player.getFortune() >= bail) {
 			player.setFortune(-bail);
-			MUI.showMessage("Du er en fri mand!");
+			MUI.showMessage(textList[6]);
 			player.setJailRounds(0);
 		}
 
 		else {
-			MUI.showMessage("Desværre, De har ikke penge nok - prøv noget andet");
+			MUI.showMessage(textList[9]);
 			jailMenu(player);
 		}
 
