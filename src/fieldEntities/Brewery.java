@@ -1,4 +1,4 @@
-package fieldEntities;
+ package fieldEntities;
 
 import entities.Cup;
 import entities.Player;

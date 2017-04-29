@@ -202,7 +202,7 @@ public class GUIcontroller {
 	public static void main(String[] args){
 		GUIcontroller g = new GUIcontroller();
 		Board b = new Board();
-		g.createGUIFields(b.getFields());
+		g.createGUIFields(Board.getFields());
 	}
 
 	
