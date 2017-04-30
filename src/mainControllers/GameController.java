@@ -2,6 +2,7 @@ package mainControllers;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
@@ -15,6 +16,7 @@ import fieldEntities.Ownable;
 import fieldEntities.Parking;
 import fieldEntities.Tax;
 import inputHandlers.Text;
+import sql.JDBC;
 
 public class GameController {
 
@@ -27,6 +29,7 @@ public class GameController {
 	private JailController jailControle = new JailController();
 	private StreetController streetControle = new StreetController(null);	
 	private PropertyController propertyControle = new PropertyController();
+	private JDBC JDBC = new JDBC();
 	private Text file = new Text("txtfiles/mainControllerText.txt");
 	private String[] textList;
 	public void startGame() {
@@ -62,6 +65,11 @@ public class GameController {
 			textList = file.OpenFile();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} try {
+			JDBC.CreateDatabase();
+		}
+		catch (SQLException e){
+			e.printStackTrace();
 		}
 
 		String options = GUI.getUserSelection(players.get(i).getplayerName() + textList[0],textList[1], textList[2], textList[3], textList[4], textList[5],textList[6]);
@@ -89,8 +97,12 @@ public class GameController {
 			playerOptions(i);
 			break;
 		case 6:
+			try{
+				JDBC.saveGame(i);
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
 			System.exit(0);
-			// Save with database on this line
 			break;
 		}
 
