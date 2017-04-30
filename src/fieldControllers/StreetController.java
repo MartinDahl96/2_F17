@@ -1,39 +1,54 @@
 package fieldControllers;
 
+import java.io.IOException;
+
 import desktop_resources.GUI;
 import entities.Board;
 import entities.Player;
 import fieldEntities.Field;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
+import inputHandlers.Text;
 import mainControllers.MUI;
 
 public class StreetController {
 	
 	Street s;
+	private Text file = new Text("txtfiles/fieldControllerText.txt");
+	private String[] textList;
 	
 	public StreetController(Street s){
 		this.s = s;
 	}
 	
 	public void sellBuilding(Player player) {
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		String input = MUI.getUserString("Indtast feltnummer, hvor De ønsker at sælge en bygning.");
+		String input = MUI.getUserString(textList[35]);
 		Street field = ((Street) Board.getFields().get(Integer.parseInt(input)));
 
 		if (field.getOwner() == player) { 
 			if (field.getNumOfBuildings() == 5) sellHotel(player, field);
 			else sellHouse(player, field);}
 		else {
-			MUI.showMessage("De har ingen bygninger på dette felt!");
+			MUI.showMessage(textList[36]);
 		}
 	}
 	
 	
 	public void buildProperty(Player player) {
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		if (s.isBuildable() && player.getFortune() > s.getBuildPrice()) {
-			boolean choice = MUI.getTwoButtons(player.getplayerName() + ", vil De bygge på dette felt for kr. " + s.getBuildPrice() + "?", "Ja","Nej");
+			boolean choice = MUI.getTwoButtons(player.getplayerName() + textList[37] + s.getBuildPrice() + textList[38], textList[39],textList[40]);
 			if (choice) {
 				player.setFortune(-s.getBuildPrice());
 				s.setNumOfBuildings(1);
@@ -46,14 +61,18 @@ public class StreetController {
 	
 
 	public boolean checkIfBuildable(Player player) {
-		
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		int count2colors = 0;
 		int count3colors = 0;
 		
 		if(s.getOwner() == player){
 		for (Field field : Board.getFields()) {
 			if (field instanceof Street && ((Street) field).getOwner() == player) {
-				if (((Street) field).getColor().equals("purple") || ((Street) field).getColor().equals("blue")) count2colors++;
+				if (((Street) field).getColor().equals(textList[41]) || ((Street) field).getColor().equals(textList[42])) count2colors++;
 				else if (((Street) field).getColor().equals(s.getColor())) count3colors++;
 				}
 			}
@@ -70,34 +89,53 @@ public class StreetController {
 	
 	
 	public void sellHouse(Player p, Street s){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		s.setNumOfBuildings(-1);
 		MUI.SetHouses(s.getFieldID(), s.getNumOfBuildings());
 		p.setFortune(s.getBuildPrice() / 2);
-		MUI.showMessage("Et hus på denne grund er solgt");
+		MUI.showMessage(textList[43]);
 		
 	}
 	
 	
 	public void sellHotel(Player p, Street s){
-		
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		s.setNumOfBuildings(-1);
 		MUI.setHotel(s.getFieldID(), false);
 		p.setFortune(s.getBuildPrice() / 2);
-		MUI.showMessage("Deres hotel er solgt, De står tilbage med 4 huse");
+		MUI.showMessage(textList[44]);
 		
 	}
 	
 	
 	public void buildHouse(Player p){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		MUI.SetHouses(p.getCurrentPosition(), s.getNumOfBuildings());
-		MUI.showMessage("De har bygget hus, dermed er lejen steget");
+		MUI.showMessage(textList[45]);
 	}
 	
 	
 	public void buildHotel(Player p){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		MUI.setHotel(p.getCurrentPosition(), true);
-		MUI.showMessage("De har bygget et hotel, dermed er lejen steget markant");
+		MUI.showMessage(textList[46]);
 	}
 	
 }
