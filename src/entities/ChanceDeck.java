@@ -66,6 +66,10 @@ public class ChanceDeck {
 		return deck;
 	}
 	
+	public ChanceCard getCard(int cardID){
+		return deck.get(cardID);
+	}
+	
 
 	
 
