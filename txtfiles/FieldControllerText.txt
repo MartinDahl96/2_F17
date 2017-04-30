@@ -1,36 +1,47 @@
-, Læs kortet:
-, du er i fængsel, vælg ét af følgende: \t [Fængselsrunder tilbage: 
-player.getJailRounds()+"]","1. Slå to ens", "2. Benyt benådningskort", "3. Betal kr. 1000
+, LÃ¦s kortet:
+, du er i fÃ¦ngsel, vÃ¦lg Ã©t af fÃ¸lgende: [FÃ¦ngselsrunder tilbage: 
+]
+1. SlÃ¥ to ens
+2. Benyt benÃ¥dningskort
+3. Betal kr. 1000
 De er en fri mand!
-Desværre, De er fortsat i fængsel! - Turen går videre
-Slå med terninger for at beregne lejen
+DesvÃ¦rre, De er fortsat i fÃ¦ngsel! - Turen gÃ¥r videre
+DesvÃ¦rre, De har ingen benÃ¥dningskort - prÃ¸v noget andet
+DesvÃ¦rre, De har ikke penge nok - prÃ¸v noget andet
  har betalt leje til 
-Du har ikke penge nok, til at købe dette uejede felt!
-Vil du købe denne grund?", "Ja", "Nej
-Du har købt denne grund: 
- for kr. 
-De er immun på dette felt (Deres formue kan ikke skades af andre spillere), og De modtager kr. 2000
-Indtast feltnummer som De ønsker at sælge
-De har solgt felt
-, og bygningerne herpå (for kr. 500 stykket) \n I ALT: 
-De har solgt felt 
-\n I ALT: 
-Indtast feltnummer som De ønsker at pantsætte
-De har pantsat felt 
- (PANTSAT)
-Indtast feltnummer som De ønsker at pantsætte
-De har købt den pantsatte grund 
-Indtast feltnummer, hvor De ønsker at sælge en bygning
-Deres hotel er solgt, De står tilbage med 4 huse
-Et hus på denne grund er solgt
-De har ingen bygninger på dette felt!
-, vil De bygge på dette felt for kr. 
-?
+Vil du kÃ¸be denne grund?
 Ja
 Nej
-De har bygget et hotel, dermed er lejen steget markant
-De har bygget hus, dermed er lejen steget
-4000 kr eller 10% af din beholdning
+Du har ikke penge nok, til at kÃ¸be dette uejede felt!
+Du har kÃ¸bt denne grund: 
+ for kr. 
+SlÃ¥ med terninger for at beregne lejen
+Betal leje kr. 
+4000 kr eller 10 % af din beholdning
 4000
 10 % af din beholdning
 Betal skat: kr. 2000
+De er immun pÃ¥ dette felt (Deres formue kan ikke skades af andre spillere), og De modtager kr. 2000
+Indtast feltnummer som De Ã¸nsker at sÃ¦lge
+De har solgt felt 
+, og bygningerne herpÃ¥ (for kr. 500 stykket) I ALT: 
+De har solgt felt 
+I ALT:
+Indtast feltnummer som De Ã¸nsker at pantsÃ¦tte
+De har pantsat felt 
+ (PANTSAT)
+Indtast feltnummer som De Ã¸nsker at pantsÃ¦tte
+De har kÃ¸bt den pantsatte grund 
+, De modtager kr. 4000 ved at lande pÃ¥ startfeltet, eller passere det.
+Indtast feltnummer, hvor De Ã¸nsker at sÃ¦lge en bygning.
+De har ingen bygninger pÃ¥ dette felt!
+, vil De bygge pÃ¥ dette felt for kr. 
+?
+Ja
+Nej
+purple
+blue
+Et hus pÃ¥ denne grund er solgt
+Deres hotel er solgt, De stÃ¥r tilbage med 4 huse
+De har bygget hus, dermed er lejen steget
+De har bygget et hotel, dermed er lejen steget markant
