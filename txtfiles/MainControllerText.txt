@@ -1,4 +1,4 @@
-vælg dit næste træk:
+ vælg dit næste træk:
 1. Kast med terningerne
 2. Sælg hus/hotel
 3. Sælg grund
@@ -12,9 +12,9 @@ Velkommen til Matador, vælg antal spillere:
 5
 6
 INDTAST NAVN PÅ SPILLER 
-(Skal indeholde bogstaver, og være mellem 2-10 karaktere lang)
+ (Skal indeholde bogstaver, og være mellem 2-10 karaktere lang)
 ! Din formue består af kr. 
-vandt spillet!
+ vandt spillet!
 , De er gået bankerot og har dermed tabt!
 Pris: 
 Leje: 
