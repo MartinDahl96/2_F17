@@ -16,6 +16,9 @@ public class StreetController {
 		this.s = s;
 	}
 	
+	public StreetController(){
+	}
+	
 	public void sellBuilding(Player player) {
 		
 		String input = MUI.getUserString("Indtast feltnummer, hvor De ønsker at sælge en bygning.");
@@ -31,7 +34,8 @@ public class StreetController {
 	
 	
 	public void buildProperty(Player player) {
-
+		
+		checkIfBuildable(player);
 		if (s.isBuildable() && player.getFortune() > s.getBuildPrice()) {
 			boolean choice = MUI.getTwoButtons(player.getplayerName() + ", vil De bygge på dette felt for kr. " + s.getBuildPrice() + "?", "Ja","Nej");
 			if (choice) {
@@ -61,7 +65,7 @@ public class StreetController {
 		
 		if (count3colors == 3 || count2colors == 2) {
 			s.setBuildable(true);
-			buildProperty(player);
+			
 		}
 		
 		return s.isBuildable();
