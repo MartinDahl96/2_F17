@@ -4,8 +4,6 @@ import java.sql.*;
 
 import entities.Board;
 import entities.Player;
-import entities.ChanceCard;
-import entities.ChanceDeck;
 import fieldControllers.ChanceController;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
@@ -14,11 +12,42 @@ import mainControllers.GameController;
 public class JDBC implements DTO, DAO{
 	
 	
-	private static Connection con;
+	private final String HOST ="jdbc:mysql:/localhost/";
+	private final int PORT = 3306;
+	private final String PASSWORD = "";
+	private Connection connection;
 	private PreparedStatement prepstmt;
 	private Statement stmt;
-	private String DBname = "";
+	private String DBname = "Matador";
+	private String USERNAME = "2_F17";
 	
+	
+	public JDBC() {
+        try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DBname;
+			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+    }
+	
+	public Connection getConnection(){
+		return connection;
+	}
+
+	public ResultSet doQuery(String query) throws SQLException{
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		return rs;
+	}
+	
+	public void doUpdate(String query) throws SQLException{
+		Statement stmt = connection.createStatement();
+		stmt.executeQuery(query);
+	}
+
 	public void CreateDatabase() throws SQLException {
 		
 		try {
@@ -67,13 +96,13 @@ public class JDBC implements DTO, DAO{
 			
 		*/
 			//stmt = con.createStatement();;
-			prepstmt = con.prepareStatement(DBPlayer);
+			prepstmt = connection.prepareStatement(DBPlayer);
 			prepstmt.execute();
-			prepstmt = con.prepareStatement(DBField);
+			prepstmt = connection.prepareStatement(DBField);
 			prepstmt.execute();
-			prepstmt = con.prepareStatement(DBOwnable);
+			prepstmt = connection.prepareStatement(DBOwnable);
 			prepstmt.execute();
-			prepstmt = con.prepareStatement(DBChanceDeck);
+			prepstmt = connection.prepareStatement(DBChanceDeck);
 			prepstmt.execute();
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
@@ -82,7 +111,6 @@ public class JDBC implements DTO, DAO{
 			prepstmt.close();
 			}
 	}
-	
 	
 	public void ResetDatabase() throws SQLException {
 		try {
@@ -130,18 +158,18 @@ public class JDBC implements DTO, DAO{
 			DBPlayer = DBPlayer.replace("$DBname", DBname);
 			DBField = DBField.replace("$DBname", DBname);
 			DBOwnable = DBOwnable.replace("$DBname", DBname);
-			stmt = con.createStatement();
+			stmt = connection.createStatement();
 			stmt.execute(dropField);
 			stmt.execute(dropPlayer);
 			stmt.execute(dropOwnable);
 			stmt.execute(dropChanceDeck);
-			prepstmt = con.prepareStatement(DBPlayer);
+			prepstmt = connection.prepareStatement(DBPlayer);
 			prepstmt.execute();
-			prepstmt = con.prepareStatement(DBField);
+			prepstmt = connection.prepareStatement(DBField);
 			prepstmt.execute();
-			prepstmt = con.prepareStatement(DBOwnable);
+			prepstmt = connection.prepareStatement(DBOwnable);
 			prepstmt.execute();
-			prepstmt = con.prepareStatement(DBChanceDeck);
+			prepstmt = connection.prepareStatement(DBChanceDeck);
 			prepstmt.execute();
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
@@ -149,7 +177,7 @@ public class JDBC implements DTO, DAO{
 			stmt.close();
 			prepstmt.close();}
 		}
-	
+	//load
 	@Override
 	public Player getPlayer(int playerID) throws SQLException {
 		String getPlayer = "SELECT * FROM $DBname.Player WHERE playerID = ?;";
@@ -158,7 +186,7 @@ public class JDBC implements DTO, DAO{
 		
 		try{
 			getPlayer = getPlayer.replace("$DBname", DBname);
-			prepstmt = con.prepareStatement(getPlayer);
+			prepstmt = connection.prepareStatement(getPlayer);
 			prepstmt.setInt(1, playerID);
 			rs = prepstmt.executeQuery();
 			if(rs.next()){
@@ -182,8 +210,7 @@ public class JDBC implements DTO, DAO{
 		
 		return player;
 	}
-
-
+	//load
 	@Override
 	public void getOwnable(int playerID) throws SQLException {
 		String getOwnable = "SELECT * FROM $DBname.Field WHERE playerID = ?;";
@@ -191,7 +218,7 @@ public class JDBC implements DTO, DAO{
 
 		try {
 			getOwnable.replace("$DBname", DBname);
-			prepstmt = con.prepareStatement(getOwnable);
+			prepstmt = connection.prepareStatement(getOwnable);
 			prepstmt.setInt(1, playerID);
 			rs = prepstmt.executeQuery();
 			int fieldID = rs.getInt("fieldID");
@@ -215,7 +242,7 @@ public class JDBC implements DTO, DAO{
 		}
 
 	}
-
+	//load
 	@Override
 	public void getChanceCard(int cardID) throws SQLException {
 		String getChanceCard = "SELECT * FROM $DBname.ChanceDeck WHERE cardID = ?;";
@@ -224,12 +251,13 @@ public class JDBC implements DTO, DAO{
 		
 		try{
 			getChanceCard.replace("$DBname", DBname);
-			prepstmt = con.prepareStatement(getChanceCard);
+			prepstmt = connection.prepareStatement(getChanceCard);
+			rs = prepstmt.executeQuery();
+			while (rs.next()){
 			prepstmt.setInt(1, cardID);
 			prepstmt.setString(2, cc.deck.getDeck().get(cardID).getCardText());
 			prepstmt.setInt(3, cc.deck.getDeck().get(cardID).getCardValue());
-			rs = prepstmt.executeQuery();
-			
+			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		} finally {
@@ -238,7 +266,6 @@ public class JDBC implements DTO, DAO{
 		
 	}
 
-
 	@Override
 	public void removePlayer(int playerID) throws SQLException {
 		String updateField = "DELETE * FROM $DBname.Ownable WHERE Owner = ?;";
@@ -246,12 +273,12 @@ public class JDBC implements DTO, DAO{
 				
 		try{
 			updateField.replace("$DBname", DBname);
-			prepstmt = con.prepareStatement(updateField);
+			prepstmt = connection.prepareStatement(updateField);
 			prepstmt.setInt(1, playerID);
 			prepstmt.executeUpdate();
 			
 			updatePlayer = updatePlayer.replace("$DBname", DBname);
-			prepstmt = con.prepareStatement(updatePlayer);
+			prepstmt = connection.prepareStatement(updatePlayer);
 			prepstmt.setInt(1, playerID);
 			prepstmt.executeUpdate();
 			
@@ -262,8 +289,7 @@ public class JDBC implements DTO, DAO{
 			prepstmt.close();
 		}
 	}
-
-
+	//save
 	@Override
 	public void updatePlayer(int playerID) throws SQLException {
 		Player p = GameController.getPlayer(playerID);
@@ -273,7 +299,7 @@ public class JDBC implements DTO, DAO{
 				+ "ownedFerries = VALUES(ownedFerries), ownedBreweries = VALUES(ownedBreweries), jailRounds = VALUES(jailRounds), jalToken = VALUES(jailToken), currentPosition = VALUES(currentPosition)";
 		try {
 			updatePlayer.replace("$DBname", DBname);
-			prepstmt = con.prepareStatement(updatePlayer);
+			prepstmt = connection.prepareStatement(updatePlayer);
 			prepstmt.setInt(1, p.getPlayerID());
 			prepstmt.setString(2, p.getplayerName());
 			prepstmt.setInt(3, p.getFortune());
@@ -294,15 +320,14 @@ public class JDBC implements DTO, DAO{
 		}
 
 	}
-
-
+	//save
 	@Override
 	public void updateOwnable(int playerID) throws SQLException {
 		String updateOwnable = "INSERT INTO $DBname.Ownable (fieldID, Owner, Pawned) VALUES (?,?,?,?) \n "
 				+ "ON DUPLICATE KEY UPDATE fieldID = VALUES(fieldID), Owner = VALUES(Owner), Pawned = VALUES(Pawned)";
 		try {
 			updateOwnable = updateOwnable.replace("$DBname", DBname);
-			prepstmt = con.prepareStatement(updateOwnable);
+			prepstmt = connection.prepareStatement(updateOwnable);
 			for (int i = 0; i < 41; i++) {
 				if (Board.getFields().get(i) instanceof Ownable) {
 					if (((Ownable) Board.getFields().get(i)).getOwner() == GameController.getPlayer(playerID))
@@ -330,7 +355,7 @@ public class JDBC implements DTO, DAO{
 		}
 
 	}
-
+	//save
 	@Override
 	public void updateChanceCard(int cardID, String cardText, int cardValue) throws SQLException {
 		String updateChanceCard = "INSERT INTO $DBname.ChanceDeck (cardID, cardText, cardValue) VALUES (?,?,?) \n" +
@@ -338,10 +363,9 @@ public class JDBC implements DTO, DAO{
 		ChanceController cc = new ChanceController(null);
 		try{
 			updateChanceCard.replace("$DBname", DBname);
-			prepstmt = con.prepareStatement(updateChanceCard);
-			
-
-			for (int i = 0 ; i <= cc.sizeOfStack() ; i++){
+			prepstmt = connection.prepareStatement(updateChanceCard);
+	
+			for (int i = 1 ; i <= cc.sizeOfStack() ; i++){
 				prepstmt.setInt(1, cc.deck.getDeck().get(i).getCardID());
 				prepstmt.setString(2, cc.deck.getDeck().get(i).getCardText());
 				prepstmt.setInt(3, cc.deck.getDeck().get(i).getCardValue());
@@ -354,8 +378,9 @@ public class JDBC implements DTO, DAO{
 		}
 		
 	}
-	
-	
-	
-	
+	//save
+	public void saveGame(int playerID) throws SQLException {
+		updatePlayer(playerID);
+		updateOwnable(playerID);
+		}
 }
