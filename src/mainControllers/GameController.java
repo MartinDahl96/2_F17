@@ -1,6 +1,7 @@
 package mainControllers;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
@@ -13,6 +14,7 @@ import fieldEntities.Jail;
 import fieldEntities.Ownable;
 import fieldEntities.Parking;
 import fieldEntities.Tax;
+import inputHandlers.Text;
 
 public class GameController {
 
@@ -25,7 +27,8 @@ public class GameController {
 	private JailController jailControle = new JailController();
 	private StreetController streetControle = new StreetController(null);	
 	private PropertyController propertyControle = new PropertyController();
-
+	private Text file = new Text("txtfiles/mainControllerText.txt");
+	private String[] textList;
 	public void startGame() {
 		createPlayers();
 		playerTurn();
@@ -55,8 +58,13 @@ public class GameController {
 	}
 
 	public void playerOptions(int i) {
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		String options = GUI.getUserSelection(players.get(i).getplayerName() + " vælg dit næste træk:","1. Kast med terningerne", "2. Sælg hus/hotel", "3. Sælg grund", "4. Pantsæt", "5. Køb pantsat tilbage","6. Afslut spil");
+		String options = GUI.getUserSelection(players.get(i).getplayerName() + textList[0],textList[1], textList[2], textList[3], textList[4], textList[5],textList[6]);
 		int choice = Integer.parseInt(options.substring(0, 1));
 		
 
@@ -112,8 +120,12 @@ public class GameController {
 
 	
 	public void createPlayers() {
-
-		int numOfPlayers = Integer.parseInt(MUI.setFiveButtons("Velkommen til Matador, vælg antal spillere:", "2", "3", "4", "5", "6"));
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int numOfPlayers = Integer.parseInt(MUI.setFiveButtons(textList[7], textList[8], textList[9], textList[10], textList[11], textList[12]));
 
 		for (int i = 0; i < numOfPlayers; i++) {
 			setPlayers(i);
@@ -124,8 +136,13 @@ public class GameController {
 
 	
 	public void setPlayers(int i) {
-		players.add(new Player(i, MUI.nameValidation("INDTAST NAVN PÅ SPILLER " + (i + 1) + " \n(Skal indeholde bogstaver, og være mellem 2-10 karaktere lang)")));
-		MUI.showMessage(players.get(i).getplayerName() + "! Din formue består af kr. " + players.get(i).getFortune());
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		players.add(new Player(i, MUI.nameValidation(textList[13] + (i + 1) + textList[14])));
+		MUI.showMessage(players.get(i).getplayerName() + textList[15] + players.get(i).getFortune());
 	}
 
 	
@@ -140,10 +157,19 @@ public class GameController {
 		return players;
 	}
 	
+	public static Player getPlayer(int playerID){
+		return players.get(playerID);
+	}
+	
 	public void checkForWinner(int i) {
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 			if(bankruptPlayers == players.size()-1){
 				noWinner = true;
-				MUI.showMessage(players.get(i).getplayerName()+" vandt spillet!");
+				MUI.showMessage(players.get(i).getplayerName()+textList[16]);
 				MUI.exitGame();
 			
 				
@@ -151,8 +177,13 @@ public class GameController {
 			}
 	
 	public void checkPlayerLost(int i){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		if(players.get(i).isBankRupt()){
-			MUI.showMessage(players.get(i).getplayerName() +", De er gået bankerot og har dermed tabt!");
+			MUI.showMessage(players.get(i).getplayerName() +textList[17]);
 			MUI.removeCar(players.get(i).getplayerName());
 			bankruptPlayers++;
 				
