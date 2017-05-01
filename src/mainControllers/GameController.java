@@ -122,11 +122,18 @@ public class GameController {
 	}
 	
 	public void throwDice(int i) {
+		
+		if(players.get(i).getFortune() > 0){
+			
+		
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 		players.get(i).setCurrentPosition(1);
 		playOnBoard(i);
-
+		}
+		else{
+			MUI.showMessage("Sælg noget lort");
+		}
 		
 	}
 
