@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.lang.*;
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
 import entities.Board;
@@ -29,12 +30,24 @@ public class GameController {
 	private JailController jailControle = new JailController();
 	private StreetController streetControle = new StreetController(null);	
 	private PropertyController propertyControle = new PropertyController();
+	private Connector Connector = new Connector();
 	private JDBC JDBC = new JDBC();
 	private Text file = new Text("txtfiles/mainControllerText.txt");
 	private String[] textList;
 	public void startGame() {
-		createPlayers();
-		playerTurn();
+		Boolean choice = MUI.getTwoButtons("Nyt spil bro?", "Ja", "Nej");
+		if (choice == true){
+			try{
+				
+			Connector.ResetDatabase();
+			createPlayers();
+			playerTurn();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		}
+		
+		
 
 	}
 
