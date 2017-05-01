@@ -1,4 +1,4 @@
- package mainControllers;
+package mainControllers;
 
 import java.awt.Color;
 import java.io.IOException;
