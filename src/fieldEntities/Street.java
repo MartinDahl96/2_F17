@@ -154,7 +154,7 @@ public class Street extends Ownable {
 	}
 	
 	public void landOnField(Player player){
-		sc.checkIfBuildable(player);
+		sc.buildProperty(player);
 		super.landOnField(player);
 		
 	}

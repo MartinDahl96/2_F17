@@ -4,7 +4,7 @@
 3. Sælg grund
 4. Pantsæt
 5. Køb pantsat tilbage
-6. Afslut spil
+6. Gem og afslut spil
 Velkommen til Matador, vælg antal spillere:
 2
 3

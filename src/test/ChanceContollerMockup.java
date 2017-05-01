@@ -1,24 +1,24 @@
-package fieldControllers;
-
+package test;
 
 import java.io.IOException;
 
 import entities.ChanceCard;
 import entities.ChanceDeck;
 import entities.Player;
+import fieldControllers.StartController;
 import fieldEntities.Chance;
 import fieldEntities.Ferry;
 import inputHandlers.Text;
 import mainControllers.GameController;
 import mainControllers.MUI;
 
-public class ChanceController {
+public class ChanceContollerMockup {
 	
 	public ChanceDeck deck;
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
 	
-	public ChanceController(Chance c){
+	public ChanceContollerMockup(Chance c){
 		this.deck = new ChanceDeck();
 		
 	}
@@ -35,13 +35,12 @@ public class ChanceController {
 			textList = file.OpenFile();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 		recreateIfEmpty();
 	
 		ChanceCard c = deck.getDeck().pop();
-		MUI.displayCard(c.getCardText());
-		MUI.showMessage(player.getplayerName()+textList[0]);
+//		MUI.displayCard(c.getCardText());
+//		MUI.showMessage(player.getplayerName()+textList[0]);
 		
 		
 		switch(c.getCardID()){
@@ -203,7 +202,7 @@ public class ChanceController {
 		
 		}
 		
-		MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
+//		MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
 	}
 
 	public void recreateIfEmpty(){
@@ -224,3 +223,4 @@ public class ChanceController {
 	}
 	
 }
+

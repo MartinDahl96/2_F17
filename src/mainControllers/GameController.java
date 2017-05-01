@@ -2,7 +2,9 @@ package mainControllers;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.lang.*;
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
 import entities.Board;
@@ -15,6 +17,10 @@ import fieldEntities.Ownable;
 import fieldEntities.Parking;
 import fieldEntities.Tax;
 import inputHandlers.Text;
+import sql.Connector;
+import sql.DAOimp;
+import sql.DTO;
+import sql.DTOimp;
 
 public class GameController {
 
@@ -27,14 +33,30 @@ public class GameController {
 	private JailController jailControle = new JailController();
 	private StreetController streetControle = new StreetController(null);	
 	private PropertyController propertyControle = new PropertyController();
+	private Connector Connector = new Connector();
+	private DAOimp DAOimp = new DAOimp();
+	private DTOimp DTOimp = new DTOimp();
 	private Text file = new Text("txtfiles/mainControllerText.txt");
 	private String[] textList;
 	public void startGame() {
-		createPlayers();
-		playerTurn();
+		Boolean choice = MUI.getTwoButtons("Nyt spil bro?", "Ja", "Nej");
+		if (choice == true){
+			try{
+		Connector.CreateDatabase();
+			createPlayers();
+			playerTurn();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		if(choice == false){
+		}}
+		
+		
 
 	}
 
+
+	
 	public void playerTurn() {
 
 		while (noWinner == false) {
@@ -61,6 +83,11 @@ public class GameController {
 		try {
 			textList = file.OpenFile();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} try {
+			Connector.CreateDatabase();
+		}
+		catch (SQLException e){
 			e.printStackTrace();
 		}
 
@@ -89,19 +116,30 @@ public class GameController {
 			playerOptions(i);
 			break;
 		case 6:
+			try{
+				DTOimp.saveGame(i);
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
 			System.exit(0);
-			// Save with database on this line
 			break;
 		}
 
 	}
 	
 	public void throwDice(int i) {
+		
+		if(players.get(i).getFortune() > 0){
+			
+		
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 		players.get(i).setCurrentPosition(1);
 		playOnBoard(i);
-
+		}
+		else{
+			MUI.showMessage("Sælg noget lort");
+		}
 		
 	}
 
@@ -130,6 +168,13 @@ public class GameController {
 		for (int i = 0; i < numOfPlayers; i++) {
 			setPlayers(i);
 			setCars(i);
+			
+			try {
+				Connector.CreateDatabase();
+				DTOimp.updatePlayer(i);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
