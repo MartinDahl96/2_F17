@@ -33,7 +33,7 @@ public class JailController {
 			player.setJailRounds(3);
 		}
 
-		if (player.getCurrentPosition() == 11) {
+		else if (player.getCurrentPosition() == 11) {
 			MUI.showMessage(j.getFieldInfo());
 		}
 	}
