@@ -17,7 +17,10 @@ import fieldEntities.Ownable;
 import fieldEntities.Parking;
 import fieldEntities.Tax;
 import inputHandlers.Text;
-import sql.JDBC;
+import sql.Connector;
+import sql.DAOimp;
+import sql.DTO;
+import sql.DTOimp;
 
 public class GameController {
 
@@ -31,26 +34,29 @@ public class GameController {
 	private StreetController streetControle = new StreetController(null);	
 	private PropertyController propertyControle = new PropertyController();
 	private Connector Connector = new Connector();
-	private JDBC JDBC = new JDBC();
+	private DAOimp DAOimp = new DAOimp();
+	private DTOimp DTOimp = new DTOimp();
 	private Text file = new Text("txtfiles/mainControllerText.txt");
 	private String[] textList;
 	public void startGame() {
 		Boolean choice = MUI.getTwoButtons("Nyt spil bro?", "Ja", "Nej");
 		if (choice == true){
 			try{
-				
-			Connector.ResetDatabase();
+		Connector.CreateDatabase();
 			createPlayers();
 			playerTurn();
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
-		}
+		if(choice == false){
+		}}
 		
 		
 
 	}
 
+
+	
 	public void playerTurn() {
 
 		while (noWinner == false) {
@@ -79,7 +85,7 @@ public class GameController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} try {
-			JDBC.CreateDatabase();
+			Connector.CreateDatabase();
 		}
 		catch (SQLException e){
 			e.printStackTrace();
@@ -111,7 +117,7 @@ public class GameController {
 			break;
 		case 6:
 			try{
-				JDBC.saveGame(i);
+				DTOimp.saveGame(i);
 			} catch (SQLException e){
 				e.printStackTrace();
 			}
@@ -155,6 +161,13 @@ public class GameController {
 		for (int i = 0; i < numOfPlayers; i++) {
 			setPlayers(i);
 			setCars(i);
+			
+			try {
+				Connector.CreateDatabase();
+				DTOimp.updatePlayer(i);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
