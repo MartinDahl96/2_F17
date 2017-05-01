@@ -23,13 +23,15 @@ public class JDBC implements DTO, DAO{
 	private String DBname = "matador";
 	private String USERNAME = "root";
 	
-	
-	
-	
 	public Connection getConnection(){
 		return connection;
 	}
-
+	
+	public int boolToInt(boolean b){
+		
+		return b ? 1 :0;
+	} 
+	
 	public ResultSet doQuery(String query) throws SQLException{
 		Statement stmt = connection.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
@@ -43,28 +45,22 @@ public class JDBC implements DTO, DAO{
 
 	public void CreateDatabase() throws SQLException {
 		
-		try {
-			final String PASSWORD = "1234";
-			final String USERNAME = "root";
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/";
-			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
-	
+		try {	
 			stmt = connection.createStatement();
 			
-			String DBCreate = "CREATE DATABASE matador";
+			String DBCreate = "CREATE DATABASE IF NOT EXISTS matador;";
 			
 			
 			String DBPlayer =
-					"CREATE TABLE matador.Player ( PlayerID INT(1) NOT NULL, playerName VARCHAR(20), fortune INT(7), immunity BIT(1),totalAssets INT(6), ownedFerries INT(1), ownedBreweries INT(1),jailRounds INT(1),jailtoken INT(1),currentPosition INT(2),PRIMARY KEY (PlayerID),UNIQUE INDEX PlayerID_UNIQUE (PlayerID ASC));";
+					"CREATE TABLE IF NOT EXISTS matador.Player ( PlayerID INT(1) NOT NULL, playerName VARCHAR(20), fortune INT(7), immunity BIT(1),totalAssets INT(6), ownedFerries INT(1), ownedBreweries INT(1),jailRounds INT(1),jailtoken INT(1),currentPosition INT(2),PRIMARY KEY (PlayerID),UNIQUE INDEX PlayerID_UNIQUE (PlayerID ASC));";
 			
 			String DBField =
-                    "CREATE TABLE matador.field (fieldID INT(2) NOT NULL,PlayerID INT(1) NOT NULL,PRIMARY KEY (fieldID),FOREIGN KEY (PlayerID) REFERENCES matador.Player(PlayerID));" ;
+                    "CREATE TABLE IF NOT EXISTS matador.field (fieldID INT(2) NOT NULL,PlayerID INT(1) NOT NULL,PRIMARY KEY (fieldID),FOREIGN KEY (PlayerID) REFERENCES matador.Player(PlayerID));" ;
 			String DBOwnable =
-					"CREATE TABLE matador.Ownable (PlayerID INT(1) NOT NULL,fieldID INT(2) NOT NULL,Owner INT(1),Houses INT(1) DEFAULT NULL,Pawned BIT(1),PRIMARY KEY (fieldID),FOREIGN KEY (Owner) REFERENCES matador.Player(PlayerID),UNIQUE INDEX fieldID_UNIQUE (FieldID ASC));";
+					"CREATE TABLE IF NOT EXISTS matador.Ownable (PlayerID INT(1) NOT NULL,fieldID INT(2) NOT NULL,Owner INT(1),Houses INT(1) DEFAULT NULL,Pawned BIT(1),PRIMARY KEY (fieldID),FOREIGN KEY (Owner) REFERENCES matador.Player(PlayerID),UNIQUE INDEX fieldID_UNIQUE (FieldID ASC));";
 			
 			String DBChanceDeck = 
-					"  CREATE TABLE matador.ChanceDeck (CardID INT(2) NOT NULL,CardText VARCHAR(150) NOT NULL,CardValue INT(5) NOT NULL,PRIMARY KEY (CardID));";
+					"  CREATE TABLE IF NOT EXISTS matador.ChanceDeck (CardID INT(2) NOT NULL,CardText VARCHAR(150) NOT NULL,CardValue INT(5) NOT NULL,PRIMARY KEY (CardID));";
 			
 			        
 			stmt.executeUpdate(DBCreate);
@@ -227,11 +223,11 @@ public class JDBC implements DTO, DAO{
 	@Override
 	public void updatePlayer(int playerID) throws SQLException {
 		Player p = GameController.getPlayer(playerID);
-		String updatePlayer = "INSERT INTO matador.Player (playerID, playerName, fortune, immunity, totalAssets, ownedFerries, ownedBreweries, jailRounds, jailToken, currentPosition VALUES (?,?,?,?,?,?,?,?,?,?)ON DUPLICATE KEY UPDATE playerID = VALUES(playerID), playerName = VALUES(playerName), fortune = VALUES(fortune), immunity = VALUES(immunity), totalAssets = VALUES(totalAssets),ownedFerries = VALUES(ownedFerries), ownedBreweries = VALUES(ownedBreweries), jailRounds = VALUES(jailRounds), jailToken = VALUES(jailToken), currentPosition = VALUES(currentPosition), ON DUPLICATE KEY UPDATE PlayerID = VALUES(PlayerID), playerName = VALUES(playerName), fortune = VALUES(fortune), immunity = VALUES(immunity), totalAssets = VALUES(totalAssets), ownedFerries =VALUES(ownedFerries), ownedBreweries = VALUES(ownedBreweries), jailRounds = VALUES(jailRounds), jailToken = VALUES(jailToken), currentPosition = VALUES(currentPosition));";
+	String updatePlayer = "INSERT INTO matador.Player (playerID, playerName, fortune, immunity, totalAssets, ownedFerries, ownedBreweries, jailRounds, jailToken, currentPosition) VALUES (?,?,?,?,?,?,?,?,?,?);";
+		
 		try {
-			
 			prepstmt = connection.prepareStatement(updatePlayer);
-			prepstmt.setInt(1, p.getPlayerID());
+			prepstmt.setInt(1, playerID);
 			prepstmt.setString(2, p.getplayerName());
 			prepstmt.setInt(3, p.getFortune());
 			prepstmt.setBoolean(4, p.getImmunity());
@@ -253,6 +249,7 @@ public class JDBC implements DTO, DAO{
 	@Override
 	public void updateOwnable(int playerID) throws SQLException {
 		String updateOwnable = "INSERT INTO matador.Ownable (PlayerID,fieldID, Owner, houses, Pawned VALUES (?,?,?,?,?), ON DUPLICATE KEY UPDATE PlayerID = VALUES(PlayerID), fieldID = VALUES(fieldID), Owner = VALUES(Owner),Houses = VALUES(Houses), Pawned = VALUES(Pawned));";
+		
 		try {
 			
 			prepstmt = connection.prepareStatement(updateOwnable);
@@ -270,7 +267,8 @@ public class JDBC implements DTO, DAO{
 					else {
 						prepstmt.setInt(3, 0);
 					}
-					prepstmt.setBit(5, ((Street) Board.getFields().get(i)).isPawned());
+					
+					prepstmt.setInt(5, boolToInt(((Ownable) Board.getFields().get(i)).isPawned()));
 					
 
 				}
@@ -311,4 +309,37 @@ public class JDBC implements DTO, DAO{
 		updatePlayer(playerID);
 		updateOwnable(playerID);
 		}
+	public void loadGame(int playerID)  throws SQLException {
+		getPlayer(playerID);
+		getOwnable(playerID);
+		
+	}
+	
+	public int playerCount() throws SQLException {
+
+		String playerCount = "SELECT * FROM matador.Player;";
+
+		ResultSet rs;
+		int count = 0;
+		try {
+			final String PASSWORD = "1234";
+			final String USERNAME = "root";
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost/";
+			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+			prepstmt = connection.prepareStatement(playerCount);
+			rs = prepstmt.executeQuery();
+			while (rs.next()) {
+				count++;
+			}
+
+		} catch (SQLException | NullPointerException e) {
+			e.printStackTrace();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	
+}
 }
