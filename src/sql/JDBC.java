@@ -1,7 +1,9 @@
 package sql;
 
-import java.sql.*;
+import java.util.jar.*;
 
+import java.sql.*;
+import java.lang.*;
 import entities.Board;
 import entities.Player;
 import fieldControllers.ChanceController;
@@ -12,21 +14,22 @@ import mainControllers.GameController;
 public class JDBC implements DTO, DAO{
 	
 	
-	private final String HOST ="jdbc:mysql:/localhost/";
-	private final int PORT = 3306;
-	private final String PASSWORD = "";
+//	private final String HOST ="localhost";
+//	private final int PORT = 3306;
+	private final String PASSWORD = "1234";
 	private Connection connection;
-	private PreparedStatement prepstmt;
-	private Statement stmt;
-	private String DBname = "Matador";
-	private String USERNAME = "2_F17";
+	private PreparedStatement prepstmt = null;
+	private Statement stmt = null;
+	private String DBname = "matador";
+	private String USERNAME = "root";
 	
 	
 	public JDBC() {
         try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DBname;
+			String url = "jdbc:mysql://localhost/";
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+			System.out.println(connection.getMetaData().getDatabaseProductName());
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -51,126 +54,89 @@ public class JDBC implements DTO, DAO{
 	public void CreateDatabase() throws SQLException {
 		
 		try {
+			stmt = connection.createStatement();
+			
+			String DBCreate = "CREATE DATABASE matador";
+			
+			
 			String DBPlayer =
-					"CREATE TABLE $DBname.Player (\n" +
-							"  PlayerID INT(1) NOT NULL,\n" +
-							"  Name VARCHAR(20),\n" +
-							"  Balance INT(7),\n" +
-							"  Position INT(2),\n" +
-							"  Jailtokens INT(1),\n" +
-							"  JailRounds INT(1),\n" +
-							"  PRIMARY KEY (`PlayerID`),\n" +
-							"  UNIQUE INDEX `PlayerID_UNIQUE` (`PlayerID` ASC));";
+					"CREATE TABLE matador.Player (" +
+							"  `PlayerID` INT(1) NOT NULL, " +
+							"  `Name` VARCHAR(20), Balance INT(7)," +
+							"  `Position` INT(2)," +
+							"  `Jailtokens` INT(1)," +
+							"  `JailRounds` INT(1)," +
+							"  `PRIMARY KEY` (`PlayerID`)," +
+							"  UNIQUE INDEX `PlayerID_UNIQUE` (PlayerID ASC));";
 			
 			String DBField =
-                    "CREATE TABLE $DBname.Field (\n" +
-			                "  fieldID INT(2) NOT NULL, \n" +
-                    		"  PlayerID INT(1) NOT NULL, \n "+
-                            "  PRIMARY KEY (`fieldID`), \n" +  
-			                "  FOREIGN KEY (`PlayerID`) REFERENCES " + DBname + ".Player(PlayerID),\n" ;
+                    "CREATE TABLE matador.Field (" +
+			                "  `fieldID` INT(2) NOT NULL," +
+                    		"  `PlayerID` INT(1) NOT NULL,"+
+                            "  PRIMARY KEY (`fieldID`)," +  
+			                "  FOREIGN KEY (`PlayerID`) REFERENCES " + DBname + ".Player(PlayerID));" ;
 			String DBOwnable =
-					"CREATE TABLE $DBname.Ownable (\n" +
-							"  fieldID INT(2), \n" +
-							"  Owner INT(1),\n" +
-							"  FOREIGN KEY (`Owner`) REFERENCES " + DBname + ".Player(PlayerID),\n" +
-							"  Houses INT(1) DEFAULT NULL,\n" +
-							"  Pawned BIT(1),\n" +
-							"  PRIMARY KEY (`fieldID`),\n" +
+					"CREATE TABLE matador.Ownable (" +
+							"  `PlayerID` INT(1) NOT NULL," +
+							"  `fieldID` INT(2) NOT NULL," +
+							"  `Owner` INT(1)," +
+							"  `Houses` INT(1) DEFAULT NULL," +
+							"  `Pawned` BIT(1)," +
+							"  PRIMARY KEY (`fieldID`)," +
+							"  FOREIGN KEY (`Owner`) REFERENCES " + DBname + ".Player(PlayerID)," +
 							"  UNIQUE INDEX `fieldID_UNIQUE` (`FieldID` ASC));";
 			
 			String DBChanceDeck = 
-							"  CREATE TABLE $DBname.ChanceDeck (\n" +
-							"  CardID INT(2) NOT NULL, \n" +
-							"  CardText VARCHAR(255) NOT NULL, \n" +
-							"  CardValue INT(5) NOT NULL, \n" +
-							"  PRIMARY KEY (`CardID`))";
+					"  CREATE TABLE matador.ChanceDeck (" +
+							"  `CardID` INT(2) NOT NULL," +
+							"  `CardText` VARCHAR(150) NOT NULL," +
+							"  `CardValue` INT(5) NOT NULL," +
+							"  PRIMARY KEY (`CardID`));";
 			
-	
+			         
 			
-			
-			/**	         
-			
-			DBPlayer = DBPlayer.replace("$DBname", DBname);
 			DBField = DBField.replace("$DBname", DBname);
+			DBPlayer = DBPlayer.replace("$DBname", DBname);
 			DBOwnable = DBOwnable.replace("$DBname", DBname);
 			
-		*/
-			//stmt = con.createStatement();;
-			prepstmt = connection.prepareStatement(DBPlayer);
-			prepstmt.execute();
-			prepstmt = connection.prepareStatement(DBField);
-			prepstmt.execute();
-			prepstmt = connection.prepareStatement(DBOwnable);
-			prepstmt.execute();
-			prepstmt = connection.prepareStatement(DBChanceDeck);
-			prepstmt.execute();
+			stmt.executeUpdate(DBPlayer);
+			stmt.executeUpdate(DBField);
+			stmt.executeUpdate(DBOwnable);
+			stmt.executeUpdate(DBChanceDeck);
+			stmt.executeUpdate(DBCreate);
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
 		} finally {
-			//stmt.close();
+			stmt.close();
 			prepstmt.close();
 			}
 	}
 	
 	public void ResetDatabase() throws SQLException {
 		try {
-			String dropField = "DROP TABLE IF EXISTS " + DBname + ".Field";
-			String dropPlayer = "DROP TABLE IF EXISTS " + DBname + ".Player";
-			String dropOwnable = "DROP TABLE IF EXIST " + DBname +".Ownable";
-			String dropChanceDeck = "DROP TABLE IF EXIST " + DBname + ".ChanceDeck";
-			String DBPlayer =
-					"CREATE TABLE $DBname.Player (\n" +
-							"  PlayerID INT(1) NOT NULL,\n" +
-							"  Name VARCHAR(20),\n" +
-							"  Balance INT(7),\n" +
-							"  Position INT(2),\n" +
-							"  Jailtokens INT(1),\n" +
-							"  JailRounds INT(1),\n" +
-							"  PRIMARY KEY (`PlayerID`),\n" +
-							"  UNIQUE INDEX `PlayerID_UNIQUE` (`PlayerID` ASC));";
+			//STEP 2: Register JDBC driver
+		      Class.forName("com.mysql.jdbc.Driver");
+
+		      //STEP 3: Open a connection
+		      System.out.println("Connecting to a selected database...");
+		      connection = DriverManager.getConnection(DB_URL, USER, PASS);
+		      System.out.println("Connected database successfully...");
+		      
+		      //STEP 4: Execute a query
+		      System.out.println("Deleting database...");
+		      stmt = connection.createStatement();
+		      
+		      String sql = "DROP DATABASE matador";
+		      stmt.executeUpdate(sql);
+		      System.out.println("Database deleted successfully...");
 			
-			String DBField =
-                    "CREATE TABLE $DBname.Field (\n" +
-			                "  fieldID INT(2) NOT NULL, \n" +
-                    		"  PlayerID INT(1) NOT NULL, \n "+
-                            "  PRIMARY KEY (`fieldID`), \n" +  
-			                "  FOREIGN KEY (`PlayerID`) REFERENCES " + DBname + ".Player(PlayerID),\n" ;
-			String DBOwnable =
-					"CREATE TABLE $DBname.Ownable (\n" +
-							"  PlayerID INT(1) NOT NULL,\n" +
-							"  fieldID INT(2), \n" +
-							"  Owner INT(1),\n" +
-							"  FOREIGN KEY (`Owner`) REFERENCES " + DBname + ".Player(PlayerID),\n" +
-							"  Houses INT(1) DEFAULT NULL,\n" +
-							"  Pawned BIT(1),\n" +
-							"  PRIMARY KEY (`fieldID`),\n" +
-							"  UNIQUE INDEX `fieldID_UNIQUE` (`FieldID` ASC));";
 			
-			String DBChanceDeck = 
-					"  CREATE TABLE $DBname.ChanceDeck (\n" +
-							"  CardID INT(2) NOT NULL, \n" +
-							"  CardText VARCHAR(255) NOT NULL, \n" +
-							"  CardValue INT(5) NOT NULL, \n" +
-							"  PRIMARY KEY (`CardID`))";
 			
-			         
 			
-			DBPlayer = DBPlayer.replace("$DBname", DBname);
-			DBField = DBField.replace("$DBname", DBname);
-			DBOwnable = DBOwnable.replace("$DBname", DBname);
-			stmt = connection.createStatement();
-			stmt.execute(dropField);
-			stmt.execute(dropPlayer);
-			stmt.execute(dropOwnable);
-			stmt.execute(dropChanceDeck);
-			prepstmt = connection.prepareStatement(DBPlayer);
-			prepstmt.execute();
-			prepstmt = connection.prepareStatement(DBField);
-			prepstmt.execute();
-			prepstmt = connection.prepareStatement(DBOwnable);
-			prepstmt.execute();
-			prepstmt = connection.prepareStatement(DBChanceDeck);
-			prepstmt.execute();
+//		    stmt = connection.createStatement();
+//			String DropDB = "DROP DATABASE IF EXISTS matador";
+//			stmt.executeUpdate(DropDB);
+//			CreateDatabase();
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
 		} finally {
