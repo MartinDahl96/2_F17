@@ -1,19 +1,22 @@
 package fieldControllers;
- 
 
-import java.util.Stack;
+
+import java.io.IOException;
 
 import entities.ChanceCard;
 import entities.ChanceDeck;
 import entities.Player;
 import fieldEntities.Chance;
 import fieldEntities.Ferry;
+import inputHandlers.Text;
 import mainControllers.GameController;
 import mainControllers.MUI;
 
 public class ChanceController {
 	
-	private ChanceDeck deck;
+	public ChanceDeck deck;
+	private Text file = new Text("txtfiles/fieldControllerText.txt");
+	private String[] textList;
 	
 	public ChanceController(Chance c){
 		this.deck = new ChanceDeck();
@@ -28,12 +31,16 @@ public class ChanceController {
 	
 	
 	public void drawCard(Player player){
-	
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
 		recreateIfEmpty();
 	
 		ChanceCard c = deck.getDeck().pop();
 		MUI.displayCard(c.getCardText());
-		MUI.showMessage(player.getplayerName()+", Læs kortet:");
+		MUI.showMessage(player.getplayerName()+textList[0]);
 		
 		
 		switch(c.getCardID()){
@@ -211,10 +218,8 @@ public class ChanceController {
 		
 	}
 	
-	public Stack<ChanceCard> getDeck(){
-		return this.deck.getDeck();
+	public int sizeOfStack(){
+		return deck.getDeck().size();
 	}
-	
-	
 	
 }
