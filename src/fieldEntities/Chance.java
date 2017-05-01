@@ -1,4 +1,4 @@
- package fieldEntities;
+package fieldEntities;
 
 //Chance class
 

@@ -1,14 +1,19 @@
- package fieldControllers;
+package fieldControllers;
+
+import java.io.IOException;
 
 //TaxController class
 
 import entities.Player;
 import fieldEntities.Tax;
+import inputHandlers.Text;
 import mainControllers.MUI;
 
 public class TaxController {
 	
 	Tax t;
+	private Text file = new Text("txtfiles/fieldControllerText.txt");
+	private String[] textList;
 	
 	public TaxController(Tax t){
 	this.t = t;
@@ -17,9 +22,15 @@ public class TaxController {
 
 
 	public void landOnTax(Player player) {
-
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		if (player.getCurrentPosition() == 5) {
-			boolean choice = MUI.getTwoButtons("4000 kr eller 10 % af din beholdning", "4000", "10 % af din beholdning");
+			boolean choice = MUI.getTwoButtons(textList[19],textList[20],textList[21]);
 			if (choice == true) {
 				player.setFortune(-t.getFixedTax());
 
@@ -33,8 +44,7 @@ public class TaxController {
 		}
 
 		else if (player.getCurrentPosition() == 39) {
-			MUI.showMessage("Betal skat: kr. 2000");
-			
+			MUI.showMessage(textList[22]);
 			player.setFortune(-t.getFixedTax());
 		}
 

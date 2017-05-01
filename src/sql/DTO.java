@@ -1,4 +1,4 @@
- package sql;
+package sql;
 
 import java.sql.SQLException;
 
@@ -10,6 +10,7 @@ public interface DTO {
 	
 	void updateOwnable(int playerID) throws SQLException;
 	
-	void updateChanceDeck(int cardID) throws SQLException;
+	void updateChanceCard(int cardID, String cardText, int cardValue) throws SQLException;
+	
 	
 }

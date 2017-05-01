@@ -1,7 +1,7 @@
-
 package mainControllers;
 
 import java.awt.Color;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class GameController {
 		if (choice == true){
 			try{
 				
-			Connector.ResetDatabase();
+			Connector.
 			createPlayers();
 			playerTurn();
 		} catch (SQLException e){

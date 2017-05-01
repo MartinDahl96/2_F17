@@ -1,4 +1,6 @@
- package fieldControllers;
+package fieldControllers;
+
+import java.io.IOException;
 
 import desktop_resources.GUI;
 import entities.Cup;
@@ -7,12 +9,15 @@ import fieldEntities.Brewery;
 import fieldEntities.Ferry;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
+import inputHandlers.Text;
 import mainControllers.MUI;
 
 
 public class OwnableController{
 	
 	Ownable o;
+	private Text file = new Text("txtfiles/fieldControllerText.txt");
+	private String[] textList;
 	
 	public OwnableController(Ownable o){
 		this.o = o;	
@@ -27,12 +32,16 @@ public class OwnableController{
 
 	
 	public void payRent(Player player) {
-		
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		if(o instanceof Brewery) {
 			calcBrewRent(player);
 		}
 		else if(!o.isPawned()) {
-		MUI.showMessage(player.getplayerName() + " har betalt leje til " + o.getOwner().getplayerName());
+		MUI.showMessage(player.getplayerName() + textList[10] + o.getOwner().getplayerName());
 		player.setFortune(-o.getRent());
 		o.getOwner().setFortune(o.getRent());
 		Ferry.setDoubleRent(false);
@@ -40,12 +49,17 @@ public class OwnableController{
 }
 
 	public void buyProperty(Player buyer) {
-		boolean choice = MUI.getTwoButtons("Vil du købe denne grund?", "Ja", "Nej");
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		boolean choice = MUI.getTwoButtons(textList[11], textList[12], textList[13]);
 		
-		if (buyer.getFortune() < o.getPrice()) MUI.showMessage("Du har ikke penge nok, til at købe dette uejede felt!");
+		if (buyer.getFortune() < o.getPrice()) MUI.showMessage(textList[14]);
 	
 		else if (choice) {
-			MUI.showMessage("Du har købt denne grund: " + o.getFieldName() + " for kr. " + o.getPrice());
+			MUI.showMessage(textList[15] + o.getFieldName() + textList[16] + o.getPrice());
 			buyer.setFortune(-o.getPrice());
 			
 			o.setOwner(buyer);
@@ -66,11 +80,16 @@ public class OwnableController{
 	
 	public void calcBrewRent(Player p){
 		Cup cup = new Cup();
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		MUI.showMessage("Slå med terninger for at beregne lejen");
+		MUI.showMessage(textList[17]);
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-		MUI.showMessage("Betal leje kr. "+o.getRent()*cup.getCupValue());
+		MUI.showMessage(textList[18]+o.getRent()*cup.getCupValue());
 		
 		p.setFortune(-o.getRent()*cup.getCupValue());
 		o.getOwner().setFortune(o.getRent()*cup.getCupValue());

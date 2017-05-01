@@ -1,4 +1,4 @@
- package entities;
+package entities;
 
 import java.util.*;
 
@@ -64,6 +64,10 @@ public class ChanceDeck {
 	 */
 	public Stack<ChanceCard> getDeck() {
 		return deck;
+	}
+	
+	public ChanceCard getCard(int cardID){
+		return deck.get(cardID);
 	}
 	
 

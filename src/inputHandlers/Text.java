@@ -1,4 +1,4 @@
- package inputHandlers;
+package inputHandlers;
 import java.io.*;
 
 //Text reader

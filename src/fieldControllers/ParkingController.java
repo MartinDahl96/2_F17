@@ -1,12 +1,17 @@
- package fieldControllers;
+package fieldControllers;
+
+import java.io.IOException;
 
 import entities.Player;
 import fieldEntities.Parking;
+import inputHandlers.Text;
 import mainControllers.MUI;
 
 public class ParkingController {
 	
 	Parking p;
+	private Text file = new Text("txtfiles/fieldControllerText.txt");
+	private String[] textList;
 	
 	public ParkingController(Parking p){
 		this.p = p;
@@ -15,8 +20,13 @@ public class ParkingController {
 	
 
 	public  void landOnParking(Player player) {
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-			MUI.showMessage("De er immun på dette felt (Deres formue kan ikke skades af andre spillere), og De modtager kr. 2000");
+			MUI.showMessage(textList[23]);
 			activateImmunity(player);
 			player.setFortune(p.getParkingBonus());
 			

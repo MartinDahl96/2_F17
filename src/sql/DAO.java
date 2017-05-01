@@ -1,4 +1,4 @@
- package sql;
+package sql;
 
 import java.sql.SQLException;
 import entities.Player;
@@ -9,5 +9,6 @@ public interface DAO {
 	
 	void getOwnable(int playerID) throws SQLException;
 	
-	void getChanceDeck(int cardID) throws SQLException;	
+	void getChanceCard(int cardID) throws SQLException;	
 }
+ 

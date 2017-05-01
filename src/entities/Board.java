@@ -1,4 +1,4 @@
- package entities;
+package entities;
 import java.io.*;
 
 import java.util.*;
@@ -155,7 +155,7 @@ public class Board {
 			
 			}
 	
-	public static ArrayList<Field> getFields() {
+	public static ArrayList<Field> getFields(){
 		return boardFields;
 	}
 	
