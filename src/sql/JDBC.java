@@ -20,7 +20,6 @@ public class JDBC implements DTO, DAO{
 	private Connection connection;
 	private PreparedStatement prepstmt = null;
 	private Statement stmt = null;
-	private String DBname = "matador";
 	private String USERNAME = "root";
 	
 	public Connection getConnection(){
