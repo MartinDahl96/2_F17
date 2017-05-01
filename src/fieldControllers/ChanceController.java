@@ -35,7 +35,8 @@ public class ChanceController {
 			textList = file.OpenFile();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}	
+		}
+		
 		recreateIfEmpty();
 	
 		ChanceCard c = deck.getDeck().pop();
