@@ -2,15 +2,14 @@ package sql;
 import java.sql.*;
 
 
-public class Connector 
-{
-//
-	final String PASSWORD = "1234";
+public class Connector {
+
+	final String PASSWORD = "sql123";
 	final String USERNAME = "root";
 	final String DATABASE = "matador";
-	String url = "jdbc:mysql://localhost::3306/";
-	Statement stmt = null;
-	Connection connection = null;
+	String url = "jdbc:mysql://localhost:3306/";
+	Statement stmt;
+	Connection connection;
 	
 	public Connector() {
 		
@@ -19,13 +18,13 @@ public class Connector
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
 			stmt = connection.createStatement();
-		      String sql = "CREATE DATABASE matador";
+		      String sql = "CREATE DATABASE if not exists matador";
 		      stmt.executeUpdate(sql);
-			
-			System.out.println(connection.getMetaData().getDatabaseProductName());
+		      createTables();
+			  System.out.println(connection.getMetaData().getDatabaseProductName());
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
-//			System.exit(1);
+			System.exit(0);
 		}
    
     }
@@ -59,13 +58,10 @@ public class Connector
 			return b ? 1 :0;
 		} 
 	 
-	public void CreateDatabase() throws SQLException {
+	public void createTables() throws SQLException {
 			
 			try {	
-				stmt = connection.createStatement();
-				
-				String DBCreate = "CREATE DATABASE IF NOT EXISTS matador;";
-								
+							
 				String DBPlayer =
 						"CREATE TABLE IF NOT EXISTS matador.Player (PlayerID INT(1) NOT NULL, playerName VARCHAR(20), fortune INT(7), immunity BIT(1),totalAssets INT(6), ownedFerries INT(1), ownedBreweries INT(1),jailRounds INT(1),jailtoken INT(1),currentPosition INT(2),PRIMARY KEY (PlayerID),UNIQUE INDEX PlayerID_UNIQUE (PlayerID ASC));";
 				
@@ -77,7 +73,7 @@ public class Connector
 				String DBChanceDeck = 
 						"CREATE TABLE IF NOT EXISTS matador.ChanceDeck (CardID INT(2) NOT NULL,CardText VARCHAR(150) NOT NULL,CardValue INT(5) NOT NULL,PRIMARY KEY (CardID));";
 				
-				stmt.executeUpdate(DBCreate);
+				
 				stmt.executeUpdate(DBPlayer);
 				stmt.executeUpdate(DBField);
 				stmt.executeUpdate(DBOwnable);
@@ -93,6 +89,23 @@ public class Connector
 				
 				}
 		}
+	
+	public void createDatabase() throws SQLException {
+		
+		try {	
+			stmt = connection.createStatement();
+			String DBCreate = "CREATE DATABASE IF NOT EXISTS matador;";
+			stmt.executeUpdate(DBCreate);
+	
+		} catch (Exception  e) {
+			e.printStackTrace();
+		} 
+
+		finally {
+			stmt.close();
+			
+			}
+	}
 	
 	public void ResetDatabase() throws SQLException {
 
@@ -112,7 +125,8 @@ public class Connector
 
 				stmt.executeUpdate(sql);
 				System.out.println("Database deleted successfully...");
-
+				
+				createDatabase();
 			} catch (SQLException | NullPointerException e) {
 				e.printStackTrace();
 
@@ -127,11 +141,5 @@ public class Connector
 	
 	public static void main (String[] args){
 		Connector c = new Connector();
-		try {
-			c.CreateDatabase();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

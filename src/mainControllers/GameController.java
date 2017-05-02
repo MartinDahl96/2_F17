@@ -23,7 +23,7 @@ import sql.DTO;
 import sql.DTOimp;
 
 public class GameController {
-
+	
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Car> cars = new ArrayList<Car>();
 	private Cup cup = new Cup();
@@ -36,23 +36,35 @@ public class GameController {
 	private Connector Connector = new Connector();
 	private DAOimp DAOimp = new DAOimp();
 	private DTOimp DTOimp = new DTOimp();
+	
 	private Text file = new Text("txtfiles/mainControllerText.txt");
 	private String[] textList;
+	
+	public GameController(){
+		
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 	
+	}
+	
+	
 	public void startGame() {
-		Boolean choice = MUI.getTwoButtons("Nyt spil bro?", "Ja", "Nej");
+		Boolean choice = MUI.getTwoButtons("Nyt spil bro?", "Ja", "Nej, indlæs tidligere spil");
 		if (choice == true){
-			try{
-		Connector.CreateDatabase();
+			try {
+				Connector.ResetDatabase();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
 			createPlayers();
 			playerTurn();
-		} catch (SQLException e){
-			e.printStackTrace();
-		}
+		
 		if(choice == false){
-		}}
-		
-		
-
+			}
+		}
 	}
 
 
@@ -74,23 +86,18 @@ public class GameController {
 				}
 				
 				checkPlayerLost(i);
-				
+				try {
+					DTOimp.saveGame(i);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
 
 	public void playerOptions(int i) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} try {
-			Connector.CreateDatabase();
-		}
-		catch (SQLException e){
-			e.printStackTrace();
-		}
-
+	
 		String options = GUI.getUserSelection(players.get(i).getplayerName() + textList[0],textList[1], textList[2], textList[3], textList[4], textList[5],textList[6]);
 		int choice = Integer.parseInt(options.substring(0, 1));
 		
@@ -128,11 +135,18 @@ public class GameController {
 	}
 	
 	public void throwDice(int i) {
+		
+		if(players.get(i).getFortune() > 0){
+			
+		
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-		players.get(i).setCurrentPosition(1);
+		players.get(i).setCurrentPosition(cup.getCupValue());
 		playOnBoard(i);
-
+		}
+		else{
+			MUI.showMessage("Sælg noget lort");
+		}
 		
 	}
 
@@ -151,11 +165,7 @@ public class GameController {
 
 	
 	public void createPlayers() {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		int numOfPlayers = Integer.parseInt(MUI.setFiveButtons(textList[7], textList[8], textList[9], textList[10], textList[11], textList[12]));
 
 		for (int i = 0; i < numOfPlayers; i++) {
@@ -163,8 +173,8 @@ public class GameController {
 			setCars(i);
 			
 			try {
-				Connector.CreateDatabase();
 				DTOimp.updatePlayer(i);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -174,13 +184,10 @@ public class GameController {
 
 	
 	public void setPlayers(int i) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		players.add(new Player(i, MUI.nameValidation(textList[13] + (i + 1) + textList[14])));
 		MUI.showMessage(players.get(i).getplayerName() + textList[15] + players.get(i).getFortune());
+		players.get(i).setPlayerID(i+1);
 	}
 
 	
@@ -200,11 +207,7 @@ public class GameController {
 	}
 	
 	public void checkForWinner(int i) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 			if(bankruptPlayers == players.size()-1){
 				noWinner = true;
 				MUI.showMessage(players.get(i).getplayerName()+textList[16]);
@@ -215,11 +218,7 @@ public class GameController {
 			}
 	
 	public void checkPlayerLost(int i){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		if(players.get(i).isBankRupt()){
 			MUI.showMessage(players.get(i).getplayerName() +textList[17]);
 			MUI.removeCar(players.get(i).getplayerName());

@@ -1,4 +1,5 @@
 /sql/
 /mainControllers/
-/fieldControllers/
-/fieldEntities/
+/entities/
+/test/
+/inputHandlers/

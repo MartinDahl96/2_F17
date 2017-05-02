@@ -41,11 +41,15 @@ public class StreetController {
 	
 	
 	public void buildProperty(Player player) {
+		
+		
 		try {
 			textList = file.OpenFile();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		checkIfBuildable(player);
 
 		if (s.isBuildable() && player.getFortune() > s.getBuildPrice()) {
 			boolean choice = MUI.getTwoButtons(player.getplayerName() + textList[37] + s.getBuildPrice() + textList[38], textList[39],textList[40]);
@@ -80,7 +84,7 @@ public class StreetController {
 		
 		if (count3colors == 3 || count2colors == 2) {
 			s.setBuildable(true);
-			buildProperty(player);
+		
 		}
 		
 		return s.isBuildable();
@@ -132,7 +136,7 @@ public class StreetController {
 		try {
 			textList = file.OpenFile();
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		MUI.setHotel(p.getCurrentPosition(), true);
 		MUI.showMessage(textList[46]);

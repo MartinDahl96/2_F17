@@ -9,7 +9,7 @@ import fieldEntities.Ownable;
 import fieldEntities.Street;
 
 public class DAOimp implements DAO {
-	private Connector c = new Connector();
+	private Connector c = new Connector(); //Database forbindelse bliver created igen UNØDVENDIGT
 	private PreparedStatement prepstmt;
 
 	@Override
@@ -34,6 +34,7 @@ public class DAOimp implements DAO {
 					rs.getInt("jailToken"),
 					rs.getInt("currentPosition"));
 					}
+			
 		}
 			catch(SQLException e){
 			e.printStackTrace();
