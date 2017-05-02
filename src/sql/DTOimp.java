@@ -13,6 +13,7 @@ import mainControllers.GameController;
 public class DTOimp implements DTO {
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
+	
 
 	@Override
 	public void removePlayer(int playerID) throws SQLException {
@@ -41,7 +42,7 @@ public class DTOimp implements DTO {
 	@Override
 	public void updatePlayer(int playerID) throws SQLException {
 		Player p = GameController.getPlayer(playerID);
-	String updatePlayer = "INSERT INTO matador.Player (playerID, playerName, fortune, immunity, totalAssets, ownedFerries, ownedBreweries, jailRounds, jailToken, currentPosition) VALUES (?,?,?,?,?,?,?,?,?,?);";
+	String updatePlayer = "INSERT INTO matador.Player (playerID, playerName, fortune, immunity, totalAssets, ownedFerries, ownedBreweries, jailRounds, jailToken, currentPosition) VALUES (?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE playerID = VALUES(playerID), playerName = VALUES(playerName), fortune = VALUES(fortune), immunity = VALUES(immunity), totalAssets = VALUES(totalAssets), ownedFerries = VALUES(ownedFerries), ownedBreweries = VALUES(ownedBreweries), jailRounds = VALUES(jailRounds), jailToken = VALUES(jailToken), currentPosition = VALUES(currentPosition);";
 		
 		try {
 			prepstmt = c.getConnection().prepareStatement(updatePlayer);
@@ -55,6 +56,7 @@ public class DTOimp implements DTO {
 			prepstmt.setInt(8, p.getJailRounds());
 			prepstmt.setInt(9, p.getJailToken());
 			prepstmt.setInt(10, p.getCurrentPosition());
+			prepstmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,7 +92,8 @@ public class DTOimp implements DTO {
 
 				}
 			}
-
+				prepstmt.executeUpdate();
+				
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -103,6 +106,7 @@ public class DTOimp implements DTO {
 	public void updateChanceCard(int cardID, String cardText, int cardValue) throws SQLException {
 		String updateChanceCard = "INSERT INTO matador.ChanceDeck (cardID, cardText, cardValue) VALUES (?,?,?) \n" +
 									"ON DUPLICATE KEY UPDATE cardID = VALUES(cardID), cardText = VALUES(cardText), cardValue = VALUES(cardValue)";
+		
 		ChanceController cc = new ChanceController(null);
 		try{
 
@@ -113,7 +117,7 @@ public class DTOimp implements DTO {
 				prepstmt.setString(2, cc.deck.getDeck().get(i).getCardText());
 				prepstmt.setInt(3, cc.deck.getDeck().get(i).getCardValue());
 			}
-			
+				prepstmt.executeUpdate();
 		} catch(SQLException e){
 			e.printStackTrace();
 		}finally {
@@ -124,6 +128,6 @@ public class DTOimp implements DTO {
 
 	public void saveGame(int playerID) throws SQLException {
 		updatePlayer(playerID);
-		updateOwnable(playerID);
+//		updateOwnable(playerID);
 		}
 }

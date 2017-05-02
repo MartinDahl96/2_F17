@@ -17,7 +17,7 @@ public class Player {
 	private boolean isBankRupt;
 
 	// Constructor for a player-object.
-	public Player(int playerID , String playerName) {
+	public Player(int playerID, String playerName) {
 		this.playerName = playerName;
 		this.playerID = playerID;
 		this.account = new Account(30000);
@@ -162,8 +162,7 @@ public class Player {
 			
 			}
 		
-	
 		public String toString(){
-			return playerName;
-	}
+			return playerName + playerID;
+		}
 }
