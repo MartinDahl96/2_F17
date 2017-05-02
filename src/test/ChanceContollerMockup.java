@@ -144,11 +144,9 @@ public class ChanceContollerMockup {
 			break;
 		case 18:
 			player.setJailToken(1);
-			player.setTotalAssets(c.getCardValue());
 			break;
 		case 19:
 			player.setJailToken(1);
-			player.setTotalAssets(c.getCardValue());
 			break;
 		case 20:
 			player.setFortune(c.getCardValue());

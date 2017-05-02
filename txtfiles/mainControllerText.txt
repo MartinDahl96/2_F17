@@ -20,3 +20,4 @@ Pris:
 Leje: 
 pictures/Ferry.png
 pictures/Parking.png
+De er ved at gå bankerot, sælg bygninger og eller grunde for at blive i spillet!
