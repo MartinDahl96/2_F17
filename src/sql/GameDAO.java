@@ -15,7 +15,7 @@ public class GameDAO  {
 	}
 	
 	public void saveGame(int playerID) throws SQLException {
-		pDAO.updatePlayer(playerID);
+		pDAO.insertPlayer(playerID);
 		fDAO.updateOwnable(playerID);
 		}
 

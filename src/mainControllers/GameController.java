@@ -173,7 +173,7 @@ public class GameController {
 			setCars(i);
 			
 			try {
-				DTOimp.updatePlayer(i);
+				DTOimp.insertPlayer(i);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

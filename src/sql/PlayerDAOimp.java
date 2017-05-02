@@ -67,9 +67,9 @@ public class PlayerDAOimp implements IPlayerDAO {
 	}
 
 	@Override
-	public void updatePlayer(int playerID) throws SQLException {
+	public void insertPlayer(int playerID) throws SQLException {
 		Player p = GameController.getPlayer(playerID);
-	String updatePlayer = "INSERT INTO matador.Player (playerID, playerName, fortune, immunity, totalAssets, ownedFerries, ownedBreweries, jailRounds, jailToken, currentPosition) VALUES (?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE playerID = VALUES(playerID), playerName = VALUES(playerName), fortune = VALUES(fortune), immunity = VALUES(immunity), totalAssets = VALUES(totalAssets), ownedFerries = VALUES(ownedFerries), ownedBreweries = VALUES(ownedBreweries), jailRounds = VALUES(jailRounds), jailToken = VALUES(jailToken), currentPosition = VALUES(currentPosition);";
+		String updatePlayer = "call addPlayer(?,?,?,?,?,?,?)";
 		
 		try {
 			prepstmt = c.getConnection().prepareStatement(updatePlayer);
@@ -77,12 +77,9 @@ public class PlayerDAOimp implements IPlayerDAO {
 			prepstmt.setString(2, p.getplayerName());
 			prepstmt.setInt(3, p.getFortune());
 			prepstmt.setBoolean(4, p.getImmunity());
-			prepstmt.setInt(5, p.getTotalAssets());
-			prepstmt.setInt(6, p.getOwnedFerries());
-			prepstmt.setInt(7, p.getOwnedBreweries());
-			prepstmt.setInt(8, p.getJailRounds());
-			prepstmt.setInt(9, p.getJailToken());
-			prepstmt.setInt(10, p.getCurrentPosition());
+			prepstmt.setInt(5, p.getJailRounds());
+			prepstmt.setInt(6, p.getJailToken());
+			prepstmt.setInt(7, p.getCurrentPosition());
 			prepstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -91,6 +88,14 @@ public class PlayerDAOimp implements IPlayerDAO {
 			prepstmt.close();
 		}
 
+	}
+
+
+
+	@Override
+	public void updatePlayer(int playerID) throws SQLException {
+		
+		
 	}
 
 }
