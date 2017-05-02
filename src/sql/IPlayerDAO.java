@@ -5,10 +5,10 @@ import entities.Player;
 
 public interface IPlayerDAO {
 
-	Player getPlayer (int playerID) throws SQLException;
-	
-	void getOwnable(int playerID) throws SQLException;
-	
-	void getChanceCard(int cardID) throws SQLException;	
+	Player getPlayer(int playerID) throws SQLException;
+
+	void removePlayer(int playerID) throws SQLException;
+
+	void updatePlayer(int playerID) throws SQLException;
+
 }
- 
