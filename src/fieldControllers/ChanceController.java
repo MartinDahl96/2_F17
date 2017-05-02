@@ -8,6 +8,8 @@ import entities.ChanceDeck;
 import entities.Player;
 import fieldEntities.Chance;
 import fieldEntities.Ferry;
+import fieldEntities.Street;
+import entities.Board;
 import inputHandlers.Text;
 import mainControllers.GameController;
 import mainControllers.MUI;
@@ -91,7 +93,20 @@ public class ChanceController {
 			player.setFortune(c.getCardValue());
 			break;
 		case 13:
-			//Mangler
+			int bill1 = 0; 
+			for(fieldEntities.Field field : Board.getFields()){
+				if(field instanceof Street && ((Street) field).getOwner() == player){
+					if(((Street) field).getNumOfBuildings() > 0 && ((Street) field).getNumOfBuildings() < 5 ){
+						player.setFortune(-800);
+						bill1 += 800;
+					}
+					if(((Street) field).getNumOfBuildings() == 5){
+						player.setFortune(-2300);
+						bill1 += 2300;
+					}
+				}
+			}
+			MUI.showMessage("De har betalt: " + bill1);
 			break;
 		case 14:
 			player.changePosition(25);
@@ -167,7 +182,20 @@ public class ChanceController {
 			
 			break;
 		case 25:
-			//Mangler
+			int bill2 = 0; 
+			for(fieldEntities.Field field : Board.getFields()){
+				if(field instanceof Street && ((Street) field).getOwner() == player){
+					if(((Street) field).getNumOfBuildings() > 0 && ((Street) field).getNumOfBuildings() < 5 ){
+						player.setFortune(-500);
+						bill2 += 500;
+					}
+					if(((Street) field).getNumOfBuildings() == 5){
+						player.setFortune(-2000);
+						bill2 += 2000;
+					}
+				}
+			}
+			MUI.showMessage("De har betalt: " + bill2);
 			break;
 		case 26:
 			MUI.displayCard(c.getCardText());
