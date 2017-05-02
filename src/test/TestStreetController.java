@@ -17,7 +17,7 @@ import mainControllers.GUIcontroller;
 import mainControllers.GameController;
 import mainControllers.MUI;
 
-public class LandOnStreetTest {
+public class TestStreetController {
 
 	@Test
 	public void testBuildable() {
@@ -27,18 +27,16 @@ public class LandOnStreetTest {
 		((Ownable) Board.getFields().get(2)).setOwner(p);
 		((Ownable) Board.getFields().get(4)).setOwner(p);
 		
-		 StreetController sc = new StreetController();
+		 StreetController sc = new StreetController(((Street) Board.getFields().get(4)));
 		 assertEquals(((Ownable) Board.getFields().get(2)).getOwner(), p);
-		 assertTrue(sc.checkIfBuildable(p,((Street) Board.getFields().get(2))));
+		 assertTrue(sc.checkIfBuildable(p));
 		
 		 ((Ownable) Board.getFields().get(7)).setOwner(p);
 		 ((Ownable) Board.getFields().get(9)).setOwner(p);
 		 ((Ownable) Board.getFields().get(10)).setOwner(p);
 			
 		 assertEquals(((Ownable) Board.getFields().get(10)).getOwner(), p);
-		 assertTrue(sc.checkIfBuildable(p,((Street) Board.getFields().get(2))));
-			
-		 
+		 assertTrue(sc.checkIfBuildable(p));	 
 		 
 	}
 	
