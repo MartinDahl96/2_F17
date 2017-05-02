@@ -2,15 +2,14 @@ package sql;
 import java.sql.*;
 
 
-public class Connector 
-{
-//
+public class Connector {
+
 	final String PASSWORD = "sql123";
 	final String USERNAME = "root";
 	final String DATABASE = "matador";
 	String url = "jdbc:mysql://localhost:3306/";
-	Statement stmt = null;
-	Connection connection = null;
+	Statement stmt;
+	Connection connection;
 	
 	public Connector() {
 		
@@ -21,11 +20,11 @@ public class Connector
 			stmt = connection.createStatement();
 		      String sql = "CREATE DATABASE if not exists matador";
 		      stmt.executeUpdate(sql);
-			
-			System.out.println(connection.getMetaData().getDatabaseProductName());
+		      createTables();
+			  System.out.println(connection.getMetaData().getDatabaseProductName());
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
-			System.exit(1);
+			System.exit(0);
 		}
    
     }
@@ -91,6 +90,23 @@ public class Connector
 				}
 		}
 	
+	public void createDatabase() throws SQLException {
+		
+		try {	
+			stmt = connection.createStatement();
+			String DBCreate = "CREATE DATABASE IF NOT EXISTS matador;";
+			stmt.executeUpdate(DBCreate);
+	
+		} catch (Exception  e) {
+			e.printStackTrace();
+		} 
+
+		finally {
+			stmt.close();
+			
+			}
+	}
+	
 	public void ResetDatabase() throws SQLException {
 
 		
@@ -109,7 +125,8 @@ public class Connector
 
 				stmt.executeUpdate(sql);
 				System.out.println("Database deleted successfully...");
-
+				
+				createDatabase();
 			} catch (SQLException | NullPointerException e) {
 				e.printStackTrace();
 
@@ -124,13 +141,5 @@ public class Connector
 	
 	public static void main (String[] args){
 		Connector c = new Connector();
-		try {
-			c.createTables();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		DTOimp n = new DTOimp();
-		n.updatePlayer(playerID);}
+	}
 }

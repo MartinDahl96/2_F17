@@ -34,6 +34,7 @@ public class DAOimp implements DAO {
 					rs.getInt("jailToken"),
 					rs.getInt("currentPosition"));
 					}
+			
 		}
 			catch(SQLException e){
 			e.printStackTrace();

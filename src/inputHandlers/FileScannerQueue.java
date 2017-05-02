@@ -43,7 +43,6 @@ public class FileScannerQueue {
 	}
 
 	public String poll() {
-
 		return q.poll();
 
 	}
