@@ -2,8 +2,8 @@ package mainControllers;
 
 import java.sql.SQLException;
 
+
 import entities.Board;
-import sql.JDBC;
 
 public class Launch {
 	
