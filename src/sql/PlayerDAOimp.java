@@ -8,7 +8,7 @@ import fieldControllers.ChanceController;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
 
-public class DAOimp implements DAO {
+public class PlayerDAOimp implements IPlayerDAO {
 	private Connector c = new Connector(); //Database forbindelse bliver created igen UNØDVENDIGT
 	private PreparedStatement prepstmt;
 

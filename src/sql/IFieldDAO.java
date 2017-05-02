@@ -2,7 +2,7 @@ package sql;
 
 import java.sql.SQLException;
 
-public interface DTO {
+public interface IFieldDAO {
 
 	void removePlayer(int playerID) throws SQLException;
 	

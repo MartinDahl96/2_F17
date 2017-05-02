@@ -11,7 +11,7 @@ import fieldEntities.Ownable;
 import fieldEntities.Street;
 import mainControllers.GameController;
 
-public class JDBC implements DTO, DAO{
+public class JDBC implements IFieldDAO, IPlayerDAO{
 	
 	
 //	private final String HOST ="localhost";

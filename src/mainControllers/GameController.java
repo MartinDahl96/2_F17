@@ -18,8 +18,8 @@ import fieldEntities.Parking;
 import fieldEntities.Tax;
 import inputHandlers.Text;
 import sql.Connector;
-import sql.DAOimp;
-import sql.DTO;
+import sql.PlayerDAOimp;
+import sql.IFieldDAO;
 import sql.DTOimp;
 
 public class GameController {
@@ -34,7 +34,7 @@ public class GameController {
 	private StreetController streetControle = new StreetController(null);	
 	private PropertyController propertyControle = new PropertyController();
 	private Connector Connector = new Connector();
-	private DAOimp DAOimp = new DAOimp();
+	private PlayerDAOimp DAOimp = new PlayerDAOimp();
 	private DTOimp DTOimp = new DTOimp();
 	
 	private Text file = new Text("txtfiles/mainControllerText.txt");

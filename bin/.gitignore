@@ -1,5 +1,8 @@
-/sql/
-/mainControllers/
+/.DS_Store
 /entities/
-/test/
+/fieldControllers/
+/fieldEntities/
 /inputHandlers/
+/mainControllers/
+/sql/
+/test/

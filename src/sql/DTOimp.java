@@ -10,7 +10,7 @@ import fieldEntities.Ownable;
 import fieldEntities.Street;
 import mainControllers.GameController;
 
-public class DTOimp implements DTO {
+public class DTOimp implements IFieldDAO {
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
 	
