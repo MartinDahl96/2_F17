@@ -9,7 +9,7 @@ import fieldEntities.Ownable;
 import fieldEntities.Street;
 
 public class DAOimp implements DAO {
-	private Connector c = new Connector();
+	private Connector c = new Connector(); //Database forbindelse bliver created igen UNØDVENDIGT
 	private PreparedStatement prepstmt;
 
 	@Override
