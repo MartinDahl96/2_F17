@@ -10,7 +10,7 @@ import fieldEntities.Ownable;
 import fieldEntities.Street;
 import mainControllers.GameController;
 
-public class DTOimp implements DTO{
+public class DTOimp implements DTO {
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
 
@@ -45,7 +45,7 @@ public class DTOimp implements DTO{
 		
 		try {
 			prepstmt = c.getConnection().prepareStatement(updatePlayer);
-			prepstmt.setInt(1, playerID);
+			prepstmt.setInt(1, p.getPlayerID());
 			prepstmt.setString(2, p.getplayerName());
 			prepstmt.setInt(3, p.getFortune());
 			prepstmt.setBoolean(4, p.getImmunity());

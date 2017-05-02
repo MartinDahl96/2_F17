@@ -41,13 +41,11 @@ public class GameController {
 	public void startGame() {
 		Boolean choice = MUI.getTwoButtons("Nyt spil bro?", "Ja", "Nej");
 		if (choice == true){
-			try{
-		Connector.CreateDatabase();
+		
+		
 			createPlayers();
 			playerTurn();
-		} catch (SQLException e){
-			e.printStackTrace();
-		}
+		
 		if(choice == false){
 		}}
 		
@@ -84,12 +82,8 @@ public class GameController {
 			textList = file.OpenFile();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} try {
-			Connector.CreateDatabase();
-		}
-		catch (SQLException e){
-			e.printStackTrace();
-		}
+		} 
+	
 
 		String options = GUI.getUserSelection(players.get(i).getplayerName() + textList[0],textList[1], textList[2], textList[3], textList[4], textList[5],textList[6]);
 		int choice = Integer.parseInt(options.substring(0, 1));
@@ -170,8 +164,8 @@ public class GameController {
 			setCars(i);
 			
 			try {
-				Connector.CreateDatabase();
 				DTOimp.updatePlayer(i);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
