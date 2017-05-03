@@ -9,16 +9,24 @@ import mainControllers.MUI;
 
 public class ParkingController {
 	
+	//attributes
 	Parking p;
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
 	
+	/**
+	 * Constructor for a ParkingController.
+	 * @param p is a Parking-field object.
+	 */
 	public ParkingController(Parking p){
 		this.p = p;
 		
 	}
 	
-
+	/**
+	 * landOnField method for landing on a parkingfield.
+	 * @param player is the player landing on the field.
+	 */
 	public  void landOnParking(Player player) {
 		try {
 			textList = file.OpenFile();
@@ -31,7 +39,10 @@ public class ParkingController {
 			player.setFortune(p.getParkingBonus());
 			
 	}
-	
+	/**
+	 * used to activate the player's immunity.
+	 * @param player is the affected player.
+	 */
 	public void activateImmunity(Player player){
 		
 		if(player.getCurrentPosition() == 21){
@@ -40,7 +51,10 @@ public class ParkingController {
 		
 	}
 	
-	
+	/**
+	 * used to deactivate the player's immunity.
+	 * @param player is the affected player.
+	 */
 	public static void deactivateImmunity(Player player){
 		
 		if(player.getCurrentPosition() != 21){

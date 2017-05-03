@@ -11,16 +11,24 @@ import mainControllers.MUI;
 
 public class TaxController {
 	
+	//attributes
 	Tax t;
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
 	
+	/**
+	 * Constructor for the TaxController.
+	 * @param t is a Tax-field object.
+	 */
 	public TaxController(Tax t){
 	this.t = t;
 	
 	}
 
-
+	/**
+	 * landOnField for a tax-field.
+	 * @param player is the player landing on the field.
+	 */
 	public void landOnTax(Player player) {
 		try {
 			textList = file.OpenFile();
