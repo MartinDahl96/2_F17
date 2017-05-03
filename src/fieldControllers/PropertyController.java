@@ -53,13 +53,12 @@ public class PropertyController {
 							System.out.println(player.getFortune());
 
 						}
-						
-						
-
 						else {
+							int soldFor = (int) (((Ownable) f).getPrice()*0.75);
+							
 							((Ownable) f).setOwner(null);
-							player.setFortune(((Ownable) f).getPrice());
-							MUI.showMessage(textList[27] + fieldNumber+textList[28]+ ((Ownable) f).getPrice()*(3/4));
+							player.setFortune(soldFor);
+							MUI.showMessage(textList[27] + fieldNumber+textList[28]+ soldFor);
 							check = true;
 						}
 
@@ -68,10 +67,10 @@ public class PropertyController {
 							
 						}
 						
-					}
+					}	else MUI.showMessage("Du ejer ikke dette felt!");
 
 				}
-			
+			MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
 			}
 
 		}
@@ -96,7 +95,7 @@ public class PropertyController {
 
 			
 			if (f instanceof Ownable) {
-
+				
 				if (fieldNumber == f.getFieldID()) {
 					if (((Ownable) f).getOwner() == player) {
 						if (f instanceof Street && ((Street) f).getNumOfBuildings() == 0) {
@@ -150,7 +149,7 @@ public class PropertyController {
 						
 						if (((Ownable) f).isPawned() == true) {
 							((Ownable) f).setPawned(false);
-							player.setFortune(-((Ownable) f).getMortgage()*(11/10));
+							player.setFortune((int) (-((Ownable) f).getMortgage()*1.1));
 							MUI.showMessage(textList[33] + fieldNumber);
 							GUI.setDescriptionText(fieldNumber, ((Ownable) f).getFieldInfo());
 						}
