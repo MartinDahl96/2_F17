@@ -16,22 +16,37 @@ import mainControllers.MUI;
 
 public class ChanceController {
 	
+	//attributes
 	public ChanceDeck deck;
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
 	
+	/**
+	 * Constructor for the Chancecontroller
+	 * @param c is a Chance-field object.
+	 */
 	public ChanceController(Chance c){
 		this.deck = new ChanceDeck();
 		
 	}
 	
+	/**
+	 * landOnField-method for a chance-field.
+	 * @param player
+	 */
 	public void landOnChance(Player player){
 		
 		drawCard(player);
 		
 	}
 	
-	
+	/**
+	 * used to draw a card.
+	 * if the stack is empty it will re-create it.
+	 * pops a card from the stack and displays the cardmessage.
+	 * the cardID from the popped card is used to determine the action done by the switch.
+	 * @param player
+	 */
 	public void drawCard(Player player){
 		try {
 			textList = file.OpenFile();
@@ -232,6 +247,9 @@ public class ChanceController {
 		MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
 	}
 
+	/**
+	 * used to recreate the stack if the stack is empty. Also removes the two jailTokens from the deck.
+	 */
 	public void recreateIfEmpty(){
 		
 		
@@ -245,6 +263,10 @@ public class ChanceController {
 		
 	}
 	
+	/**
+	 * used to get the size of the stack.
+	 * @return the size of the stack.
+	 */
 	public int sizeOfStack(){
 		return deck.getDeck().size();
 	}

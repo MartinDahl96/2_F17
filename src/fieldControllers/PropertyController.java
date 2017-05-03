@@ -11,12 +11,16 @@ import fieldEntities.Street;
 import inputHandlers.Text;
 import mainControllers.MUI;
 
-//The idea of this class is, it being responsible for buying/selling property (houses), and maybe also pawning
-
 public class PropertyController {
+	
+	//attributes
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
 	
+	/**
+	 * used for selling a property.
+	 * @param player is the seller.
+	 */
 	public void sellProperty (Player player) {
 		try {
 			textList = file.OpenFile();
@@ -74,6 +78,10 @@ public class PropertyController {
 
 	}
 	
+	/**
+	 * used to pawn a property
+	 * @param player is the owner of the field.
+	 */
 	public void pawnProperty(Player player){
 		try {
 			textList = file.OpenFile();
@@ -118,6 +126,10 @@ public class PropertyController {
 		
 	}
 	
+	/**
+	 * used to unpawn a field.
+	 * @param player is the owner of the field.
+	 */
 	public void unPawnProperty(Player player){
 		try {
 			textList = file.OpenFile();
