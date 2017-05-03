@@ -32,16 +32,26 @@ public class Start extends Field {
 
 	}
 	
+	/**
+	 * used to get the startbonus
+	 * @return startBonus is the startbonus.
+	 */
 	public int getStartBonus(){
 		return this.startBonus;
 	}
 
+	/**
+	 * toString-method for the Start-field.
+	 * @return is the value of the startBonus.
+	 */
 	@Override
 	public String toString() {
 		return super.toString() + ", value=" + this.startBonus;
 	}
+	
 	/**
-	 * toString method
+	 * landOnField method for the Start-field.
+	 * @param player is the player landing on the field.
 	 */
 
 	@Override
