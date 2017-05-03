@@ -1,0 +1,23 @@
+ vælg dit næste træk:
+1. Kast med terningerne
+2. Sælg hus/hotel
+3. Sælg grund
+4. Pantsæt
+5. Køb pantsat tilbage
+6. Gem og afslut spil
+Velkommen til Matador, vælg antal spillere:
+2
+3
+4
+5
+6
+INDTAST NAVN PÅ SPILLER 
+ (Skal indeholde bogstaver, og være mellem 2-10 karaktere lang)
+! Din formue består af kr. 
+ vandt spillet!
+, De er gået bankerot og har dermed tabt!
+Pris: 
+Leje: 
+pictures/Ferry.png
+pictures/Parking.png
+De er ved at gå bankerot, sælg bygninger og eller grunde for at blive i spillet!
