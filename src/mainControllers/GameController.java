@@ -17,11 +17,8 @@ import fieldEntities.Ownable;
 import fieldEntities.Parking;
 import fieldEntities.Tax;
 import inputHandlers.Text;
-import sql.Connector;
-import sql.DAOimp;
-import sql.DTO;
-import sql.DTOimp;
 import mainControllers.Rule;
+import sql.GameDAO;
 
 public class GameController {
 
@@ -34,9 +31,9 @@ public class GameController {
 	private JailController jailControle = new JailController();
 	private StreetController streetControle = new StreetController(null);	
 	private PropertyController propertyControle = new PropertyController();
-	private Connector Connector = new Connector();
-	private DAOimp DAOimp = new DAOimp();
-	private DTOimp DTOimp = new DTOimp();
+	
+	private GameDAO gDAO = new GameDAO();
+	
 	private Rule Rule = new Rule();
 
 	private Text file = new Text("txtfiles/mainControllerText.txt");
@@ -54,20 +51,20 @@ public class GameController {
 
 	public void startGame() {
 		Boolean choice = MUI.getTwoButtons("Nyt spil bro?", "Ja", "Nej, indlÃ¦s tidligere spil");
-		if (choice == true){
-			try {
-				Connector.ResetDatabase();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+//		if (choice == true){
+//			try {
+//				Connector.ResetDatabase();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
 
 			createPlayers();
 			playerTurn();
 
-			if(choice == false){
-			}
+//			if(choice == false){
+//			}
 		}
-	}
+	
 
 
 
@@ -88,17 +85,23 @@ public class GameController {
 				}
 
 				checkPlayerLost(i);
-				try {
-					DTOimp.saveGame(i);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
+				gDAO.updateDBplayers(players.get(i).getPlayerID());
+				gDAO.updateDBownable();
+				
+//				try {
+//					DTOimp.saveGame(i);
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 			}
 		}
 	}
 
 	public void playerOptions(int i) {
+		Rule.calcTotalAssets(players.get(i));
+		
 		if (players.get(i).isBankRupt() == true){
 
 			String options = GUI.getUserSelection(players.get(i).getplayerName() + textList[22], textList[2], textList[3], textList[4]);
@@ -144,25 +147,26 @@ public class GameController {
 			playerOptions(i);
 			break;
 		case 6:
-			try{
-				DTOimp.saveGame(i);
-			} catch (SQLException e){
-				e.printStackTrace();
-			}
+//			try{
+//				DTOimp.saveGame(i);
+//			} catch (SQLException e){
+//				e.printStackTrace();
+//			}
 			System.exit(0);
 			break;
 		}
-
+		Rule.calcTotalAssets(players.get(i));
+		System.out.println(players.get(i).getplayerName()+": "+players.get(i).getFortune() +" = "+players.get(i).getTotalAssets());
 	}
 
 	public void throwDice(int i) {
-
-		if(players.get(i).getFortune() > 0){
+		
+		if(players.get(i).getFortune() > 0){ //er dette nødvendigt?
 
 
 			cup.useCup();
 			GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-			players.get(i).setCurrentPosition(cup.getCupValue());
+			players.get(i).setCurrentPosition(10);
 			playOnBoard(i);
 		}
 		else{
@@ -186,19 +190,16 @@ public class GameController {
 
 
 	public void createPlayers() {
-
+		gDAO.createDBownable();
 		int numOfPlayers = Integer.parseInt(MUI.setFiveButtons(textList[7], textList[8], textList[9], textList[10], textList[11], textList[12]));
 
 		for (int i = 0; i < numOfPlayers; i++) {
 			setPlayers(i);
 			setCars(i);
+			gDAO.createDBPlayers(players.get(i).getPlayerID());
+			
 
-			try {
-				DTOimp.updatePlayer(i);
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 		}
 
 	}
@@ -223,8 +224,8 @@ public class GameController {
 		return players;
 	}
 
-	public static Player getPlayer(int playerID){
-		return players.get(playerID);
+	public static Player getPlayer(int index){
+		return players.get(index);
 	}
 
 	public void checkForWinner(int i) {
