@@ -70,11 +70,11 @@ public class OwnableController{
 	
 	public void setOwnedFields(Player player){
 		if(o instanceof Ferry){
-			player.setOwnedFerries(player.getOwnedFerries()+1);
+			player.setOwnedFerries(1);
 		}
 		
 		if(o instanceof Brewery){
-			player.setOwnedBreweries(player.getOwnedBreweries()+1);
+			player.setOwnedBreweries(1);
 		}
 	}
 	
