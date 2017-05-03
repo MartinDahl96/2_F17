@@ -27,8 +27,6 @@ public class GameDAO  {
 			e.printStackTrace();
 		}
 		
-		
-		
 	}
 	
 	public void updateDBplayers(int playerID) {
@@ -40,21 +38,26 @@ public class GameDAO  {
 	}
 
 	
-	public void createDBownable()  {
-		
+	public void createDBownable() {
 		try {
 			fDAO.insertOwnable();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
+	
 	
 	public void updateDBownable() {
 		try {
 			fDAO.updateOwnable();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateDBowner() {
+		try {
+			fDAO.updateOwner();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
