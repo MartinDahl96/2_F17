@@ -13,7 +13,7 @@ import fieldEntities.Start;
 import fieldEntities.Street;
 import fieldEntities.Tax;
 import inputHandlers.FileScannerQueue;
-
+//
 public class Board {
 	private static ArrayList<Field> boardFields;
 	FileScannerQueue s;
