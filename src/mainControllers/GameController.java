@@ -86,8 +86,9 @@ public class GameController {
 
 				checkPlayerLost(i);
 				
-				gDAO.updateDBplayers(players.get(i).getPlayerID());
-				gDAO.updateDBownable();
+//				gDAO.updateDBplayers(players.get(i).getPlayerID());
+//				gDAO.updateDBownable();
+				
 				
 //				try {
 //					DTOimp.saveGame(i);
@@ -166,7 +167,7 @@ public class GameController {
 
 			cup.useCup();
 			GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-			players.get(i).setCurrentPosition(10);
+			players.get(i).setCurrentPosition(cup.getCupValue());
 			playOnBoard(i);
 		}
 		else{
