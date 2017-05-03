@@ -87,16 +87,7 @@ public abstract class Ownable extends Field {
 		this.isPawned = isPawned;
 	}
 	
-	public void pawnField(Player player) {
-		player.setFortune(this.price / 2);
-		this.isPawned = true;
-
-	}
-
-	public void unPawnField(Player player) {
-		player.setFortune(-this.price / 2);
-		this.isPawned = false;
-	}
+	
 		
 	public void landOnField(Player player){
 		o.landOnOwnable(player);
