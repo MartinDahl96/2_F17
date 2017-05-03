@@ -22,7 +22,7 @@ public class Player {
 		this.playerID = playerID;
 		this.account = new Account(30000);
 		this.immunity = false;	
-		this.totalAssets = this.account.getBalance();
+		this.totalAssets = 0;
 		this.jailToken = 0;
 		this.prevPosition = 0;
 		fortune = this.account.getBalance();
@@ -57,8 +57,8 @@ public class Player {
 			return this.totalAssets;
 		}
 		
-		public void setTotalAssets(int add){
-			totalAssets += add;
+		public void setTotalAssets(int total){
+			totalAssets = total;
 		}
 	
 		
@@ -121,7 +121,7 @@ public class Player {
 			return currentPosition;
 		}
 
-		// sets the player's current position. ny adding an int to his current position.
+		// sets the player's current position. By adding an int to his current position.
 		public void setCurrentPosition(int addToPosition) {
 			prevPosition = currentPosition;
 			currentPosition = addToPosition + currentPosition;
