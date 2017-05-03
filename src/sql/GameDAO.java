@@ -18,5 +18,45 @@ public class GameDAO  {
 		pDAO.insertPlayer(playerID);
 		fDAO.updateOwnable(playerID);
 		}
+	
+	public void createDBPlayers(int playerID)  {
+	
+		try {
+			pDAO.insertPlayer(playerID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	public void updateDBplayers(int playerID) {
+		try {
+			pDAO.updatePlayer(playerID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
+	
+	public void createDBownable()  {
+		
+		try {
+			fDAO.insertOwnable();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	public void updateDBownable() {
+		try {
+			fDAO.updateOwnable();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

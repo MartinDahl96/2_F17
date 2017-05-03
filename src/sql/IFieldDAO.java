@@ -6,7 +6,9 @@ public interface IFieldDAO {
 
 	void getOwnable(int playerID) throws SQLException;
 	
-	void updateOwnable(int playerID) throws SQLException;
+	void updateOwnable() throws SQLException;
+
+	void insertOwnable() throws SQLException;
 	
 	
 	

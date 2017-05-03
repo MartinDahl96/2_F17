@@ -11,7 +11,6 @@ import mainControllers.GameController;
 
 public class PlayerDAOimp implements IPlayerDAO {
 	private Connector c = new Connector();
-	
 	private PreparedStatement prepstmt;
 
 	@Override
@@ -68,11 +67,10 @@ public class PlayerDAOimp implements IPlayerDAO {
 
 	@Override
 	public void insertPlayer(int playerID) throws SQLException {
-		Player p = GameController.getPlayer(playerID);
-		String updatePlayer = "call addPlayer(?,?,?,?,?,?,?)";
+		Player p = GameController.getPlayer(playerID-1);  //Gets player of index x
+		String addPlayerProcedure = "call addPlayer(?,?,?,?,?,?,?)";
 		
-		try {
-			prepstmt = c.getConnection().prepareStatement(updatePlayer);
+			prepstmt = c.getConnection().prepareStatement(addPlayerProcedure);
 			prepstmt.setInt(1, p.getPlayerID());
 			prepstmt.setString(2, p.getplayerName());
 			prepstmt.setInt(3, p.getFortune());
@@ -81,21 +79,26 @@ public class PlayerDAOimp implements IPlayerDAO {
 			prepstmt.setInt(6, p.getJailToken());
 			prepstmt.setInt(7, p.getCurrentPosition());
 			prepstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
 			prepstmt.close();
-		}
+			System.out.println("Player added to database");
 
 	}
-
-
 
 	@Override
 	public void updatePlayer(int playerID) throws SQLException {
+		Player p = GameController.getPlayer(playerID-1);  //Gets player of index x
+		String updatePlayerProcedure = "call updatePlayer(?,?,?,?,?,?,?)";
 		
-		
+			prepstmt = c.getConnection().prepareStatement(updatePlayerProcedure);
+			prepstmt.setInt(1, p.getPlayerID());
+			prepstmt.setString(2, p.getplayerName());
+			prepstmt.setInt(3, p.getFortune());
+			prepstmt.setBoolean(4, p.getImmunity());
+			prepstmt.setInt(5, p.getJailRounds());
+			prepstmt.setInt(6, p.getJailToken());
+			prepstmt.setInt(7, p.getCurrentPosition());
+			prepstmt.executeUpdate();
+			prepstmt.close();
+			System.out.println("Player updated in database");
+		}
 	}
-
-}
