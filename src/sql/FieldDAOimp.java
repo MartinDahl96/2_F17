@@ -56,7 +56,8 @@ public class FieldDAOimp implements IFieldDAO {
 			if(f instanceof Ownable){
 				if(f instanceof Ownable){
 					prepstmt.setInt(1, f.getFieldID());
-					prepstmt.setInt(2, ((Ownable) f).getOwner().getPlayerID());
+					if(((Ownable) f).getOwner()!=null)prepstmt.setInt(2, ((Ownable) f).getOwner().getPlayerID());
+					else prepstmt.setNull(2, java.sql.Types.INTEGER);
 					if(f instanceof Street) prepstmt.setInt(3, ((Street) f).getNumOfBuildings());
 					else prepstmt.setInt(3, 0);
 					prepstmt.setBoolean(4, ((Ownable) f).isPawned());
@@ -82,5 +83,22 @@ public class FieldDAOimp implements IFieldDAO {
 			}
 		}
 		System.out.println("ownable fields added to database");
+	}
+
+	@Override
+	public void updateOwner() throws SQLException {
+		
+		String addOwnerProcedure = "call updateOwner(?,?)";
+		prepstmt = c.getConnection().prepareStatement(addOwnerProcedure);
+		
+		for(Field f: Board.getFields()){
+			if(((Ownable) f).getOwner() != null){
+			if(f instanceof Ownable) {
+				prepstmt.setInt(1, f.getFieldID());
+				prepstmt.setInt(2, ((Ownable) f).getOwner().getPlayerID());
+				prepstmt.executeUpdate();
+			}
+		}
+		}
 	}
 }

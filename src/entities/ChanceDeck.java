@@ -65,7 +65,11 @@ public class ChanceDeck {
 	public Stack<ChanceCard> getDeck() {
 		return deck;
 	}
-	
+	/**
+	 * Used to get a single card in the stack.
+	 * @param cardID
+	 * @return the card with the given cardID.
+	 */
 	public ChanceCard getCard(int cardID){
 		return deck.get(cardID);
 	}

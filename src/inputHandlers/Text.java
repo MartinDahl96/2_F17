@@ -7,8 +7,13 @@ import java.util.Scanner;
 
 public class Text {
 
+	//attributes
 	private String path;
 	
+	/**
+	 * Constructor for Text
+	 * @param filePath is the location of the file.
+	 */
 	public Text(String filePath)
 	{
 		path = filePath;
@@ -61,12 +66,6 @@ public class Text {
 		
 		return textList;
 	}
-	
-	
-	
-			
-	
-
 	
 }
 

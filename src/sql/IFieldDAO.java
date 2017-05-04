@@ -10,6 +10,9 @@ public interface IFieldDAO {
 
 	void insertOwnable() throws SQLException;
 	
+	void updateOwner() throws SQLException;
+
+	
 	
 	
 	
