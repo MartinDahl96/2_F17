@@ -5,7 +5,7 @@ import entities.Player;
 
 public interface IPlayerDAO {
 
-	Player getPlayer(int playerID) throws SQLException;
+	Player getPlayer() throws SQLException;
 
 	void removePlayer(int playerID) throws SQLException;
 

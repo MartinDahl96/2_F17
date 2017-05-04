@@ -18,10 +18,9 @@ public class FieldDAOimp implements IFieldDAO {
 	@Override
 	public void getOwnable(int playerID) throws SQLException {
 		String getOwnable = "SELECT * FROM matador.Field WHERE playerID = ?;";
-		ResultSet rs;
+		
 
 		try {
-
 			prepstmt = c.getConnection().prepareStatement(getOwnable);
 			prepstmt.setInt(1, playerID);
 			rs = prepstmt.executeQuery();
@@ -45,6 +44,11 @@ public class FieldDAOimp implements IFieldDAO {
 			prepstmt.close();
 		}
 
+	}
+	
+	public void getOwnable() throws SQLException {
+		
+		
 	}
 
 	@Override

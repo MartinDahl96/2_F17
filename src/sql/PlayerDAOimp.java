@@ -12,40 +12,31 @@ import mainControllers.GameController;
 public class PlayerDAOimp implements IPlayerDAO {
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
+	private Statement stmt;
 
 	@Override
-	public Player getPlayer(int playerID) throws SQLException {
+	public Player getPlayer() throws SQLException {
 		
-		GameController.getPlayers().add
+		String getPlayer = "SELECT * FROM playerview;";
+		stmt = c.getConnection().createStatement();
 		
-		for(Player p: GameController.getPlayers()){
-			
+		while(c.doQuery(getPlayer).next()){
+			GameController.getPlayers().add(new Player(rs.getInt("playerID"),
+													   rs.getString("playerName"), 
+													   rs.getInt("fortune"), 
+													   rs.getInt("jailRounds"), 
+													   rs.getInt("jailToken"), 
+													   rs.getInt("currentPosition")));
 		}
 		
-		String getPlayer = "SELECT * FROM matador.Player WHERE playerID = ?;";
-		Player player = null;
-		ResultSet rs;
-
-		try {
-			prepstmt = c.getConnection().prepareStatement(getPlayer);
-			prepstmt.setInt(1, playerID);
-			rs = prepstmt.executeQuery();
-			if (rs.next()) {
-				player = new Player(rs.getInt("playerID"), rs.getString("playerName"), rs.getInt("fortune"),
-						rs.getBoolean("immunity"), rs.getInt("totalAssets"), rs.getInt("ownedFerries"),
-						rs.getInt("ownedBreweries"), rs.getInt("jailRounds"), rs.getInt("jailToken"),
-						rs.getInt("currentPosition"));
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			prepstmt.close();
-		}
-
-		return player;
+		
+		
 	}
+		
 
+
+
+	
 	
 
 	@Override
