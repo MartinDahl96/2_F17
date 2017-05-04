@@ -2,6 +2,8 @@ package sql;
 
 import java.sql.SQLException;
 
+import entities.ChanceDeck;
+
 public class GameDAO {
 
 	private PlayerDAOimp pDAO = new PlayerDAOimp();
@@ -9,9 +11,11 @@ public class GameDAO {
 	private ChanceDAOimp cDAO = new ChanceDAOimp();
 
 	public void loadGame(int playerID) throws SQLException {
-		pDAO.getPlayer(playerID);
-		fDAO.getOwnable(playerID);
-	}
+		try ())
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	}
 
 	public void saveGame() {
 

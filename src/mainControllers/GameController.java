@@ -2,20 +2,14 @@ package mainControllers;
 
 import java.awt.Color;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.lang.*;
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
 import entities.Board;
 import entities.Cup;
 import entities.Player;
 import fieldControllers.*;
-import fieldEntities.Chance;
-import fieldEntities.Jail;
-import fieldEntities.Ownable;
-import fieldEntities.Parking;
-import fieldEntities.Tax;
+
 import inputHandlers.Text;
 import mainControllers.Rule;
 import sql.GameDAO;
@@ -217,7 +211,7 @@ public class GameController {
 
 
 	public void setCars(int i) {
-		cars.add(new Car.Builder().typeCar().primaryColor(MUI.carColor(i + 1)).secondaryColor(Color.white).build());
+		MUI.createCars(cars);
 		GUI.addPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), cars.get(i));
 		MUI.setCarOnStart(players.get(i));
 	}

@@ -15,6 +15,13 @@ public class PlayerDAOimp implements IPlayerDAO {
 
 	@Override
 	public Player getPlayer(int playerID) throws SQLException {
+		
+		GameController.getPlayers().add
+		
+		for(Player p: GameController.getPlayers()){
+			
+		}
+		
 		String getPlayer = "SELECT * FROM matador.Player WHERE playerID = ?;";
 		Player player = null;
 		ResultSet rs;
