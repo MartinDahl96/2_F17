@@ -90,7 +90,7 @@ public class ChanceDAOimp implements IChanceDAO {
 
 	@Override
 	public void insertChanceCards() throws SQLException {
-		resetTable("matador.cardDeck");
+		resetTable("cardDeck");
 		String addCardDeckProcedure = "call addCardDeck(?,?);";
 		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
 		
