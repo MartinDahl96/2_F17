@@ -9,7 +9,7 @@ public interface IPlayerDAO {
 
 	void removePlayer(int playerID) throws SQLException;
 
-	void insertPlayer(int playerID) throws SQLException;
+	void insertPlayer() throws SQLException;
 	
 	void updatePlayer(int playerID) throws SQLException; 
 

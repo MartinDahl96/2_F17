@@ -66,10 +66,11 @@ public class PlayerDAOimp implements IPlayerDAO {
 	}
 
 	@Override
-	public void insertPlayer(int playerID) throws SQLException {
-		Player p = GameController.getPlayer(playerID-1);  //Gets player of index x
+	public void insertPlayer() throws SQLException {
 		String addPlayerProcedure = "call addPlayer(?,?,?,?,?,?)";
 		
+		for(Player p: GameController.getPlayers()){
+			
 			prepstmt = c.getConnection().prepareStatement(addPlayerProcedure);
 			prepstmt.setInt(1, p.getPlayerID());
 			prepstmt.setString(2, p.getplayerName());
@@ -80,7 +81,10 @@ public class PlayerDAOimp implements IPlayerDAO {
 			prepstmt.executeUpdate();
 			prepstmt.close();
 			System.out.println("Player added to database");
-
+			
+			
+		}
+		
 	}
 
 	@Override

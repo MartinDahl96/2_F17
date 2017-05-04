@@ -105,6 +105,7 @@ public class GameController {
 		gDAO.updateDBplayers(players.get(i).getPlayerID());
 		gDAO.updateDBownable();
 		gDAO.createDBcardDeck();
+		gDAO.createDBPlayers();
 		Rule.calcTotalAssets(players.get(i));
 		
 		if (players.get(i).isBankRupt() == true){
@@ -203,7 +204,7 @@ public class GameController {
 		for (int i = 0; i < numOfPlayers; i++) {
 			setPlayers(i);
 			setCars(i);
-			gDAO.createDBPlayers(players.get(i).getPlayerID());
+			
 			
 
 			

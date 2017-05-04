@@ -43,50 +43,12 @@ public class ChanceDAOimp implements IChanceDAO {
 
 	}
 
-	@Override
-	public void updateChanceCard(int cardID, String cardText, int cardValue) throws SQLException {
-		String updateChanceCard = "INSERT INTO matador.ChanceDeck (cardID, cardText, cardValue) VALUES (?,?,?) \n"
-				+ "ON DUPLICATE KEY UPDATE cardID = VALUES(cardID), cardText = VALUES(cardText), cardValue = VALUES(cardValue)";
-
-		ChanceController cc = new ChanceController(null);
-		try {
-
-			prepstmt = c.getConnection().prepareStatement(updateChanceCard);
-
-			for (int i = 1; i <= cc.sizeOfStack(); i++) {
-				prepstmt.setInt(1, cc.deck.getDeck().get(i).getCardID());
-				prepstmt.setString(2, cc.deck.getDeck().get(i).getCardText());
-				prepstmt.setInt(3, cc.deck.getDeck().get(i).getCardValue());
-			}
-			prepstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			prepstmt.close();
-		}
-
-	}
 
 	@Override
 	public void getChanceCards(int cardID) throws SQLException {
 		
 	}
 
-	@Override
-	public void updateChanceCards(int cardID, String cardText, int cardValue) throws SQLException {
-		String addCardDeckProcedure = "call updateCarDeck(?,?);";
-
-		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
-		
-		for(int i = 0; i<ChanceDeck.getDeck().size();i++){
-			prepstmt.setInt(1, ChanceDeck.getDeck().get(i).getCardID());
-			prepstmt.setBoolean(2, false);
-			prepstmt.setInt(3, i);
-			prepstmt.executeUpdate();
-			}
-		
-		System.out.println("cardDeck added to database");
-		}
 
 	@Override
 	public void insertChanceCards() throws SQLException {

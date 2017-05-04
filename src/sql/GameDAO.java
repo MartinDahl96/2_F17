@@ -19,10 +19,19 @@ public class GameDAO  {
 		fDAO.updateOwnable(playerID);
 		}
 	
-	public void createDBPlayers(int playerID)  {
+	public void setupGame(int playerID){
+		
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	public void createDBPlayers()  {
 	
 		try {
-			pDAO.insertPlayer(playerID);
+			pDAO.insertPlayer();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
