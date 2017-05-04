@@ -10,4 +10,6 @@ public interface IChanceDAO {
 	
 	void insertChanceCards() throws SQLException;
 
+	void resetTable(String tableName) throws SQLException;
+
 }

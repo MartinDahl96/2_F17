@@ -90,9 +90,8 @@ public class ChanceDAOimp implements IChanceDAO {
 
 	@Override
 	public void insertChanceCards() throws SQLException {
-		String resetTable = "truncate table matador.cardDeck";
+		resetTable("matador.cardDeck");
 		String addCardDeckProcedure = "call addCardDeck(?,?);";
-		c.doUpdate(resetTable);
 		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
 		
 		for(int i = 0; i<ChanceDeck.getDeck().size();i++){
@@ -100,7 +99,6 @@ public class ChanceDAOimp implements IChanceDAO {
 			prepstmt.setInt(2, i);
 			prepstmt.executeUpdate();
 			}
-		
 		System.out.println("cardDeck added to database");
 		}
 		
@@ -117,6 +115,15 @@ public class ChanceDAOimp implements IChanceDAO {
 		System.out.println("POP: "+cc.getDeck().pop());
 		
 		
+	}
+
+	@Override
+	public void resetTable(String tableName) throws SQLException {
+		String resetTable = "call resetTable(?);";
+		prepstmt = c.getConnection().prepareStatement(resetTable);
+		prepstmt.setString(1, tableName);
+		prepstmt.executeUpdate();
+		System.out.println("Table "+tableName+" has been resetted");
 	}
 
 }
