@@ -11,6 +11,6 @@ public interface IPlayerDAO {
 
 	void insertPlayer() throws SQLException;
 	
-	void updatePlayer(int playerID) throws SQLException; 
+	void updatePlayer() throws SQLException; 
 
 }

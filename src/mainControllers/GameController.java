@@ -59,6 +59,7 @@ public class GameController {
 //			}
 
 			createPlayers();
+			gDAO.saveGame();
 			playerTurn();
 
 //			if(choice == false){
@@ -102,10 +103,8 @@ public class GameController {
 	}
 
 	public void playerOptions(int i) {
-		gDAO.updateDBplayers(players.get(i).getPlayerID());
-		gDAO.updateDBownable();
-		gDAO.createDBcardDeck();
-		gDAO.createDBPlayers();
+		gDAO.updateSave();
+		
 		Rule.calcTotalAssets(players.get(i));
 		
 		if (players.get(i).isBankRupt() == true){
@@ -161,10 +160,7 @@ public class GameController {
 			System.exit(0);
 			break;
 		}
-			
-		
-		Rule.calcTotalAssets(players.get(i));
-		System.out.println(players.get(i).getplayerName()+": "+players.get(i).getFortune() +" = "+players.get(i).getTotalAssets());
+		gDAO.updateSave();
 	}
 
 	public void throwDice(int i) {
@@ -198,7 +194,6 @@ public class GameController {
 
 
 	public void createPlayers() {
-		gDAO.createDBownable();
 		int numOfPlayers = Integer.parseInt(MUI.setFiveButtons(textList[7], textList[8], textList[9], textList[10], textList[11], textList[12]));
 
 		for (int i = 0; i < numOfPlayers; i++) {

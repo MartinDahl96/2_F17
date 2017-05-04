@@ -51,7 +51,7 @@ public class ChanceDAOimp implements IChanceDAO {
 
 
 	@Override
-	public void insertChanceCards() throws SQLException {
+	public void insertUpdateCards() throws SQLException {
 		resetCardDeck();
 		String addCardDeckProcedure = "call addCardDeck(?,?);";
 		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
@@ -61,7 +61,7 @@ public class ChanceDAOimp implements IChanceDAO {
 			prepstmt.setInt(2, i);
 			prepstmt.executeUpdate();
 			}
-		System.out.println("cardDeck added to database");
+		System.out.println("cardDeck is up to date");
 		}
 		
 	
@@ -83,7 +83,6 @@ public class ChanceDAOimp implements IChanceDAO {
 	public void resetCardDeck() throws SQLException {
 		String resetCardDeckProcedure = "call resetCardDeck();";
 		c.doUpdate(resetCardDeckProcedure);
-		System.out.println("Table has been resetted");
 	}
 
 }

@@ -80,18 +80,16 @@ public class PlayerDAOimp implements IPlayerDAO {
 			prepstmt.setInt(6, p.getCurrentPosition());
 			prepstmt.executeUpdate();
 			prepstmt.close();
-			System.out.println("Player added to database");
-			
-			
 		}
+			System.out.println("Players added to database");
 		
 	}
 
 	@Override
-	public void updatePlayer(int playerID) throws SQLException {
-		Player p = GameController.getPlayer(playerID-1);  //Gets player of index x
+	public void updatePlayer() throws SQLException {
 		String updatePlayerProcedure = "call updatePlayer(?,?,?,?,?,?)";
 		
+		for(Player p: GameController.getPlayers()){
 			prepstmt = c.getConnection().prepareStatement(updatePlayerProcedure);
 			prepstmt.setInt(1, p.getPlayerID());
 			prepstmt.setString(2, p.getplayerName());
@@ -101,6 +99,8 @@ public class PlayerDAOimp implements IPlayerDAO {
 			prepstmt.setInt(6, p.getCurrentPosition());
 			prepstmt.executeUpdate();
 			prepstmt.close();
-			System.out.println("Player updated in database");
+			
 		}
+		    System.out.println("Players updated in database");
 	}
+}
