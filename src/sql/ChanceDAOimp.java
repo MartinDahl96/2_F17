@@ -4,12 +4,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.Statement;
+
+import entities.Board;
+import entities.ChanceCard;
+import entities.ChanceDeck;
 import fieldControllers.ChanceController;
+import fieldEntities.Field;
+import fieldEntities.Ownable;
+import fieldEntities.Street;
 
 public class ChanceDAOimp implements IChanceDAO {
 
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
+	
 
 	@Override
 	public void getChanceCard(int cardID) throws SQLException {
@@ -56,6 +65,58 @@ public class ChanceDAOimp implements IChanceDAO {
 			prepstmt.close();
 		}
 
+	}
+
+	@Override
+	public void getChanceCards(int cardID) throws SQLException {
+		
+	}
+
+	@Override
+	public void updateChanceCards(int cardID, String cardText, int cardValue) throws SQLException {
+		String addCardDeckProcedure = "call updateCarDeck(?,?);";
+
+		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
+		
+		for(int i = 0; i<ChanceDeck.getDeck().size();i++){
+			prepstmt.setInt(1, ChanceDeck.getDeck().get(i).getCardID());
+			prepstmt.setBoolean(2, false);
+			prepstmt.setInt(3, i);
+			prepstmt.executeUpdate();
+			}
+		
+		System.out.println("cardDeck added to database");
+		}
+
+	@Override
+	public void insertChanceCards() throws SQLException {
+		String resetTable = "truncate table matador.cardDeck";
+		String addCardDeckProcedure = "call addCardDeck(?,?);";
+		c.doUpdate(resetTable);
+		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
+		
+		for(int i = 0; i<ChanceDeck.getDeck().size();i++){
+			prepstmt.setInt(1, ChanceDeck.getDeck().get(i).getCardID());
+			prepstmt.setInt(2, i);
+			prepstmt.executeUpdate();
+			}
+		
+		System.out.println("cardDeck added to database");
+		}
+		
+	
+	public static void main (String[] args){
+		
+		ChanceDeck cc = new ChanceDeck();
+		
+		
+		
+		System.out.println("PEEK: "+cc.getDeck().peek());
+		System.out.println("INDEX 0: "+cc.getDeck().get(0));
+		System.out.println("INDEX 32: "+cc.getDeck().get(32));
+		System.out.println("POP: "+cc.getDeck().pop());
+		
+		
 	}
 
 }

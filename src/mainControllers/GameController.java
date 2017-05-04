@@ -50,7 +50,7 @@ public class GameController {
 
 
 	public void startGame() {
-		Boolean choice = MUI.getTwoButtons("Nyt spil bro?", "Ja", "Nej, indlÃ¦s tidligere spil");
+		Boolean choice = MUI.getTwoButtons("Vælg: ", "Nyt spil", "Indlæs tidligere spil");
 //		if (choice == true){
 //			try {
 //				Connector.ResetDatabase();
@@ -69,12 +69,13 @@ public class GameController {
 
 
 	public void playerTurn() {
-
+		
 		while (winner == false) {
 
 			for (int i = 0; i < players.size(); i++) {
 				checkForWinner(i);
-
+				ParkingController.activateImmunity(players.get(i));
+	
 				if(players.get(i).getJailRounds() == 0) {
 					playerOptions(i);
 
@@ -86,8 +87,8 @@ public class GameController {
 
 				checkPlayerLost(i);
 				
-//				gDAO.updateDBplayers(players.get(i).getPlayerID());
-//				gDAO.updateDBownable();
+				
+				
 				
 				
 //				try {
@@ -101,6 +102,9 @@ public class GameController {
 	}
 
 	public void playerOptions(int i) {
+		gDAO.updateDBplayers(players.get(i).getPlayerID());
+		gDAO.updateDBownable();
+		gDAO.createDBcardDeck();
 		Rule.calcTotalAssets(players.get(i));
 		
 		if (players.get(i).isBankRupt() == true){
@@ -156,6 +160,8 @@ public class GameController {
 			System.exit(0);
 			break;
 		}
+			
+		
 		Rule.calcTotalAssets(players.get(i));
 		System.out.println(players.get(i).getplayerName()+": "+players.get(i).getFortune() +" = "+players.get(i).getTotalAssets());
 	}
@@ -167,7 +173,7 @@ public class GameController {
 
 			cup.useCup();
 			GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-			players.get(i).setCurrentPosition(cup.getCupValue());
+			players.get(i).setCurrentPosition(2);
 			playOnBoard(i);
 		}
 		else{
@@ -217,7 +223,7 @@ public class GameController {
 	public void setCars(int i) {
 		cars.add(new Car.Builder().typeCar().primaryColor(MUI.carColor(i + 1)).secondaryColor(Color.white).build());
 		GUI.addPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), cars.get(i));
-		MUI.setCarOnStart(players.get(i), players.get(i).getplayerName());
+		MUI.setCarOnStart(players.get(i));
 	}
 
 

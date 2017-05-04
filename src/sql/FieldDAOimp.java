@@ -68,7 +68,7 @@ public class FieldDAOimp implements IFieldDAO {
 		System.out.println("ownable fields updated in database");
 	}
 
-	@Override //lav en addOwner procedure
+	@Override 
 	public void insertOwnable() throws SQLException {
 		String addOwnableProcedure = "call addOwnable(?,?,?);";
 

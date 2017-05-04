@@ -2,6 +2,7 @@ package fieldControllers;
 
 
 import java.io.IOException;
+import java.util.Stack;
 
 import entities.ChanceCard;
 import entities.ChanceDeck;
@@ -17,7 +18,7 @@ import mainControllers.MUI;
 public class ChanceController {
 	
 	//attributes
-	public ChanceDeck deck;
+	private ChanceDeck deck;
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
 	
@@ -29,6 +30,12 @@ public class ChanceController {
 		this.deck = new ChanceDeck();
 		
 	}
+	public ChanceController(){
+		this.deck = new ChanceDeck();
+	
+		
+	}
+	
 	
 	/**
 	 * landOnField-method for a chance-field.
@@ -267,8 +274,6 @@ public class ChanceController {
 	 * used to get the size of the stack.
 	 * @return the size of the stack.
 	 */
-	public int sizeOfStack(){
-		return deck.getDeck().size();
-	}
+	
 	
 }

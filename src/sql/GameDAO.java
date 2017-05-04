@@ -62,4 +62,12 @@ public class GameDAO  {
 			e.printStackTrace();
 		}
 	}
+	
+	public void createDBcardDeck(){
+		try {
+			cDAO.insertChanceCards();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

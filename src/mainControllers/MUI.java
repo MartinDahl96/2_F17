@@ -68,9 +68,10 @@ public class MUI {
 		}
 	}
 
-	public static void setCarOnStart(Player player, String Name) {
+	public static void setCarOnStart(Player player) {
 		player.setCurrentPosition(1);
-		GUI.setCar(1, Name);
+		GUI.setCar(player.getCurrentPosition(), player.getplayerName());
+		
 	}
 
 	public static void removeCar(String name) {
