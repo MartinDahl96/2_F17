@@ -45,22 +45,20 @@ public class GameController {
 
 	public void startGame() {
 		Boolean choice = MUI.getTwoButtons("Vælg: ", "Nyt spil", "Indlæs tidligere spil");
-//		if (choice == true){
-//			try {
-//				Connector.ResetDatabase();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-
+		if (choice){
+//			gDAO.newGame();
 			createPlayers();
 			gDAO.saveGame();
 			playerTurn();
 
-//			if(choice == false){
-//			}
 		}
-	
-
+		else if (!choice) {
+			gDAO.loadGame();
+			playerTurn();
+			
+			
+		}
+	}
 
 
 	public void playerTurn() {
@@ -81,17 +79,6 @@ public class GameController {
 				}
 
 				checkPlayerLost(i);
-				
-				
-				
-				
-				
-//				try {
-//					DTOimp.saveGame(i);
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
 			}
 		}
 	}
@@ -146,11 +133,7 @@ public class GameController {
 			playerOptions(i);
 			break;
 		case 6:
-//			try{
-//				DTOimp.saveGame(i);
-//			} catch (SQLException e){
-//				e.printStackTrace();
-//			}
+			gDAO.updateSave();
 			System.exit(0);
 			break;
 		}
@@ -221,9 +204,17 @@ public class GameController {
 		return players;
 	}
 
-	public static Player getPlayer(int index){
-		return players.get(index);
+	public static Player getPlayer(int playerID) {
+		Player p = null;
+		for (Player player : players) {
+			if (player.getPlayerID() == playerID) {
+				p = player;
+			}
+		}
+		return p;
 	}
+		
+	
 
 	public void checkForWinner(int i) {
 
@@ -242,6 +233,7 @@ public class GameController {
 			Rule.calcTotalAssets(players.get(i));
 
 			if (players.get(i).isBankRupt()){
+				players.get(i).changePosition(-1);
 				MUI.showMessage(players.get(i).getplayerName() +textList[17]);
 				MUI.removeCar(players.get(i).getplayerName());
 				bankruptPlayers++;

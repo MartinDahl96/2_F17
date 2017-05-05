@@ -70,8 +70,8 @@ public class ChanceDeck {
 	 * @param cardID
 	 * @return the card with the given cardID.
 	 */
-	public ChanceCard getCard(int cardID){
-		return deck.get(cardID);
+	public ChanceCard getCard(int index){
+		return deck.get(index);
 	}
 	
 

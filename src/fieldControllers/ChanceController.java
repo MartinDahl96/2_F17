@@ -2,6 +2,7 @@ package fieldControllers;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Stack;
 
 import entities.ChanceCard;
@@ -14,6 +15,7 @@ import entities.Board;
 import inputHandlers.Text;
 import mainControllers.GameController;
 import mainControllers.MUI;
+import sql.ChanceDAOimp;
 
 public class ChanceController {
 	
@@ -21,6 +23,7 @@ public class ChanceController {
 	private ChanceDeck deck;
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
+	private ChanceDAOimp cDAO = new ChanceDAOimp();
 	
 	/**
 	 * Constructor for the Chancecontroller
@@ -63,7 +66,8 @@ public class ChanceController {
 		
 		recreateIfEmpty();
 	
-		ChanceCard c = deck.getDeck().pop();
+		cDAO.updateCards(ChanceDeck.getDeck().peek());
+		ChanceCard c = ChanceDeck.getDeck().pop();
 		MUI.displayCard(c.getCardText());
 		MUI.showMessage(player.getplayerName()+textList[0]);
 		
@@ -266,6 +270,11 @@ public class ChanceController {
 			deck.getDeck().remove(17);
 			deck.getDeck().remove(17);
 			deck.shuffleDeck();
+			try {
+				cDAO.insertCards();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}

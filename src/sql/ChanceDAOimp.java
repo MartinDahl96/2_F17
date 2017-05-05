@@ -1,88 +1,119 @@
 package sql;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.mysql.jdbc.Statement;
-
-import entities.Board;
 import entities.ChanceCard;
 import entities.ChanceDeck;
-import fieldControllers.ChanceController;
-import fieldEntities.Field;
-import fieldEntities.Ownable;
-import fieldEntities.Street;
+
 
 public class ChanceDAOimp implements IChanceDAO {
 
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
-	
+	private ResultSet rs;
 
 	@Override
-	public void getChanceCard(int cardID) throws SQLException {
-		String getChanceCard = "SELECT * FROM matador.ChanceDeck WHERE cardID = ?;";
-		ResultSet rs;
-		ChanceController cc = new ChanceController(null);
+	public void insertCards() throws SQLException {
 
+		String addCardDeckProcedure = "call addCardDeck(?,?,?,?);";
+		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
+
+		for (int i = 0; i < ChanceDeck.getDeck().size(); i++) {
+			prepstmt.setInt(1, ChanceDeck.getDeck().get(i).getCardID());
+			prepstmt.setInt(2, ChanceDeck.getDeck().get(i).getCardValue());
+			prepstmt.setString(3, ChanceDeck.getDeck().get(i).getCardText());
+			prepstmt.setInt(4, i);
+			prepstmt.executeUpdate();
+		}
+		System.out.println("cardDeck is up to date");
+	}
+
+	@Override
+	public void updateCards(ChanceCard card) { 
+		String updateCardDeckProcedure = "call updateCardDeck(?,?);";
 		try {
-
-			prepstmt = c.getConnection().prepareStatement(getChanceCard);
-			rs = prepstmt.executeQuery();
-			while (rs.next()) {
-				prepstmt.setInt(1, cardID);
-				prepstmt.setString(2, cc.deck.getDeck().get(cardID).getCardText());
-				prepstmt.setInt(3, cc.deck.getDeck().get(cardID).getCardValue());
-			}
+			prepstmt = c.getConnection().prepareStatement(updateCardDeckProcedure);
+			prepstmt.setInt(1, card.getCardID());
+			prepstmt.setBoolean(2, true);
+			prepstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			prepstmt.close();
+		}
+		System.out.println("CARDDECK UPDATED");
+
+	}
+
+	@Override
+	public void getChanceCards() throws SQLException {
+		ChanceDeck.getDeck().removeAllElements();
+		String notPickedCards = "SELECT * FROM notpickedcards;";
+		rs = c.doQuery(notPickedCards);
+
+		while (rs.next()) {
+			ChanceDeck.getDeck().push(new ChanceCard(rs.getInt("cardID"), rs.getInt("cardValue"), rs.getString("cardText")));
 		}
 
 	}
 
-
-	@Override
-	public void getChanceCards(int cardID) throws SQLException {
-		
-	}
-
-
-	@Override
-	public void insertUpdateCards() throws SQLException {
-		resetCardDeck();
-		String addCardDeckProcedure = "call addCardDeck(?,?);";
-		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
-		
-		for(int i = 0; i<ChanceDeck.getDeck().size();i++){
-			prepstmt.setInt(1, ChanceDeck.getDeck().get(i).getCardID());
-			prepstmt.setInt(2, i);
-			prepstmt.executeUpdate();
-			}
-		System.out.println("cardDeck is up to date");
-		}
-		
-	
-	public static void main (String[] args){
-		
-		ChanceDeck cc = new ChanceDeck();
-		
-		
-		
-		System.out.println("PEEK: "+cc.getDeck().peek());
-		System.out.println("INDEX 0: "+cc.getDeck().get(0));
-		System.out.println("INDEX 32: "+cc.getDeck().get(32));
-		System.out.println("POP: "+cc.getDeck().pop());
-		
-		
-	}
-
-	@Override
-	public void resetCardDeck() throws SQLException {
-		String resetCardDeckProcedure = "call resetCardDeck();";
-		c.doUpdate(resetCardDeckProcedure);
-	}
+	// public static void main(String[] args){
+	//
+	// ChanceDeck cc = new ChanceDeck();
+	// System.out.println("FØR: "+cc.getDeck());
+	// ChanceDAOimp dao = new ChanceDAOimp();
+	//
+	// try {
+	// dao.insertCards();
+	// } catch (SQLException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// try {
+	// dao.updateCards(cc.getDeck().peek());
+	// cc.getDeck().pop();
+	// } catch (SQLException e1) {
+	// // TODO Auto-generated catch block
+	// e1.printStackTrace();
+	// }
+	//
+	// try {
+	// dao.updateCards(cc.getDeck().peek());
+	// cc.getDeck().pop();
+	// } catch (SQLException e1) {
+	// // TODO Auto-generated catch block
+	// e1.printStackTrace();
+	// }try {
+	// dao.updateCards(cc.getDeck().peek());
+	// cc.getDeck().pop();
+	// } catch (SQLException e1) {
+	// // TODO Auto-generated catch block
+	// e1.printStackTrace();
+	// }try {
+	// dao.updateCards(cc.getDeck().peek());
+	// cc.getDeck().pop();
+	// } catch (SQLException e1) {
+	// // TODO Auto-generated catch block
+	// e1.printStackTrace();
+	// }
+	//
+	// System.out.println("EFTER: "+cc.getDeck());
+	// System.out.println("SIZE: "+cc.getDeck().size());
+	//
+	// cc.getDeck().removeAllElements();
+	// System.out.println("SLETTET: "+cc.getDeck());
+	//
+	// try {
+	// dao.getChanceCards();
+	// } catch (SQLException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	//
+	// System.out.println("SKAL VÆRE SAMME SOM 'EFTER': "+cc.getDeck());
+	// System.out.println("SIZE: "+cc.getDeck().size());
+	//
+	//
+	// }
 
 }
