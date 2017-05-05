@@ -7,13 +7,13 @@ import fieldEntities.Street;
 
 public class Rule {
 
-
+	//attributes
 	Board b = new Board();
 	private int total;
 
 	/**
 	 * Calculates and sets the player's total assets; fortune + value of properties and buildings.
-	 * @param player
+	 * @param player is the player to be calculated.
 	 */
 	public void calcTotalAssets(Player player){
 

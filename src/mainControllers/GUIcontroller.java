@@ -14,9 +14,15 @@ import fieldEntities.Ownable;
 import inputHandlers.Text;
 
 public class GUIcontroller {
+	
+	//attributes
 	private Text file = new Text("txtfiles/mainControllerText.txt");
 	private String[] textList;
 
+	/**
+	 * used to create the fields on the GUI.
+	 * @param fields is the ArrayList of fields to be created.
+	 */
 	public void createGUIFields(ArrayList<Field> fields) {
 
 		try {
@@ -208,12 +214,5 @@ public class GUIcontroller {
 		
 		
 	}
-	
-	public static void main(String[] args){
-		GUIcontroller g = new GUIcontroller();
-		Board b = new Board();
-		g.createGUIFields(b.getFields());
-	}
-
 	
 }
