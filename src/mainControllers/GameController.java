@@ -16,6 +16,7 @@ import sql.GameDAO;
 
 public class GameController {
 
+	//attributes
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Car> cars = new ArrayList<Car>();
 	private Cup cup = new Cup();
@@ -43,10 +44,12 @@ public class GameController {
 	}
 
 
+	/**
+	 * used to  make the player decide whether to start a new game or to load a saved one.
+	 */
 	public void startGame() {
 		Boolean choice = MUI.getTwoButtons("Vælg: ", "Nyt spil", "Indlæs tidligere spil");
 		if (choice){
-//			gDAO.newGame();
 			createPlayers();
 			gDAO.saveGame();
 			playerTurn();
@@ -61,6 +64,9 @@ public class GameController {
 	}
 
 
+	/**
+	 * used as the loop the player's are in until they have lost the game.
+	 */
 	public void playerTurn() {
 		
 		while (winner == false) {
@@ -83,6 +89,10 @@ public class GameController {
 		}
 	}
 
+	/**
+	 * used to define the options available to the player.
+	 * @param i is the player.
+	 */
 	public void playerOptions(int i) {
 		gDAO.updateSave();
 		
@@ -140,6 +150,10 @@ public class GameController {
 		gDAO.updateSave();
 	}
 
+	/**
+	 * is the option for the player to throw the dice.
+	 * @param i is the player.
+	 */
 	public void throwDice(int i) {
 		
 		if(players.get(i).getFortune() > 0){ //er dette nødvendigt?
@@ -157,6 +171,10 @@ public class GameController {
 	}
 
 
+	/**
+	 * is the player's movement on the board, affected by the player's turn.
+	 * @param i is the player.
+	 */
 	public void playOnBoard(int i) {
 
 		MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
@@ -170,6 +188,9 @@ public class GameController {
 	}
 
 
+	/**
+	 * used to create the amount of players stated by the choice of the player starting the game.
+	 */
 	public void createPlayers() {
 		int numOfPlayers = Integer.parseInt(MUI.setFiveButtons(textList[7], textList[8], textList[9], textList[10], textList[11], textList[12]));
 
@@ -185,6 +206,10 @@ public class GameController {
 	}
 
 
+	/**
+	 * used the set a player on the GUI.
+	 * @param i is the player's number.
+	 */
 	public void setPlayers(int i) {
 
 		players.add(new Player(i, MUI.nameValidation(textList[13] + (i + 1) + textList[14])));
@@ -193,6 +218,10 @@ public class GameController {
 	}
 
 
+	/**
+	 * used to set a car on the GUI.
+	 * @param i is the car to be set for the player's number.
+	 */
 	public void setCars(int i) {
 		MUI.createCars(cars);
 		GUI.addPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), cars.get(i));
@@ -200,10 +229,19 @@ public class GameController {
 	}
 
 
+	/**
+	 * used to get the ArrayList of players.
+	 * @return is the ArrayList of players.
+	 */
 	public static ArrayList<Player> getPlayers() {
 		return players;
 	}
 
+	/**
+	 * used to get a single player out of the ArrayList of players.
+	 * @param playerID is the ID of the player in the ArrayList.
+	 * @return is the selected player.
+	 */
 	public static Player getPlayer(int playerID) {
 		Player p = null;
 		for (Player player : players) {
@@ -216,6 +254,10 @@ public class GameController {
 		
 	
 
+	/**
+	 * used to check if a winner is found.
+	 * @param i is the player to check the win/loss status on.
+	 */
 	public void checkForWinner(int i) {
 
 		if(bankruptPlayers == players.size()-1){
@@ -227,6 +269,10 @@ public class GameController {
 		}
 	}
 
+	/**
+	 * used to check if a player has lost.
+	 * @param i is the player to be checked.
+	 */
 	public void checkPlayerLost(int i){
 
 		if(players.get(i).getFortune() <= 0){

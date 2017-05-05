@@ -6,10 +6,16 @@ import entities.ChanceDeck;
 
 public class GameDAO {
 
+	//attributes
 	private PlayerDAOimp pDAO = new PlayerDAOimp();
 	private FieldDAOimp fDAO = new FieldDAOimp();
 	private ChanceDAOimp cDAO = new ChanceDAOimp();
 
+	/**
+	 * used to load the game.
+	 * @param playerID is the ID of the player to load.
+	 * @throws SQLException
+	 */
 	public void loadGame(int playerID) throws SQLException {
 		try ())
 			
@@ -17,6 +23,10 @@ public class GameDAO {
 			e.printStackTrace();
 		}	}
 
+	/**
+	 * used to save the current game.
+	 * @throws Exception
+	 */
 	public void saveGame() {
 
 		try {
@@ -28,6 +38,10 @@ public class GameDAO {
 		}
 	}
 
+	/**
+	 * used to update the current saved game to a new state of the game.
+	 * @throws Exception
+	 */
 	public void updateSave() {
 		try {
 			pDAO.updatePlayer();
