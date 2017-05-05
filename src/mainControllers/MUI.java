@@ -228,6 +228,15 @@ public class MUI {
 		return s;
 	}
 	
+	/**
+	 * removes owner from GUI
+	 * @param fieldID refers to the field that gets removed
+	 */
+	public static void removeOwner(int fieldID){
+		GUI.removeOwner(fieldID);
+	}
+	
+	
 	
 
 }
