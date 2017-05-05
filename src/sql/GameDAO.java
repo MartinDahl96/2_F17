@@ -27,7 +27,6 @@ public class GameDAO {
 	}
 
 	public void saveGame() {
-
 		try {
 			pDAO.insertPlayer();
 			fDAO.insertOwnable();
