@@ -1,0 +1,41 @@
+call addCardDeck(?,?,?,?);
+cardDeck is up to date
+call updateCardDeck(?,?);
+CARDDECK UPDATED
+SELECT * FROM notpickedcards;
+cardID
+cardValue
+cardText
+Localhost
+root
+sql123
+matador
+com.mysql.jdbc.Driver
+jdbc:mysql://
+:
+/
+SELECT * FROM ownedfields;
+fieldID
+playerID
+pawned
+SELECT * FROM ownedstreets
+houses
+call updateOwnable(?,?,?,?);
+ownable fields updated in database
+call addOwnable(?,?,?);
+ownable fields added to database
+call resetTables();
+New game
+SELECT * FROM notlostplayers;
+playerID
+playerName
+fortune
+jailRounds
+jailToken
+currentPosition
+SELECT * FROM ownedferries;
+SELECT * FROM ownedBreweries;
+call addPlayer(?,?,?,?,?,?)
+Players added to database
+call updatePlayer(?,?,?,?,?,?)
+Players updated in database

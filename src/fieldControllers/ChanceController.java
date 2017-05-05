@@ -30,10 +30,20 @@ public class ChanceController {
 	 * @param c is a Chance-field object.
 	 */
 	public ChanceController(Chance c){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.deck = new ChanceDeck();
 		
 	}
 	public ChanceController(){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.deck = new ChanceDeck();
 	
 		
@@ -58,12 +68,7 @@ public class ChanceController {
 	 * @param player
 	 */
 	public void drawCard(Player player){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+			
 		recreateIfEmpty();
 	
 		cDAO.updateCards(ChanceDeck.getDeck().peek());
