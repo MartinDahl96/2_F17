@@ -11,6 +11,12 @@ import fieldEntities.Field;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
 
+/**
+ * Unittest of the class Street, aswell as the property controller.
+ * @author janus
+ *
+ */
+
 public class TestStreetField {
 
 	Player p;
@@ -18,6 +24,11 @@ public class TestStreetField {
 	Board b; 
 
 	@Before
+	/**
+	 * Creates the objects/instances needed to perform the tests:
+	 * These are being created before each @Test
+	 * @throws Exception
+	 */
 	public void setUp() throws Exception {
 		this.p = new Player(1, "Test Player");
 		this.sc = new StreetControllerMockup();
@@ -33,6 +44,9 @@ public class TestStreetField {
 	}
 
 	@Test
+	/**
+	 * Test that the player is a instance of the player class and that the player has values.
+	 */
 	public void testEntities() {
 		assertNotNull(p);
 		assertTrue(p instanceof Player);
@@ -40,6 +54,9 @@ public class TestStreetField {
 	}
 	
 	@Test
+	/**
+	 * Tests the rent of a street is correct with 0 houses:
+	 */
 	public void testGetRent0Houses() {
 		int actual, expected;
 		((Ownable) Board.getFields().get(2)).setOwner(p);
@@ -50,6 +67,9 @@ public class TestStreetField {
 		
 	}
 	@Test
+	/**
+	 * Tests the rent of a street is correct with 1 house:
+	 */
 	public void testGetRent1House() {
 		int actual, expected;
 		((Ownable) Board.getFields().get(2)).setOwner(p);
@@ -72,6 +92,9 @@ public class TestStreetField {
 		assertEquals(expected,actual);
 	}
 	@Test
+	/**
+	 * Tests the rent of a street is correct with 2 houses:
+	 */
 	public void testGetRent2Houses() {
 		int expected, actual;
 		((Ownable) Board.getFields().get(2)).setOwner(p);
@@ -97,6 +120,9 @@ public class TestStreetField {
 		
 	}
 	@Test
+	/**
+	 * Tests the rent of a street is correct with 3 houses:
+	 */
 	public void testGetRent3Houses() {
 		int expected, actual;
 		((Ownable) Board.getFields().get(2)).setOwner(p);
@@ -122,6 +148,9 @@ public class TestStreetField {
 		assertEquals(expected,actual);
 	}
 	@Test
+	/**
+	 * Tests the rent of a street is correct with 4 houses:
+	 */
 	public void testGetRent4Houses() {
 		int expected, actual;
 		((Ownable) Board.getFields().get(2)).setOwner(p);
@@ -149,6 +178,9 @@ public class TestStreetField {
 		
 	}
 	@Test
+	/**
+	 * Tests the rent of a street is correct a hotel:
+	 */
 	public void testGetRentHotel() {
 		int expected, actual;
 		((Ownable) Board.getFields().get(2)).setOwner(p);
@@ -178,6 +210,9 @@ public class TestStreetField {
 		
 	}
 	@Test
+	/**
+	 * Tests that a player is able to sell a house, and that the streets rent is affected accordingly:
+	 **/
 	public void testSellHouseAndGetRent() {
 		int expected, actual;
 		((Ownable) Board.getFields().get(2)).setOwner(p);
@@ -204,6 +239,9 @@ public class TestStreetField {
 		
 	}
 	@Test
+	/**
+	 * Tests that a player is able to sell a hotel, and that the streets rent is affected accordingly:
+	 **/
 	public void testSellHotelAndGetRent() {
 		int expected, actual;
 		((Ownable) Board.getFields().get(2)).setOwner(p);
@@ -230,7 +268,7 @@ public class TestStreetField {
 		actual = p.getFortune();
 		assertEquals(expected,actual);
 		
-		
+		 
 	}
 
 }
