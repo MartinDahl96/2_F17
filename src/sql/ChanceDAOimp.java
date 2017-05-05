@@ -10,10 +10,16 @@ import entities.ChanceDeck;
 
 public class ChanceDAOimp implements IChanceDAO {
 
+	//attributes
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
 	private ResultSet rs;
 
+	
+	/**
+	 * used to insert a chancecard to the database.
+	 * @throws SQLException
+	 */
 	@Override
 	public void insertCards() throws SQLException {
 
@@ -30,6 +36,11 @@ public class ChanceDAOimp implements IChanceDAO {
 		System.out.println("cardDeck is up to date");
 	}
 
+	/**
+	 * used to update/change a chancecard in the database
+	 * @param card is the card to be changed.
+	 * @throws SQLException
+	 */
 	@Override
 	public void updateCards(ChanceCard card) { 
 		String updateCardDeckProcedure = "call updateCardDeck(?,?);";
@@ -45,6 +56,10 @@ public class ChanceDAOimp implements IChanceDAO {
 
 	}
 
+	/**
+	 * used to get a chancecard from the Database.
+	 * @throws SQLException
+	 */
 	@Override
 	public void getChanceCards() throws SQLException {
 		ChanceDeck.getDeck().removeAllElements();
