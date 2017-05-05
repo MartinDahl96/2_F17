@@ -23,6 +23,11 @@ public class StreetController {
 	 * @param s is a street-field object.
 	 */
 	public StreetController(Street s){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.s = s;
 	}
 	
@@ -31,12 +36,6 @@ public class StreetController {
 	 * @param player is the owner of the field.
 	 */
 	public void sellBuilding(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 		String input = MUI.getUserString(textList[35]);
 		Street field = ((Street) Board.getFields().get(Integer.parseInt(input)));
 
@@ -53,14 +52,6 @@ public class StreetController {
 	 * @param player is the owner of the field.
 	 */
 	public void buildProperty(Player player) {
-		
-		
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 		checkIfBuildable(player);
 
 		if (s.isBuildable() && player.getFortune() > s.getBuildPrice() && s.getOwner() == player) {
@@ -81,11 +72,6 @@ public class StreetController {
 	 * @return the return is whether or not a player is allowed to build on the field.
 	 */
 	public boolean checkIfBuildable(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		int count2colors = 0;
 		int count3colors = 0;
 		
@@ -113,12 +99,6 @@ public class StreetController {
 	 * @param s is the street field.
 	 */
 	public void sellHouse(Player p, Street s){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 		s.setNumOfBuildings(-1);
 		MUI.SetHouses(s.getFieldID(), s.getNumOfBuildings());
 		p.setFortune(s.getBuildPrice() / 2);
@@ -132,11 +112,6 @@ public class StreetController {
 	 * @param s is the street field.
 	 */
 	public void sellHotel(Player p, Street s){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		s.setNumOfBuildings(-1);
 		MUI.setHotel(s.getFieldID(), false);
 		p.setFortune(s.getBuildPrice() / 2);
@@ -149,11 +124,6 @@ public class StreetController {
 	 * @param p is the player wanting to build the house.
 	 */
 	public void buildHouse(Player p){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		MUI.SetHouses(p.getCurrentPosition(), s.getNumOfBuildings());
 		MUI.showMessage(textList[45]);
 	}
@@ -164,11 +134,6 @@ public class StreetController {
 	 * @param p is the player wanting to build the hotel.
 	 */
 	public void buildHotel(Player p){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace(); 
-		}
 		MUI.setHotel(p.getCurrentPosition(), true);
 		MUI.showMessage(textList[46]);
 	}

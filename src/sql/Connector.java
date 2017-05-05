@@ -1,14 +1,19 @@
 package sql;
 
+import java.io.IOException;
 import java.sql.*;
+
+import inputHandlers.Text;
 
 public class Connector {
 
 	//attributes
+	private Text file = new Text("txtfiles/sql.txt");
+	private String[] textList;
 	private final String LOCALHOST = "Localhost";
 	private final int PORT = 3306;
 	private final String USERNAME = "root";
-	private final String PASSWORD = "sql123";
+	private final String PASSWORD = "";
 	private final String DATABASE = "matador";
 	private Connection con;
 
@@ -18,8 +23,13 @@ public class Connector {
 	 */
 	public Connector() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://" + LOCALHOST + ":" + PORT + "/" + DATABASE;
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			Class.forName(textList[12]);
+			String url = textList[13] + LOCALHOST + textList[14] + PORT + textList[15] + DATABASE;
 			con = DriverManager.getConnection(url, USERNAME, PASSWORD);
 
 		} catch (ClassNotFoundException | SQLException e) {
