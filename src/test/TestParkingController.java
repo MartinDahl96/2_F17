@@ -1,4 +1,4 @@
-package test;
+ package test;
 
 import static org.junit.Assert.*;
 
@@ -8,11 +8,11 @@ import org.junit.Test;
 
 import entities.Board;
 import entities.Player;
-import test.ParkingControllerMethodTest;
+import test.ParkingControllerMockup;
 import fieldEntities.Parking;
 public class TestParkingController {
 
-	ParkingControllerMethodTest pc;
+	ParkingControllerMockup pc;
 	Player p; 
 	Parking pa;
 	Board b;
@@ -22,7 +22,7 @@ public class TestParkingController {
 		this.p = new Player(1, "test player");
 		this.b = new Board();
 		this.pa = new Parking(21, "Parking", "Park", 2000);
-		this.pc = new ParkingControllerMethodTest(pa);
+		this.pc = new ParkingControllerMockup(pa);
 	}
 
 	@After 

@@ -14,7 +14,11 @@ import fieldEntities.Ownable;
 import fieldEntities.Street;
 import mainControllers.Rule;
 
-
+/**
+ * JUnittest of the rules class, which evaluates when a player is bankrupt. 
+ * @author janus
+ *
+ */
 public class TestRules {
 
 	Player p;
@@ -24,6 +28,10 @@ public class TestRules {
 	
 	
 	@Before
+	/**
+	 * Created the needed instances/objects needed in the tests.
+	 * @throws Exception
+	 */
 	public void setUp() throws Exception {
 		this.p = new Player(1, "Test Player");
 		this.r = new Rule();
@@ -37,12 +45,20 @@ public class TestRules {
 	}
 
 	@Test
+	/**
+	 * Checks that the Player p is a instance of the Player class, and checks that the player isn't a null object.
+	 */
 	public void testEntities () {
 		assertTrue(this.p instanceof Player);
 		assertNotNull(this.p);
 	}
 	
 	@Test
+	/**
+	 * Testing the method to calculate total assets for a player, used to determine wether or not a player is bankrupt.
+	 * The test provides a player with three fields, a ferry field (6), two streets field 2 and 4. 
+	 * Builds a house on field 2, and calculates the total assets of the player. 
+	 */
 	public void testCalcTotalAssets() {
 			int expected, actual;
 		//Sets Player to own two street fields and a ferry field provides one house on field 2:
@@ -69,6 +85,12 @@ public class TestRules {
 	}
 	
 	@Test
+	/**
+	 * Checks that the Bankrupt method works as intended. 
+	 * A player who's account balance is 0, but has additional assets shall not go bankrupt. 
+	 * Provided that a player has 0 assets and a account balance of 0, the player is bankrupt.
+	 * This test checks the above statements. 
+	 */
 	public void testBankrupt() {
 		// Sets the playerfortune to 0, with 0 assets and checks if the player is bankrupt:
 		p.setFortune(-30000);

@@ -1,6 +1,10 @@
 package test;
 
-//Test
+/**
+ * Tests the CheckIfBuildable method
+ * Sets a player to own 3 Streets of the same colour, then calls the CheckIfBuildable method, and assertsTrue.
+ * Once a player has all buildings of the same colour, he should be able to build on the streets.
+ **/
 
 import static org.junit.Assert.*;
 
