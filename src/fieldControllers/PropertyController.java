@@ -11,12 +11,16 @@ import fieldEntities.Street;
 import inputHandlers.Text;
 import mainControllers.MUI;
 
-//The idea of this class is, it being responsible for buying/selling property (houses), and maybe also pawning
-
 public class PropertyController {
+	
+	//attributes
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
 	
+	/**
+	 * used for selling a property.
+	 * @param player is the seller.
+	 */
 	public void sellProperty (Player player) {
 		try {
 			textList = file.OpenFile();
@@ -49,13 +53,12 @@ public class PropertyController {
 							System.out.println(player.getFortune());
 
 						}
-						
-						
-
 						else {
+							int soldFor = (int) (((Ownable) f).getPrice()*0.75);
+							
 							((Ownable) f).setOwner(null);
-							player.setFortune(((Ownable) f).getPrice());
-							MUI.showMessage(textList[27] + fieldNumber+textList[28]+ ((Ownable) f).getPrice()*(3/4));
+							player.setFortune(soldFor);
+							MUI.showMessage(textList[27] + fieldNumber+textList[28]+ soldFor);
 							check = true;
 						}
 
@@ -64,16 +67,20 @@ public class PropertyController {
 							
 						}
 						
-					}
+					}	else MUI.showMessage("Du ejer ikke dette felt!");
 
 				}
-			
+			MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
 			}
 
 		}
 
 	}
 	
+	/**
+	 * used to pawn a property
+	 * @param player is the owner of the field.
+	 */
 	public void pawnProperty(Player player){
 		try {
 			textList = file.OpenFile();
@@ -88,7 +95,7 @@ public class PropertyController {
 
 			
 			if (f instanceof Ownable) {
-
+				
 				if (fieldNumber == f.getFieldID()) {
 					if (((Ownable) f).getOwner() == player) {
 						if (f instanceof Street && ((Street) f).getNumOfBuildings() == 0) {
@@ -118,6 +125,10 @@ public class PropertyController {
 		
 	}
 	
+	/**
+	 * used to unpawn a field.
+	 * @param player is the owner of the field.
+	 */
 	public void unPawnProperty(Player player){
 		try {
 			textList = file.OpenFile();
@@ -138,7 +149,7 @@ public class PropertyController {
 						
 						if (((Ownable) f).isPawned() == true) {
 							((Ownable) f).setPawned(false);
-							player.setFortune(-((Ownable) f).getMortgage()*(11/10));
+							player.setFortune((int) (-((Ownable) f).getMortgage()*1.1));
 							MUI.showMessage(textList[33] + fieldNumber);
 							GUI.setDescriptionText(fieldNumber, ((Ownable) f).getFieldInfo());
 						}

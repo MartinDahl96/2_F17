@@ -3,10 +3,10 @@ package fieldEntities;
 import entities.Player;
 import fieldControllers.JailController;
 
-//Jail Class
 
 public class Jail extends Field {
 	
+	//attributes
 	JailController j;
 
 	/**
@@ -20,6 +20,9 @@ public class Jail extends Field {
 
 	}
 
+	/**
+	 * landOnField method inherited from the Field-class.
+	 */
 	@Override
 	public void landOnField(Player player) {
 		j.landOnJail(player);

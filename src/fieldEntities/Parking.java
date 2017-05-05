@@ -5,6 +5,7 @@ import fieldControllers.ParkingController;
 
 public class Parking extends Field {
 	
+	//attributes
 	private ParkingController p;
 	private int parkingBonus;
 
@@ -19,10 +20,18 @@ public class Parking extends Field {
 		this.parkingBonus = parkingBonus;
 	}
 	
+	/**
+	 * used to get the Parking bonus.
+	 * @return parkingBonus is the parkingbonus.
+	 */
 	public int getParkingBonus() {
 		return this.parkingBonus;
 	}
 
+	/**
+	 * landOnField method for a parking-field.
+	 * @param player is the player landing on the field.
+	 */
 	@Override
 	public void landOnField(Player player) {
 		p.landOnParking(player);

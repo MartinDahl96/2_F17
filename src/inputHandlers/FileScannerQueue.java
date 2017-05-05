@@ -1,6 +1,5 @@
 package inputHandlers;
 
-//FileScanner Queue
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,10 +9,15 @@ import java.util.Scanner;
 
 public class FileScannerQueue {
 
+	//attributes
 	private String path;
 	private Queue<String> q;
 	Scanner scan;
 
+	/**
+	 * constructor for FileScannerQueue
+	 * @param path is the location of the file.
+	 */
 	public FileScannerQueue(String path) {
 		this.path = path;
 		this.q = new LinkedList<String>();
@@ -22,6 +26,10 @@ public class FileScannerQueue {
 
 	}
 
+	/**
+	 * used to fill the queue
+	 * @return q is the queue.
+	 */
 	public Queue fillQueue() {
 
 		try {
@@ -42,11 +50,20 @@ public class FileScannerQueue {
 
 	}
 
+	/**
+	 * used to poll elements in the queue.
+	 * @return the polled element.
+	 */
 	public String poll() {
 		return q.poll();
 
 	}
 
+	/**
+	 * used to parse a string into an int.
+	 * @param i is the string to parse
+	 * @return is the parsed int.
+	 */
 	public int parseInt(String i) {
 		return Integer.parseInt(i);
 	}

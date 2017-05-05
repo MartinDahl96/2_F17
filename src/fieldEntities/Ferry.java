@@ -11,8 +11,16 @@ public class Ferry extends Ownable {
 	private int rent_4;
 	private static boolean doubleRent; //used when player picks a specific ChanceCard
 	
-	/*
-	 * Constructor created for a Ferry field.
+	/**
+	 * Constructor for a ferry-field.
+	 * @param fieldID is the position on the board.
+	 * @param fieldName is the name of the field.
+	 * @param fieldInfo is the text displayed on the field.
+	 * @param price is the price of the field.
+	 * @param rent_1 is the rent-price if the owner owns 1 ferry.
+	 * @param rent_2 is the rent-price if the owner owns 2 ferries.
+	 * @param rent_3 is the rent-price if the owner owns 3 ferries.
+	 * @param rent_4 is the rent-price if the owner owns 4 ferries.
 	 */
 	public Ferry(int fieldID, String fieldName, String fieldInfo, int price, int rent_1, int rent_2, int rent_3,
 			int rent_4) {
@@ -70,6 +78,10 @@ public class Ferry extends Ownable {
 		}
 	
 
+	/**
+	 * used to set the double rent (dependant on a chancecard).
+	 * @param b is the boolean.
+	 */
 	public static void setDoubleRent(boolean b){
 		doubleRent = b;
 	

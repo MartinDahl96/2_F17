@@ -11,21 +11,33 @@ import mainControllers.MUI;
 
 public class JailController {
 	
+	//attributes
 	Jail j;
 	Cup cup;
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
 	
+	/**
+	 * constructor for the JailController.
+	 * @param j is a Jail-field object.
+	 */
 	public JailController(Jail j){
 		this.j = j;
 		
 	}
-	
+	/**
+	 * second constructor for the jailController.
+	 * Doesn't require a Jail-field object, but creates a new Cup to be used.
+	 */
 	public JailController(){
 		this.cup = new Cup();
 		
 	}
 
+	/**
+	 * landOnField-method for a jail-field.
+	 * @param player
+	 */
 	public void landOnJail(Player player) {
 
 		if (player.getCurrentPosition() == 31) {
@@ -37,7 +49,11 @@ public class JailController {
 			MUI.showMessage(j.getFieldInfo());
 		}
 	}
-
+	
+	/**
+	 * displays the menu for a player who is in jail.
+	 * @param player is the player in jail.
+	 */
 	public void jailMenu(Player player) {
 		try {
 			textList = file.OpenFile();
@@ -64,6 +80,11 @@ public class JailController {
 
 	}
 
+	/**
+	 * option to get out of jail.
+	 * If the player rolls two equal dice he is let out of the jail.
+	 * @param player
+	 */
 	public void rollDice(Player player) {
 		try {
 			textList = file.OpenFile();
@@ -86,7 +107,11 @@ public class JailController {
 		}
 	}
 		
-
+	/**
+	 * option to get out of jail.
+	 * If the player owns a jailToken and decides to use it he is let out of the jail.
+	 * @param player
+	 */
 	public void useJailToken(Player player) {
 		if (player.getJailToken() > 0) {
 			player.setJailToken(-1);
@@ -101,6 +126,11 @@ public class JailController {
 
 	}
 
+	/**
+	 * option to get out of jail.
+	 * If the player pays 1.000 kr. he is let out of the jail.
+	 * @param player
+	 */
 	public void payBail(Player player) {
 		int bail = 1000;
 		if (player.getFortune() >= bail) {
