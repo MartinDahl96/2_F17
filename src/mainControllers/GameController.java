@@ -2,20 +2,14 @@ package mainControllers;
 
 import java.awt.Color;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.lang.*;
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
 import entities.Board;
 import entities.Cup;
 import entities.Player;
 import fieldControllers.*;
-import fieldEntities.Chance;
-import fieldEntities.Jail;
-import fieldEntities.Ownable;
-import fieldEntities.Parking;
-import fieldEntities.Tax;
+
 import inputHandlers.Text;
 import mainControllers.Rule;
 import sql.GameDAO;
@@ -50,31 +44,31 @@ public class GameController {
 
 
 	public void startGame() {
-		Boolean choice = MUI.getTwoButtons("Nyt spil bro?", "Ja", "Nej, indlÃ¦s tidligere spil");
-//		if (choice == true){
-//			try {
-//				Connector.ResetDatabase();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-
+		Boolean choice = MUI.getTwoButtons("Vælg: ", "Nyt spil", "Indlæs tidligere spil");
+		if (choice){
+//			gDAO.newGame();
 			createPlayers();
+			gDAO.saveGame();
 			playerTurn();
 
-//			if(choice == false){
-//			}
 		}
-	
-
+		else if (!choice) {
+			gDAO.loadGame();
+			playerTurn();
+			
+			
+		}
+	}
 
 
 	public void playerTurn() {
-
+		
 		while (winner == false) {
 
 			for (int i = 0; i < players.size(); i++) {
 				checkForWinner(i);
-
+				ParkingController.activateImmunity(players.get(i));
+	
 				if(players.get(i).getJailRounds() == 0) {
 					playerOptions(i);
 
@@ -85,22 +79,13 @@ public class GameController {
 				}
 
 				checkPlayerLost(i);
-				
-//				gDAO.updateDBplayers(players.get(i).getPlayerID());
-//				gDAO.updateDBownable();
-				
-				
-//				try {
-//					DTOimp.saveGame(i);
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
 			}
 		}
 	}
 
 	public void playerOptions(int i) {
+		gDAO.updateSave();
+		
 		Rule.calcTotalAssets(players.get(i));
 		
 		if (players.get(i).isBankRupt() == true){
@@ -148,16 +133,11 @@ public class GameController {
 			playerOptions(i);
 			break;
 		case 6:
-//			try{
-//				DTOimp.saveGame(i);
-//			} catch (SQLException e){
-//				e.printStackTrace();
-//			}
+			gDAO.updateSave();
 			System.exit(0);
 			break;
 		}
-		Rule.calcTotalAssets(players.get(i));
-		System.out.println(players.get(i).getplayerName()+": "+players.get(i).getFortune() +" = "+players.get(i).getTotalAssets());
+		gDAO.updateSave();
 	}
 
 	public void throwDice(int i) {
@@ -167,7 +147,7 @@ public class GameController {
 
 			cup.useCup();
 			GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-			players.get(i).setCurrentPosition(cup.getCupValue());
+			players.get(i).setCurrentPosition(2);
 			playOnBoard(i);
 		}
 		else{
@@ -191,13 +171,12 @@ public class GameController {
 
 
 	public void createPlayers() {
-		gDAO.createDBownable();
 		int numOfPlayers = Integer.parseInt(MUI.setFiveButtons(textList[7], textList[8], textList[9], textList[10], textList[11], textList[12]));
 
 		for (int i = 0; i < numOfPlayers; i++) {
 			setPlayers(i);
 			setCars(i);
-			gDAO.createDBPlayers(players.get(i).getPlayerID());
+			
 			
 
 			
@@ -215,9 +194,9 @@ public class GameController {
 
 
 	public void setCars(int i) {
-		cars.add(new Car.Builder().typeCar().primaryColor(MUI.carColor(i + 1)).secondaryColor(Color.white).build());
+		MUI.createCars(cars);
 		GUI.addPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), cars.get(i));
-		MUI.setCarOnStart(players.get(i), players.get(i).getplayerName());
+		MUI.setCarOnStart(players.get(i));
 	}
 
 
@@ -225,9 +204,17 @@ public class GameController {
 		return players;
 	}
 
-	public static Player getPlayer(int index){
-		return players.get(index);
+	public static Player getPlayer(int playerID) {
+		Player p = null;
+		for (Player player : players) {
+			if (player.getPlayerID() == playerID) {
+				p = player;
+			}
+		}
+		return p;
 	}
+		
+	
 
 	public void checkForWinner(int i) {
 
@@ -246,6 +233,7 @@ public class GameController {
 			Rule.calcTotalAssets(players.get(i));
 
 			if (players.get(i).isBankRupt()){
+				players.get(i).changePosition(-1);
 				MUI.showMessage(players.get(i).getplayerName() +textList[17]);
 				MUI.removeCar(players.get(i).getplayerName());
 				bankruptPlayers++;

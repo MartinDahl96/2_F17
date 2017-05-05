@@ -1,10 +1,12 @@
 package sql;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import entities.Board;
+
 import fieldEntities.Field;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
@@ -14,37 +16,29 @@ public class FieldDAOimp implements IFieldDAO {
 
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
+	private ResultSet rs;
 
 	@Override
-	public void getOwnable(int playerID) throws SQLException {
-		String getOwnable = "SELECT * FROM matador.Field WHERE playerID = ?;";
-		ResultSet rs;
+	public void getOwnable() throws SQLException { // Implementer
+		String getOwnable = "SELECT * FROM ownedfields;";
+		rs = c.doQuery(getOwnable);
 
-		try {
-
-			prepstmt = c.getConnection().prepareStatement(getOwnable);
-			prepstmt.setInt(1, playerID);
-			rs = prepstmt.executeQuery();
-			int fieldID = rs.getInt("fieldID");
-			while (rs.next()) {
-
-				((Ownable) Board.getFields().get(fieldID)).getOwner();
-			}
-			if (rs.getBoolean("Pawned")) {
-				((Ownable) Board.getFields().get(fieldID)).setPawned(true);
-			}
-			if (Board.getFields().get(fieldID) instanceof Street) {
-				((Street) Board.getFields().get(fieldID)).setNumOfBuildings(rs.getInt("Houses"));
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+		while (rs.next()) {
+			((Ownable) Board.getFields().get(rs.getInt("fieldID"))).setOwner(GameController.getPlayer(rs.getInt("playerID")));
+			((Ownable) Board.getFields().get(rs.getInt("fieldID"))).setPawned(rs.getBoolean("pawned"));
 		}
-
-		finally {
-			prepstmt.close();
+		rs.close();
+	}
+	
+	@Override
+	public void getBuildingsOnStreet() throws SQLException{ //Implementer
+		String ownedStreets = "SELECT * FROM ownedstreets";
+		rs = c.doQuery(ownedStreets);
+		
+		while(rs.next()){
+			((Street) Board.getFields().get(rs.getInt("fieldID"))).setNumOfBuildings(rs.getInt("houses"));
 		}
-
+		rs.close();
 	}
 
 	@Override
@@ -57,7 +51,7 @@ public class FieldDAOimp implements IFieldDAO {
 				if(f instanceof Ownable){
 					prepstmt.setInt(1, f.getFieldID());
 					if(((Ownable) f).getOwner()!=null)prepstmt.setInt(2, ((Ownable) f).getOwner().getPlayerID());
-					else prepstmt.setNull(2, java.sql.Types.INTEGER);
+					else prepstmt.setNull(2, java.sql.Types.NULL);
 					if(f instanceof Street) prepstmt.setInt(3, ((Street) f).getNumOfBuildings());
 					else prepstmt.setInt(3, 0);
 					prepstmt.setBoolean(4, ((Ownable) f).isPawned());
@@ -68,7 +62,7 @@ public class FieldDAOimp implements IFieldDAO {
 		System.out.println("ownable fields updated in database");
 	}
 
-	@Override //lav en addOwner procedure
+	@Override 
 	public void insertOwnable() throws SQLException {
 		String addOwnableProcedure = "call addOwnable(?,?,?);";
 
@@ -85,20 +79,4 @@ public class FieldDAOimp implements IFieldDAO {
 		System.out.println("ownable fields added to database");
 	}
 
-	@Override
-	public void updateOwner() throws SQLException {
-		
-		String addOwnerProcedure = "call updateOwner(?,?)";
-		prepstmt = c.getConnection().prepareStatement(addOwnerProcedure);
-		
-		for(Field f: Board.getFields()){
-			if(((Ownable) f).getOwner() != null){
-			if(f instanceof Ownable) {
-				prepstmt.setInt(1, f.getFieldID());
-				prepstmt.setInt(2, ((Ownable) f).getOwner().getPlayerID());
-				prepstmt.executeUpdate();
-			}
-		}
-		}
-	}
 }

@@ -43,7 +43,7 @@ public class ParkingController {
 	 * used to activate the player's immunity.
 	 * @param player is the affected player.
 	 */
-	public void activateImmunity(Player player){
+	public static void activateImmunity(Player player){
 		
 		if(player.getCurrentPosition() == 21){
 			player.setImmunity(true);

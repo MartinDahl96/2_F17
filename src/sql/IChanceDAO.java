@@ -2,10 +2,15 @@ package sql;
 
 import java.sql.SQLException;
 
+import entities.ChanceCard;
+
 public interface IChanceDAO {
 	
-	public void getChanceCard(int cardID) throws SQLException;
+	void getChanceCards() throws SQLException;
 	
-	void updateChanceCard(int cardID, String cardText, int cardValue) throws SQLException;
+	void insertCards() throws SQLException;
 
+	void updateCards(ChanceCard card) throws SQLException;
+
+	
 }
