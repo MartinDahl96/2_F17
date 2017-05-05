@@ -10,7 +10,6 @@ public class Connector {
 	private final String PASSWORD = "sql123";
 	private final String DATABASE = "matador";
 	private Connection con;
-	private Statement stmt;
 
 	public Connector() {
 		try {
@@ -30,8 +29,8 @@ public class Connector {
 	}
 
 	public ResultSet doQuery(String query) throws SQLException {
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
+		PreparedStatement prepstmt = con.prepareStatement(query);
+		ResultSet rs = prepstmt.executeQuery();
 		return rs;
 	}
 

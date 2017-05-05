@@ -2,63 +2,38 @@ package sql;
 
 import java.sql.SQLException;
 
-public class GameDAO  {
-	
+import entities.ChanceDeck;
+
+public class GameDAO {
+
 	private PlayerDAOimp pDAO = new PlayerDAOimp();
 	private FieldDAOimp fDAO = new FieldDAOimp();
 	private ChanceDAOimp cDAO = new ChanceDAOimp();
-	
-	
+
 	public void loadGame(int playerID) throws SQLException {
-		pDAO.getPlayer(playerID);
-		fDAO.getOwnable(playerID);
-	}
-	
-	public void saveGame(int playerID) throws SQLException {
-		pDAO.insertPlayer(playerID);
-		fDAO.updateOwnable(playerID);
-		}
-	
-	public void createDBPlayers(int playerID)  {
-	
-		try {
-			pDAO.insertPlayer(playerID);
+		try ())
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-	}
-	
-	public void updateDBplayers(int playerID) {
+		}	}
+
+	public void saveGame() {
+
 		try {
-			pDAO.updatePlayer(playerID);
-		} catch (SQLException e) {
+			pDAO.insertPlayer();
+			fDAO.insertOwnable();
+			cDAO.insertUpdateCards();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	
-	public void createDBownable() {
+	public void updateSave() {
 		try {
-			fDAO.insertOwnable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public void updateDBownable() {
-		try {
+			pDAO.updatePlayer();
 			fDAO.updateOwnable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void updateDBowner() {
-		try {
-			fDAO.updateOwner();
-		} catch (SQLException e) {
+			cDAO.insertUpdateCards();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

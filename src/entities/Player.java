@@ -46,14 +46,10 @@ public class Player {
 	 * @param jailToken is the amount of tokens held by a player.
 	 * @param currentPosition is the player's current position.
 	 */
-	public Player(int playerID, String playerName, int fortune, boolean immunity, int totalAssets, int ownedFerries, int ownedBreweries, int jailRounds, int jailToken, int currentPosition){
+	public Player(int playerID, String playerName, int fortune, int jailRounds, int jailToken, int currentPosition){
 		this.playerID = playerID;
 		this.playerName = playerName;
 		this.fortune = fortune;
-		this.immunity = immunity;
-		this.totalAssets = totalAssets;
-		this.ownedFerries = ownedFerries;
-		this.ownedBreweries = ownedBreweries;
 		this.jailRounds = jailRounds;
 		this.jailToken = jailToken;
 		this.currentPosition = currentPosition;

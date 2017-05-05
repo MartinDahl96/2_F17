@@ -2,7 +2,9 @@ package mainControllers;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import desktop_codebehind.Car;
 import desktop_resources.GUI;
 import entities.Player;
 import inputHandlers.Text;
@@ -51,26 +53,55 @@ public class MUI {
 		return GUI.getUserString(msg);
 	}
 
-	public static Color carColor(int i) {
-		switch (i) {
-		case 1:
-			return Color.RED;
-		case 2:
-			return Color.GREEN;
-		case 3:
-			return Color.BLUE;
-		case 4:
-			return Color.BLACK;
-		case 5:
-			return Color.PINK;
-		default:
-			return Color.WHITE;
-		}
+	public static void createCars(ArrayList<Car> cars) {
+		
+		cars.add(new Car.Builder()
+				.primaryColor(Color.RED)
+				.secondaryColor(Color.WHITE)
+				.typeRacecar()
+				.patternFill()
+				.build());
+		
+		cars.add(new Car.Builder()
+				.primaryColor(Color.GREEN)
+				.secondaryColor(Color.WHITE)
+				.typeRacecar()
+				.patternFill()
+				.build());
+		
+		cars.add(new Car.Builder()
+				.primaryColor(Color.BLUE)
+				.secondaryColor(Color.WHITE)
+				.typeRacecar()
+				.patternFill()
+				.build());
+		
+		cars.add(new Car.Builder()
+				.primaryColor(Color.BLACK)
+				.secondaryColor(Color.WHITE)
+				.typeRacecar()
+				.patternFill()
+				.build());
+		
+		cars.add(new Car.Builder()
+				.primaryColor(Color.PINK)
+				.secondaryColor(Color.WHITE)
+				.typeRacecar()
+				.patternFill()
+				.build());
+		
+		cars.add(new Car.Builder()
+				.primaryColor(Color.WHITE)
+				.secondaryColor(Color.WHITE)
+				.typeRacecar()
+				.patternFill()
+				.build());
 	}
 
-	public static void setCarOnStart(Player player, String Name) {
+	public static void setCarOnStart(Player player) {
 		player.setCurrentPosition(1);
-		GUI.setCar(1, Name);
+		GUI.setCar(player.getCurrentPosition(), player.getplayerName());
+		
 	}
 
 	public static void removeCar(String name) {
