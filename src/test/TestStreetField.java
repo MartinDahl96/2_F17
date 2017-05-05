@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import entities.Board;
 import entities.Player;
+import fieldEntities.Field;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
 
