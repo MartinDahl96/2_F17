@@ -50,6 +50,7 @@ public class GameController {
 	public void startGame() {
 		Boolean choice = MUI.getTwoButtons("Vælg: ", "Nyt spil", "Indlæs tidligere spil");
 		if (choice){
+			gDAO.newGame();
 			createPlayers();
 			gDAO.saveGame();
 			playerTurn();
@@ -57,6 +58,7 @@ public class GameController {
 		}
 		else if (!choice) {
 			gDAO.loadGame();
+			loadPlayers();
 			playerTurn();
 			
 			
@@ -155,21 +157,12 @@ public class GameController {
 	 * @param i is the player.
 	 */
 	public void throwDice(int i) {
-		
-		if(players.get(i).getFortune() > 0){ //er dette nødvendigt?
-
-
+	
 			cup.useCup();
 			GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-			players.get(i).setCurrentPosition(2);
+			players.get(i).setCurrentPosition(cup.getCupValue());
 			playOnBoard(i);
 		}
-		else{
-			MUI.showMessage("SÃ¦lg noget lort");
-		}
-
-	}
-
 
 	/**
 	 * is the player's movement on the board, affected by the player's turn.
@@ -282,9 +275,21 @@ public class GameController {
 				players.get(i).changePosition(-1);
 				MUI.showMessage(players.get(i).getplayerName() +textList[17]);
 				MUI.removeCar(players.get(i).getplayerName());
+				Rule.removeOwner(players.get(i));
 				bankruptPlayers++;
 
 			}
+		}
+	}
+	
+	public void loadPlayers(){
+		for(int i = 0; i<players.size();i++){
+			MUI.createCars(cars);
+			GUI.addPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), cars.get(i));
+			MUI.updateGUIPlayer(players.get(i).getplayerName(), players.get(i).getFortune(), players.get(i).getCurrentPosition());
+			Rule.assignOwner(players.get(i));
+			Rule.placeHouses(players.get(i));
+			
 		}
 	}
 }
