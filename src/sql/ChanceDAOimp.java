@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import entities.ChanceCard;
 import entities.ChanceDeck;
 
-
 public class ChanceDAOimp implements IChanceDAO {
 
 	//attributes
@@ -130,5 +129,4 @@ public class ChanceDAOimp implements IChanceDAO {
 	//
 	//
 	// }
-
 }

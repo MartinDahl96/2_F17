@@ -58,3 +58,4 @@ public class GameDAO {
 		System.out.println("New game");
 	}
 }
+
