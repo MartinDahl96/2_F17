@@ -12,6 +12,12 @@ import inputHandlers.Text;
 import mainControllers.GameController;
 import mainControllers.MUI;
 
+
+/**
+ * Mockup class of ChanceController where UI elements have been removed, to make the class suitable for JUnit testing.
+ * @author janus
+ *
+ */
 public class ChanceContollerMockup {
 	
 	public ChanceDeck deck;
@@ -39,9 +45,6 @@ public class ChanceContollerMockup {
 		recreateIfEmpty();
 	
 		ChanceCard c = deck.getDeck().pop();
-//		MUI.displayCard(c.getCardText());
-//		MUI.showMessage(player.getplayerName()+textList[0]);
-		
 		
 		switch(c.getCardID()){
 		
@@ -144,9 +147,11 @@ public class ChanceContollerMockup {
 			break;
 		case 18:
 			player.setJailToken(1);
+			player.setTotalAssets(c.getCardValue());
 			break;
 		case 19:
 			player.setJailToken(1);
+			player.setTotalAssets(c.getCardValue());
 			break;
 		case 20:
 			player.setFortune(c.getCardValue());
@@ -200,8 +205,7 @@ public class ChanceContollerMockup {
 		
 		}
 		
-//		MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
-	}
+}
 
 	public void recreateIfEmpty(){
 		
