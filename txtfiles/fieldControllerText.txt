@@ -26,7 +26,7 @@ Indtast feltnummer som De ønsker at sælge
 De har solgt felt 
 , og bygningerne herpå (for kr. 500 stykket) I ALT: 
 De har solgt felt 
-I ALT:
+ - Du fik i alt kr. 
 Indtast feltnummer som De ønsker at pantsætte
 De har pantsat felt 
  (PANTSAT)
