@@ -24,9 +24,9 @@ public class Connector {
 
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
+			e.getMessage();
 			System.exit(0);
 		}
-
 	}
 
 	/**
