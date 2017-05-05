@@ -9,7 +9,11 @@ import org.junit.Test;
 import entities.Board;
 import entities.Player;
 import fieldEntities.Jail;
-
+/**
+ * Unittest for the JailToken (from Chance card), the Jail menu, the use of the JailToken and a test of the PayBill method:
+ * @author janus
+ *
+ */
 public class TestJailToken {
 
 	Board b;
@@ -18,6 +22,11 @@ public class TestJailToken {
 	Jail j;
 
 	@Before
+	/**
+	 * Creates objects/instances needed for the tests:
+	 * These are created before each test.
+	 * @throws Exception
+	 */
 	public void setUp() throws Exception {
 		this.b = new Board();
 		this.p = new Player(1, "Test Player");
@@ -30,6 +39,10 @@ public class TestJailToken {
 	}
 
 	@Test
+	/**
+	 * Testing the objects to make sure that they have a value, hence is not null. 
+	 * And testing that the objects are instances of the correct classes. 
+	 */
 	public void testEntities() {
 		assertNotNull(p);
 		assertNotNull(j);
@@ -38,7 +51,14 @@ public class TestJailToken {
 	}
 
 	@Test
-	//Testing choice 2 and 3, since choice 1 is based on RNG.
+	/**
+	 * Testing the jail menu choice 2 and 3:
+	 * Checks that when a player chooses to pay 1000 to get our of jail (JailRounds set to 0).
+	 * The test also checks that the player has been billed for 1000. 
+	 * 
+	 * the 2nd test in the jail menu, checks that the player is able to choose to pay with a JailToken
+	 * to get out of Jail.
+	 */
 	public void testJailMenu() {
 		//Choice 3 in jailmenu - Paying 1000 to get out of jail:
 		int actual, expected;
@@ -68,8 +88,12 @@ public class TestJailToken {
 	}
 
 	@Test
+	/**
+	 * Tests that a player can get out of jail by using a jailtoken.
+	 * Gives player 1 jailtoken (chancecard), using jail menu 2 to got out of jail with the jailtoken:
+	 * 
+	 **/
 	public void testUseJailToken() {
-		//Gives player 1 jailtoken (chancecard), using jail menu 2 to got out of jail with the jailtoken:
 		int expected, actual;
 
 		p.setJailRounds(3);
@@ -86,6 +110,9 @@ public class TestJailToken {
 	}
 
 	@Test
+	/**
+	 * Tests if the player is able to pay 1000 to get out of the jail:
+	 */
 	public void testPayBail() {
 		int expected, actual;
 		p.setJailRounds(3);

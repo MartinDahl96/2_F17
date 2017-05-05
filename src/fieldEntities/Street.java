@@ -68,11 +68,6 @@ public class Street extends Ownable {
 
 	}
 
-	/**
-	 * Gets and returns the mortgage
-	 * 
-	 * @return mortgage price, which the player receives
-	 */
 	
 
 	/**
@@ -82,6 +77,10 @@ public class Street extends Ownable {
 		return color;
 	}
 
+	/**
+	 * used to set the number of buildings on a field.
+	 * @param num is the amount of buildings to add to the field.
+	 */
 	public void setNumOfBuildings(int num) {
 		this.numOfBuildings += num;
 	}
@@ -132,27 +131,43 @@ public class Street extends Ownable {
 		}
 	}
 
+	/**
+	 * used to get the number of buildings on a field.
+	 * @return numOfBuildings is the amount of buildings on a field.
+	 */
 	public int getNumOfBuildings() {
 		return numOfBuildings;
 	}
 
 
-	public void setBuildablel(boolean b) {
-		buildable = b;
-	}
-
+	/**
+	 * used to get the buildprice of a field.
+	 * @return buildPrice is the buildprice of a field.
+	 */
 	public int getBuildPrice() {
 		return buildPrice;
 	}
 
+	/**
+	 * used to set the buildable status of a field.
+	 * @param b is the status.
+	 */
 	public void setBuildable(boolean b){
 		buildable = b;
 	}
 	
+	/**
+	 * used to get the buildable status of a field.
+	 * @return buildable is the buildable status of a field.
+	 */
 	public boolean isBuildable(){
 		return buildable;
 	}
 	
+	/**
+	 * landOnField-method for a street-field.
+	 * @param player is the player landing on the field.
+	 */
 	public void landOnField(Player player){
 		sc.buildProperty(player);
 		super.landOnField(player);

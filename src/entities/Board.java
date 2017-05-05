@@ -18,6 +18,11 @@ public class Board {
 	private static ArrayList<Field> boardFields;
 	FileScannerQueue s;
 	
+	/**
+	 * Constructor for the Board-class.
+	 * This constructor creates an ArrayList containing fields, and creates a new FileScannerQueue, and scans the file called "fieldValues" for values.
+	 * These values are then used in the method for creating a board, createBoard.
+	 */
 	public Board(){
 		
 		boardFields = new ArrayList<Field>();
@@ -25,11 +30,13 @@ public class Board {
 		this.createBoard();
 	}
 
-	
+	/**
+	 * Method for creating a board. The values are gathered from the scanner queue.
+	 */
 	public void createBoard(){
 		
 		
-		
+				//Empty field for index 0.
 				boardFields.add(null);
 				
 				//Start-field
@@ -155,10 +162,18 @@ public class Board {
 			
 			}
 	
+	/**
+	 * Method for returning all the boards.
+	 * @return boardFields - all the fields on the board.
+	 */
 	public static ArrayList<Field> getFields(){
 		return boardFields;
 	}
 	
+	/**
+	 * landOnField method for the fields.
+	 * @param player
+	 */
 	public void landOnField(Player player) {
 		int playerPosition = player.getCurrentPosition();
 		

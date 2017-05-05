@@ -13,14 +13,23 @@ import mainControllers.MUI;
 
 public class StreetController {
 	
+	//attributes
 	Street s;
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
 	
+	/**
+	 * Constructor for the StreetController
+	 * @param s is a street-field object.
+	 */
 	public StreetController(Street s){
 		this.s = s;
 	}
 	
+	/**
+	 * used to sell a building.
+	 * @param player is the owner of the field.
+	 */
 	public void sellBuilding(Player player) {
 		try {
 			textList = file.OpenFile();
@@ -39,7 +48,10 @@ public class StreetController {
 		}
 	}
 	
-	
+	/**
+	 * used to build a building on a field.
+	 * @param player is the owner of the field.
+	 */
 	public void buildProperty(Player player) {
 		
 		
@@ -51,7 +63,7 @@ public class StreetController {
 		
 		checkIfBuildable(player);
 
-		if (s.isBuildable() && player.getFortune() > s.getBuildPrice()) {
+		if (s.isBuildable() && player.getFortune() > s.getBuildPrice() && s.getOwner() == player) {
 			boolean choice = MUI.getTwoButtons(player.getplayerName() + textList[37] + s.getBuildPrice() + textList[38], textList[39],textList[40]);
 			if (choice) {
 				player.setFortune(-s.getBuildPrice());
@@ -63,7 +75,11 @@ public class StreetController {
 		}
 	}
 	
-
+	/**
+	 * checks if the player is allowed to build houses on a field.
+	 * @param player is the owner of the field.
+	 * @return the return is whether or not a player is allowed to build on the field.
+	 */
 	public boolean checkIfBuildable(Player player) {
 		try {
 			textList = file.OpenFile();
@@ -91,7 +107,11 @@ public class StreetController {
 	}
 	
 	
-	
+	/**
+	 * used to sell a house on a field.
+	 * @param p is the player wanting to sell the house.
+	 * @param s is the street field.
+	 */
 	public void sellHouse(Player p, Street s){
 		try {
 			textList = file.OpenFile();
@@ -106,7 +126,11 @@ public class StreetController {
 		
 	}
 	
-	
+	/**
+	 * used to sell a hotel on a field.
+	 * @param p is the player wanting to sell the house.
+	 * @param s is the street field.
+	 */
 	public void sellHotel(Player p, Street s){
 		try {
 			textList = file.OpenFile();
@@ -120,7 +144,10 @@ public class StreetController {
 		
 	}
 	
-	
+	/**
+	 * used to build a house on a field.
+	 * @param p is the player wanting to build the house.
+	 */
 	public void buildHouse(Player p){
 		try {
 			textList = file.OpenFile();
@@ -132,6 +159,10 @@ public class StreetController {
 	}
 	
 	
+	/**
+	 * used to build a hotel on a field.
+	 * @param p is the player wanting to build the hotel.
+	 */
 	public void buildHotel(Player p){
 		try {
 			textList = file.OpenFile();
@@ -143,38 +174,3 @@ public class StreetController {
 	}
 	
 }
-
-
-
-
-//for (Field f : Board.getFields()) {
-//if (f instanceof Street) {
-//	if (fieldNumber == f.getFieldID()) {
-//		if (((Street) f).getOwner() == player) {
-//
-//			if (f instanceof Street && ((Street) f).getNumOfBuildings() > 0) {
-//				if (((Street) f).getNumOfBuildings() == 5) {
-//					((Street) f).setNumOfBuildings(-1);
-//					MUI.setHotel(fieldNumber, false);
-//					player.setFortune(((Street) f).getBuildPrice() / 2);
-//					MUI.showMessage("Deres hotel er solgt, De står tilbage med 4 huse");
-//				}
-//				else {
-//					((Street) f).setNumOfBuildings(-1);
-//					MUI.SetHouses(fieldNumber, ((Street) f).getNumOfBuildings());
-//					player.setFortune(((Street) f).getBuildPrice() / 2);
-//					MUI.showMessage("Et hus på denne grund er solgt");
-//				}
-//			}
-//			
-//			else {
-//				MUI.showMessage("De har ingen bygninger på dette felt!");
-//			}
-//
-//		}
-//
-//	}
-//
-//}
-//
-//}

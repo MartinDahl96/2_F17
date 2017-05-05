@@ -12,6 +12,13 @@ import entities.Player;
 import fieldControllers.JailController;
 import fieldEntities.Jail;
 
+/**
+ * Test the JailController methods.
+ * 
+ * @author janus
+ *
+ */
+
 public class TestJailController {
 
 	private Jail j;
@@ -21,6 +28,11 @@ public class TestJailController {
 	private int expected, actual;
 	
 	@Before
+	/**
+	 * Created the objects/instances needed to perform the tests. 
+	 * These are created before every @Test starts.
+	 * @throws Exception
+	 */
 	public void setUp() throws Exception {
 		this.p = new Player(1,"Test player");
 		this.b = new Board();
@@ -37,6 +49,10 @@ public class TestJailController {
 	}
 
 	@Test
+	/**
+	 * Testing the LandOnJail method.
+	 * When the player lands on field number 31 it's expected that he's moved to the Jail field (number 11).
+	 */
 	public void testLandOnJail() {
 		
 		// Testing if player lands on go to jail field:
@@ -49,6 +65,11 @@ public class TestJailController {
 		
 	}
 	@Test
+	/**
+	 * Checks the players status when the player lands on the go to jail field, and is moved to the jail field.
+	 * The players status on jailrounds should be 3, as no rounds has passed since the player went in jail.
+	 * The getJailRounds status is checked in the AssertEquals:  
+	 */
 	public void testLandOnJailround() {
 		p.changePosition(31);
 		jc.landOnJail(p);

@@ -9,15 +9,20 @@ import fieldEntities.Ownable;
 import fieldEntities.Street;
 import inputHandlers.Text;
 import mainControllers.MUI;
-
+/**
+ * MockUp class of StreetController class, Used to run JUnittests on the Mockup class. 
+ * The UI part of the StreetController class has been removed in this class. 
+ * @author janus
+ *
+ */
 public class StreetControllerMockup {
 
 	private Text file = new Text("txtfiles/fieldControllerText.txt");
 	private String[] textList;
-	
+
 	public StreetControllerMockup(){
 
-		
+
 	}
 
 	public void sellBuilding(Player player) {
@@ -34,7 +39,6 @@ public class StreetControllerMockup {
 			if (field.getNumOfBuildings() == 5) sellHotel(player, field);
 			else sellHouse(player, field);}
 		else {
-		//	MUI.showMessage(textList[36]);
 		}
 	}
 
@@ -42,11 +46,10 @@ public class StreetControllerMockup {
 	public void buildProperty(Street s,Player player,boolean choice) {
 
 		if (s.isBuildable() && player.getFortune() > s.getBuildPrice()) {
-			 //choice = MUI.getTwoButtons(player.getplayerName() + textList[37] + s.getBuildPrice() + textList[38], textList[39],textList[40]);
 			if (choice = true) {
 				player.setFortune(-s.getBuildPrice());
 				s.setNumOfBuildings(1);
-				
+
 				if (s.getNumOfBuildings() == 5) buildHotel(player);
 				else buildHouse(player);
 			}
@@ -90,9 +93,7 @@ public class StreetControllerMockup {
 		}
 
 		s.setNumOfBuildings(-1);
-		//MUI.SetHouses(s.getFieldID(), s.getNumOfBuildings());
 		p.setFortune(s.getBuildPrice() / 2);
-		//MUI.showMessage(textList[43]);
 
 	}
 
@@ -104,9 +105,7 @@ public class StreetControllerMockup {
 			e.printStackTrace();
 		}
 		s.setNumOfBuildings(-1);
-		//MUI.setHotel(s.getFieldID(), false);
 		p.setFortune(s.getBuildPrice() / 2);
-		//MUI.showMessage(textList[44]);
 
 	}
 
@@ -117,8 +116,6 @@ public class StreetControllerMockup {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//MUI.SetHouses(p.getCurrentPosition(), s.getNumOfBuildings());
-		//MUI.showMessage(textList[45]);
 	}
 
 
@@ -128,8 +125,6 @@ public class StreetControllerMockup {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//MUI.setHotel(p.getCurrentPosition(), true);
-		//MUI.showMessage(textList[46]);
 	}
 
 }

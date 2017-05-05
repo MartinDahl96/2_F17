@@ -12,7 +12,7 @@ public class ChanceDeck {
 	/**
 	 * Creates a stack of ChanceCards called deck.
 	 */
-	private Stack<ChanceCard> deck;
+	private static Stack<ChanceCard> deck;
 
 	/**
 	 * Constructor used to create a stack pf ChanceCards.
@@ -20,7 +20,7 @@ public class ChanceDeck {
 	public ChanceDeck() {
 		this.deck = new Stack<ChanceCard>();
 		createDeck();
-		//shuffleDeck();
+		shuffleDeck();
 	}
 
 	/**
@@ -55,19 +55,23 @@ public class ChanceDeck {
 	 */
 	public void shuffleDeck() {
 		Collections.shuffle(this.deck);
-
+		
 	}
 
 	/**
 	 * Used to display the deck.
 	 * @return deck.
 	 */
-	public Stack<ChanceCard> getDeck() {
+	public static Stack<ChanceCard> getDeck() {
 		return deck;
 	}
-	
-	public ChanceCard getCard(int cardID){
-		return deck.get(cardID);
+	/**
+	 * Used to get a single card in the stack.
+	 * @param cardID
+	 * @return the card with the given cardID.
+	 */
+	public ChanceCard getCard(int index){
+		return deck.get(index);
 	}
 	
 

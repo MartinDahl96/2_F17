@@ -1,62 +1,60 @@
 package sql;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class GameDAO  {
+public class GameDAO {
 	
+	private Connector c = new Connector();
 	private PlayerDAOimp pDAO = new PlayerDAOimp();
 	private FieldDAOimp fDAO = new FieldDAOimp();
 	private ChanceDAOimp cDAO = new ChanceDAOimp();
+
+
 	
-	
-	public void loadGame(int playerID) throws SQLException {
-		pDAO.getPlayer(playerID);
-		fDAO.getOwnable(playerID);
-	}
-	
-	public void saveGame(int playerID) throws SQLException {
-		pDAO.insertPlayer(playerID);
-		fDAO.updateOwnable(playerID);
-		}
-	
-	public void createDBPlayers(int playerID)  {
-	
+	public void loadGame(){
 		try {
-			pDAO.insertPlayer(playerID);
+			pDAO.getPlayers();
+			pDAO.getOwnedBreweries();
+			pDAO.getOwnedFerries();
+			fDAO.getOwnable();
+			fDAO.getBuildingsOnStreet();
+			cDAO.getChanceCards();
+			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 		}
-		
-		
-		
 	}
-	
-	public void updateDBplayers(int playerID) {
+
+	public void saveGame() {
 		try {
-			pDAO.updatePlayer(playerID);
-		} catch (SQLException e) {
+			pDAO.insertPlayer();
+			fDAO.insertOwnable();
+			cDAO.insertCards();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	
-	public void createDBownable()  {
-		
+	public void updateSave() {
 		try {
-			fDAO.insertOwnable();
-		} catch (SQLException e) {
+			pDAO.updatePlayer();
+			fDAO.updateOwnable();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 	
-	public void updateDBownable() {
+	public void newGame(){
+		String resetTables = "call resetTables();";
 		try {
-			fDAO.updateOwnable();
+			Statement stmt = c.getConnection().createStatement();
+			stmt.executeUpdate(resetTables);
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("New game");
 	}
 }
