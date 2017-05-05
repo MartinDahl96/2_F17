@@ -2,13 +2,13 @@ package fieldControllers;
 
 import java.io.IOException;
 
+
 import desktop_resources.GUI;
 import entities.Cup;
 import entities.Player;
 import fieldEntities.Brewery;
 import fieldEntities.Ferry;
 import fieldEntities.Ownable;
-import fieldEntities.Street;
 import inputHandlers.Text;
 import mainControllers.MUI;
 
@@ -117,4 +117,6 @@ public class OwnableController{
 		p.setFortune(-o.getRent()*cup.getCupValue());
 		o.getOwner().setFortune(o.getRent()*cup.getCupValue());
 	}
+	
+	
 }

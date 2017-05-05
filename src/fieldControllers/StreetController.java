@@ -63,7 +63,7 @@ public class StreetController {
 		
 		checkIfBuildable(player);
 
-		if (s.isBuildable() && player.getFortune() > s.getBuildPrice()) {
+		if (s.isBuildable() && player.getFortune() > s.getBuildPrice() && s.getOwner() == player) {
 			boolean choice = MUI.getTwoButtons(player.getplayerName() + textList[37] + s.getBuildPrice() + textList[38], textList[39],textList[40]);
 			if (choice) {
 				player.setFortune(-s.getBuildPrice());
