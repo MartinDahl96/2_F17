@@ -14,6 +14,7 @@ public class Launch {
 		Board board = new Board();
 		GameController gc = new GameController();
 
+		//creates the board with fields and starts the gameloop.
 		g.createGUIFields(Board.getFields());
 		gc.startGame();
 

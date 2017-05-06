@@ -38,6 +38,10 @@ public class ChanceController {
 		this.deck = new ChanceDeck();
 		
 	}
+	/**
+	 * Secondary constructor for the chancecontroller.
+	 * This requires no chance-field object
+	 */
 	public ChanceController(){
 		try {
 			textList = file.OpenFile();

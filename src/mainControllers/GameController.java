@@ -35,7 +35,7 @@ public class GameController {
 	private String[] textList;
 
 	/**
-	 * constructor for the StartController.
+	 * constructor for the Gamecontroller.
 	*/
 	public GameController(){
 
@@ -285,6 +285,9 @@ public class GameController {
 		}
 	}
 	
+	/**
+	 * used to put the loaded players form the database to the GUI.
+	 */
 	public void loadPlayers(){
 		for(int i = 0; i<players.size();i++){
 			MUI.createCars(cars);

@@ -69,6 +69,9 @@ public class Cup {
 		return Integer.toString(cupValue);
 	}
 	
+	/**
+	 * method used to roll the dice inside of the cup.
+	 */
 	public void useCup() {
 		Die1.roll();
 		Die2.roll();

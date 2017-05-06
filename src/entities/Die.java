@@ -5,6 +5,7 @@ package entities;
 
 public class Die {
 
+	//attributes
 	private int sides;
 	private int faceValue;
 	
