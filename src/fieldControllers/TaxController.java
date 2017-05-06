@@ -21,7 +21,12 @@ public class TaxController {
 	 * @param t is a Tax-field object.
 	 */
 	public TaxController(Tax t){
-	this.t = t;
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.t = t;
 	
 	}
 
@@ -30,13 +35,6 @@ public class TaxController {
 	 * @param player is the player landing on the field.
 	 */
 	public void landOnTax(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
 		if (player.getCurrentPosition() == 5) {
 			boolean choice = MUI.getTwoButtons(textList[19],textList[20],textList[21]);
 			if (choice == true) {

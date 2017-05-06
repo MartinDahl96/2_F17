@@ -108,5 +108,4 @@ public class PropertyControllerTest {
 		pc.unPawnProperty(p, 2);
 		assertEquals(((Ownable) Board.getFields().get(2)).isPawned(),false);
 	}
-
 }

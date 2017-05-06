@@ -1,12 +1,14 @@
 package sql;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import entities.ChanceCard;
 import entities.ChanceDeck;
-
+import fieldEntities.Chance;
+import inputHandlers.Text;
 
 public class ChanceDAOimp implements IChanceDAO {
 
@@ -14,7 +16,19 @@ public class ChanceDAOimp implements IChanceDAO {
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
 	private ResultSet rs;
+	private Text file = new Text("txtfiles/sql.txt");
+	private String[] textList;
 
+	/**
+	 * Constructor for the ChanceDataAccessObjectImplementation 
+	 */
+	public ChanceDAOimp(){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * used to insert a chancecard to the database.
@@ -23,7 +37,7 @@ public class ChanceDAOimp implements IChanceDAO {
 	@Override
 	public void insertCards() throws SQLException {
 
-		String addCardDeckProcedure = "call addCardDeck(?,?,?,?);";
+		String addCardDeckProcedure = textList[0];
 		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
 
 		for (int i = 0; i < ChanceDeck.getDeck().size(); i++) {
@@ -33,7 +47,7 @@ public class ChanceDAOimp implements IChanceDAO {
 			prepstmt.setInt(4, i);
 			prepstmt.executeUpdate();
 		}
-		System.out.println("cardDeck is up to date");
+		System.out.println(textList[1]);
 	}
 
 	/**
@@ -43,7 +57,7 @@ public class ChanceDAOimp implements IChanceDAO {
 	 */
 	@Override
 	public void updateCards(ChanceCard card) { 
-		String updateCardDeckProcedure = "call updateCardDeck(?,?);";
+		String updateCardDeckProcedure = textList[2];
 		try {
 			prepstmt = c.getConnection().prepareStatement(updateCardDeckProcedure);
 			prepstmt.setInt(1, card.getCardID());
@@ -52,7 +66,7 @@ public class ChanceDAOimp implements IChanceDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("CARDDECK UPDATED");
+		System.out.println(textList[3]);
 
 	}
 
@@ -63,11 +77,11 @@ public class ChanceDAOimp implements IChanceDAO {
 	@Override
 	public void getChanceCards() throws SQLException {
 		ChanceDeck.getDeck().removeAllElements();
-		String notPickedCards = "SELECT * FROM notpickedcards;";
+		String notPickedCards = textList[4];
 		rs = c.doQuery(notPickedCards);
 
 		while (rs.next()) {
-			ChanceDeck.getDeck().push(new ChanceCard(rs.getInt("cardID"), rs.getInt("cardValue"), rs.getString("cardText")));
+			ChanceDeck.getDeck().push(new ChanceCard(rs.getInt(textList[5]), rs.getInt(textList[6]), rs.getString(textList[7])));
 		}
 
 	}
@@ -130,5 +144,4 @@ public class ChanceDAOimp implements IChanceDAO {
 	//
 	//
 	// }
-
 }

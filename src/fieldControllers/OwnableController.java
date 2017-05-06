@@ -25,6 +25,11 @@ public class OwnableController{
 	 * @param o is a Ownable-field object.
 	 */
 	public OwnableController(Ownable o){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.o = o;	
 	}
 	
@@ -43,11 +48,6 @@ public class OwnableController{
 	 * @param player is the player landing on the field.
 	 */
 	public void payRent(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		if(o instanceof Brewery) {
 			calcBrewRent(player);
 		}
@@ -63,11 +63,6 @@ public class OwnableController{
 	 * @param buyer is the player buying the property.
 	 */
 	public void buyProperty(Player buyer) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		boolean choice = MUI.getTwoButtons(textList[11], textList[12], textList[13]);
 		
 		if (buyer.getFortune() < o.getPrice()) MUI.showMessage(textList[14]);
@@ -103,13 +98,7 @@ public class OwnableController{
 	 */
 	public void calcBrewRent(Player p){
 		Cup cup = new Cup();
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		MUI.showMessage(textList[17]);
+			MUI.showMessage(textList[17]);
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 		MUI.showMessage(textList[18]+o.getRent()*cup.getCupValue());

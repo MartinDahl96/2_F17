@@ -1,5 +1,6 @@
 package sql;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import entities.Board;
 import fieldEntities.Field;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
+import inputHandlers.Text;
 import mainControllers.GameController;
 
 public class FieldDAOimp implements IFieldDAO {
@@ -18,19 +20,32 @@ public class FieldDAOimp implements IFieldDAO {
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
 	private ResultSet rs;
+	private Text file = new Text("txtfiles/sql.txt");
+	private String[] textList;
 
+	/**
+	 * Constructor for the FieldDataAccessObjectImplementation 
+	 */
+	public FieldDAOimp(){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * used to get an ownable field's status from the database.
 	 * @throws SQLException
 	 */
 	@Override
 	public void getOwnable() throws SQLException { // Implementer
-		String getOwnable = "SELECT * FROM ownedfields;";
+		String getOwnable = textList[16];
 		rs = c.doQuery(getOwnable);
 
 		while (rs.next()) {
-			((Ownable) Board.getFields().get(rs.getInt("fieldID"))).setOwner(GameController.getPlayer(rs.getInt("playerID")));
-			((Ownable) Board.getFields().get(rs.getInt("fieldID"))).setPawned(rs.getBoolean("pawned"));
+			((Ownable) Board.getFields().get(rs.getInt(textList[17]))).setOwner(GameController.getPlayer(rs.getInt(textList[18])));
+			((Ownable) Board.getFields().get(rs.getInt(textList[17]))).setPawned(rs.getBoolean(textList[19]));
 		}
 		rs.close();
 	}
@@ -42,11 +57,11 @@ public class FieldDAOimp implements IFieldDAO {
 	 */
 	@Override
 	public void getBuildingsOnStreet() throws SQLException{ //Implementer
-		String ownedStreets = "SELECT * FROM ownedstreets";
+		String ownedStreets = textList[20];
 		rs = c.doQuery(ownedStreets);
 		
 		while(rs.next()){
-			((Street) Board.getFields().get(rs.getInt("fieldID"))).setNumOfBuildings(rs.getInt("houses"));
+			((Street) Board.getFields().get(rs.getInt(textList[17]))).setNumOfBuildings(rs.getInt(textList[21]));
 		}
 		rs.close();
 	}
@@ -57,7 +72,7 @@ public class FieldDAOimp implements IFieldDAO {
 	 */
 	@Override
 	public void updateOwnable() throws SQLException {
-		String updateOwnableProcedure = "call updateOwnable(?,?,?,?);";
+		String updateOwnableProcedure = textList[22];
 
 		prepstmt = c.getConnection().prepareStatement(updateOwnableProcedure);
 		for(Field f :Board.getFields()){
@@ -73,7 +88,7 @@ public class FieldDAOimp implements IFieldDAO {
 				}
 			}	
 		}
-		System.out.println("ownable fields updated in database");
+		System.out.println(textList[23]);
 	}
 
 	/**
@@ -82,7 +97,7 @@ public class FieldDAOimp implements IFieldDAO {
 	 */
 	@Override 
 	public void insertOwnable() throws SQLException {
-		String addOwnableProcedure = "call addOwnable(?,?,?);";
+		String addOwnableProcedure = textList[24];
 
 		prepstmt = c.getConnection().prepareStatement(addOwnableProcedure);
 		for(Field f :Board.getFields()){
@@ -94,7 +109,8 @@ public class FieldDAOimp implements IFieldDAO {
 				prepstmt.executeUpdate();
 			}
 		}
-		System.out.println("ownable fields added to database");
+		System.out.println(textList[25]);
 	}
 
 }
+

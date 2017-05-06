@@ -34,6 +34,9 @@ public class GameController {
 	private Text file = new Text("txtfiles/mainControllerText.txt");
 	private String[] textList;
 
+	/**
+	 * constructor for the StartController.
+	*/
 	public GameController(){
 
 		try {
