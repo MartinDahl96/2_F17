@@ -73,7 +73,7 @@ public class PropertyController {
 							
 						}
 						
-					}	else MUI.showMessage("Du ejer ikke dette felt!");
+					}	else MUI.showMessage(textList[47]);
 
 				}
 			MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
