@@ -30,10 +30,24 @@ public class ChanceController {
 	 * @param c is a Chance-field object.
 	 */
 	public ChanceController(Chance c){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.deck = new ChanceDeck();
 		
 	}
+	/**
+	 * Secondary constructor for the chancecontroller.
+	 * This requires no chance-field object
+	 */
 	public ChanceController(){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.deck = new ChanceDeck();
 	
 		
@@ -42,7 +56,7 @@ public class ChanceController {
 	
 	/**
 	 * landOnField-method for a chance-field.
-	 * @param player
+	 * @param player is the player landing on the field.
 	 */
 	public void landOnChance(Player player){
 		
@@ -55,15 +69,10 @@ public class ChanceController {
 	 * if the stack is empty it will re-create it.
 	 * pops a card from the stack and displays the cardmessage.
 	 * the cardID from the popped card is used to determine the action done by the switch.
-	 * @param player
+	 * @param player is the player drawing a card.
 	 */
 	public void drawCard(Player player){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+			
 		recreateIfEmpty();
 	
 		cDAO.updateCards(ChanceDeck.getDeck().peek());
@@ -132,7 +141,7 @@ public class ChanceController {
 					}
 				}
 			}
-			MUI.showMessage("De har betalt: " + bill1);
+			MUI.showMessage(textList[48] + bill1);
 			break;
 		case 14:
 			player.changePosition(25);
@@ -221,7 +230,7 @@ public class ChanceController {
 					}
 				}
 			}
-			MUI.showMessage("De har betalt: " + bill2);
+			MUI.showMessage(textList[48] + bill2);
 			break;
 		case 26:
 			MUI.displayCard(c.getCardText());

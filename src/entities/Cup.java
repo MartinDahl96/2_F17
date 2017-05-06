@@ -2,7 +2,7 @@ package entities;
 
 //Cup class
 
-/**
+/*
  * @Author Martin
  * This class will be responsible for the cup holding the dice, and also rolling them.
  */
@@ -18,7 +18,7 @@ public class Cup {
 	
 	/**
 	 * Creates the cup constructor.
-	 * @Param cup used to roll the dice.
+	 * @param cup used to roll the dice.
 	 */
 	
 	public Cup(){
@@ -28,9 +28,9 @@ public class Cup {
 	
 	
 	/**
-	 * Returns the value of the rolled dice.
+	 * used to get the value of the cup.
+	 * @return cupValue is the value of the cup.
 	 */
-	
 	public int getCupValue(){
 		cupValue = Die1.getRoll()+Die2.getRoll();
 		return cupValue;
@@ -54,8 +54,8 @@ public class Cup {
 	
 	/**
 	 * Method created for testing purposes.
-	 * @param value
-	 * @return cupValue
+	 * @param value is the determined value.
+	 * @return cupValue is the value of the cup.
 	 */
 	public int setCup(int value){
 		cupValue = value;
@@ -69,6 +69,9 @@ public class Cup {
 		return Integer.toString(cupValue);
 	}
 	
+	/**
+	 * method used to roll the dice inside of the cup.
+	 */
 	public void useCup() {
 		Die1.roll();
 		Die2.roll();

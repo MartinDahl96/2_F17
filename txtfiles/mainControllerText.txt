@@ -21,3 +21,6 @@ Leje:
 pictures/Ferry.png
 pictures/Parking.png
 De er ved at gå bankerot, sælg bygninger og eller grunde for at blive i spillet!
+pictures/Carlsberg2.png
+pictures/Coca-cola.jpg
+pictures/goToJail.png

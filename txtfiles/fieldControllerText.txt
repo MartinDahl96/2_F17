@@ -45,3 +45,5 @@ Et hus på denne grund er solgt
 Deres hotel er solgt, De står tilbage med 4 huse
 De har bygget hus, dermed er lejen steget
 De har bygget et hotel, dermed er lejen steget markant
+Du ejer ikke dette felt!
+De har betalt: 

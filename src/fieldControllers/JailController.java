@@ -22,6 +22,11 @@ public class JailController {
 	 * @param j is a Jail-field object.
 	 */
 	public JailController(Jail j){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.j = j;
 		
 	}
@@ -30,13 +35,18 @@ public class JailController {
 	 * Doesn't require a Jail-field object, but creates a new Cup to be used.
 	 */
 	public JailController(){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.cup = new Cup();
 		
 	}
 
 	/**
 	 * landOnField-method for a jail-field.
-	 * @param player
+	 * @param player is the player landing on the jail field.
 	 */
 	public void landOnJail(Player player) {
 
@@ -55,12 +65,6 @@ public class JailController {
 	 * @param player is the player in jail.
 	 */
 	public void jailMenu(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		String options = GUI.getUserSelection(player.getplayerName() + textList[1]+player.getJailRounds()+textList[2],textList[3], textList[4], textList[5]);
 		int choice = Integer.parseInt(options.substring(0, 1));
 
@@ -83,14 +87,9 @@ public class JailController {
 	/**
 	 * option to get out of jail.
 	 * If the player rolls two equal dice he is let out of the jail.
-	 * @param player
+	 * @param player is the player rolling the dice.
 	 */
 	public void rollDice(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 		if (cup.getFaceValue1() == cup.getFaceValue2() ) {
@@ -110,7 +109,7 @@ public class JailController {
 	/**
 	 * option to get out of jail.
 	 * If the player owns a jailToken and decides to use it he is let out of the jail.
-	 * @param player
+	 * @param player is the player using the jailToken.
 	 */
 	public void useJailToken(Player player) {
 		if (player.getJailToken() > 0) {
@@ -129,7 +128,7 @@ public class JailController {
 	/**
 	 * option to get out of jail.
 	 * If the player pays 1.000 kr. he is let out of the jail.
-	 * @param player
+	 * @param player paying the bail.
 	 */
 	public void payBail(Player player) {
 		int bail = 1000;

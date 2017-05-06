@@ -34,6 +34,9 @@ public class GameController {
 	private Text file = new Text("txtfiles/mainControllerText.txt");
 	private String[] textList;
 
+	/**
+	 * constructor for the Gamecontroller.
+	*/
 	public GameController(){
 
 		try {
@@ -282,6 +285,9 @@ public class GameController {
 		}
 	}
 	
+	/**
+	 * used to put the loaded players form the database to the GUI.
+	 */
 	public void loadPlayers(){
 		for(int i = 0; i<players.size();i++){
 			MUI.createCars(cars);

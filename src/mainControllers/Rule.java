@@ -32,7 +32,11 @@ public class Rule {
 		player.setTotalAssets(total+player.getFortune());
 	}
 	
-public void removeOwner(Player p){
+	/**
+	 * used used to remove an owner from a field in the GUI.
+	 * @param p is the owner to be removed.
+	 */
+	public void removeOwner(Player p){
 		
 		if(p.isBankRupt()){
 			for(Field f: Board.getFields()){
@@ -48,25 +52,33 @@ public void removeOwner(Player p){
 		
 	}
 
-public void assignOwner(Player p){
-
-	for(Field f: Board.getFields()){
-		if(f instanceof Ownable && ((Ownable) f).getOwner() == p){
-			MUI.setOwner(f.getFieldID(), p.getplayerName());
+	/**
+	 * used to assign an owner to a field in the GUI.
+	 * @param p is the owner to be assigned.
+	 */
+	public void assignOwner(Player p){
+	
+		for(Field f: Board.getFields()){
+			if(f instanceof Ownable && ((Ownable) f).getOwner() == p){
+				MUI.setOwner(f.getFieldID(), p.getplayerName());
 			
 			}
 		}
 	}
 
-public void placeHouses(Player p){
+	/**
+	 * used to place houses on a field in the GUI.
+	 * @param p is the player that owns the fields where the houses shall be placed.
+	 */
+	public void placeHouses(Player p){
 
-	for(Field f: Board.getFields()){
-		if(f instanceof Street && ((Street) f).getOwner() == p){
-			if(((Street) f).getNumOfBuildings() < 5){
-				MUI.SetHouses(f.getFieldID(), ((Street) f).getNumOfBuildings());
+		for(Field f: Board.getFields()){
+			if(f instanceof Street && ((Street) f).getOwner() == p){
+				if(((Street) f).getNumOfBuildings() < 5){
+					MUI.SetHouses(f.getFieldID(), ((Street) f).getNumOfBuildings());
 			}
-			else if(((Street) f).getNumOfBuildings() == 5){
-				MUI.setHotel(f.getFieldID(), true);
+				else if(((Street) f).getNumOfBuildings() == 5){
+					MUI.setHotel(f.getFieldID(), true);
 			}
 			
 			}
@@ -74,8 +86,5 @@ public void placeHouses(Player p){
 	}
 
 }
-
-
-
 
 

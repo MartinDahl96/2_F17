@@ -23,7 +23,7 @@ public class Text {
 	/**
 	 * Counts the lines in a file and returns the amount of lines contained in that file as an integer.
 	 * @return The amount of lines contained in the file as an integer.
-	 * @throws IOException
+	 * @throws IOException in case the file is not found.
 	 */
 	public int readLines() throws IOException
 	{
@@ -46,7 +46,7 @@ public class Text {
 	/**
 	 * Tries to open a text file and reads it line by line. It will then save each line into a separate index in an array.
 	 * @return The array of lines in the file.
-	 * @throws IOException.
+	 * @throws IOException in case the file is not found.
 	 */
 	
 	public String[] OpenFile() throws IOException

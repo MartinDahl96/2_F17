@@ -1,8 +1,8 @@
 package entities;
 //Account class
 
-/**
- * @Author Martin
+/*
+ * Author Martin
  * This class will be responsible for the individual player's money.
  */
 
@@ -17,9 +17,8 @@ public class Account {
 	private int MIN = 0;
 	
 	/**
-	 * Account constructor.
-	 * Used to create an Account object with the initial value of 26000.
-	 * This is because the starting field rewards a player with 4000 crowns.
+	 * constructor for the Account.
+	 * @param balance is the amount of money in the account.
 	 */
 	public Account(int balance){
 		this.balance = balance;
@@ -28,7 +27,7 @@ public class Account {
 	/**
 	 * Method used for adding money to the player's balance, this is also used to subtract money from the balance.
 	 * @param point the int value that is added to the balance.
-	 * @param minBalance is a method used here to make sure that the player's balance never goes below 0.
+	 * minBalance is a method used here to make sure that the player's balance never goes below 0.
 	 * @return Balance
 	 */
 	public int addBalance(int point){
@@ -39,8 +38,8 @@ public class Account {
 	}
 	
 	/**
-	 * Used to sets the player's balance.
-	 * @param Balance.
+	 * Used to set the player's balance.
+	 * @param newBalance is the player's new balance.
 	 */
 	public void setBalance(int newBalance){
 		balance = newBalance;

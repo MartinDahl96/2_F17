@@ -7,6 +7,7 @@ import entities.Board;
 import entities.Player;
 import fieldEntities.Field;
 import fieldEntities.Ownable;
+import fieldEntities.Parking;
 import fieldEntities.Street;
 import inputHandlers.Text;
 import mainControllers.MUI;
@@ -18,15 +19,20 @@ public class PropertyController {
 	private String[] textList;
 	
 	/**
-	 * used for selling a property.
-	 * @param player is the seller.
+	 * Constructor for a PropertyController.
 	 */
-	public void sellProperty (Player player) {
+	public PropertyController(){
 		try {
 			textList = file.OpenFile();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * used for selling a property.
+	 * @param player is the seller.
+	 */
+	public void sellProperty (Player player) {
 		boolean check = false;
 		String input = MUI.getUserString(textList[24]);
 		int fieldNumber = Integer.parseInt(input);
@@ -67,7 +73,7 @@ public class PropertyController {
 							
 						}
 						
-					}	else MUI.showMessage("Du ejer ikke dette felt!");
+					}	else MUI.showMessage(textList[47]);
 
 				}
 			MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
@@ -82,12 +88,6 @@ public class PropertyController {
 	 * @param player is the owner of the field.
 	 */
 	public void pawnProperty(Player player){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		String input = MUI.getUserString(textList[29]);
 		int fieldNumber = Integer.parseInt(input);
 
@@ -130,12 +130,6 @@ public class PropertyController {
 	 * @param player is the owner of the field.
 	 */
 	public void unPawnProperty(Player player){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	
 		String input = MUI.getUserString(textList[32]);
 		int fieldNumber = Integer.parseInt(input);
 
