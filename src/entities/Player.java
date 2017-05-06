@@ -38,10 +38,6 @@ public class Player {
 	 * @param playerID is the playerID of the player.
 	 * @param playerName is the name of the player.
 	 * @param fortune is the amount of money held by a player.
-	 * @param immunity is whether or not the player is immune to impacts on his/her money.
-	 * @param totalAssets is the sum of a player's fortune and the value of his properties and buildings.
-	 * @param ownedFerries is the amount of ferries owned by a player.
-	 * @param ownedBreweries is the amount of breweries owned by a player.
 	 * @param jailRounds is the amount of rounds left for a player in jail.
 	 * @param jailToken is the amount of tokens held by a player.
 	 * @param currentPosition is the player's current position.
