@@ -11,8 +11,7 @@ public class Die {
 	
 	
 	/**
-	 * @Param Die Constructor. Used to create a Die object.
-	 * @Param faceValue. Used to set the faceValue to 0 at first.
+	 * Constructor of a die.
 	 */
 	
 	public Die(){

@@ -68,7 +68,7 @@ public class Rule {
 
 	/**
 	 * used to place houses on a field in the GUI.
-	 * @param p
+	 * @param p is the player that owns the fields where the houses shall be placed.
 	 */
 	public void placeHouses(Player p){
 

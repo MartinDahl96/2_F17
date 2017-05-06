@@ -25,8 +25,9 @@ public class TaxMethodTest {
  * or 4000 from account balance. 
  * True = 4k or 2k.
  * False = 10%
- * @param player
- * @param choice
+ * @param t is a Tax field.
+ * @param player is the player landing on the field.
+ * @param choice is the choice made by the player.
  */
 	public void landOnTax(Tax t, Player player, boolean choice) {
 		try {

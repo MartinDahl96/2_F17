@@ -25,6 +25,8 @@ public class Street extends Ownable {
 	/**
 	 * Street constructor. Used to create a Street object.
 	 * 
+	 * @param fieldID
+	 *            is the ID/position of the field.
 	 * @param fieldName
 	 *            Determines the name of the field
 	 * @param fieldInfo
@@ -43,8 +45,6 @@ public class Street extends Ownable {
 	 *            Determines the rent when the field got four houses
 	 * @param hotelRent
 	 *            Determines the rent when the field got a hotel
-	 * @param mortgage
-	 *            Determines the price of a possible mortgage
 	 * @param buildPrice
 	 *            Determines the price of expanding the Street field with extra
 	 *            houses/ a hotel
@@ -71,7 +71,8 @@ public class Street extends Ownable {
 	
 
 	/**
-	 * Sets the color-category of the field
+	 * sets the color category for a field.
+	 * @return color is the color of the field.
 	 */
 	public String getColor() {
 		return color;

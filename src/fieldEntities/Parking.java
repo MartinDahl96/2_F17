@@ -11,8 +11,10 @@ public class Parking extends Field {
 
 	/**
 	 * Constructor of the Parking-field.
+	 * @param fieldID is the ID/position of the field.
 	 * @param fieldName used as the name of the field.
 	 * @param fieldInfo used to give information about the field.
+	 * @param parkingBonus is the bonus given to the player who lands on the field.
 	 */
 	public Parking(int fieldID, String fieldName, String fieldInfo, int parkingBonus) {
 		super(fieldID, fieldName, fieldInfo);

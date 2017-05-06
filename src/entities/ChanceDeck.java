@@ -66,9 +66,9 @@ public class ChanceDeck {
 		return deck;
 	}
 	/**
-	 * Used to get a single card in the stack.
-	 * @param cardID
-	 * @return the card with the given cardID.
+	 * used to get a card from the stack at a given index.
+	 * @param index is the index of the card.
+	 * @return is the card at the given index.
 	 */
 	public ChanceCard getCard(int index){
 		return deck.get(index);

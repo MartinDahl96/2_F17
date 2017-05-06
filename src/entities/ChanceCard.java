@@ -31,7 +31,7 @@ public class ChanceCard {
 
 	/**
 	 * Sets the cardID as an int.
-	 * @param cardID
+	 * @param cardID is the ID of the card.
 	 */
 	public void setCardID(int cardID) {
 		this.cardID = cardID;
@@ -47,7 +47,7 @@ public class ChanceCard {
 	
 	/**
 	 * Sets the cardValue as an int.
-	 * @param cardValue
+	 * @param cardValue is the value of the card.
 	 */
 	public void setCardValue(int cardValue) {
 		this.cardValue = cardValue;
@@ -63,14 +63,14 @@ public class ChanceCard {
 
 	/**
 	 * Sets the cardText as a string.
-	 * @param cardText
+	 * @param cardText is the text on the card.
 	 */
 	public void setCardText(String cardText) {
 		this.cardText = cardText;
 	}
 
 	/**
-	 * Method used to convert the cardID, cardText & cardValue to a string.
+	 * Method used to convert the cardID, cardText and cardValue to a string.
 	 */
 	public String toString() {
 		return ("("+ cardID + " , " + cardText + " , " + cardValue + ")");
