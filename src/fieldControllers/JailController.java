@@ -22,6 +22,11 @@ public class JailController {
 	 * @param j is a Jail-field object.
 	 */
 	public JailController(Jail j){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.j = j;
 		
 	}
@@ -30,6 +35,11 @@ public class JailController {
 	 * Doesn't require a Jail-field object, but creates a new Cup to be used.
 	 */
 	public JailController(){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.cup = new Cup();
 		
 	}
@@ -55,12 +65,6 @@ public class JailController {
 	 * @param player is the player in jail.
 	 */
 	public void jailMenu(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		String options = GUI.getUserSelection(player.getplayerName() + textList[1]+player.getJailRounds()+textList[2],textList[3], textList[4], textList[5]);
 		int choice = Integer.parseInt(options.substring(0, 1));
 
@@ -86,11 +90,6 @@ public class JailController {
 	 * @param player
 	 */
 	public void rollDice(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 		if (cup.getFaceValue1() == cup.getFaceValue2() ) {

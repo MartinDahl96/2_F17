@@ -19,6 +19,11 @@ public class ParkingController {
 	 * @param p is a Parking-field object.
 	 */
 	public ParkingController(Parking p){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.p = p;
 		
 	}
@@ -28,11 +33,6 @@ public class ParkingController {
 	 * @param player is the player landing on the field.
 	 */
 	public  void landOnParking(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 			MUI.showMessage(textList[23]);
 			activateImmunity(player);
