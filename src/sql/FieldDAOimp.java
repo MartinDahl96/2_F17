@@ -36,7 +36,7 @@ public class FieldDAOimp implements IFieldDAO {
 	
 	/**
 	 * used to get an ownable field's status from the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
 	public void getOwnable() throws SQLException { // Implementer
@@ -53,7 +53,7 @@ public class FieldDAOimp implements IFieldDAO {
 	
 	/**
 	 * used to get the amount of buildings on a street field in the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
 	public void getBuildingsOnStreet() throws SQLException{ //Implementer
@@ -68,7 +68,7 @@ public class FieldDAOimp implements IFieldDAO {
 
 	/**
 	 * used to update an ownable field's status in the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
 	public void updateOwnable() throws SQLException {
@@ -93,7 +93,7 @@ public class FieldDAOimp implements IFieldDAO {
 
 	/**
 	 * used to insert an ownable field's status in the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override 
 	public void insertOwnable() throws SQLException {

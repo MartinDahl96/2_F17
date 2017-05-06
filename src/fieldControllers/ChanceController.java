@@ -38,6 +38,10 @@ public class ChanceController {
 		this.deck = new ChanceDeck();
 		
 	}
+	/**
+	 * Secondary constructor for the chancecontroller.
+	 * This requires no chance-field object
+	 */
 	public ChanceController(){
 		try {
 			textList = file.OpenFile();
@@ -52,7 +56,7 @@ public class ChanceController {
 	
 	/**
 	 * landOnField-method for a chance-field.
-	 * @param player
+	 * @param player is the player landing on the field.
 	 */
 	public void landOnChance(Player player){
 		
@@ -65,7 +69,7 @@ public class ChanceController {
 	 * if the stack is empty it will re-create it.
 	 * pops a card from the stack and displays the cardmessage.
 	 * the cardID from the popped card is used to determine the action done by the switch.
-	 * @param player
+	 * @param player is the player drawing a card.
 	 */
 	public void drawCard(Player player){
 			

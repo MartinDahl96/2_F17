@@ -37,7 +37,7 @@ public abstract class Ownable extends Field {
 
 	/**
 	 * Sets the price of the ownable field.
-	 * @param newPrice
+	 * @param newPrice is the new price.
 	 */
 	public void setPrice(int newPrice) {
 		this.price = newPrice;
@@ -50,7 +50,7 @@ public abstract class Ownable extends Field {
 	
 	/**
 	 * Used to get the owner of the field.
-	 * @return owner
+	 * @return owner is the owner.
 	 */
 	public Player getOwner() {
 		return owner;
@@ -58,7 +58,7 @@ public abstract class Ownable extends Field {
 
 	/**
 	 * Sets the owner of the field.
-	 * @param newOwner
+	 * @param newOwner is the new owner.
 	 */
 	public void setOwner(Player newOwner) {
 		this.owner = newOwner;
@@ -94,7 +94,7 @@ public abstract class Ownable extends Field {
 	
 	/**
 	 * landOnField method for the ownable fields.
-	 * @param is the player landing on the field.	
+	 * @param player is the player landing on the field.	
 	 */
 	public void landOnField(Player player){
 		o.landOnOwnable(player);

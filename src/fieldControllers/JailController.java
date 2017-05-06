@@ -46,7 +46,7 @@ public class JailController {
 
 	/**
 	 * landOnField-method for a jail-field.
-	 * @param player
+	 * @param player is the player landing on the jail field.
 	 */
 	public void landOnJail(Player player) {
 
@@ -87,7 +87,7 @@ public class JailController {
 	/**
 	 * option to get out of jail.
 	 * If the player rolls two equal dice he is let out of the jail.
-	 * @param player
+	 * @param player is the player rolling the dice.
 	 */
 	public void rollDice(Player player) {
 		cup.useCup();
@@ -109,7 +109,7 @@ public class JailController {
 	/**
 	 * option to get out of jail.
 	 * If the player owns a jailToken and decides to use it he is let out of the jail.
-	 * @param player
+	 * @param player is the player using the jailToken.
 	 */
 	public void useJailToken(Player player) {
 		if (player.getJailToken() > 0) {
@@ -128,7 +128,7 @@ public class JailController {
 	/**
 	 * option to get out of jail.
 	 * If the player pays 1.000 kr. he is let out of the jail.
-	 * @param player
+	 * @param player paying the bail.
 	 */
 	public void payBail(Player player) {
 		int bail = 1000;

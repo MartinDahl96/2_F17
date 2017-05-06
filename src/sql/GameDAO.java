@@ -26,6 +26,10 @@ public class GameDAO {
 		}
 	}
 	
+	/**
+	 * used to load the game.
+	 * This is done by getting data from the database tables.
+	 */
 	public void loadGame(){
 		try {
 			pDAO.getPlayers();
@@ -40,6 +44,10 @@ public class GameDAO {
 		}
 	}
 
+	/**
+	 * used to save the game.
+	 * This is done by inserting data into the database tables.
+	 */
 	public void saveGame() {
 		try {
 			pDAO.insertPlayer();
@@ -50,6 +58,10 @@ public class GameDAO {
 		}
 	}
 
+	/**
+	 * used to update the save file in the database.
+	 * This is done by updating the data in the database tables.
+	 */
 	public void updateSave() {
 		try {
 			pDAO.updatePlayer();
@@ -59,6 +71,10 @@ public class GameDAO {
 		}
 	}
 	
+	/**
+	 * used to create a new game.
+	 * This is done by resetting the tables in the database.
+	 */
 	public void newGame(){
 		String resetTables = textList[26];
 		try {

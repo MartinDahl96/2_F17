@@ -32,7 +32,7 @@ public class ChanceDAOimp implements IChanceDAO {
 	
 	/**
 	 * used to insert a chancecard to the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
 	public void insertCards() throws SQLException {
@@ -53,7 +53,7 @@ public class ChanceDAOimp implements IChanceDAO {
 	/**
 	 * used to update/change a chancecard in the database
 	 * @param card is the card to be changed.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
 	public void updateCards(ChanceCard card) { 
@@ -72,7 +72,7 @@ public class ChanceDAOimp implements IChanceDAO {
 
 	/**
 	 * used to get a chancecard from the Database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
 	public void getChanceCards() throws SQLException {
