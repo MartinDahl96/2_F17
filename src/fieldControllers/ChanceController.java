@@ -137,7 +137,7 @@ public class ChanceController {
 					}
 				}
 			}
-			MUI.showMessage("De har betalt: " + bill1);
+			MUI.showMessage(textList[48] + bill1);
 			break;
 		case 14:
 			player.changePosition(25);
@@ -226,7 +226,7 @@ public class ChanceController {
 					}
 				}
 			}
-			MUI.showMessage("De har betalt: " + bill2);
+			MUI.showMessage(textList[48] + bill2);
 			break;
 		case 26:
 			MUI.displayCard(c.getCardText());
