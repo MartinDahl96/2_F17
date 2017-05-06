@@ -14,11 +14,7 @@ import inputHandlers.Text;
  */
 
 public class MUI {
-	
-	//attributes
-	private Text file = new Text("txtfiles/mainControllerText.txt");
-	private String[] textList;
-	
+
 	/**
 	 * used to display a choice and two buttons to the player.
 	 * @param msg is the message to be displayed.
