@@ -19,6 +19,8 @@ public class Tax extends Field {
 	/**
 	 * A constructor for the Tax field, used to create a Tax object
 	 * 
+	 * @param fieldID
+	 *            is the ID/position of the field.
 	 * @param fieldName
 	 *            States the name of the field
 	 * @param fieldInfo

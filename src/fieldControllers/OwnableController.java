@@ -94,7 +94,7 @@ public class OwnableController{
 	
 	/**
 	 * used to calculate the rent of a brewery.
-	 * @param p
+	 * @param p is the player used to calculate the rent for his/her owned breweries.
 	 */
 	public void calcBrewRent(Player p){
 		Cup cup = new Cup();

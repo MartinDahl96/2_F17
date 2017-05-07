@@ -25,7 +25,7 @@ public class FileScanner {
 	/**
 	 * used to count the lines in a file, with the delimiter ",".
 	 * @return numOfFields is the amount of lines in the file.
-	 * @throws FileNotFoundException
+	 * @throws FileNotFoundException in case the file is not found.
 	 */
 	public int readLines() throws FileNotFoundException {
 
@@ -43,7 +43,7 @@ public class FileScanner {
 	/**
 	 * used to scan the file and save the information read.
 	 * @return value is the read information.
-	 * @throws FileNotFoundException
+	 * @throws FileNotFoundException in case the file is not found.
 	 */
 	public String[] openFile() throws FileNotFoundException {
 

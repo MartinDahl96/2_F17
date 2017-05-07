@@ -172,7 +172,7 @@ public class Board {
 	
 	/**
 	 * landOnField method for the fields.
-	 * @param player
+	 * @param player is the player landing of the field.
 	 */
 	public void landOnField(Player player) {
 		int playerPosition = player.getCurrentPosition();

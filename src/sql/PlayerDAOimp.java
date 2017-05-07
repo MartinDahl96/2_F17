@@ -29,7 +29,7 @@ public class PlayerDAOimp implements IPlayerDAO {
 	
 	/**
 	 * used to get a player's information from the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
 	public void getPlayers() throws SQLException { // Implementer
@@ -53,7 +53,7 @@ public class PlayerDAOimp implements IPlayerDAO {
 
 	/**
 	 * used to get the amount of ferries owned by a player in the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	public void getOwnedFerries() throws SQLException { 
 		String ownedFerries = textList[35]; // selecting from view											
@@ -65,7 +65,7 @@ public class PlayerDAOimp implements IPlayerDAO {
 
 	/**
 	 * used to get the amount of breweries owned by a player in the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	public void getOwnedBreweries() throws SQLException { 
 		String ownedBreweries = textList[37]; // selecting from view
@@ -77,7 +77,7 @@ public class PlayerDAOimp implements IPlayerDAO {
 
 	/**
 	 * used to insert a player's information into the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
 	public void insertPlayer() throws SQLException {
@@ -100,7 +100,7 @@ public class PlayerDAOimp implements IPlayerDAO {
 
 	/**
 	 * used to update a player's information in the database.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
 	public void updatePlayer() throws SQLException {
