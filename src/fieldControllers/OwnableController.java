@@ -64,16 +64,14 @@ public class OwnableController{
 	 */
 	public void buyProperty(Player buyer) {
 		boolean choice = MUI.getTwoButtons(textList[11], textList[12], textList[13]);
-		
 		if (buyer.getFortune() < o.getPrice()) MUI.showMessage(textList[14]);
-	
 		else if (choice) {
 			MUI.showMessage(textList[15] + o.getFieldName() + textList[16] + o.getPrice());
 			buyer.setFortune(-o.getPrice());
 			
 			o.setOwner(buyer);
 			MUI.setOwner(o.getFieldID(), buyer.getplayerName());
-			setOwnedFields(buyer); //ændre
+			setOwnedFields(buyer); 
 		}
 	}
 	
@@ -83,13 +81,8 @@ public class OwnableController{
 	 * @param player is the owner.
 	 */
 	public void setOwnedFields(Player player){
-		if(o instanceof Ferry){
-			player.setOwnedFerries(1);
-		}
-		
-		if(o instanceof Brewery){
-			player.setOwnedBreweries(1);
-		}
+		if(o instanceof Ferry) player.setOwnedFerries(1);
+		if(o instanceof Brewery) player.setOwnedBreweries(1);
 	}
 	
 	/**
@@ -98,7 +91,7 @@ public class OwnableController{
 	 */
 	public void calcBrewRent(Player p){
 		Cup cup = new Cup();
-			MUI.showMessage(textList[17]);
+		MUI.showMessage(textList[17]);
 		cup.useCup();
 		GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
 		MUI.showMessage(textList[18]+o.getRent()*cup.getCupValue());

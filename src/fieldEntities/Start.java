@@ -1,7 +1,4 @@
 package fieldEntities;
-
-import java.util.Scanner;
-
 //Start class
 
 import entities.Player;
@@ -33,7 +30,7 @@ public class Start extends Field {
 		this.s = new StartController(this);
 
 	}
-	
+																							
 	/**
 	 * used to get the startbonus
 	 * @return startBonus is the startbonus.

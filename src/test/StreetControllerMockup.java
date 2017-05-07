@@ -1,14 +1,11 @@
 package test;
 
 import java.io.IOException;
-import desktop_resources.GUI;
 import entities.Board;
 import entities.Player;
 import fieldEntities.Field;
-import fieldEntities.Ownable;
 import fieldEntities.Street;
 import inputHandlers.Text;
-import mainControllers.MUI;
 /**
  * MockUp class of StreetController class, Used to run JUnittests on the Mockup class. 
  * The UI part of the StreetController class has been removed in this class. 
@@ -23,23 +20,6 @@ public class StreetControllerMockup {
 	public StreetControllerMockup(){
 
 
-	}
-
-	public void sellBuilding(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		String input = MUI.getUserString(textList[35]);
-		Street field = ((Street) Board.getFields().get(Integer.parseInt(input)));
-
-		if (field.getOwner() == player) { 
-			if (field.getNumOfBuildings() == 5) sellHotel(player, field);
-			else sellHouse(player, field);}
-		else {
-		}
 	}
 
 

@@ -2,10 +2,9 @@ package fieldEntities;
 
 //Chance class
 
-import entities.ChanceDeck;
 import entities.Player;
 import fieldControllers.ChanceController;
-import mainControllers.MUI;
+
 
 public class Chance extends Field {
 

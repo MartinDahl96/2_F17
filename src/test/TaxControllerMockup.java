@@ -1,13 +1,13 @@
 package test;
 
-import java.io.IOException;
+
+
 
 //TaxController class
 
 import entities.Player;
 import fieldEntities.Tax;
-import inputHandlers.Text;
-import mainControllers.MUI;
+
 
 /**
  * Mockup of the TaxController class, The UT methods have been removed to make the class suitable for Unittesting.
@@ -16,13 +16,10 @@ import mainControllers.MUI;
  */
 public class TaxControllerMockup {
 
-	
-	private Text file = new Text("txtfiles/fieldControllerText.txt");
-	private String[] textList;
+
 
 	public TaxControllerMockup(){
-		
-
+	
 	}
 
 /**
@@ -35,13 +32,7 @@ public class TaxControllerMockup {
  * @param choice is the choice made by the player.
  */
 	public void landOnTax(Tax t, Player player, boolean choice) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
+		
 		if (player.getCurrentPosition() == 5) {
 			if (choice == true) {
 				player.setFortune(-t.getFixedTax());

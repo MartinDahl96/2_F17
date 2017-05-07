@@ -30,7 +30,7 @@ public class Player {
 		this.jailToken = 0;
 		this.prevPosition = 0;
 		fortune = this.account.getBalance();
-
+		this.isBankRupt = false;
 
 	}
 	/**

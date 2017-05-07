@@ -4,11 +4,11 @@ package mainControllers;
 
 import desktop_resources.GUI;
 
+
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import entities.Board;
 import fieldEntities.Field;
 import fieldEntities.Ownable;
 import inputHandlers.Text;

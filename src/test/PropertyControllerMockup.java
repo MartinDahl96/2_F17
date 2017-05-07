@@ -1,14 +1,13 @@
 package test;
-import java.io.IOException;
 
-import desktop_resources.GUI;
+
+
 import entities.Board;
 import entities.Player;
 import fieldEntities.Field;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
-import inputHandlers.Text;
-import mainControllers.MUI;
+
 
 /**
  * Mockup class of PropertyController, used to perform JUnittests, as the UI calls are removed. 
@@ -17,15 +16,10 @@ import mainControllers.MUI;
  */
 
 public class PropertyControllerMockup {
-	private Text file = new Text("txtfiles/fieldControllerText.txt");
-	private String[] textList;
+	
 
 	public void sellProperty (Player player, int fieldNumber) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		boolean check = false;
 
 		for (Field f : Board.getFields()) {
@@ -77,12 +71,6 @@ public class PropertyControllerMockup {
 
 
 	public void pawnProperty(Player player, int fieldNumber){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 
 		for (Field f : Board.getFields()) {
 
@@ -117,14 +105,6 @@ public class PropertyControllerMockup {
 	}
 
 	public void unPawnProperty(Player player, int fieldNumber){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		//		String input = MUI.getUserString(textList[32]);
-		//int fieldNumber = Integer.parseInt(input);
 
 		for (Field f : Board.getFields()) {
 
@@ -137,8 +117,7 @@ public class PropertyControllerMockup {
 						if (((Ownable) f).isPawned() == true) {
 							((Ownable) f).setPawned(false);
 							player.setFortune(-((Ownable) f).getMortgage()*(11/10));
-							//							MUI.showMessage(textList[33] + fieldNumber);
-							//							GUI.setDescriptionText(fieldNumber, ((Ownable) f).getFieldInfo());
+
 						}
 
 					}

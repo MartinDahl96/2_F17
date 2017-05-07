@@ -1,11 +1,6 @@
 package entities;
 //Account class
 
-/*
- * Author Martin
- * This class will be responsible for the individual player's money.
- */
-
 public class Account {
 	
 	/**

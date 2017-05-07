@@ -1,7 +1,5 @@
 package fieldEntities;
 
-import entities.Player;
-
 public class Ferry extends Ownable {
 
 	// Attributes

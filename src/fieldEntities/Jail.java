@@ -18,7 +18,6 @@ public class Jail extends Field {
 	public Jail(int fieldID, String fieldName, String fieldInfo) {
 		super(fieldID, fieldName, fieldInfo);
 		this.j = new JailController(this);
-
 	}
 
 	/**

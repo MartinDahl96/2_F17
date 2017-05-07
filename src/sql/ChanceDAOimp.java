@@ -1,14 +1,11 @@
 package sql;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import entities.ChanceCard;
 import entities.ChanceDeck;
-import fieldEntities.Chance;
-import inputHandlers.Text;
+
 
 public class ChanceDAOimp implements IChanceDAO {
 
@@ -16,19 +13,7 @@ public class ChanceDAOimp implements IChanceDAO {
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
 	private ResultSet rs;
-	private Text file = new Text("txtfiles/sql.txt");
-	private String[] textList;
 
-	/**
-	 * Constructor for the ChanceDataAccessObjectImplementation 
-	 */
-	public ChanceDAOimp(){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	/**
 	 * used to insert a chancecard to the database.
@@ -37,7 +22,7 @@ public class ChanceDAOimp implements IChanceDAO {
 	@Override
 	public void insertCards() throws SQLException {
 
-		String addCardDeckProcedure = textList[0];
+		String addCardDeckProcedure = "call addCardDeck(?,?,?,?);";
 		prepstmt = c.getConnection().prepareStatement(addCardDeckProcedure);
 
 		for (int i = 0; i < ChanceDeck.getDeck().size(); i++) {
@@ -47,7 +32,7 @@ public class ChanceDAOimp implements IChanceDAO {
 			prepstmt.setInt(4, i);
 			prepstmt.executeUpdate();
 		}
-		System.out.println(textList[1]);
+		System.out.println("cardDeck is up to date...");
 	}
 
 	/**
@@ -57,7 +42,7 @@ public class ChanceDAOimp implements IChanceDAO {
 	 */
 	@Override
 	public void updateCards(ChanceCard card) { 
-		String updateCardDeckProcedure = textList[2];
+		String updateCardDeckProcedure = "call updateCardDeck(?,?);";
 		try {
 			prepstmt = c.getConnection().prepareStatement(updateCardDeckProcedure);
 			prepstmt.setInt(1, card.getCardID());
@@ -66,7 +51,7 @@ public class ChanceDAOimp implements IChanceDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(textList[3]);
+		System.out.println("ChanceCard picked...");
 
 	}
 
@@ -77,71 +62,11 @@ public class ChanceDAOimp implements IChanceDAO {
 	@Override
 	public void getChanceCards() throws SQLException {
 		ChanceDeck.getDeck().removeAllElements();
-		String notPickedCards = textList[4];
+		String notPickedCards = "SELECT * FROM notpickedcards;";
 		rs = c.doQuery(notPickedCards);
 
 		while (rs.next()) {
-			ChanceDeck.getDeck().push(new ChanceCard(rs.getInt(textList[5]), rs.getInt(textList[6]), rs.getString(textList[7])));
+			ChanceDeck.getDeck().push(new ChanceCard(rs.getInt("cardID"), rs.getInt("cardValue"), rs.getString("cardText")));
 		}
-
 	}
-
-	// public static void main(String[] args){
-	//
-	// ChanceDeck cc = new ChanceDeck();
-	// System.out.println("FØR: "+cc.getDeck());
-	// ChanceDAOimp dao = new ChanceDAOimp();
-	//
-	// try {
-	// dao.insertCards();
-	// } catch (SQLException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// try {
-	// dao.updateCards(cc.getDeck().peek());
-	// cc.getDeck().pop();
-	// } catch (SQLException e1) {
-	// // TODO Auto-generated catch block
-	// e1.printStackTrace();
-	// }
-	//
-	// try {
-	// dao.updateCards(cc.getDeck().peek());
-	// cc.getDeck().pop();
-	// } catch (SQLException e1) {
-	// // TODO Auto-generated catch block
-	// e1.printStackTrace();
-	// }try {
-	// dao.updateCards(cc.getDeck().peek());
-	// cc.getDeck().pop();
-	// } catch (SQLException e1) {
-	// // TODO Auto-generated catch block
-	// e1.printStackTrace();
-	// }try {
-	// dao.updateCards(cc.getDeck().peek());
-	// cc.getDeck().pop();
-	// } catch (SQLException e1) {
-	// // TODO Auto-generated catch block
-	// e1.printStackTrace();
-	// }
-	//
-	// System.out.println("EFTER: "+cc.getDeck());
-	// System.out.println("SIZE: "+cc.getDeck().size());
-	//
-	// cc.getDeck().removeAllElements();
-	// System.out.println("SLETTET: "+cc.getDeck());
-	//
-	// try {
-	// dao.getChanceCards();
-	// } catch (SQLException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// System.out.println("SKAL VÆRE SAMME SOM 'EFTER': "+cc.getDeck());
-	// System.out.println("SIZE: "+cc.getDeck().size());
-	//
-	//
-	// }
 }

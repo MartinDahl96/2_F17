@@ -2,12 +2,12 @@ package test;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import entities.Board;
-import entities.Cup;
 import entities.Player;
 import fieldControllers.JailController;
 import fieldEntities.Jail;

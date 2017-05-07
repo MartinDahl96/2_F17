@@ -1,9 +1,8 @@
 package fieldEntities;
 
-import desktop_resources.GUI;
+
 import entities.Player;
 import fieldControllers.TaxController;
-import mainControllers.MUI;
 
 public class Tax extends Field {
 

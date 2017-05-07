@@ -1,9 +1,6 @@
 package entities;
 
 import java.util.*;
-
-import mainControllers.MUI;
-
 import java.io.FileNotFoundException;
 import java.io.File;
 
@@ -18,7 +15,7 @@ public class ChanceDeck {
 	 * Constructor used to create a stack pf ChanceCards.
 	 */
 	public ChanceDeck() {
-		this.deck = new Stack<ChanceCard>();
+		ChanceDeck.deck = new Stack<ChanceCard>();
 		createDeck();
 		shuffleDeck();
 	}
@@ -31,9 +28,7 @@ public class ChanceDeck {
 
 		try {
 			Scanner s = new Scanner(new File("txtfiles/chanceCards.txt"));
-
 			int tempID = 0;
-
 			while (s.hasNext()) {
 
 				String tempText = s.nextLine();
@@ -47,14 +42,13 @@ public class ChanceDeck {
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
 	 * Shuffles the created deck in order to randomize it.
 	 */
 	public void shuffleDeck() {
-		Collections.shuffle(this.deck);
+		Collections.shuffle(ChanceDeck.deck);
 		
 	}
 

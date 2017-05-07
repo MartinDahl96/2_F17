@@ -2,11 +2,11 @@ package fieldControllers;
 
 import java.io.IOException;
 
-import desktop_resources.GUI;
+
+
 import entities.Board;
 import entities.Player;
 import fieldEntities.Field;
-import fieldEntities.Ownable;
 import fieldEntities.Street;
 import inputHandlers.Text;
 import mainControllers.MUI;
@@ -31,6 +31,11 @@ public class StreetController {
 		this.s = s;
 	}
 	
+ 
+	public StreetController() {
+	}
+
+
 	/**
 	 * used to sell a building.
 	 * @param player is the owner of the field.

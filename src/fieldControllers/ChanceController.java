@@ -2,14 +2,14 @@ package fieldControllers;
 
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Stack;
 
+import java.sql.SQLException;
 import entities.ChanceCard;
 import entities.ChanceDeck;
 import entities.Player;
 import fieldEntities.Chance;
 import fieldEntities.Ferry;
+import fieldEntities.Field;
 import fieldEntities.Street;
 import entities.Board;
 import inputHandlers.Text;
@@ -74,7 +74,6 @@ public class ChanceController {
 	public void drawCard(Player player){
 			
 		recreateIfEmpty();
-	
 		cDAO.updateCards(ChanceDeck.getDeck().peek());
 		ChanceCard c = ChanceDeck.getDeck().pop();
 		MUI.displayCard(c.getCardText());
@@ -129,7 +128,7 @@ public class ChanceController {
 			break;
 		case 13:
 			int bill1 = 0; 
-			for(fieldEntities.Field field : Board.getFields()){
+			for(Field field : Board.getFields()){
 				if(field instanceof Street && ((Street) field).getOwner() == player){
 					if(((Street) field).getNumOfBuildings() > 0 && ((Street) field).getNumOfBuildings() < 5 ){
 						player.setFortune(-800);
@@ -218,7 +217,7 @@ public class ChanceController {
 			break;
 		case 25:
 			int bill2 = 0; 
-			for(fieldEntities.Field field : Board.getFields()){
+			for(Field field : Board.getFields()){
 				if(field instanceof Street && ((Street) field).getOwner() == player){
 					if(((Street) field).getNumOfBuildings() > 0 && ((Street) field).getNumOfBuildings() < 5 ){
 						player.setFortune(-500);
@@ -274,10 +273,10 @@ public class ChanceController {
 		
 		
 		
-		if(deck.getDeck().isEmpty()){
+		if(ChanceDeck.getDeck().isEmpty()){
 			deck.createDeck();
-			deck.getDeck().remove(17);
-			deck.getDeck().remove(17);
+			ChanceDeck.getDeck().remove(17);
+			ChanceDeck.getDeck().remove(17);
 			deck.shuffleDeck();
 			try {
 				cDAO.insertCards();
@@ -285,13 +284,5 @@ public class ChanceController {
 				e.printStackTrace();
 			}
 		}
-		
 	}
-	
-	/**
-	 * used to get the size of the stack.
-	 * @return the size of the stack.
-	 */
-	
-	
 }

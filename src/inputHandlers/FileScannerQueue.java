@@ -30,7 +30,7 @@ public class FileScannerQueue {
 	 * used to fill the queue
 	 * @return q is the queue.
 	 */
-	public Queue fillQueue() {
+	public Queue<String> fillQueue() {
 
 		try {
 			scan = new Scanner(new File(this.path)).useDelimiter(",");

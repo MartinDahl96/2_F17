@@ -1,6 +1,6 @@
 package test;
 
-import java.io.IOException;
+
 
 import entities.ChanceCard;
 import entities.ChanceDeck;
@@ -8,7 +8,6 @@ import entities.Player;
 import fieldControllers.StartController;
 import fieldEntities.Chance;
 import fieldEntities.Ferry;
-import inputHandlers.Text;
 import mainControllers.GameController;
 import mainControllers.MUI;
 
@@ -21,8 +20,6 @@ import mainControllers.MUI;
 public class ChanceContollerMockup {
 	
 	public ChanceDeck deck;
-	private Text file = new Text("txtfiles/fieldControllerText.txt");
-	private String[] textList;
 	
 	public ChanceContollerMockup(Chance c){
 		this.deck = new ChanceDeck();
@@ -37,14 +34,9 @@ public class ChanceContollerMockup {
 	
 	
 	public void drawCard(Player player){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
 		recreateIfEmpty();
 	
-		ChanceCard c = deck.getDeck().pop();
+		ChanceCard c = ChanceDeck.getDeck().pop();
 		
 		switch(c.getCardID()){
 		
@@ -211,17 +203,17 @@ public class ChanceContollerMockup {
 		
 		
 		
-		if(deck.getDeck().isEmpty()){
+		if(ChanceDeck.getDeck().isEmpty()){
 			deck.createDeck();
-			deck.getDeck().remove(17);
-			deck.getDeck().remove(17);
+			ChanceDeck.getDeck().remove(17);
+			ChanceDeck.getDeck().remove(17);
 			deck.shuffleDeck();
 		}
 		
 	}
 	
 	public int sizeOfStack(){
-		return deck.getDeck().size();
+		return ChanceDeck.getDeck().size();
 	}
 	
 }

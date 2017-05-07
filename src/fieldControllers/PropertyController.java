@@ -2,15 +2,16 @@ package fieldControllers;
 
 import java.io.IOException;
 
+
 import desktop_resources.GUI;
 import entities.Board;
 import entities.Player;
 import fieldEntities.Field;
 import fieldEntities.Ownable;
-import fieldEntities.Parking;
 import fieldEntities.Street;
 import inputHandlers.Text;
 import mainControllers.MUI;
+import mainControllers.Rule;
 
 public class PropertyController {
 	
@@ -38,30 +39,25 @@ public class PropertyController {
 		int fieldNumber = Integer.parseInt(input);
 
 		for (Field f : Board.getFields()) {
-
-			
 			if (f instanceof Ownable) {
-
 				if (fieldNumber == f.getFieldID()) {
 					if (((Ownable) f).getOwner() == player) {
 						if (f instanceof Street && ((Street) f).getNumOfBuildings() > 0) {
 							
 							int soldFor = (((Street) f).getPrice()*(3/4))+(((Street) f).getNumOfBuildings()*(((Street) f).getBuildPrice()/2));
-							
 							player.setFortune(soldFor);
 							((Street) f).setNumOfBuildings(-((Street) f).getNumOfBuildings());
 							MUI.setHotel(fieldNumber, false);
 							MUI.SetHouses(fieldNumber, ((Street) f).getNumOfBuildings());
 							((Ownable) f).setOwner(null);
-							
+						
 							MUI.showMessage(textList[25] + fieldNumber+textList[26]+soldFor);
 							check = true;
 							System.out.println(player.getFortune());
-
 						}
 						else {
-							int soldFor = (int) (((Ownable) f).getPrice()*0.75);
 							
+							int soldFor = (int) (((Ownable) f).getPrice()*0.75);
 							((Ownable) f).setOwner(null);
 							player.setFortune(soldFor);
 							MUI.showMessage(textList[27] + fieldNumber+textList[28]+ soldFor);
@@ -70,11 +66,9 @@ public class PropertyController {
 
 						if (check == true) {
 							GUI.removeOwner(fieldNumber);
-							
 						}
 						
-					}	else MUI.showMessage(textList[47]);
-
+					} else MUI.showMessage(textList[47]);
 				}
 			MUI.updateGUIPlayer(player.getplayerName(), player.getFortune(), player.getCurrentPosition());
 			}
@@ -92,24 +86,17 @@ public class PropertyController {
 		int fieldNumber = Integer.parseInt(input);
 
 		for (Field f : Board.getFields()) {
-
-			
 			if (f instanceof Ownable) {
-				
 				if (fieldNumber == f.getFieldID()) {
 					if (((Ownable) f).getOwner() == player) {
 						if (f instanceof Street && ((Street) f).getNumOfBuildings() == 0) {
-							
 							((Ownable) f).setPawned(true);
-
 						}
-
 						else {
 							((Ownable) f).setPawned(true);
 						}
 
 						if (((Ownable) f).isPawned() == true) {
-							
 							player.setFortune(((Ownable) f).getMortgage());
 							MUI.showMessage(textList[30] + fieldNumber);
 							GUI.setDescriptionText(fieldNumber, ((Ownable) f).getFieldInfo() + textList[31]);
@@ -132,10 +119,10 @@ public class PropertyController {
 	public void unPawnProperty(Player player){
 		String input = MUI.getUserString(textList[32]);
 		int fieldNumber = Integer.parseInt(input);
-
-		for (Field f : Board.getFields()) {
-
-			
+		Rule.calcTotalAssets(player);
+		
+		if(player.getTotalAssets() > 0 && player.getFortune() > 0){
+		for (Field f : Board.getFields()) {	
 			if (f instanceof Ownable) {
 
 				if (fieldNumber == f.getFieldID()) {
@@ -147,15 +134,12 @@ public class PropertyController {
 							MUI.showMessage(textList[33] + fieldNumber);
 							GUI.setDescriptionText(fieldNumber, ((Ownable) f).getFieldInfo());
 						}
-						
 					}
-
 				}
-			
 			}
-
 		}
 		
+		  } else { MUI.showMessage("De har ingen penge, og kan ikke foretage denne handling!");
+       }
 	}
-
 }

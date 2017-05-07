@@ -1,11 +1,9 @@
 package fieldEntities;
 
-import java.awt.Color;
 
-import entities.Board;
 import entities.Player;
 import fieldControllers.StreetController;
-import mainControllers.MUI;
+
 
 public class Street extends Ownable {
 

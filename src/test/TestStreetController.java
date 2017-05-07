@@ -8,18 +8,13 @@ package test;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
 
-import desktop_resources.GUI;
+import org.junit.Test;
 import entities.Board;
 import entities.Player;
-import fieldControllers.ParkingController;
 import fieldControllers.StreetController;
 import fieldEntities.Ownable;
 import fieldEntities.Street;
-import mainControllers.GUIcontroller;
-import mainControllers.GameController;
-import mainControllers.MUI;
 
 public class TestStreetController {
 

@@ -1,19 +1,15 @@
 package test;
 
-import java.io.IOException;
+
+
 
 //TaxController class
 
 import entities.Player;
 import fieldEntities.Tax;
-import inputHandlers.Text;
-import mainControllers.MUI;
+
 
 public class TaxMethodTest {
-
-	
-	private Text file = new Text("txtfiles/fieldControllerText.txt");
-	private String[] textList;
 
 	public TaxMethodTest(){
 		
@@ -30,13 +26,7 @@ public class TaxMethodTest {
  * @param choice is the choice made by the player.
  */
 	public void landOnTax(Tax t, Player player, boolean choice) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
+		
 		if (player.getCurrentPosition() == 5) {
 			// choice = MUI.getTwoButtons(textList[19],textList[20],textList[21]);
 			if (choice == true) {

@@ -1,13 +1,13 @@
 package mainControllers;
 
 import java.awt.Color;
-import java.io.IOException;
+
+
 import java.util.ArrayList;
 
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
 import entities.Player;
-import inputHandlers.Text;
 
 /**
  * This class stores GUI-methods, that will be used frequently in other classes
@@ -213,14 +213,7 @@ public class MUI {
 			s = GUI.getUserString(msg);
 
 		} while (!s.matches("([a-zA-Z0-9]){2,10}") || s.matches("[0-9]+"));
-
-		// The first RegEx above matches any String containing Latin
-		// uppercase/lowercase letters, and that it is between 2-10 characters.
-		// The second RegEx ensures that the String doesn't consist of only
-		// numbers
-
-		// ("(.){2,10}")
-
+		
 		return s;
 	}
 	

@@ -1,13 +1,10 @@
 package test;
 
-import java.io.IOException;
 
-import desktop_resources.GUI;
+
 import entities.Cup;
 import entities.Player;
 import fieldEntities.Jail;
-import inputHandlers.Text;
-import mainControllers.MUI;
 /**
  * MockupClass for the JailController, where the UI elements of the original class is removed.
  * As the UI is gone, we're able to run JUnit test on the class. 
@@ -18,8 +15,6 @@ public class JailControllerMockup {
 
 	Jail j;
 	Cup cup;
-	private Text file = new Text("txtfiles/fieldControllerText.txt");
-	private String[] textList;
 
 	public JailControllerMockup(Jail j){
 		this.j = j;
@@ -42,13 +37,7 @@ public class JailControllerMockup {
 	}
 
 	public void jailMenu(Player player,int choice) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
+	
 		switch (choice) {
 		case 1:
 
@@ -66,11 +55,7 @@ public class JailControllerMockup {
 	}
 
 	public void rollDice(Player player) {
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		cup.useCup();
 		if (cup.getFaceValue1() == cup.getFaceValue2() ) {
 			player.setJailRounds(0);

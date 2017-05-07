@@ -1,9 +1,7 @@
 package sql;
 
-import java.io.IOException;
 import java.sql.*;
 import entities.Player;
-import inputHandlers.Text;
 import mainControllers.GameController;
 
 public class PlayerDAOimp implements IPlayerDAO {
@@ -11,43 +9,25 @@ public class PlayerDAOimp implements IPlayerDAO {
 	//attributes
 	private Connector c = new Connector();
 	private PreparedStatement prepstmt;
-	private Text file = new Text("txtfiles/sql.txt");
-	private String[] textList;
-
-
-	
-	/**
-	 * Constructor for the PlayerDataAccessObjectImplementation 
-	 */
-	public PlayerDAOimp(){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	/**
 	 * used to get a player's information from the database.
 	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
-	public void getPlayers() throws SQLException { // Implementer
+	public void getPlayers() throws SQLException { 
 
-		String getPlayers = textList[28]; // selecting from
-																// view
+		String getPlayers = "SELECT * FROM notlostplayers;"; // selecting from view													
 		ResultSet rs = c.doQuery(getPlayers);
 
 		while (rs.next()) {
-			GameController.getPlayers().add(new Player(rs.getInt(textList[29]), 
-													   rs.getString(textList[30]), 
-													   rs.getInt(textList[31]),
-													   rs.getInt(textList[32]), 
-													   rs.getInt(textList[33]), 
-													   rs.getInt(textList[34])));
-			
+			GameController.getPlayers().add(new Player(rs.getInt("playerID"), 
+													   rs.getString("playerName"), 
+													   rs.getInt("fortune"),
+													   rs.getInt("jailRounds"), 
+													   rs.getInt("jailToken"), 
+													   rs.getInt("currentPosition")));
 		}
-
 		rs.close();
 	}
 
@@ -56,10 +36,10 @@ public class PlayerDAOimp implements IPlayerDAO {
 	 * @throws SQLException if no connection can be made.
 	 */
 	public void getOwnedFerries() throws SQLException { 
-		String ownedFerries = textList[35]; // selecting from view											
+		String ownedFerries = "SELECT * FROM ownedferries;"; // selecting from view											
 		ResultSet rs = c.doQuery(ownedFerries);
 		while (rs.next()) {
-			GameController.getPlayer(rs.getInt(textList[29])).setOwnedFerries(1);
+			GameController.getPlayer(rs.getInt("playerID")).setOwnedFerries(1);
 		}
 	}
 
@@ -68,10 +48,10 @@ public class PlayerDAOimp implements IPlayerDAO {
 	 * @throws SQLException if no connection can be made.
 	 */
 	public void getOwnedBreweries() throws SQLException { 
-		String ownedBreweries = textList[37]; // selecting from view
+		String ownedBreweries = "SELECT * FROM ownedBreweries;"; // selecting from view
 		ResultSet rs = c.doQuery(ownedBreweries);
 		while (rs.next()) {
-			GameController.getPlayer(rs.getInt(textList[29])).setOwnedBreweries(1);
+			GameController.getPlayer(rs.getInt("playerID")).setOwnedBreweries(1);
 		}
 	}
 
@@ -81,7 +61,7 @@ public class PlayerDAOimp implements IPlayerDAO {
 	 */
 	@Override
 	public void insertPlayer() throws SQLException {
-		String addPlayerProcedure = textList[37];
+		String addPlayerProcedure = "call addPlayer(?,?,?,?,?,?);";
 
 		for (Player p : GameController.getPlayers()) {
 			prepstmt = c.getConnection().prepareStatement(addPlayerProcedure);
@@ -94,7 +74,7 @@ public class PlayerDAOimp implements IPlayerDAO {
 			prepstmt.executeUpdate();
 			prepstmt.close();
 		}
-		System.out.println(textList[38]);
+		System.out.println("Players added to database...");
 
 	}
 
@@ -104,7 +84,7 @@ public class PlayerDAOimp implements IPlayerDAO {
 	 */
 	@Override
 	public void updatePlayer() throws SQLException {
-		String updatePlayerProcedure = textList[39];
+		String updatePlayerProcedure = "call updatePlayer(?,?,?,?,?,?);";
 
 		for (Player p : GameController.getPlayers()) {
 			prepstmt = c.getConnection().prepareStatement(updatePlayerProcedure);
@@ -118,6 +98,6 @@ public class PlayerDAOimp implements IPlayerDAO {
 			prepstmt.close();
 
 		}
-		System.out.println(textList[40]);
+		System.out.println("Players updated in database...");
 	}
 }

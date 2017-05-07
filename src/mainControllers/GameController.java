@@ -1,6 +1,5 @@
 package mainControllers;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import desktop_codebehind.Car;
@@ -24,13 +23,9 @@ public class GameController {
 	private boolean winner = false;
 	private int bankruptPlayers = 0;
 	private JailController jailControle = new JailController();
-	private StreetController streetControle = new StreetController(null);	
+	private StreetController streetControle = new StreetController();	
 	private PropertyController propertyControle = new PropertyController();
-	
 	private GameDAO gDAO = new GameDAO();
-	
-	private Rule Rule = new Rule();
-
 	private Text file = new Text("txtfiles/mainControllerText.txt");
 	private String[] textList;
 
@@ -38,7 +33,6 @@ public class GameController {
 	 * constructor for the Gamecontroller.
 	*/
 	public GameController(){
-
 		try {
 			textList = file.OpenFile();
 		} catch (IOException e) {
@@ -63,8 +57,6 @@ public class GameController {
 			gDAO.loadGame();
 			loadPlayers();
 			playerTurn();
-			
-			
 		}
 	}
 
@@ -75,20 +67,16 @@ public class GameController {
 	public void playerTurn() {
 		
 		while (winner == false) {
-
 			for (int i = 0; i < players.size(); i++) {
 				checkForWinner(i);
 				ParkingController.activateImmunity(players.get(i));
 	
 				if(players.get(i).getJailRounds() == 0) {
 					playerOptions(i);
-
 				}
-
 				else if (players.get(i).getJailRounds() > 0) {
 					jailControle.jailMenu(players.get(i));
 				}
-
 				checkPlayerLost(i);
 			}
 		}
@@ -101,31 +89,8 @@ public class GameController {
 	public void playerOptions(int i) {
 		gDAO.updateSave();
 		
-		Rule.calcTotalAssets(players.get(i));
-		
-		if (players.get(i).isBankRupt() == true){
-
-			String options = GUI.getUserSelection(players.get(i).getplayerName() + textList[22], textList[2], textList[3], textList[4]);
-			int choice = Integer.parseInt(options.substring(0, 1));
-
-			switch (choice) {
-			case 1:
-				streetControle.sellBuilding(players.get(i));
-				playerOptions(i);
-				break;
-			case 2:
-				propertyControle.sellProperty(players.get(i));
-				playerOptions(i);
-				break;
-			case 3:
-				propertyControle.pawnProperty(players.get(i));
-				playerOptions(i);
-				break;
-			}
-		}
 		String options = GUI.getUserSelection(players.get(i).getplayerName() + textList[0],textList[1], textList[2], textList[3], textList[4], textList[5],textList[6]);
 		int choice = Integer.parseInt(options.substring(0, 1));
-
 
 		switch (choice) {
 		case 1:
@@ -160,13 +125,17 @@ public class GameController {
 	 * @param i is the player.
 	 */
 	public void throwDice(int i) {
-	
+	Rule.calcTotalAssets(players.get(i));
+	if(players.get(i).getTotalAssets() > 0 && players.get(i).getFortune() > 0){
 			cup.useCup();
 			GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-			players.get(i).setCurrentPosition(cup.getCupValue());
+			players.get(i).setCurrentPosition(1);
 			playOnBoard(i);
 		}
-
+	else { MUI.showMessage("De har ingen penge, sælg noget for at spille videre!");
+		   playerOptions(i);
+		 }
+	}
 	/**
 	 * is the player's movement on the board, affected by the player's turn.
 	 * @param i is the player.

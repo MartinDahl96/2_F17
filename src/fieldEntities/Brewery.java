@@ -1,8 +1,5 @@
 package fieldEntities;
 
-import entities.Cup;
-import entities.Player;
-
 public class Brewery extends Ownable {
 	//Attributes
 	int multiplier;
@@ -29,25 +26,17 @@ public class Brewery extends Ownable {
 		if(super.isPawned){
 			return 0;
 		}
-		
 		else{
 			
-		
 		switch (super.getOwner().getOwnedBreweries()) {
 		case 1: this.multiplier = 100;
 				break;
 		case 2: this.multiplier = 200;
 				break;
-		}
-
+			}
 		}
 		
 		return this.multiplier;
 	}	
 	
 }
-
-		
-	
-	
-

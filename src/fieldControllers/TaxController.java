@@ -39,11 +39,8 @@ public class TaxController {
 			boolean choice = MUI.getTwoButtons(textList[19],textList[20],textList[21]);
 			if (choice == true) {
 				player.setFortune(-t.getFixedTax());
-
 			}
-
 			else if (choice == false) {
-
 				player.setFortune((int) (-t.getRevenueTax() * player.getFortune()));
 			}
 
