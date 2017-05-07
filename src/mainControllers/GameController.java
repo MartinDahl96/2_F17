@@ -129,7 +129,7 @@ public class GameController {
 	if(players.get(i).getTotalAssets() > 0 && players.get(i).getFortune() > 0){
 			cup.useCup();
 			GUI.setDice(cup.getFaceValue1(), cup.getFaceValue2());
-			players.get(i).setCurrentPosition(1);
+			players.get(i).setCurrentPosition(cup.getCupValue());
 			playOnBoard(i);
 		}
 	else { MUI.showMessage("De har ingen penge, sælg noget for at spille videre!");
