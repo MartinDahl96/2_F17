@@ -29,7 +29,7 @@ De har solgt felt
  - Du fik i alt kr. 
 Indtast feltnummer som De ønsker at pantsætte
 De har pantsat felt 
- (PANTSAT)
+ [PANTSAT]
 Indtast feltnummer som De ønsker at pantsætte
 De har købt den pantsatte grund 
 , De modtager kr. 4000 ved at lande på startfeltet, eller passere det.

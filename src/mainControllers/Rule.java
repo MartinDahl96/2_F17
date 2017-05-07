@@ -1,6 +1,7 @@
 package mainControllers;
 
 import entities.Player;
+import desktop_resources.GUI;
 import entities.Board;
 import fieldEntities.Field;
 import fieldEntities.Ownable;
@@ -61,6 +62,7 @@ public class Rule {
 		for (Field f : Board.getFields()) {
 			if (f instanceof Ownable && ((Ownable) f).getOwner() == p) {
 				MUI.setOwner(f.getFieldID(), p.getplayerName());
+				if(((Ownable) f).isPawned()) GUI.setDescriptionText(f.getFieldID(), " [PANTSAT]"); 
 
 			}
 		}

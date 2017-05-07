@@ -50,7 +50,7 @@ public class Account {
 	
 	/**
 	 * Used to check if the player's balance gets below 0, and if it does sets it to 0.
-	 * @return
+	 * @return balance account
 	 */
 	private int minBalance(){
 		if (balance <= MIN){

@@ -88,14 +88,15 @@ public class PropertyController {
 		for (Field f : Board.getFields()) {
 			if (f instanceof Ownable) {
 				if (fieldNumber == f.getFieldID()) {
-					if (((Ownable) f).getOwner() == player) {
+					if (((Ownable) f).getOwner() == player && !((Ownable) f).isPawned()) {
 						if (f instanceof Street && ((Street) f).getNumOfBuildings() == 0) {
 							((Ownable) f).setPawned(true);
 						}
-						else {
+						
+						else if(!(f instanceof Street)){
 							((Ownable) f).setPawned(true);
 						}
-
+						
 						if (((Ownable) f).isPawned() == true) {
 							player.setFortune(((Ownable) f).getMortgage());
 							MUI.showMessage(textList[30] + fieldNumber);
@@ -103,14 +104,16 @@ public class PropertyController {
 						}
 						
 					}
-
+						
 				}
-			
-			}
 
+			}
+			
 		}
-		
+
 	}
+		
+	
 	
 	/**
 	 * used to unpawn a field.

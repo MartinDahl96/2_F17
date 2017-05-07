@@ -38,10 +38,9 @@ public class ChanceDAOimp implements IChanceDAO {
 	/**
 	 * used to update/change a chancecard in the database
 	 * @param card is the card to be changed.
-	 * @throws SQLException if no connection can be made.
 	 */
 	@Override
-	public void updateCards(ChanceCard card) { 
+	public void updateCards(ChanceCard card){ 
 		String updateCardDeckProcedure = "call updateCardDeck(?,?);";
 		try {
 			prepstmt = c.getConnection().prepareStatement(updateCardDeckProcedure);

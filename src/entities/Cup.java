@@ -13,7 +13,6 @@ public class Cup {
 	
 	/**
 	 * Creates the cup constructor.
-	 * @param cup used to roll the dice.
 	 */
 	
 	public Cup(){

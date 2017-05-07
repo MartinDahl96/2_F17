@@ -29,6 +29,7 @@ public class Die {
 	
 	/**
 	 * Returns the faceValue / the number on the die.
+	 * @return faceValue of the die
 	 */
 	
 	public int getRoll(){
