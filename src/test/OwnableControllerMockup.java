@@ -63,7 +63,7 @@ public class OwnableControllerMockup{
 			buyer.setFortune(-o.getPrice());
 
 			o.setOwner(buyer);
-			setOwnedFields(buyer,o); //ændre
+			setOwnedFields(buyer,o); //ï¿½ndre
 		}
 	}
 

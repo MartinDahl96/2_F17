@@ -1,14 +1,19 @@
 package sql;
 
+import java.io.IOException;
 import java.sql.*;
+
+import inputHandlers.Text;
 
 public class Connector {
 
 	//attributes
+	private Text file = new Text("txtfiles/sql.txt");
+	private String[] textList;
 	private final String LOCALHOST = "Localhost";
 	private final int PORT = 3306;
 	private final String USERNAME = "root";
-	private final String PASSWORD = "sql123";
+	private final String PASSWORD = "";
 	private final String DATABASE = "matador";
 	private Connection con;
 
@@ -18,8 +23,13 @@ public class Connector {
 	 */
 	public Connector() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://" + LOCALHOST + ":" + PORT + "/" + DATABASE;
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			Class.forName(textList[12]);
+			String url = textList[13] + LOCALHOST + textList[14] + PORT + textList[15] + DATABASE;
 			con = DriverManager.getConnection(url, USERNAME, PASSWORD);
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -41,7 +51,7 @@ public class Connector {
 	 * used to create a result set of a preparedstatement to be executed in the database.
 	 * @param query is the result set of the preparedstatement to be executed.
 	 * @return rs is the result set executed from the preparedstatement.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	public ResultSet doQuery(String query) throws SQLException {
 		PreparedStatement prepstmt = con.prepareStatement(query);
@@ -52,7 +62,7 @@ public class Connector {
 	/**
 	 * used to create an updating statement.
 	 * @param query is the updating statement.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	public void doUpdate(String query) throws SQLException {
 		Statement stmt = con.createStatement();
@@ -63,7 +73,7 @@ public class Connector {
 	 * used to create a prepared statement.
 	 * @param query is the prepared statement to create.
 	 * @return prepstmt is the prepared statement created.
-	 * @throws SQLException
+	 * @throws SQLException if no connection can be made.
 	 */
 	public PreparedStatement doPreparedStmt(String query) throws SQLException {
 		PreparedStatement prepstmt = con.prepareStatement(query);

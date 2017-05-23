@@ -20,6 +20,11 @@ public class StartController {
 	 * @param s is a start-field object.
 	 */
 	public StartController(Start s){
+		try {
+			textList = file.OpenFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		StartController.s = s;
 		
 	}
@@ -52,11 +57,6 @@ public class StartController {
 	 * @param player is the player landing on the field.
 	 */
 	public void landOnStart(Player player){
-		try {
-			textList = file.OpenFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		MUI.showMessage(player.getplayerName()+textList[34]);
 	}
 }

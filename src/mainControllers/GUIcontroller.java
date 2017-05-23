@@ -87,7 +87,7 @@ public class GUIcontroller {
 
 		GUIfields[12] = new desktop_fields.Brewery.Builder().setTitle(fields.get(13).getFieldName())
 				.setSubText(textList[18] + ((Ownable) fields.get(13)).getPrice())
-				.setDescription("\n" + ((Ownable) fields.get(13)).getFieldInfo()).setPicture("pictures/Carlsberg2.png")
+				.setDescription("\n" + ((Ownable) fields.get(13)).getFieldInfo()).setPicture(textList[23])
 				.build();
 
 		GUIfields[13] = new desktop_fields.Street.Builder().setTitle(fields.get(14).getFieldName())
@@ -102,7 +102,7 @@ public class GUIcontroller {
 
 		GUIfields[15] = new desktop_fields.Shipping.Builder().setTitle(fields.get(16).getFieldName())
 				.setSubText(textList[18] + ((Ownable) fields.get(16)).getPrice())
-				.setDescription("\n" + ((Ownable) fields.get(16)).getFieldInfo()).setPicture("pictures/Ferry.png")
+				.setDescription("\n" + ((Ownable) fields.get(16)).getFieldInfo()).setPicture(textList[20])
 				.build();
 
 		GUIfields[16] = new desktop_fields.Street.Builder().setTitle(fields.get(17).getFieldName())
@@ -145,7 +145,7 @@ public class GUIcontroller {
 
 		GUIfields[25] = new desktop_fields.Shipping.Builder().setTitle(fields.get(26).getFieldName())
 				.setSubText(textList[18] + ((Ownable) fields.get(26)).getPrice())
-				.setDescription("\n" + ((Ownable) fields.get(26)).getFieldInfo()).setPicture("pictures/Ferry.png")
+				.setDescription("\n" + ((Ownable) fields.get(26)).getFieldInfo()).setPicture(textList[20])
 				.build();
 
 		GUIfields[26] = new desktop_fields.Street.Builder().setTitle(fields.get(27).getFieldName())
@@ -160,7 +160,7 @@ public class GUIcontroller {
 
 		GUIfields[28] = new desktop_fields.Brewery.Builder().setTitle(fields.get(29).getFieldName())
 				.setSubText(textList[18] + ((Ownable) fields.get(29)).getPrice())
-				.setDescription("\n" + ((Ownable) fields.get(29)).getFieldInfo()).setPicture("pictures/Coca-cola.jpg")
+				.setDescription("\n" + ((Ownable) fields.get(29)).getFieldInfo()).setPicture(textList[24])
 				.build();
 
 		GUIfields[29] = new desktop_fields.Street.Builder().setTitle(fields.get(30).getFieldName())
@@ -169,7 +169,7 @@ public class GUIcontroller {
 				.setRent(textList[19] + ((Ownable) fields.get(30)).getRent()).setBgColor(Color.WHITE).build();
 
 		GUIfields[30] = new desktop_fields.Jail.Builder().setSubText(fields.get(31).getFieldName())
-				.setDescription(fields.get(31).getFieldInfo()).setPicture("pictures/goToJail.png").build();
+				.setDescription(fields.get(31).getFieldInfo()).setPicture(textList[25]).build();
 
 		GUIfields[31] = new desktop_fields.Street.Builder().setTitle(fields.get(32).getFieldName())
 				.setSubText(textList[18] + ((Ownable) fields.get(32)).getPrice())
@@ -190,7 +190,7 @@ public class GUIcontroller {
 
 		GUIfields[35] = new desktop_fields.Shipping.Builder().setTitle(fields.get(36).getFieldName())
 				.setSubText(textList[18] + ((Ownable) fields.get(36)).getPrice())
-				.setDescription("\n" + ((Ownable) fields.get(36)).getFieldInfo()).setPicture("pictures/Ferry.png")
+				.setDescription("\n" + ((Ownable) fields.get(36)).getFieldInfo()).setPicture(textList[20])
 				.build();
 
 		GUIfields[36] = new desktop_fields.Chance.Builder().build();

@@ -11,6 +11,7 @@ public class Jail extends Field {
 
 	/**
 	 * Constructor for a Jail-field.
+	 * @param fieldID is the id/position of the field.
 	 * @param fieldName is used as a name for the field.
 	 * @param fieldInfo is used to give info about the field.
 	 */

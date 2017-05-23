@@ -17,6 +17,8 @@ public class Start extends Field {
 	/**
 	 * A constructor for the Start field, used to create a Tax object
 	 * 
+	 * @param fieldID
+	 * 			  is the ID/position of the field.
 	 * @param fieldName
 	 *            Determines the name of the field
 	 * @param fieldInfo
