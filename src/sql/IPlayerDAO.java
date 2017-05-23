@@ -23,3 +23,6 @@ public interface IPlayerDAO {
 	void updatePlayer() throws SQLException; 
 
 }
+
+
+

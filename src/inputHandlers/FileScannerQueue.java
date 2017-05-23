@@ -47,7 +47,6 @@ public class FileScannerQueue {
 		}
 
 		return q;
-
 	}
 
 	/**

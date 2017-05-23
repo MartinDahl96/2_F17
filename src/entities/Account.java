@@ -57,12 +57,17 @@ public class Account {
 			balance=0;
 		}
 		return balance;
-	}
+	} 
 	
 	/**
 	 * Converts the Balance int to a string.
 	 */
 	public String toString(){
 		return Integer.toString(balance);
+		
+		
+			
+		}
+	 
 	}
-}
+	

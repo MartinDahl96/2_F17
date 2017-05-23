@@ -202,9 +202,16 @@ public class Player {
 		 * @param newPosition is the player's new position.
 		 */
 		public void changePosition (int newPosition) {
+			
 			prevPosition = currentPosition;
 			this.currentPosition = newPosition;
 		}
+		
+		
+
+		
+		
+		
 
 		/**
 		 * used to set the amount of ferries owned by a player.
